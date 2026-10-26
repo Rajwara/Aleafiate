@@ -85,6 +85,15 @@
     from && from.focus && from.focus({ preventScroll: true });
     if (!done.hidden) setTimeout(() => { form.reset(); form.hidden = false; done.hidden = true; bk.classList.remove('is-done'); $$('select', form).forEach(s => s.dispatchEvent(new Event('change'))); }, 500);
   };
+  // other scripts can open the form with some fields pre-filled: aleafiateBook({ enquiry, practitioner, message }, triggerEl)
+  window.aleafiateBook = (values = {}, trigger) => {
+    Object.entries(values).forEach(([name, v]) => {
+      const el = form.elements[name]; if (!el || v == null) return;
+      if (el.tagName === 'SELECT') { const o = [...el.options].find(o => o.value === v || o.text === v); if (o) { el.value = o.value; el.dispatchEvent(new Event('change')); } }
+      else el.value = v;
+    });
+    open(trigger);
+  };
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-book]');
     if (t) { e.preventDefault(); open(t); return; }

@@ -112,19 +112,35 @@ p{margin:0}
 /* =========================================================
    1. HERO — split screen that expands on scroll
    ========================================================= */
-.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:var(--bone)}
-.hero__content{position:absolute;inset:0 50% 0 0;display:flex;flex-direction:column;justify-content:center;padding:120px var(--gutter) 60px;z-index:2}
-.hero__title{font-size:clamp(38px,4.8vw,80px)}
-.hero__title em{font-style:italic;color:var(--moss-2)}
-.hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.hero__foot{position:absolute;left:var(--gutter);bottom:40px;max-width:300px;font-size:14px;color:var(--muted)}
-.hero__media{position:absolute;top:0;right:0;bottom:0;width:50%;z-index:3}
-.hero__media .media{position:absolute;inset:0}
-.hero__shade{position:absolute;inset:0;background:rgba(13,13,48,.45);opacity:0;z-index:1}
-.hero__statement{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 var(--gutter);z-index:2;color:var(--bone);font-size:clamp(34px,4.6vw,72px);pointer-events:none}
-.hero__scroll{position:absolute;right:28px;bottom:32px;z-index:4;color:var(--bone);font-size:12px;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-.hero__scroll i{display:block;width:1px;height:40px;background:rgba(246,249,249,.4);position:relative;overflow:hidden}
-.hero__scroll i::after{content:"";position:absolute;inset:0;background:var(--bone);animation:scrollLine 1.8s var(--ease) infinite}
+.hero{position:relative;min-height:max(640px,100vh);display:flex;overflow:hidden;background:linear-gradient(120deg,#eef7f5 0%,var(--sand) 45%,#dcefeb 100%)}
+.hero__bg{position:absolute;top:0;right:0;bottom:0;width:66%}
+.hero__bg .media{position:absolute;inset:-6% 0}
+.hero__bg img{object-position:58% 50%}
+.hero__veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#e9f4f2 30%,rgba(233,244,242,.82) 42%,rgba(233,244,242,.25) 60%,transparent 75%),linear-gradient(0deg,rgba(233,244,242,.75),transparent 34%)}
+.hero__inner{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding-top:150px;padding-bottom:48px;min-height:inherit}
+.hero__copy{max-width:600px}
+.hero__title{font-size:clamp(40px,min(5.4vw,9vh),88px);font-weight:600;letter-spacing:-.035em;line-height:1.02;margin-top:20px;color:var(--ink)}
+.hero__title em{font-style:normal;color:var(--teal-deep,#247568)}
+.hero__sub{margin-top:22px;max-width:480px;font-size:clamp(16px,1.25vw,19px);color:var(--muted)}
+.hero__trust{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:28px 0 0;padding:0}
+.hero__trust li{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;color:var(--ink)}
+.hero__trust li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
+/* glass booking bar */
+.hero__book{display:grid;grid-template-columns:1fr 1fr 1fr auto;align-items:end;gap:16px;width:min(100%,1040px);padding:20px 22px 22px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 30px 70px -30px rgba(13,13,48,.35)}
+.hb__field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.hb__field label{font-size:13px;font-weight:600;color:var(--ink)}
+.hb__field select,.hb__date{height:50px;width:100%;border:1px solid rgba(19,19,46,.08);border-radius:12px;background-color:#fff;font:inherit;font-size:15px;color:var(--ink);transition:border-color .3s,box-shadow .3s}
+.hb__field select{-webkit-appearance:none;appearance:none;padding:0 40px 0 16px;cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2313132E' stroke-width='1.6'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 16px center}
+.hb__date{display:flex;align-items:center;gap:10px;padding:0 14px}
+.hb__date svg{flex:none;width:18px;height:18px;color:var(--muted)}
+.hb__date input{flex:1;min-width:0;height:100%;border:0;background:none;font:inherit;font-size:15px;color:var(--ink);outline:none}
+.hb__field select:hover,.hb__date:hover{border-color:rgba(19,19,46,.2)}
+.hb__field select:focus-visible,.hb__date:focus-within{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(48,153,136,.18)}
+.hb__btn{height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 30px;border:0;border-radius:12px;background:var(--teal-deep,#247568);color:#fff;font:600 15px/1 var(--body);cursor:pointer;white-space:nowrap;transition:background .4s} /* no transform transition: GSAP animates it on load */
+.hb__btn svg{width:16px;height:16px;transition:transform .5s var(--ease)}
+.hb__btn:hover{background:var(--navy)}
+.hb__btn:hover svg{transform:translateX(4px)}
+.hb__btn:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
 @keyframes scrollLine{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
 
 /* =========================================================
@@ -326,11 +342,13 @@ p{margin:0}
   .nav__links,.nav__phone{display:none}
   .nav__burger{display:block}
   .nav__right .btn{display:none}
-  .hero{height:auto;min-height:0;padding-top:110px}
-  .hero__content{position:relative;inset:auto;padding:24px var(--gutter) 40px}
-  .hero__foot{position:static;margin-top:28px}
-  .hero__media{position:relative;width:100%;height:80vh}
-  .hero__statement,.hero__shade{display:none}
+  .hero{min-height:0;display:block}
+  .hero__bg{position:relative;width:100%;height:56vh;top:auto}
+  .hero__veil{background:linear-gradient(0deg,#e9f4f2 2%,transparent 40%)}
+  .hero__inner{padding-top:28px;gap:28px}
+  .hero__copy{max-width:none}
+  .hero__book{grid-template-columns:1fr 1fr}
+  .hb__btn{grid-column:1/-1}
   .values{grid-template-columns:1fr}
   .values__sticky{position:relative;height:auto;padding:90px var(--gutter);order:-1}
   .value-card{height:80vh}
@@ -346,6 +364,8 @@ p{margin:0}
   .footer__top{grid-template-columns:1fr 1fr}
 }
 @media (max-width: 600px){
+  .hero__book{grid-template-columns:1fr;padding:18px}
+  .hero__bg{height:46vh}
   .intro__features{grid-template-columns:1fr}
   .marquee{grid-template-columns:1fr;height:520px}
   .marquee__col--down{display:none}
@@ -378,20 +398,30 @@ p{margin:0}
 
 <!-- ================= 1. HERO ================= -->
 <section class="hero" id="hero">
-  <div class="hero__content">
-    <span class="eyebrow" data-fade>Trusted healthcare · Logan &amp; telehealth</span>
-    <h1 class="hero__title" data-hero-title style="margin-top:22px">Alternative healthcare, <em>personalised</em> to you.</h1>
-    <div class="hero__actions" data-fade>
-      <a href="tel:+61734733396" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Book a free call</span><span class="btn__dot"></span></a>
-      <a href="#values" class="btn btn--ghost" data-roll><span class="btn__fill"></span><span class="btn__label">How it works</span></a>
+  <div class="hero__bg"><div class="media" data-label="about-hero.webp"><img src="images/about/about-hero.webp" alt="Aleafiate practitioner welcoming a patient" data-hero-img></div></div>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <span class="eyebrow" data-fade>Aleafiate Health Clinics · Logan &amp; telehealth</span>
+      <h1 class="hero__title" data-hero-title>Your health, <em>our priority.</em></h1>
+      <p class="hero__sub" data-fade>Compassionate, personalised care from AHPRA-registered practitioners — in clinic at Logan Central or from home by telehealth.</p>
+      <ul class="hero__trust" data-fade><li>Free discovery call</li><li>AHPRA-registered</li><li>Scripts in 12–24 hrs</li></ul>
     </div>
-    <p class="hero__foot" data-fade>Find out if you’re eligible with a free, no-obligation call — then meet an AHPRA-registered practitioner in clinic or from home.</p>
-  </div>
-  <div class="hero__media" data-hero-media>
-    <div class="media" data-label="home-hero.webp"><img src="images/home/home-hero.webp" alt="Smiling Aleafiate practitioner" data-hero-img></div>
-    <div class="hero__shade" data-hero-shade></div>
-    <h2 class="hero__statement"><span data-hero-statement>Care that starts with a conversation.</span></h2>
-    <div class="hero__scroll"><i></i>Scroll</div>
+    <form class="hero__book" data-hero-book novalidate aria-label="Book an appointment">
+      <div class="hb__field">
+        <label for="hb-type">Appointment</label>
+        <select id="hb-type" name="enquiry"><option value="Book a free discovery call">Free discovery call</option><option value="Book an initial consultation">Initial consultation</option><option value="Book a follow-up">Follow-up consultation</option></select>
+      </div>
+      <div class="hb__field">
+        <label for="hb-practitioner">Practitioner</label>
+        <select id="hb-practitioner" name="practitioner"><option>No preference</option><option>Dr Frank Guerrera</option><option>Jeremy Chou (Nurse Practitioner)</option></select>
+      </div>
+      <div class="hb__field hb__field--date">
+        <label for="hb-date">Preferred date</label>
+        <span class="hb__date"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="13" rx="2.5"/><path d="M3 8h14M7 2.5v3M13 2.5v3"/></svg><input id="hb-date" name="date" type="date"></span>
+      </div>
+      <button type="submit" class="hb__btn"><span>Book now</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    </form>
   </div>
 </section>
 
@@ -641,6 +671,18 @@ p{margin:0}
   /* Testimonials marquee: duplicate content for a seamless loop */
   $$('[data-marquee]').forEach(col => col.innerHTML += col.innerHTML);
 
+  /* Hero booking bar: opens the booking form with the choices filled in */
+  const hb = $('[data-hero-book]');
+  if (hb) {
+    const date = $('#hb-date', hb); date.min = new Date().toISOString().slice(0, 10);
+    hb.addEventListener('submit', e => {
+      e.preventDefault();
+      const d = date.value ? new Date(date.value + 'T00:00').toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : '';
+      const go = () => window.aleafiateBook({ enquiry: hb.elements.enquiry.value, practitioner: hb.elements.practitioner.value, message: d ? `Preferred date: ${d}` : '' }, $('.hb__btn', hb));
+      window.aleafiateBook ? go() : (location.href = 'contact.html');
+    });
+  }
+
   if (!window.gsap) return;
   gsap.registerPlugin(ScrollTrigger, SplitText, Draggable);
 
@@ -690,27 +732,17 @@ p{margin:0}
   document.fonts.ready.then(() => {
     const mm = gsap.matchMedia();
 
-    /* ---------- Hero intro (on load) ---------- */
+    /* ---------- Hero banner: intro + soft parallax ---------- */
     const heroSplit = SplitText.create('[data-hero-title]', { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });
-    const intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    intro.from('[data-hero-media]', { clipPath: 'inset(0 0 0 100%)', duration: 1.6, ease: 'expo.inOut' })
-         .from('[data-hero-img]', { scale: 1.3, duration: 2 }, '<')
-         .from(heroSplit.words, { yPercent: 110, duration: 1.2, stagger: .04 }, '-=1.1')
-         .from('.hero [data-fade]', { y: 24, autoAlpha: 0, duration: 1, stagger: .12 }, '-=.9')
-         .from('#nav', { y: -30, autoAlpha: 0, duration: 1 }, '<');
-
-    /* ---------- Hero: pin + expand image to full width ---------- */
-    mm.add('(min-width: 992px)', () => {
-      const st = SplitText.create('[data-hero-statement]', { type: 'chars,words' });
-      gsap.set(st.chars, { autoAlpha: 0, yPercent: 40 });
-      const tl = gsap.timeline({ scrollTrigger: { trigger: '#hero', start: 'top top', end: '+=160%', scrub: 1, pin: true } });
-      tl.to('.hero__content', { xPercent: -20, autoAlpha: 0, duration: 1, ease: 'none' }, 0)
-        .to('[data-hero-media]', { width: '100%', duration: 1, ease: 'power2.inOut' }, 0)
-        .to('[data-hero-img]', { scale: 1.12, duration: 1.6, ease: 'none' }, 0)
-        .to('[data-hero-shade]', { opacity: 1, duration: .6 }, .6)
-        .to(st.chars, { autoAlpha: 1, yPercent: 0, stagger: .025, duration: .4, ease: 'power2.out' }, .75);
-      return () => st.revert();
-    });
+    gsap.timeline({ defaults: { ease: 'expo.out' } })
+      .from('[data-hero-img]', { scale: 1.25, duration: 2.2 })
+      .from('.hero__bg', { clipPath: 'inset(0 0 0 100%)', duration: 1.6, ease: 'expo.inOut' }, 0)
+      .from(heroSplit.words, { yPercent: 110, duration: 1.2, stagger: .05 }, .5)
+      .from('.hero [data-fade]', { y: 24, autoAlpha: 0, duration: 1, stagger: .1 }, .8)
+      .from('[data-hero-book]', { y: 60, autoAlpha: 0, duration: 1.3 }, 1)
+      .from('[data-hero-book] > *', { y: 20, autoAlpha: 0, duration: .9, stagger: .08 }, 1.2)
+      .from('#nav', { autoAlpha: 0, duration: 1 }, .4); // fade only: .nav has a CSS transform transition
+    gsap.to('.hero__bg .media', { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
 
     /* ---------- Generic heading reveal (lines slide up from mask) ---------- */
     $$('[data-split]').forEach(el => {
