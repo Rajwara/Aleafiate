@@ -113,10 +113,10 @@ p{margin:0}
    1. HERO — split screen that expands on scroll
    ========================================================= */
 .hero{position:relative;min-height:max(640px,100vh);display:flex;overflow:hidden;background:linear-gradient(120deg,#eef7f5 0%,var(--sand) 45%,#dcefeb 100%)}
-.hero__bg{position:absolute;top:0;right:0;bottom:0;width:66%}
-.hero__bg .media{position:absolute;inset:-6% 0}
-.hero__bg img{object-position:58% 50%}
-.hero__veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#e9f4f2 30%,rgba(233,244,242,.82) 42%,rgba(233,244,242,.25) 60%,transparent 75%),linear-gradient(0deg,rgba(233,244,242,.75),transparent 34%)}
+.hero__bg{position:absolute;inset:0} /* photo covers the whole banner */
+.hero__bg .media{position:absolute;inset:-6% -18% -6% 0} /* wider than the banner so the people sit right of the text */
+.hero__bg img{object-position:50% 40%}
+.hero__veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(233,244,242,.94) 0%,rgba(233,244,242,.86) 30%,rgba(233,244,242,.4) 48%,transparent 66%),linear-gradient(0deg,rgba(233,244,242,.75),transparent 34%)}
 .hero__inner{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding-top:150px;padding-bottom:48px;min-height:inherit}
 .hero__copy{max-width:600px}
 .hero__title{font-size:clamp(40px,min(5.4vw,9vh),88px);font-weight:600;letter-spacing:-.035em;line-height:1.02;margin-top:20px;color:var(--ink)}
@@ -343,7 +343,8 @@ p{margin:0}
   .nav__burger{display:block}
   .nav__right .btn{display:none}
   .hero{min-height:0;display:block}
-  .hero__bg{position:relative;width:100%;height:56vh;top:auto}
+  .hero__bg{position:relative;inset:auto;width:100%;height:56vh}
+  .hero__bg .media{inset:-6% 0}
   .hero__veil{background:linear-gradient(0deg,#e9f4f2 2%,transparent 40%)}
   .hero__inner{padding-top:28px;gap:28px}
   .hero__copy{max-width:none}
