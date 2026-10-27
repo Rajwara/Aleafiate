@@ -148,14 +148,9 @@ p{margin:0}
 /* =========================================================
    2. INTRO STATEMENT — word-by-word scrub
    ========================================================= */
-.intro{position:relative;padding:clamp(100px,16vw,200px) 0;overflow:hidden;background:var(--bone)}
 .intro__orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;pointer-events:none}
 .intro__orb--a{width:420px;height:420px;background:#CFEFE9;left:-120px;top:10%}
 .intro__orb--b{width:520px;height:520px;background:#DCDDF2;right:-160px;bottom:-10%}
-.intro__text{position:relative;max-width:1100px;margin:0 auto;text-align:center;font-family:var(--body);font-weight:300;font-size:clamp(24px,2.9vw,44px);line-height:1.18;letter-spacing:-.015em}
-.intro__features{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,200px));justify-content:center;gap:clamp(20px,5vw,72px);margin-top:72px;text-align:center;font-size:15px}
-.intro__icon{width:44px;height:44px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:var(--moss);color:var(--bone)}
-.intro__icon svg{width:20px;height:20px}
 
 /* =========================================================
    3. VALUES — sticky split
@@ -176,20 +171,6 @@ p{margin:0}
 /* =========================================================
    6. SPACE — pinned horizontal gallery
    ========================================================= */
-.space{background:var(--moss);color:var(--bone);overflow:hidden}
-.space__pin{height:100vh;display:flex;flex-direction:column;justify-content:center;gap:48px}
-.space__head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
-.space__head h2{font-size:clamp(40px,5vw,80px);margin-top:16px}
-.space .eyebrow{color:rgba(246,249,249,.7)}
-.space__head p{max-width:360px;opacity:.75}
-.space__track{display:flex;gap:20px;padding-left:var(--gutter);width:max-content}
-.space__item{flex:0 0 auto;width:clamp(280px,46vw,720px);height:clamp(240px,48vh,500px);border-radius:var(--radius);overflow:hidden}
-.space__item:nth-child(even){width:clamp(220px,30vw,460px)}
-.space__item .media{width:100%;height:100%;background:linear-gradient(135deg,#25256E,#161650)}
-.space__item .media::after{color:rgba(246,249,249,.5)}
-.space__item .media img{transform:scale(1.2)}
-.space__bar{height:1px;background:rgba(246,249,249,.2);margin:0 var(--gutter);position:relative}
-.space__bar i{position:absolute;inset:0;background:var(--bone);transform:scaleX(0);transform-origin:left}
 
 /* =========================================================
    7. TEAM — draggable slider
@@ -572,11 +553,9 @@ p{margin:0}
 @media (max-width: 600px){
   .hero__book{grid-template-columns:1fr;padding:18px}
   .hero__bg{height:46vh}
-  .intro__features{grid-template-columns:1fr}
   .marquee{grid-template-columns:1fr;height:520px}
   .marquee__col--down{display:none}
   .footer__top{grid-template-columns:1fr}
-  .space__pin{height:auto;padding:90px 0}
 }
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -753,20 +732,6 @@ p{margin:0}
   </div>
 </section>
 
-<!-- ================= 3. WHY ALEAFIATE ================= -->
-<section class="intro">
-  <div class="intro__orb intro__orb--a" data-speed="-0.2"></div>
-  <div class="intro__orb intro__orb--b" data-speed="0.25"></div>
-  <div class="container">
-    <p class="intro__text" data-scrub-words>At Aleafiate Health Clinics, we believe healing is a shared journey. We listen first, explain every step in plain language, and work with you on a plan that fits your health, your history and your life.</p>
-    <div class="intro__features" data-stagger>
-      <div><div class="intro__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>A free, no-obligation first call.</div>
-      <div><div class="intro__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>AHPRA-registered practitioners.</div>
-      <div><div class="intro__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>In clinic or by telehealth.</div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= 4. WHAT DO YOU NEED HELP WITH — flip cards ================= -->
 <section class="hw" id="help">
   <div class="container">
@@ -905,24 +870,6 @@ p{margin:0}
         <span class="wa__bar" aria-hidden="true"><i></i></span>
       </button>
     </div>
-  </div>
-</section>
-
-<!-- ================= 6. OUR CLINIC (horizontal) ================= -->
-<section class="space">
-  <div class="space__pin">
-    <div class="container space__head">
-      <div><span class="eyebrow">Our clinic</span><h2 data-split>A calm place to talk about your health</h2></div>
-      <p data-fade-up>Visit us at Logan Central Plaza, 38/74 Wembley Rd — or see the same team from home by telehealth.</p>
-    </div>
-    <div class="space__track" data-h-track>
-      <div class="space__item"><div class="media" data-label="clinic-reception.webp"><img src="images/home/clinic-reception.webp" alt="Clinic reception" loading="lazy"></div></div>
-      <div class="space__item"><div class="media" data-label="reviews-side.webp"><img src="images/home/reviews-side.webp" alt="Our front desk team" loading="lazy"></div></div>
-      <div class="space__item"><div class="media" data-label="clinic-consult-room.webp"><img src="images/home/clinic-consult-room.webp" alt="Consultation room" loading="lazy"></div></div>
-      <div class="space__item"><div class="media" data-label="clinic-telehealth.webp"><img src="images/home/clinic-telehealth.webp" alt="Telehealth consultations" loading="lazy"></div></div>
-      <div class="space__item"><div class="media" data-label="clinic-wide.webp"><img src="images/home/clinic-wide.webp" alt="Clinic waiting area" loading="lazy"></div></div>
-    </div>
-    <div class="space__bar"><i data-h-bar></i></div>
   </div>
 </section>
 
@@ -1289,11 +1236,6 @@ p{margin:0}
     $$('[data-fade-up]').forEach(el => gsap.from(el, { y: 30, autoAlpha: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
     $$('[data-stagger]').forEach(el => gsap.from(el.children, { y: 50, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: .1, scrollTrigger: { trigger: el, start: 'top 85%' } }));
 
-    /* ---------- Intro: word-by-word opacity scrub ---------- */
-    const words = SplitText.create('[data-scrub-words]', { type: 'words' }).words;
-    gsap.fromTo(words, { opacity: .14 }, { opacity: 1, stagger: .05, ease: 'none',
-      scrollTrigger: { trigger: '[data-scrub-words]', start: 'top 80%', end: 'bottom 45%', scrub: true } });
-
     /* ---------- Parallax helpers ---------- */
     $$('[data-speed]').forEach(el => gsap.to(el, { yPercent: parseFloat(el.dataset.speed) * 100, ease: 'none',
       scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));
@@ -1335,17 +1277,6 @@ p{margin:0}
       });
       ScrollTrigger.create({ trigger: wa, start: 'top 60%', end: 'bottom 20%', onToggle: st => st.isActive ? (fill ? fill.resume() : play()) : fill && fill.pause() }); // only runs while in view
     }
-
-    /* ---------- Space: pinned horizontal scroll ---------- */
-    mm.add('(min-width: 601px)', () => {
-      const track = $('[data-h-track]');
-      const dist = () => track.scrollWidth - window.innerWidth + parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gutter') || 0) * 0;
-      const tween = gsap.to(track, { x: () => -dist(), ease: 'none',
-        scrollTrigger: { trigger: '.space', start: 'top top', end: () => '+=' + dist(), pin: '.space__pin', scrub: 1, invalidateOnRefresh: true } });
-      gsap.to('[data-h-bar]', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '.space', start: 'top top', end: () => '+=' + dist(), scrub: true } });
-      $$('.space__item img').forEach(img => gsap.to(img, { scale: 1, ease: 'none',
-        scrollTrigger: { trigger: img.closest('.space__item'), containerAnimation: tween, start: 'left right', end: 'right left', scrub: true } }));
-    });
 
     /* ---------- Team: draggable slider + buttons ---------- */
     const vp = $('[data-team-viewport]'), track = $('[data-team-track]');
