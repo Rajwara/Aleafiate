@@ -160,22 +160,6 @@ p{margin:0}
 /* =========================================================
    3. VALUES — sticky split
    ========================================================= */
-.values{display:grid;grid-template-columns:1fr 1fr;background:var(--sand)}
-.values__stack{display:flex;flex-direction:column}
-.value-card{position:relative;height:100vh;min-height:560px}
-.value-card .media{position:absolute;inset:0}
-.value-card .media img{transform:scale(1.15)}
-.value-card__cap{position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:clamp(24px,5vw,56px);z-index:2;color:var(--bone);max-width:360px}
-.value-card__cap h3{font-size:28px;margin-bottom:10px}
-.value-card__cap p{font-size:15px;opacity:.85}
-.value-card__num{position:absolute;top:28px;left:clamp(20px,4vw,56px);z-index:2;color:var(--bone);font-size:13px;letter-spacing:.14em}
-.value-card::before{content:"";position:absolute;inset:40% 0 0 0;z-index:1;background:linear-gradient(to top,rgba(13,13,48,.7),transparent)}
-.values__sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(24px,7vw,120px)}
-.values__sticky h2{font-size:clamp(38px,4vw,64px);margin:18px 0 22px}
-.values__sticky p{max-width:420px;color:var(--muted)}
-.values__progress{display:flex;gap:8px;margin-top:40px}
-.values__progress span{height:2px;flex:0 0 40px;background:rgba(19,19,46,.15);position:relative;overflow:hidden}
-.values__progress span i{position:absolute;inset:0;background:var(--moss);transform:scaleX(0);transform-origin:left}
 
 /* =========================================================
    4. TREATMENTS — expanding cards
@@ -526,9 +510,6 @@ p{margin:0}
   .hero__copy{max-width:none}
   .hero__book{grid-template-columns:1fr 1fr}
   .hb__btn{grid-column:1/-1}
-  .values{grid-template-columns:1fr}
-  .values__sticky{position:relative;height:auto;padding:90px var(--gutter);order:-1}
-  .value-card{height:80vh}
   .treatments__row{flex-direction:column;height:auto}
   .t-card,.t-card.is-active{flex:none;height:120px}
   .t-card.is-active{height:420px}
@@ -736,38 +717,6 @@ p{margin:0}
       <div><div class="intro__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>AHPRA-registered practitioners.</div>
       <div><div class="intro__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>In clinic or by telehealth.</div>
     </div>
-  </div>
-</section>
-
-<!-- ================= 3. HOW IT WORKS (sticky split) ================= -->
-<section class="values" id="values">
-  <div class="values__stack">
-    <article class="value-card" data-value>
-      <span class="value-card__num">Step 01 / 04</span>
-      <div class="media" data-label="step-1-free-call.webp"><img src="images/home/step-1-free-call.webp" alt="Book a free call" loading="lazy"></div>
-      <div class="value-card__cap"><h3>Book a free call</h3><p>A short, no-obligation chat with our team about your health needs and whether our service is right for you.</p></div>
-    </article>
-    <article class="value-card" data-value>
-      <span class="value-card__num">Step 02 / 04</span>
-      <div class="media" data-label="step-2-intake-form.webp"><img src="images/home/step-2-intake-form.webp" alt="Complete your intake form" loading="lazy"></div>
-      <div class="value-card__cap"><h3>Complete your intake form</h3><p>Share your medical history and current health, so your practitioner has the full picture before you meet.</p></div>
-    </article>
-    <article class="value-card" data-value>
-      <span class="value-card__num">Step 03 / 04</span>
-      <div class="media" data-label="step-3-consultation.webp"><img src="images/home/step-3-consultation.webp" alt="Meet your practitioner" loading="lazy"></div>
-      <div class="value-card__cap"><h3>Meet your practitioner</h3><p>See an AHPRA-registered practitioner in clinic or by telehealth to talk through your options and agree on a personalised plan.</p></div>
-    </article>
-    <article class="value-card" data-value>
-      <span class="value-card__num">Step 04 / 04</span>
-      <div class="media" data-label="step-4-ongoing-care.webp"><img src="images/home/step-4-ongoing-care.webp" alt="Ongoing care" loading="lazy"></div>
-      <div class="value-card__cap"><h3>Ongoing care</h3><p>If treatment is appropriate, your plan is put in place and our care team supports you with follow-ups and adjustments.</p></div>
-    </article>
-  </div>
-  <div class="values__sticky">
-    <span class="eyebrow">How it works</span>
-    <h2 data-split>Get started with Aleafiate.</h2>
-    <p data-fade-up>A simple, step-by-step process from your first call to ongoing care — most of it from the comfort of your home.</p>
-    <div class="values__progress"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
   </div>
 </section>
 
@@ -1215,14 +1164,6 @@ p{margin:0}
     /* ---------- Parallax helpers ---------- */
     $$('[data-speed]').forEach(el => gsap.to(el, { yPercent: parseFloat(el.dataset.speed) * 100, ease: 'none',
       scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));
-
-    /* ---------- Values: image zoom-out + progress + captions ---------- */
-    const bars = $$('.values__progress i');
-    $$('[data-value]').forEach((card, i) => {
-      gsap.to($('img', card), { scale: 1, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true } });
-      gsap.from($('.value-card__cap', card).children, { y: 30, autoAlpha: 0, duration: 1, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 40%' } });
-      gsap.to(bars[i], { scaleX: 1, ease: 'none', scrollTrigger: { trigger: card, start: 'top center', end: 'bottom center', scrub: true } });
-    });
 
     /* ---------- Outcomes: clip reveal + inner parallax ---------- */
     $$('.o-item').forEach((item, i) => {
