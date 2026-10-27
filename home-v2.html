@@ -85,7 +85,7 @@ p{margin:0}
 /* =========================================================
    NAV
    ========================================================= */
-.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding:18px var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:24px;transition:transform .6s var(--ease),background .4s,backdrop-filter .4s}
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding:18px max(var(--gutter),calc((100% - 1440px) / 2 + var(--gutter))); /* lines up with .container (max 1440px) */display:flex;align-items:center;justify-content:space-between;gap:24px;transition:transform .6s var(--ease),background .4s,backdrop-filter .4s}
 .nav.is-hidden{transform:translateY(-110%)}
 .nav.is-solid{background:rgba(246,249,249,.82);backdrop-filter:blur(12px)}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--heading);font-size:22px;letter-spacing:-.01em}
