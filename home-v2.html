@@ -327,44 +327,49 @@ p{margin:0}
 
 
 /* =========================================================
-   FOOTER (Home v2) — light mint, newsletter card
+   FOOTER (Home v2) — light mint, contact list, newsletter card
    ========================================================= */
 .footer--v2{background:var(--sand);color:var(--ink);padding:clamp(64px,8vw,96px) 0 110px} /* bottom space keeps the disclaimer clear of the floating button */
-.fv2__top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1.4fr);gap:clamp(32px,4vw,64px);align-items:start}
-.fv2__logo img{display:block;height:64px;width:auto}
-.fv2__tag{margin-top:28px;font-family:var(--heading);font-weight:500;font-size:clamp(20px,1.6vw,24px);line-height:1.3;letter-spacing:-.01em}
-.footer--v2 .fv2__contact{list-style:none;margin:24px 0 0;padding:0;font-size:14px;color:var(--muted)}
-.fv2__contact li+li{margin-top:6px}
+.fv2__top{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1.3fr) minmax(0,1fr);gap:clamp(32px,4vw,64px);align-items:start}
+.fv2__logo img{display:block;height:60px;width:auto}
+.fv2__tag{margin-top:22px;font-family:var(--heading);font-weight:500;font-size:clamp(19px,1.5vw,22px);line-height:1.3;letter-spacing:-.01em}
+.footer--v2 .fv2__contact{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+.fv2__contact li{display:flex;gap:12px;align-items:flex-start;margin:0;font-size:14px;line-height:1.5;color:var(--ink)}
+.fv2__contact small{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.fv2__contact a{transition:color .3s}
 .fv2__contact a:hover{color:var(--teal-deep)}
+.fv2__ic{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--teal-deep)}
+.fv2__ic svg{width:16px;height:16px}
 .fv2__cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .footer--v2 h4{opacity:1;font-family:var(--heading);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:16px}
 .footer--v2 ul{list-style:none;margin:0;padding:0}
 .footer--v2 li{margin-bottom:0}
 .footer--v2 a{opacity:1}
 .fv2__cols li+li{margin-top:10px}
-.fv2__cols a{position:relative;font-size:16px;color:var(--ink);transition:color .3s}
+.fv2__cols a{position:relative;font-size:15px;color:var(--ink);transition:color .3s}
 .fv2__cols a::after{content:"";position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
 .fv2__cols a:hover{color:var(--teal-deep)}
 .fv2__cols a:hover::after{transform:scaleX(1);transform-origin:left}
-.fv2__news{background:#fff;border-radius:calc(var(--radius) + 4px);padding:clamp(24px,2.6vw,36px);box-shadow:0 24px 50px -36px rgba(13,13,48,.35)}
-.fv2__news-title{font-family:var(--heading);font-weight:500;font-size:clamp(19px,1.5vw,22px);line-height:1.35;letter-spacing:-.01em;color:var(--ink)}
-.fv2__form{margin-top:clamp(28px,3vw,44px)}
-.fv2__form label{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;color:var(--navy)}
-.fv2__row{display:flex;gap:10px}
-.fv2__row input{flex:1;min-width:0;height:54px;padding:0 18px;border:1px solid rgba(19,19,46,.12);border-radius:14px;background:var(--bone);font:inherit;font-size:15px;color:var(--ink);outline:none;transition:border-color .3s,box-shadow .3s}
-.fv2__row input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(48,153,136,.15)}
-.fv2__row button{flex:none;height:54px;padding:0 30px;border:0;border-radius:999px;background:var(--mint);color:var(--navy);font:600 15px/1 var(--body);cursor:pointer;transition:background .4s,color .4s}
-.fv2__row button:hover{background:var(--navy);color:#fff}
-.fv2__msg{min-height:20px;margin-top:10px;font-size:13px;color:var(--teal-deep)}
+.fv2__news{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:0 20px 44px -34px rgba(13,13,48,.35)}
+.fv2__news h4{margin-bottom:10px}
+.fv2__news-title{font-size:15px;line-height:1.55;color:var(--muted)}
+.fv2__form{margin-top:18px}
+.fv2__row{display:flex;align-items:center;gap:6px;padding:5px 5px 5px 18px;border:1px solid rgba(19,19,46,.12);border-radius:999px;background:var(--bone);transition:border-color .3s,box-shadow .3s}
+.fv2__row:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px rgba(48,153,136,.15)}
+.fv2__row input{flex:1;min-width:0;height:42px;border:0;background:none;font:inherit;font-size:14px;color:var(--ink);outline:none}
+.fv2__row button{flex:none;height:42px;padding:0 22px;border:0;border-radius:999px;background:var(--navy);color:#fff;font:600 14px/1 var(--body);cursor:pointer;transition:background .4s}
+.fv2__row button:hover{background:var(--teal-deep)}
+.fv2__msg{min-height:18px;margin-top:10px;font-size:12px;color:var(--muted)}
+.fv2__msg.is-ok{color:var(--teal-deep)}
 .fv2__msg.is-error{color:#a2482f}
-.fv2__bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(48px,6vw,80px);padding-bottom:28px;border-bottom:1px solid rgba(19,19,46,.12);font-size:14px}
+.fv2__bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(48px,6vw,72px);padding-bottom:24px;border-bottom:1px solid rgba(19,19,46,.12);font-size:14px}
 .fv2__social{display:flex;gap:22px}
 .fv2__social a{transition:color .3s}
 .fv2__social a:hover{color:var(--teal-deep)}
-.fv2__disclaimer{margin-top:28px;font-size:13px;line-height:1.7;color:var(--muted)}
+.fv2__disclaimer{margin-top:24px;font-size:13px;line-height:1.7;color:var(--muted)}
 .fv2__disclaimer b{color:var(--ink)}
-@media (max-width:1100px){.fv2__top{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}.fv2__news{grid-column:1/-1}}
-@media (max-width:700px){.fv2__top{grid-template-columns:minmax(0,1fr)}.fv2__cols{grid-template-columns:repeat(2,minmax(0,1fr))}.fv2__row{flex-direction:column}.fv2__row button{height:50px}}
+@media (max-width:1100px){.fv2__top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.fv2__news{grid-column:1/-1}}
+@media (max-width:700px){.fv2__top{grid-template-columns:minmax(0,1fr)}.fv2__cols{grid-template-columns:repeat(2,minmax(0,1fr))}.footer--v2 .fv2__contact{grid-template-columns:minmax(0,1fr)}}
 
 /* split-text helpers */
 .split-line{overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
@@ -694,12 +699,7 @@ p{margin:0}
       <div class="fv2__brand">
         <a href="home-v2.html" class="fv2__logo"><img src="images/brand/aleafiate-logo.png" alt="Aleafiate Health Clinics" width="180" height="81" loading="lazy"></a>
         <p class="fv2__tag">Alternative healthcare,<br>personalised to you.</p>
-        <ul class="fv2__contact">
-          <li><a href="tel:+61734733396">07 3473 3396</a></li>
-          <li><a href="mailto:admin@aleafiate.com.au">admin@aleafiate.com.au</a></li>
-          <li>38/74 Wembley Rd, Logan Central QLD 4114</li>
-          <li>Monday – Friday, 9:00 AM – 5:00 PM</li>
-        </ul>
+        <ul class="fv2__contact"><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span><small>Call us</small><a href="tel:+61734733396">07 3473 3396</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Email</small><a href="mailto:admin@aleafiate.com.au">admin@aleafiate.com.au</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span><small>Visit</small><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Logan+Central+Plaza,+74+Wembley+Rd,+Logan+Central+QLD+4114" target="_blank" rel="noopener">38/74 Wembley Rd,<br>Logan Central QLD 4114</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><small>Opening hours</small>Monday – Friday<br>9:00 AM – 5:00 PM</span></li></ul>
       </div>
       <nav class="fv2__cols" aria-label="Footer">
         <div><h4>Clinic</h4><ul><li><a href="home-v2.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="index.html#how-it-works">How it works</a></li><li><a href="index.html#pricing">Pricing</a></li></ul></div>
@@ -707,14 +707,15 @@ p{margin:0}
         <div><h4>Policies</h4><ul><li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="travel-policy.html">Travel Policy</a></li></ul></div>
       </nav>
       <div class="fv2__news">
-        <p class="fv2__news-title">Join our newsletter for clinic news, practical guides and health updates.</p>
+        <h4>Newsletter</h4>
+        <p class="fv2__news-title">Clinic news, practical guides and health updates — once a month.</p>
         <form class="fv2__form" data-news novalidate>
-          <label for="fv2-email">Email address</label>
+          <label for="fv2-email" class="sr-only">Email address</label>
           <div class="fv2__row">
-            <input id="fv2-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+            <input id="fv2-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required>
             <button type="submit">Join</button>
           </div>
-          <p class="fv2__msg" aria-live="polite"></p>
+          <p class="fv2__msg" aria-live="polite">No spam. Unsubscribe any time.</p>
         </form>
       </div>
     </div>
@@ -779,8 +780,8 @@ p{margin:0}
   if (news) news.addEventListener('submit', e => {
     e.preventDefault();
     const input = news.elements.email, msg = $('.fv2__msg', news), v = input.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { msg.textContent = 'Please enter a valid email address.'; msg.classList.add('is-error'); input.focus(); return; }
-    msg.classList.remove('is-error');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { msg.textContent = 'Please enter a valid email address.'; msg.classList.remove('is-ok'); msg.classList.add('is-error'); input.focus(); return; }
+    msg.classList.remove('is-error'); msg.classList.add('is-ok');
     location.href = `mailto:admin@aleafiate.com.au?subject=${encodeURIComponent('Newsletter sign-up')}&body=${encodeURIComponent('Please add me to the Aleafiate newsletter: ' + v)}`;
     msg.textContent = 'Thanks! Your email app should open — just press send.';
     news.reset();
