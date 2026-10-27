@@ -416,6 +416,65 @@ p{margin:0}
 }
 @media (prefers-reduced-motion:reduce){.gs__marquee span{animation:none}}
 
+
+/* =========================================================
+   PRICING STEPS (Home v2) — three cards stacked, fan out on scroll
+   ========================================================= */
+.ps{padding:clamp(90px,10vw,140px) 0 clamp(60px,7vw,100px);background:var(--bone);overflow:clip}
+.ps__head{max-width:640px;margin:0 auto clamp(40px,5vw,60px);text-align:center}
+.ps__pill{display:inline-block;padding:8px 16px;border:1px solid var(--navy);border-radius:999px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--navy)}
+.ps__head h2{font-size:clamp(38px,4.8vw,72px);font-weight:600;letter-spacing:-.035em;margin:22px 0 18px}
+.ps__head h2 em{font-style:normal;color:var(--teal-deep)}
+.ps__head p{color:var(--muted);font-size:clamp(15px,1.15vw,17px)}
+.ps__btn{position:relative;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;margin-top:28px;padding:16px 30px;border-radius:999px;background:var(--navy)}
+.ps__btn-text{position:relative;z-index:1;font-weight:600;font-size:15px;line-height:1;color:#fff;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.ps__btn-text--abs{position:absolute;transform:translateY(300%)}
+.ps__btn-bg{position:absolute;z-index:0;width:14rem;min-width:120%;height:8rem;border-radius:50%;background:var(--teal-deep);transform:translateY(100%);transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.ps__btn:hover .ps__btn-bg{transform:translateY(0)}
+.ps__btn:hover .ps__btn-text{transform:translateY(-300%)}
+.ps__btn:hover .ps__btn-text--abs{transform:translateY(0)}
+.ps__wrapper{position:relative;height:260vh}
+.ps__sticky{position:sticky;top:110px;opacity:0;transform:translateY(100px);transition:opacity 1s cubic-bezier(.165,.84,.44,1),transform 1s cubic-bezier(.165,.84,.44,1)}
+.ps__sticky.is-in{opacity:1;transform:none}
+.ps__flex{display:flex;justify-content:center;align-items:center;padding:0 var(--gutter)}
+.ps-card-wrap{width:100%;max-width:26rem}
+.ps-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(19,19,46,.08);border-radius:22px;padding:22px;box-shadow:0 30px 60px -40px rgba(13,13,48,.35);will-change:transform}
+.ps-card.is-1{z-index:0} /* start/end positions are set by the scroll animation */
+.ps-card.is-2{z-index:2;background:var(--teal-deep);color:#fff;border-color:transparent}
+.ps-card.is-3{z-index:1}
+.ps-card__content{padding:6px 6px 22px}
+.ps-card__top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}
+.ps-card__num{display:inline-block;padding:7px 14px;border-radius:999px;background:var(--sand);font-family:var(--heading);font-weight:600;font-size:13px;color:var(--navy)}
+.ps-card.is-2 .ps-card__num{background:rgba(255,255,255,.16);color:#fff}
+.ps-card__tag{padding:6px 12px;border-radius:999px;background:rgba(138,220,206,.25);color:var(--teal-deep);font-size:12px;font-weight:500}
+.ps-card__title{font-size:clamp(20px,1.6vw,24px);font-weight:600;letter-spacing:-.02em}
+.ps-card__price{margin-top:12px;font-family:var(--heading);font-weight:600;font-size:clamp(48px,4.4vw,64px);line-height:1;letter-spacing:-.04em}
+.ps-card.is-2 .ps-card__price{color:var(--mint)}
+.ps-card__meta{margin-top:8px;font-size:14px;color:var(--muted)}
+.ps-card.is-2 .ps-card__meta{color:rgba(255,255,255,.75)}
+.ps-card__list{list-style:none;margin:18px 0 0;padding:18px 0 0;border-top:1px solid rgba(19,19,46,.1);display:flex;flex-direction:column;gap:10px}
+.ps-card.is-2 .ps-card__list{border-top-color:rgba(255,255,255,.2)}
+.ps-card__list li{display:flex;gap:10px;font-size:14px;line-height:1.45}
+.ps-card__list svg{flex:none;width:18px;height:18px;margin-top:1px;color:var(--mint)}
+.ps-card:not(.is-2) .ps-card__list svg{color:var(--teal)}
+.ps-card__btn{display:inline-flex;align-items:center;gap:10px;margin-top:20px;height:46px;padding:0 20px;border:0;border-radius:999px;background:var(--mint);color:var(--navy);font:600 14px/1 var(--body);cursor:pointer;transition:background .4s,color .4s}
+.ps-card__btn svg{width:15px;height:15px;transition:transform .5s var(--ease)}
+.ps-card__btn:hover{background:var(--navy);color:#fff}
+.ps-card.is-2 .ps-card__btn:hover{background:#fff;color:var(--navy)}
+.ps-card__btn:hover svg{transform:translateX(4px)}
+.ps-card__img{margin-top:auto;border-radius:14px;overflow:hidden;aspect-ratio:3/2;background:var(--sand)}
+.ps-card__img img{width:100%;height:100%;object-fit:cover;display:block}
+.ps__note{max-width:640px;margin:clamp(40px,5vw,64px) auto 0;padding:0 var(--gutter);text-align:center;font-size:13px;color:var(--muted)}
+@media (max-width:991px){
+  .ps__wrapper{height:auto}
+  .ps__sticky{position:static}
+  .ps__flex{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .ps-card-wrap{max-width:none}
+  .ps-card{height:100%;transform:none!important}
+}
+@media (max-width:640px){.ps__flex{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.ps__sticky{transition:none;opacity:1;transform:none}}
+
 /* split-text helpers */
 .split-line{overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
 
@@ -477,7 +536,7 @@ p{margin:0}
 <header class="nav" id="nav">
   <a href="#top" class="logo" aria-label="Aleafiate Health Clinics home"><img src="images/brand/aleafiate-logo.png" alt="Aleafiate Health Clinics" width="180" height="81"></a>
   <nav class="nav__links" aria-label="Main">
-    <a href="index.html#how-it-works">How it works</a><a href="index.html#pricing">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a>
+    <a href="#get-started">How it works</a><a href="#pricing">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a>
   </nav>
   <div class="nav__right">
     <a href="tel:+61734733396" class="nav__phone">07 3473 3396</a>
@@ -485,7 +544,7 @@ p{margin:0}
     <button class="nav__burger" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
-<div class="mobile-menu" aria-hidden="true"><a href="index.html">Home</a><a href="index.html#how-it-works">How it works</a><a href="index.html#pricing">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a></div>
+<div class="mobile-menu" aria-hidden="true"><a href="home-v2.html">Home</a><a href="#get-started">How it works</a><a href="#pricing">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a></div>
 
 <main id="top">
 
@@ -518,7 +577,65 @@ p{margin:0}
   </div>
 </section>
 
-<!-- ================= 2. GET STARTED — cards swing in on scroll ================= -->
+<!-- ================= 2. PRICING STEPS — cards fan out on scroll ================= -->
+<section class="ps" id="pricing">
+  <div class="container">
+    <div class="ps__head">
+      <span class="ps__pill">Simple &amp; transparent pricing</span>
+      <h2 data-split>Your journey starts <em>free.</em></h2>
+      <p data-fade-up>No hidden fees. No commitment until you’re ready. Medicare rebates may apply.</p>
+      <a href="tel:+61734733396" class="ps__btn" data-book data-book-enquiry="Book a free discovery call"><span class="ps__btn-text">Get started free</span><span class="ps__btn-text ps__btn-text--abs" aria-hidden="true">Get started free</span><span class="ps__btn-bg"></span></a>
+    </div>
+  </div>
+  <div class="ps__wrapper">
+    <div class="ps__sticky" data-ps-sticky>
+      <div class="ps__flex">
+        <div class="ps-card-wrap">
+          <article class="ps-card is-1">
+            <div class="ps-card__content">
+              <div class="ps-card__top"><span class="ps-card__num">Step 01</span></div>
+              <h3 class="ps-card__title">Nurse call</h3>
+              <div class="ps-card__price">$0</div>
+              <p class="ps-card__meta">10–15 minutes · no obligation</p>
+              <ul class="ps-card__list"><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Speak with our team about your health needs — at zero cost</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Find out if you’re eligible before committing to anything</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No charge if you’re not eligible</span></li></ul>
+              <button type="button" class="ps-card__btn" data-book data-book-enquiry="Book a free discovery call">Book a free call<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+            </div>
+            <div class="ps-card__img"><img src="images/home/clinic-telehealth.webp" alt="Practitioner on a call with a patient" loading="lazy"></div>
+          </article>
+        </div>
+        <div class="ps-card-wrap">
+          <article class="ps-card is-2">
+            <div class="ps-card__content">
+              <div class="ps-card__top"><span class="ps-card__num">Step 02</span></div>
+              <h3 class="ps-card__title">Initial consultation</h3>
+              <div class="ps-card__price">$0</div>
+              <p class="ps-card__meta">30 minutes · comprehensive assessment</p>
+              <ul class="ps-card__list"><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Personalised treatment plan with an experienced practitioner</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>E-script sent directly to your pharmacy, if appropriate</span></li></ul>
+              <button type="button" class="ps-card__btn" data-book data-book-enquiry="Book an initial consultation">Book now<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+            </div>
+            <div class="ps-card__img"><img src="images/about/experience-consultation.webp" alt="Practitioner and patient in a consultation" loading="lazy"></div>
+          </article>
+        </div>
+        <div class="ps-card-wrap">
+          <article class="ps-card is-3">
+            <div class="ps-card__content">
+              <div class="ps-card__top"><span class="ps-card__num">Step 03</span><span class="ps-card__tag">Medicare eligible*</span></div>
+              <h3 class="ps-card__title">Follow-up consultations</h3>
+              <div class="ps-card__price">$65</div>
+              <p class="ps-card__meta">15 minutes · ongoing care review</p>
+              <ul class="ps-card__list"><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Treatment plan adjustments and prescription updates</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ongoing support from your care team</span></li></ul>
+              <button type="button" class="ps-card__btn" data-book data-book-enquiry="Book a follow-up">Book now<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+            </div>
+            <div class="ps-card__img"><img src="images/about/approach-4-follow-up.webp" alt="Patient on a follow-up video call" loading="lazy"></div>
+          </article>
+        </div>
+      </div>
+      <p class="ps__note">*Medicare rebate eligibility varies depending on individual circumstances. Speak to your practitioner for details. Medication costs are separate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. GET STARTED — cards swing in on scroll ================= -->
 <section class="gs" id="get-started">
   <div class="container">
     <div class="gs__marquee" aria-hidden="true"><span>Get started with Aleafiate</span><span>Get started with Aleafiate</span></div>
@@ -812,7 +929,7 @@ p{margin:0}
         <ul class="fv2__contact"><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span><small>Call us</small><a href="tel:+61734733396">07 3473 3396</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Email</small><a href="mailto:admin@aleafiate.com.au">admin@aleafiate.com.au</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span><small>Visit</small><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Logan+Central+Plaza,+74+Wembley+Rd,+Logan+Central+QLD+4114" target="_blank" rel="noopener">38/74 Wembley Rd,<br>Logan Central QLD 4114</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><small>Opening hours</small>Monday – Friday<br>9:00 AM – 5:00 PM</span></li></ul>
       </div>
       <nav class="fv2__cols" aria-label="Footer">
-        <div><h4>Clinic</h4><ul><li><a href="home-v2.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="index.html#how-it-works">How it works</a></li><li><a href="index.html#pricing">Pricing</a></li></ul></div>
+        <div><h4>Clinic</h4><ul><li><a href="home-v2.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="#get-started">How it works</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
         <div><h4>Patients</h4><ul><li><a href="practitioners.html">Practitioners</a></li><li><a href="faq.html">FAQs</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
         <div><h4>Policies</h4><ul><li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="travel-policy.html">Travel Policy</a></li></ul></div>
       </nav>
@@ -945,6 +1062,21 @@ p{margin:0}
 
   document.fonts.ready.then(() => {
     const mm = gsap.matchMedia();
+
+    /* ---------- Pricing steps: slide in, then the stacked cards fan out (desktop) ---------- */
+    const psSticky = $('[data-ps-sticky]');
+    if (psSticky) {
+      ScrollTrigger.create({ trigger: psSticky, start: 'top 85%', once: true, onEnter: () => psSticky.classList.add('is-in') });
+      mm.add('(min-width: 992px)', () => {
+        const [c1, c2, c3] = ['.ps-card.is-1', '.ps-card.is-2', '.ps-card.is-3'];
+        gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '.ps__wrapper', start: 'top bottom', end: 'bottom top', scrub: .9 } })
+          .fromTo(c1, { xPercent: 100, rotation: 0 }, { xPercent: 0, rotation: -5, duration: 47 }, 28)
+          .fromTo(c2, { yPercent: 0 }, { yPercent: -4, duration: 47 }, 28)
+          .fromTo(c3, { xPercent: -100, rotation: 0 }, { xPercent: 0, rotation: 5, duration: 47 }, 28)
+          .set({}, {}, 100);
+        return () => gsap.set([c1, c2, c3], { clearProps: 'transform' });
+      });
+    }
 
     /* ---------- Get started: each card's image swings up into place, text fades in then out (desktop) ---------- */
     mm.add('(min-width: 992px)', () => {
