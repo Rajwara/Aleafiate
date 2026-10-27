@@ -24,6 +24,7 @@
   --navy:#111145;
   --teal:#309988;
   --mint:#8ADCCE;
+  --teal-deep:#247568;
   --clay:#247568; /* deeper brand teal: passes contrast for small text and fills */
   --ink:#13132E;
   --muted:#5B6178;
@@ -371,6 +372,50 @@ p{margin:0}
 @media (max-width:1100px){.fv2__top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.fv2__news{grid-column:1/-1}}
 @media (max-width:700px){.fv2__top{grid-template-columns:minmax(0,1fr)}.fv2__cols{grid-template-columns:repeat(2,minmax(0,1fr))}.footer--v2 .fv2__contact{grid-template-columns:minmax(0,1fr)}}
 
+
+/* =========================================================
+   GET STARTED (Home v2) — navy, marquee heading, cards swing in
+   ========================================================= */
+.gs{position:relative;background:var(--navy);color:var(--bone);padding:clamp(80px,9vw,120px) 0 clamp(100px,11vw,160px);overflow:clip}
+.gs__marquee{display:flex;gap:40px;width:max-content;margin-bottom:-.35em}
+.gs__marquee span{flex:none;font-family:var(--heading);font-weight:600;font-size:clamp(56px,10vw,164px);line-height:1.1;letter-spacing:-.04em;white-space:nowrap;color:rgba(138,220,206,.09);animation:gsMarquee 26s linear infinite}
+@keyframes gsMarquee{to{transform:translateX(calc(-100% - 40px))}}
+.gs__intro{position:relative;max-width:620px;margin-bottom:clamp(56px,7vw,96px)}
+.gs__intro .eyebrow{color:rgba(246,249,249,.7)}
+.gs__intro .eyebrow::before{background:var(--mint)}
+.gs__intro h2{font-size:clamp(36px,4.4vw,68px);margin:16px 0 20px;color:#fff}
+.gs__intro h2 em{font-style:normal;color:var(--mint)}
+.gs__intro p{font-size:clamp(16px,1.2vw,18px);color:rgba(246,249,249,.72);max-width:520px}
+.gs__list{display:flex;flex-direction:column;gap:clamp(48px,6vw,80px)}
+.gs-item__content{display:grid;grid-template-columns:.75fr 1.5fr .75fr;gap:clamp(20px,2.4vw,40px);align-items:center}
+.gs-item__side{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.gs-item__num{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}
+.gs-item__summary{font-size:clamp(16px,1.2vw,18px);line-height:1.55;color:rgba(246,249,249,.85)}
+.gs-item__image{border-radius:32px;overflow:hidden;aspect-ratio:914/632;background:#1d1d5a;will-change:transform}
+.gs-item__image img{width:100%;height:100%;object-fit:cover;display:block}
+.gs-item__title h3{font-size:clamp(30px,3.3vw,52px);line-height:1.15;font-weight:500;color:#fff}
+/* pill button: text rolls up, dark fill grows from the arrow */
+.gs-btn{position:relative;display:inline-block;overflow:hidden;padding:4px 4px 4px 22px;border-radius:999px;background:#fff;color:var(--navy);box-shadow:0 2px 40px rgba(0,0,0,.12)}
+.gs-btn__box{position:relative;z-index:1;display:flex;align-items:center;gap:12px}
+.gs-btn__text{display:block;overflow:hidden;height:26px}
+.gs-btn__flex{display:flex;flex-direction:column;transition:transform .45s var(--ease)}
+.gs-btn__flex span{display:block;height:26px;line-height:26px;font-weight:500;font-size:15px;white-space:nowrap}
+.gs-btn__flex span+span{color:#fff}
+.gs-btn__arrow{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--teal-deep);color:#fff;transition:background .4s,color .4s}
+.gs-btn__arrow svg{width:24px;height:24px}
+.gs-btn__bg{position:absolute;right:16px;bottom:14px;width:20px;height:20px;border-radius:50%;background:var(--teal-deep);transform:scale(0);transition:transform .5s var(--ease)}
+.gs-btn:hover .gs-btn__bg{transform:scale(22)}
+.gs-btn:hover .gs-btn__flex{transform:translateY(-26px);transition-delay:.08s}
+.gs-btn:hover .gs-btn__arrow{background:#fff;color:var(--teal-deep);transition-delay:.08s}
+.gs-btn:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+@media (max-width:991px){
+  .gs-item__content{display:flex;flex-direction:column;align-items:stretch;gap:20px}
+  .gs-item__image{order:-2}
+  .gs-item__title{order:-1}
+  .gs-item__title h3{font-size:clamp(28px,6vw,40px)}
+}
+@media (prefers-reduced-motion:reduce){.gs__marquee span{animation:none}}
+
 /* split-text helpers */
 .split-line{overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
 
@@ -473,7 +518,72 @@ p{margin:0}
   </div>
 </section>
 
-<!-- ================= 2. WHY ALEAFIATE ================= -->
+<!-- ================= 2. GET STARTED — cards swing in on scroll ================= -->
+<section class="gs" id="get-started">
+  <div class="container">
+    <div class="gs__marquee" aria-hidden="true"><span>Get started with Aleafiate</span><span>Get started with Aleafiate</span></div>
+    <div class="gs__intro">
+      <span class="eyebrow">How it works</span>
+      <h2 data-split>Get started with <em>Aleafiate</em></h2>
+      <p data-fade-up>Get started now with our simple, streamlined three-step process — from the comfort of your home.</p>
+    </div>
+    <div class="gs__list" role="list">
+        <div class="gs-item" role="listitem">
+          <div class="gs-item__content">
+            <div class="gs-item__side">
+              <span class="gs-item__num">Step 01 / 03</span>
+              <p class="gs-item__summary">Explore your Aleafiate journey and discover if natural therapies may support your wellbeing — start with a free, no-obligation call.</p>
+              <a href="#" class="gs-btn" data-book data-book-enquiry="Book a free discovery call">
+                <span class="gs-btn__box">
+                  <span class="gs-btn__text"><span class="gs-btn__flex"><span>Check eligibility</span><span aria-hidden="true">Check eligibility</span></span></span>
+                  <span class="gs-btn__arrow"><svg viewBox="0 0 28 28" fill="none"><path d="M8.34 19.66a.87.87 0 0 0 1.24 0l9.92-9.91a.88.88 0 1 0-1.24-1.24l-9.92 9.92a.87.87 0 0 0 0 1.23Z" fill="currentColor"/><path d="M18.88 20.5a.88.88 0 0 0 .87-.87V9.13a.88.88 0 0 0-.87-.88H8.38a.88.88 0 1 0 0 1.75H18v9.63c0 .48.39.87.88.87Z" fill="currentColor"/></svg></span>
+                </span>
+                <span class="gs-btn__bg"></span>
+              </a>
+            </div>
+            <div class="gs-item__image"><img src="images/home/step-1-free-call.webp" alt="Woman at home on a phone call with the Aleafiate team" loading="lazy"></div>
+            <div class="gs-item__title"><h3>Take our eligibility check</h3></div>
+          </div>
+        </div>
+        <div class="gs-item" role="listitem">
+          <div class="gs-item__content">
+            <div class="gs-item__side">
+              <span class="gs-item__num">Step 02 / 03</span>
+              <p class="gs-item__summary">Connect with our compassionate, AHPRA-registered practitioners to co-create a personalised treatment plan that supports your unique path to wellbeing.</p>
+              <a href="#" class="gs-btn" data-book data-book-enquiry="Book an initial consultation">
+                <span class="gs-btn__box">
+                  <span class="gs-btn__text"><span class="gs-btn__flex"><span>Book a consultation</span><span aria-hidden="true">Book a consultation</span></span></span>
+                  <span class="gs-btn__arrow"><svg viewBox="0 0 28 28" fill="none"><path d="M8.34 19.66a.87.87 0 0 0 1.24 0l9.92-9.91a.88.88 0 1 0-1.24-1.24l-9.92 9.92a.87.87 0 0 0 0 1.23Z" fill="currentColor"/><path d="M18.88 20.5a.88.88 0 0 0 .87-.87V9.13a.88.88 0 0 0-.87-.88H8.38a.88.88 0 1 0 0 1.75H18v9.63c0 .48.39.87.88.87Z" fill="currentColor"/></svg></span>
+                </span>
+                <span class="gs-btn__bg"></span>
+              </a>
+            </div>
+            <div class="gs-item__image"><img src="images/home/step-3-consultation.webp" alt="Practitioner talking with a patient in a consultation room" loading="lazy"></div>
+            <div class="gs-item__title"><h3>Consultation</h3></div>
+          </div>
+        </div>
+        <div class="gs-item" role="listitem">
+          <div class="gs-item__content">
+            <div class="gs-item__side">
+              <span class="gs-item__num">Step 03 / 03</span>
+              <p class="gs-item__summary">If treatment is right for you, your prescription is sent to your chosen pharmacy within 12–24 hours — the next step on your journey to wellbeing.</p>
+              <a href="faq.html#faq-prescriptions" class="gs-btn" >
+                <span class="gs-btn__box">
+                  <span class="gs-btn__text"><span class="gs-btn__flex"><span>How it works</span><span aria-hidden="true">How it works</span></span></span>
+                  <span class="gs-btn__arrow"><svg viewBox="0 0 28 28" fill="none"><path d="M8.34 19.66a.87.87 0 0 0 1.24 0l9.92-9.91a.88.88 0 1 0-1.24-1.24l-9.92 9.92a.87.87 0 0 0 0 1.23Z" fill="currentColor"/><path d="M18.88 20.5a.88.88 0 0 0 .87-.87V9.13a.88.88 0 0 0-.87-.88H8.38a.88.88 0 1 0 0 1.75H18v9.63c0 .48.39.87.88.87Z" fill="currentColor"/></svg></span>
+                </span>
+                <span class="gs-btn__bg"></span>
+              </a>
+            </div>
+            <div class="gs-item__image"><img src="images/about/approach-3-plan.webp" alt="Practitioner handing a written plan to a patient" loading="lazy"></div>
+            <div class="gs-item__title"><h3>Receive your prescriptions</h3></div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. WHY ALEAFIATE ================= -->
 <section class="intro">
   <div class="intro__orb intro__orb--a" data-speed="-0.2"></div>
   <div class="intro__orb intro__orb--b" data-speed="0.25"></div>
@@ -835,6 +945,23 @@ p{margin:0}
 
   document.fonts.ready.then(() => {
     const mm = gsap.matchMedia();
+
+    /* ---------- Get started: each card's image swings up into place, text fades in then out (desktop) ---------- */
+    mm.add('(min-width: 992px)', () => {
+      $$('.gs-item__content').forEach(card => {
+        const img = $('.gs-item__image', card), texts = card.querySelectorAll('.gs-item__side, .gs-item__title');
+        gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: .9 } })
+          .fromTo(img, { y: '100vh', rotation: 90, scale: 1.1 }, { y: 0, rotation: 0, scale: 1, duration: 50 }, 0)
+          .to(img, { scale: .9, duration: 50 }, 50)
+          .fromTo(texts, { opacity: 0 }, { opacity: 1, duration: 4 }, 38)
+          .to(texts, { opacity: 0, duration: 4 }, 62)
+          .set({}, {}, 100);
+      });
+    });
+    mm.add('(max-width: 991px)', () => {
+      $$('.gs-item__content').forEach(card => gsap.from(card.children, { y: 40, autoAlpha: 0, duration: 1.1, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: card, start: 'top 85%' } }));
+    });
+
 
     /* ---------- Hero banner: intro + soft parallax ---------- */
     const heroSplit = SplitText.create('[data-hero-title]', { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });

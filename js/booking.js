@@ -96,7 +96,7 @@
   };
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-book]');
-    if (t) { e.preventDefault(); open(t); return; }
+    if (t) { e.preventDefault(); t.dataset.bookEnquiry ? window.aleafiateBook({ enquiry: t.dataset.bookEnquiry }, t) : open(t); return; } // data-book-enquiry pre-selects 'How can we help?'
     if (e.target.closest('[data-bk-close]')) close();
   });
   addEventListener('keydown', e => {
