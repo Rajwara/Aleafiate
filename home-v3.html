@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aleafiate Health Clinics — Alternative healthcare, personalised to you</title>
+<meta name="description" content="Aleafiate Health Clinics, Logan Central: consultations with AHPRA-registered practitioners in clinic or by telehealth. Start with a free, no-obligation call on 07 3473 3396.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/booking.css">
+<link rel="stylesheet" href="css/blog.css">
+<style>
+/* =========================================================
+   TOKENS — change colours / fonts here
+   ========================================================= */
+:root{
+  --bone:#F6F9F9;
+  --sand:#E7F3F1;
+  --stone:#CDE7E2;
+  --moss:#111145;
+  --moss-2:#309988;
+  --sage:#8ADCCE;
+  --navy:#111145;
+  --teal:#309988;
+  --mint:#8ADCCE;
+  --teal-deep:#247568;
+  --clay:#247568; /* deeper brand teal: passes contrast for small text and fills */
+  --ink:#13132E;
+  --muted:#5B6178;
+  --white:#fff;
+  --heading:"Montserrat", system-ui, sans-serif; /* headings */
+  --body:"Poppins", system-ui, sans-serif;     /* paragraphs & UI */
+  --gutter:clamp(16px,4vw,64px);
+  --radius:18px;
+  --ease:cubic-bezier(.65,.05,.36,1);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{background:var(--bone);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--heading);font-weight:500;margin:0;line-height:1.1;letter-spacing:-.025em}
+p{margin:0}
+.container{width:100%;max-width:1440px;margin:0 auto;padding:0 var(--gutter)}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* =========================================================
+   IMAGE PLACEHOLDERS
+   Replace:  <img src="" ...>  →  <img src="images/your-file.jpg" ...>
+   The label + gradient disappear automatically once an image loads.
+   ========================================================= */
+.media{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--stone),var(--sand) 55%,#B9DED7)}
+.media::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:14px 18px;font:500 11px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:rgba(19,19,46,.45);pointer-events:none}
+.media.has-img::after{display:none}
+.media img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.media img[src=""]{opacity:0}
+
+/* =========================================================
+   BUTTONS — letter-roll hover
+   ========================================================= */
+.btn{--bg:var(--moss);--fg:var(--bone);--line:var(--moss);position:relative;display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 26px;border-radius:999px;background:var(--bg);color:var(--fg);border:1px solid var(--line);font:500 15px/1 var(--body);overflow:hidden;isolation:isolate;cursor:pointer;transition:color .5s var(--ease),border-color .5s var(--ease)}
+.btn--ghost{--bg:transparent;--fg:var(--ink);--line:rgba(19,19,46,.35)}
+.btn--light{--bg:var(--bone);--fg:var(--ink);--line:var(--bone)}
+.btn__fill{position:absolute;left:var(--x,50%);top:var(--y,50%);width:0;height:0;border-radius:50%;background:var(--clay);transform:translate(-50%,-50%);z-index:-1;transition:width .6s var(--ease),height .6s var(--ease)}
+.btn:hover .btn__fill{width:260%;height:600%}
+.btn:hover{--line:var(--clay);color:var(--white)}
+.btn__label{position:relative;display:block;overflow:hidden;line-height:1.2}
+.btn__text{display:block;white-space:nowrap}
+.btn__text--clone{position:absolute;inset:0}
+.btn__char{display:inline-block;will-change:transform}
+.btn__dot{width:6px;height:6px;border-radius:50%;background:currentColor;transition:transform .5s var(--ease)}
+.btn:hover .btn__dot{transform:scale(1.8)}
+.btn__arrow{width:14px;height:14px;transition:transform .5s var(--ease)}
+.btn:hover .btn__arrow{transform:rotate(45deg)}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding:18px max(var(--gutter),calc((100% - 1440px) / 2 + var(--gutter))); /* lines up with .container (max 1440px) */display:flex;align-items:center;justify-content:space-between;gap:24px;transition:transform .6s var(--ease),background .4s,backdrop-filter .4s}
+.nav.is-hidden{transform:translateY(-110%)}
+.nav.is-solid{background:rgba(246,249,249,.82);backdrop-filter:blur(12px)}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--heading);font-size:22px;letter-spacing:-.01em}
+.logo__mark{width:28px;height:28px}
+.nav__links{display:flex;gap:30px;font-size:14px}
+.nav__links a{position:relative}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav__right{display:flex;align-items:center;gap:22px;font-size:14px}
+.nav .btn{height:44px;padding:0 20px;font-size:14px}
+.nav__burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(19,19,46,.3);background:transparent;position:relative;cursor:pointer}
+.nav__burger span{position:absolute;left:13px;right:13px;height:1px;background:var(--ink);transition:transform .5s var(--ease),top .5s var(--ease)}
+.nav__burger span:nth-child(1){top:18px}.nav__burger span:nth-child(2){top:25px}
+.menu-open .nav__burger span:nth-child(1){top:21px;transform:rotate(45deg)}
+.menu-open .nav__burger span:nth-child(2){top:21px;transform:rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:40;background:var(--moss);color:var(--bone);display:flex;flex-direction:column;justify-content:center;padding:0 var(--gutter);clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease)}
+.menu-open .mobile-menu{clip-path:inset(0 0 0 0)}
+.menu-open .nav{color:var(--bone)}
+.menu-open .nav__burger{border-color:rgba(246,249,249,.4)}
+.menu-open .nav__burger span{background:var(--bone)}
+.mobile-menu a{font-family:var(--heading);font-size:44px;line-height:1.3;display:block;transform:translateY(40px);opacity:0;transition:transform .8s var(--ease),opacity .8s}
+.menu-open .mobile-menu a{transform:none;opacity:1}
+.menu-open .mobile-menu a:nth-child(2){transition-delay:.06s}.menu-open .mobile-menu a:nth-child(3){transition-delay:.12s}.menu-open .mobile-menu a:nth-child(4){transition-delay:.18s}.menu-open .mobile-menu a:nth-child(5){transition-delay:.24s}.menu-open .mobile-menu a:nth-child(6){transition-delay:.3s}.menu-open .mobile-menu a:nth-child(7){transition-delay:.36s}
+
+/* =========================================================
+   1. HERO — split screen that expands on scroll
+   ========================================================= */
+.hero{position:relative;min-height:max(640px,100vh);display:flex;overflow:hidden;background:linear-gradient(120deg,#eef7f5 0%,var(--sand) 45%,#dcefeb 100%)}
+.hero__bg{position:absolute;inset:0} /* photo covers the whole banner */
+.hero__bg .media{position:absolute;inset:-6% -18% -6% 0} /* wider than the banner so the people sit right of the text */
+.hero__bg img{object-position:50% 40%}
+.hero__veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(233,244,242,.94) 0%,rgba(233,244,242,.86) 30%,rgba(233,244,242,.4) 48%,transparent 66%),linear-gradient(0deg,rgba(233,244,242,.75),transparent 34%)}
+.hero__inner{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding-top:150px;padding-bottom:48px;min-height:inherit}
+.hero__copy{max-width:600px}
+.hero__title{font-size:clamp(40px,min(5.4vw,9vh),88px);font-weight:600;letter-spacing:-.035em;line-height:1.02;margin-top:20px;color:var(--ink)}
+.hero__title em{font-style:normal;color:var(--teal-deep,#247568)}
+.hero__sub{margin-top:22px;max-width:480px;font-size:clamp(16px,1.25vw,19px);color:var(--muted)}
+.hero__trust{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:28px 0 0;padding:0}
+.hero__trust li{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;color:var(--ink)}
+.hero__trust li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
+/* glass booking bar */
+.hero__book{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(180px,.6fr);align-items:end;gap:16px;width:100%;padding:20px 22px 22px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 30px 70px -30px rgba(13,13,48,.35)}
+.hb__field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.hb__field label{font-size:13px;font-weight:600;color:var(--ink)}
+.hb__field select,.hb__date{height:50px;width:100%;border:1px solid rgba(19,19,46,.08);border-radius:12px;background-color:#fff;font:inherit;font-size:15px;color:var(--ink);transition:border-color .3s,box-shadow .3s}
+.hb__field select{-webkit-appearance:none;appearance:none;padding:0 40px 0 16px;cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2313132E' stroke-width='1.6'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 16px center}
+.hb__date{display:flex;align-items:center;gap:10px;padding:0 14px}
+.hb__date svg{flex:none;width:18px;height:18px;color:var(--muted)}
+.hb__date input{flex:1;min-width:0;height:100%;border:0;background:none;font:inherit;font-size:15px;color:var(--ink);outline:none}
+.hb__field select:hover,.hb__date:hover{border-color:rgba(19,19,46,.2)}
+.hb__field select:focus-visible,.hb__date:focus-within{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(48,153,136,.18)}
+.hb__btn{height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 30px;border:0;border-radius:12px;background:var(--teal-deep,#247568);color:#fff;font:600 15px/1 var(--body);cursor:pointer;white-space:nowrap;transition:background .4s} /* no transform transition: GSAP animates it on load */
+.hb__btn svg{width:16px;height:16px;transition:transform .5s var(--ease)}
+.hb__btn:hover{background:var(--navy)}
+.hb__btn:hover svg{transform:translateX(4px)}
+.hb__btn:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+@keyframes scrollLine{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+
+/* =========================================================
+   2. INTRO STATEMENT — word-by-word scrub
+   ========================================================= */
+.intro__orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;pointer-events:none}
+.intro__orb--a{width:420px;height:420px;background:#CFEFE9;left:-120px;top:10%}
+.intro__orb--b{width:520px;height:520px;background:#DCDDF2;right:-160px;bottom:-10%}
+
+/* =========================================================
+   3. VALUES — sticky split
+   ========================================================= */
+
+/* =========================================================
+   4. TREATMENTS — expanding cards
+   ========================================================= */
+.section{padding:clamp(90px,12vw,160px) 0}
+.section__head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
+.section__head h2{font-size:clamp(40px,5vw,80px);margin-top:16px}
+.section__head p{max-width:380px;color:var(--muted)}
+
+/* =========================================================
+   5. OUTCOMES — clip-reveal grid
+   ========================================================= */
+
+/* =========================================================
+   6. SPACE — pinned horizontal gallery
+   ========================================================= */
+
+.round-btn{width:52px;height:52px;border-radius:50%;border:1px solid rgba(19,19,46,.3);background:transparent;display:grid;place-items:center;cursor:pointer;transition:background .4s,color .4s,border-color .4s}
+.round-btn:hover{background:var(--moss);color:var(--bone);border-color:var(--moss)}
+.round-btn svg{width:16px;height:16px}
+
+/* =========================================================
+   8. VOICES — vertical marquees
+   ========================================================= */
+.voices{background:var(--sand)}
+.voices__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(32px,6vw,96px);align-items:center}
+.voices h2{font-size:clamp(40px,5vw,80px);margin:16px 0 28px}
+.rating{display:flex;align-items:center;gap:18px;margin-top:32px}
+.rating__num{font-family:var(--heading);font-size:72px;line-height:1}
+.rating__stars{color:var(--clay);letter-spacing:3px}
+.rating p{font-size:14px;color:var(--muted)}
+.marquee{display:grid;grid-template-columns:1fr 1fr;gap:16px;height:640px;overflow:hidden;mask-image:linear-gradient(to bottom,transparent,#000 15%,#000 85%,transparent)}
+.marquee__col{display:flex;flex-direction:column;gap:16px;animation:marqueeUp 38s linear infinite}
+.marquee__col--down{animation-name:marqueeDown}
+.marquee:hover .marquee__col{animation-play-state:paused}
+@keyframes marqueeUp{to{transform:translateY(-50%)}}
+@keyframes marqueeDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.quote{background:var(--bone);border-radius:var(--radius);padding:26px}
+.quote p{font-size:15px}
+.quote__who{display:flex;align-items:center;gap:12px;margin-top:20px}
+.quote__who .media{width:40px;height:40px;border-radius:50%}
+.quote__who .media::after{display:none}
+.quote__who b{display:block;font-weight:600;font-size:14px}
+.quote__who span{font-size:13px;color:var(--muted)}
+.quote__who .quote__avatar{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--navy);color:var(--mint);font-size:15px;font-weight:600}
+.quote__stars{color:#E8A317;letter-spacing:2px;font-size:13px;margin-bottom:10px}
+
+/* =========================================================
+   9. CTA
+   ========================================================= */
+.cta{position:relative;height:110vh;min-height:680px;overflow:hidden;display:flex;align-items:center}
+.cta__bg{position:absolute;inset:0}
+.cta__bg .media{position:absolute;inset:0}
+.cta__bg::after{content:"";position:absolute;inset:0;background:rgba(13,13,48,.35)}
+.cta__inner{position:relative;z-index:2;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.cta__title{color:var(--bone);font-size:clamp(44px,6vw,100px);max-width:760px}
+.cta__card{background:var(--bone);border-radius:var(--radius);padding:28px;width:min(100%,380px);display:flex;flex-direction:column;gap:18px}
+.cta__card .media{aspect-ratio:16/10;border-radius:12px}
+.cta__card h3{font-size:26px}
+.cta__card p{font-size:15px;color:var(--muted)}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer{background:var(--moss);color:var(--bone);padding:96px 0 32px;overflow:hidden}
+.footer__top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.footer h4{font-family:var(--body);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;opacity:.6;margin-bottom:18px}
+.footer li{list-style:none;margin-bottom:10px}
+.footer ul{padding:0;margin:0}
+.footer a{opacity:.85;transition:opacity .3s}.footer a:hover{opacity:1}
+.footer__news{display:flex;border-bottom:1px solid rgba(246,249,249,.3);margin-top:20px;max-width:340px}
+.footer__news input{flex:1;background:transparent;border:0;color:var(--bone);font:inherit;padding:12px 0;outline:none}
+.footer__news input::placeholder{color:rgba(246,249,249,.5)}
+.footer__news button{background:none;border:0;color:var(--bone);cursor:pointer}
+.footer__word{font-family:var(--heading);font-weight:500;font-size:clamp(90px,22vw,340px);line-height:.85;letter-spacing:-.04em;margin-top:80px;white-space:nowrap}
+.footer__bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px;font-size:13px;opacity:.6}
+
+/* =========================================================
+   BRAND — logo + footer
+   ========================================================= */
+.logo img{display:block;height:58px;width:auto}
+.menu-open .logo img{filter:brightness(0) invert(1)}
+.footer__logo{display:inline-block;opacity:1}
+.footer__logo img{display:block;height:72px;width:auto}
+.footer__brand p{margin-top:22px;opacity:.75;max-width:340px}
+.socials{display:flex;gap:10px;margin-top:24px}
+.footer .socials a{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(246,249,249,.1);opacity:1;transition:background .4s,color .4s,transform .5s var(--ease)}
+.footer .socials a:hover{background:var(--mint);color:var(--navy);transform:translateY(-3px)}
+.socials svg{width:17px;height:17px}
+.footer__word{font-size:clamp(64px,15vw,240px)}
+.footer__disclaimer{margin-top:48px;padding-top:32px;border-top:1px solid rgba(246,249,249,.15);font-size:13px;line-height:1.7;opacity:.65;max-width:1100px}
+.footer__legal{display:flex;gap:20px;flex-wrap:wrap}
+@media (max-width:991px){.logo img{height:46px}}
+
+
+/* =========================================================
+   FOOTER (Home v2) — light mint, contact list, newsletter card
+   ========================================================= */
+.footer--v2{background:var(--sand);color:var(--ink);padding:clamp(64px,8vw,96px) 0 110px} /* bottom space keeps the disclaimer clear of the floating button */
+.fv2__top{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1.3fr) minmax(0,1fr);gap:clamp(32px,4vw,64px);align-items:start}
+.fv2__logo img{display:block;height:60px;width:auto}
+.fv2__tag{margin-top:22px;font-family:var(--heading);font-weight:500;font-size:clamp(19px,1.5vw,22px);line-height:1.3;letter-spacing:-.01em}
+.footer--v2 .fv2__contact{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+.fv2__contact li{display:flex;gap:12px;align-items:flex-start;margin:0;font-size:14px;line-height:1.5;color:var(--ink)}
+.fv2__contact small{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.fv2__contact a{transition:color .3s}
+.fv2__contact a:hover{color:var(--teal-deep)}
+.fv2__ic{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--teal-deep)}
+.fv2__ic svg{width:16px;height:16px}
+.fv2__cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.footer--v2 h4{opacity:1;font-family:var(--heading);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:16px}
+.footer--v2 ul{list-style:none;margin:0;padding:0}
+.footer--v2 li{margin-bottom:0}
+.footer--v2 a{opacity:1}
+.fv2__cols li+li{margin-top:10px}
+.fv2__cols a{position:relative;font-size:15px;color:var(--ink);transition:color .3s}
+.fv2__cols a::after{content:"";position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.fv2__cols a:hover{color:var(--teal-deep)}
+.fv2__cols a:hover::after{transform:scaleX(1);transform-origin:left}
+.fv2__news{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:0 20px 44px -34px rgba(13,13,48,.35)}
+.fv2__news h4{margin-bottom:10px}
+.fv2__news-title{font-size:15px;line-height:1.55;color:var(--muted)}
+.fv2__form{margin-top:18px}
+.fv2__row{display:flex;align-items:center;gap:6px;padding:5px 5px 5px 18px;border:1px solid rgba(19,19,46,.12);border-radius:999px;background:var(--bone);transition:border-color .3s,box-shadow .3s}
+.fv2__row:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px rgba(48,153,136,.15)}
+.fv2__row input{flex:1;min-width:0;height:42px;border:0;background:none;font:inherit;font-size:14px;color:var(--ink);outline:none}
+.fv2__row button{flex:none;height:42px;padding:0 22px;border:0;border-radius:999px;background:var(--navy);color:#fff;font:600 14px/1 var(--body);cursor:pointer;transition:background .4s}
+.fv2__row button:hover{background:var(--teal-deep)}
+.fv2__msg{min-height:18px;margin-top:10px;font-size:12px;color:var(--muted)}
+.fv2__msg.is-ok{color:var(--teal-deep)}
+.fv2__msg.is-error{color:#a2482f}
+.fv2__bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(48px,6vw,72px);padding-bottom:24px;border-bottom:1px solid rgba(19,19,46,.12);font-size:14px}
+.fv2__social{display:flex;gap:22px}
+.fv2__social a{transition:color .3s}
+.fv2__social a:hover{color:var(--teal-deep)}
+.fv2__disclaimer{margin-top:24px;font-size:13px;line-height:1.7;color:var(--muted)}
+.fv2__disclaimer b{color:var(--ink)}
+@media (max-width:1100px){.fv2__top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.fv2__news{grid-column:1/-1}}
+@media (max-width:700px){.fv2__top{grid-template-columns:minmax(0,1fr)}.fv2__cols{grid-template-columns:repeat(2,minmax(0,1fr))}.footer--v2 .fv2__contact{grid-template-columns:minmax(0,1fr)}}
+
+
+/* =========================================================
+   GET STARTED (Home v2) — navy, marquee heading, cards swing in
+   ========================================================= */
+.gs{position:relative;background:var(--navy);color:var(--bone);padding:clamp(80px,9vw,120px) 0 clamp(100px,11vw,160px);overflow:clip}
+.gs__marquee{display:flex;gap:40px;width:max-content;margin-bottom:-.35em}
+.gs__marquee span{flex:none;font-family:var(--heading);font-weight:600;font-size:clamp(56px,10vw,164px);line-height:1.1;letter-spacing:-.04em;white-space:nowrap;color:rgba(138,220,206,.09);animation:gsMarquee 26s linear infinite}
+@keyframes gsMarquee{to{transform:translateX(calc(-100% - 40px))}}
+.gs__intro{position:relative;max-width:620px;margin-bottom:clamp(56px,7vw,96px)}
+.gs__intro .eyebrow{color:rgba(246,249,249,.7)}
+.gs__intro .eyebrow::before{background:var(--mint)}
+.gs__intro h2{font-size:clamp(36px,4.4vw,68px);margin:16px 0 20px;color:#fff}
+.gs__intro h2 em{font-style:normal;color:var(--mint)}
+.gs__intro p{font-size:clamp(16px,1.2vw,18px);color:rgba(246,249,249,.72);max-width:520px}
+.gs__list{display:flex;flex-direction:column;gap:clamp(48px,6vw,80px)}
+.gs-item__content{display:grid;grid-template-columns:.75fr 1.5fr .75fr;gap:clamp(20px,2.4vw,40px);align-items:center}
+.gs-item__side{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.gs-item__num{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}
+.gs-item__summary{font-size:clamp(16px,1.2vw,18px);line-height:1.55;color:rgba(246,249,249,.85)}
+.gs-item__image{border-radius:32px;overflow:hidden;aspect-ratio:914/632;background:#1d1d5a;will-change:transform}
+.gs-item__image img{width:100%;height:100%;object-fit:cover;display:block}
+.gs-item__title h3{font-size:clamp(30px,3.3vw,52px);line-height:1.15;font-weight:500;color:#fff}
+/* pill button: text rolls up, dark fill grows from the arrow */
+.gs-btn{position:relative;display:inline-block;overflow:hidden;padding:4px 4px 4px 22px;border-radius:999px;background:#fff;color:var(--navy);box-shadow:0 2px 40px rgba(0,0,0,.12)}
+.gs-btn__box{position:relative;z-index:1;display:flex;align-items:center;gap:12px}
+.gs-btn__text{display:block;overflow:hidden;height:26px}
+.gs-btn__flex{display:flex;flex-direction:column;transition:transform .45s var(--ease)}
+.gs-btn__flex span{display:block;height:26px;line-height:26px;font-weight:500;font-size:15px;white-space:nowrap}
+.gs-btn__flex span+span{color:#fff}
+.gs-btn__arrow{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--teal-deep);color:#fff;transition:background .4s,color .4s}
+.gs-btn__arrow svg{width:24px;height:24px}
+.gs-btn__bg{position:absolute;right:16px;bottom:14px;width:20px;height:20px;border-radius:50%;background:var(--teal-deep);transform:scale(0);transition:transform .5s var(--ease)}
+.gs-btn:hover .gs-btn__bg{transform:scale(22)}
+.gs-btn:hover .gs-btn__flex{transform:translateY(-26px);transition-delay:.08s}
+.gs-btn:hover .gs-btn__arrow{background:#fff;color:var(--teal-deep);transition-delay:.08s}
+.gs-btn:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+@media (max-width:991px){
+  .gs-item__content{display:flex;flex-direction:column;align-items:stretch;gap:20px}
+  .gs-item__image{order:-2}
+  .gs-item__title{order:-1}
+  .gs-item__title h3{font-size:clamp(28px,6vw,40px)}
+}
+@media (prefers-reduced-motion:reduce){.gs__marquee span{animation:none}}
+
+
+/* =========================================================
+   PRICING STEPS (Home v2) — three cards stacked, fan out on scroll
+   ========================================================= */
+.ps{padding:clamp(90px,10vw,140px) 0 clamp(60px,7vw,100px);background:var(--bone);overflow:clip}
+.ps__head{max-width:640px;margin:0 auto clamp(40px,5vw,60px);text-align:center}
+.ps__pill{display:inline-block;padding:8px 16px;border:1px solid var(--navy);border-radius:999px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--navy)}
+.ps__head h2{font-size:clamp(38px,4.8vw,72px);font-weight:600;letter-spacing:-.035em;margin:22px 0 18px}
+.ps__head h2 em{font-style:normal;color:var(--teal-deep)}
+.ps__head p{color:var(--muted);font-size:clamp(15px,1.15vw,17px)}
+.ps__btn{position:relative;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;margin-top:28px;padding:16px 30px;border-radius:999px;background:var(--navy)}
+.ps__btn-text{position:relative;z-index:1;font-weight:600;font-size:15px;line-height:1;color:#fff;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.ps__btn-text--abs{position:absolute;transform:translateY(300%)}
+.ps__btn-bg{position:absolute;z-index:0;width:14rem;min-width:120%;height:8rem;border-radius:50%;background:var(--teal-deep);transform:translateY(100%);transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.ps__btn:hover .ps__btn-bg{transform:translateY(0)}
+.ps__btn:hover .ps__btn-text{transform:translateY(-300%)}
+.ps__btn:hover .ps__btn-text--abs{transform:translateY(0)}
+.ps__wrapper{position:relative;height:260vh}
+.ps__sticky{position:sticky;top:110px;opacity:0;transform:translateY(100px);transition:opacity 1s cubic-bezier(.165,.84,.44,1),transform 1s cubic-bezier(.165,.84,.44,1)}
+.ps__sticky.is-in{opacity:1;transform:none}
+.ps__flex{display:flex;justify-content:center;align-items:center;padding:0 var(--gutter)}
+.ps-card-wrap{width:100%;max-width:26rem}
+.ps-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(19,19,46,.08);border-radius:22px;padding:22px;box-shadow:0 30px 60px -40px rgba(13,13,48,.35);will-change:transform}
+.ps-card.is-1{z-index:0} /* start/end positions are set by the scroll animation */
+.ps-card.is-2{z-index:2;background:var(--teal-deep);color:#fff;border-color:transparent}
+.ps-card.is-3{z-index:1}
+.ps-card__content{padding:6px 6px 22px}
+.ps-card__top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}
+.ps-card__num{display:inline-block;padding:7px 14px;border-radius:999px;background:var(--sand);font-family:var(--heading);font-weight:600;font-size:13px;color:var(--navy)}
+.ps-card.is-2 .ps-card__num{background:rgba(255,255,255,.16);color:#fff}
+.ps-card__tag{padding:6px 12px;border-radius:999px;background:rgba(138,220,206,.25);color:var(--teal-deep);font-size:12px;font-weight:500}
+.ps-card__title{font-size:clamp(20px,1.6vw,24px);font-weight:600;letter-spacing:-.02em}
+.ps-card__price{margin-top:12px;font-family:var(--heading);font-weight:600;font-size:clamp(48px,4.4vw,64px);line-height:1;letter-spacing:-.04em}
+.ps-card.is-2 .ps-card__price{color:var(--mint)}
+.ps-card__meta{margin-top:8px;font-size:14px;color:var(--muted)}
+.ps-card.is-2 .ps-card__meta{color:rgba(255,255,255,.75)}
+.ps-card__list{list-style:none;margin:18px 0 0;padding:18px 0 0;border-top:1px solid rgba(19,19,46,.1);display:flex;flex-direction:column;gap:10px}
+.ps-card.is-2 .ps-card__list{border-top-color:rgba(255,255,255,.2)}
+.ps-card__list li{display:flex;gap:10px;font-size:14px;line-height:1.45}
+.ps-card__list svg{flex:none;width:18px;height:18px;margin-top:1px;color:var(--mint)}
+.ps-card:not(.is-2) .ps-card__list svg{color:var(--teal)}
+.ps-card__btn{display:inline-flex;align-items:center;gap:10px;margin-top:20px;height:46px;padding:0 20px;border:0;border-radius:999px;background:var(--mint);color:var(--navy);font:600 14px/1 var(--body);cursor:pointer;transition:background .4s,color .4s}
+.ps-card__btn svg{width:15px;height:15px;transition:transform .5s var(--ease)}
+.ps-card__btn:hover{background:var(--navy);color:#fff}
+.ps-card.is-2 .ps-card__btn:hover{background:#fff;color:var(--navy)}
+.ps-card__btn:hover svg{transform:translateX(4px)}
+.ps-card__img{margin-top:auto;border-radius:14px;overflow:hidden;aspect-ratio:3/2;background:var(--sand)}
+.ps-card__img img{width:100%;height:100%;object-fit:cover;display:block}
+.ps__note{max-width:640px;margin:clamp(40px,5vw,64px) auto 0;padding:0 var(--gutter);text-align:center;font-size:13px;color:var(--muted)}
+@media (max-width:991px){
+  .ps__wrapper{height:auto}
+  .ps__sticky{position:static}
+  .ps__flex{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .ps-card-wrap{max-width:none}
+  .ps-card{height:100%;transform:none!important}
+}
+@media (max-width:640px){.ps__flex{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.ps__sticky{transition:none;opacity:1;transform:none}}
+
+
+/* =========================================================
+   FAQ (Home v2) — heading sticks while the questions scroll
+   ========================================================= */
+.hq__grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,110px);align-items:start}
+.hq__side{position:sticky;top:120px}
+.hq__side h2{font-size:clamp(36px,4.2vw,64px);font-weight:600;letter-spacing:-.035em;margin:16px 0 20px}
+.hq__side h2 em{font-style:normal;color:var(--teal-deep)}
+.hq__side p{color:var(--muted);max-width:420px}
+.hq__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hq__list{display:flex;flex-direction:column;gap:16px}
+.hq__item{background:var(--sand);border-radius:16px;transition:background .4s,box-shadow .4s}
+.hq__item:hover{background:#dcefeb}
+.hq__item.is-open{background:#fff;box-shadow:0 24px 50px -36px rgba(13,13,48,.35)}
+.hq__q{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;padding:24px 26px;border:0;background:none;text-align:left;cursor:pointer;font-family:var(--heading);font-weight:500;font-size:clamp(17px,1.35vw,20px);line-height:1.35;color:var(--ink)}
+.hq__q:focus-visible{outline:2px solid var(--teal);outline-offset:-2px;border-radius:16px}
+.hq__icon{position:relative;flex:none;width:18px;height:18px;transition:transform .6s var(--ease)}
+.hq__icon::before,.hq__icon::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1.6px;margin-top:-.8px;background:currentColor;border-radius:2px}
+.hq__icon::after{transform:rotate(90deg);transition:transform .6s var(--ease)}
+.hq__item.is-open .hq__icon{transform:rotate(45deg);color:var(--teal-deep)} /* plus turns into a cross */
+.hq__a{height:0;overflow:hidden}
+.hq__item.is-open .hq__a{height:auto}
+.hq__a p{padding:0 26px 26px;color:var(--muted);font-size:15px;line-height:1.7;max-width:640px}
+@media (max-width:991px){.hq__grid{grid-template-columns:minmax(0,1fr)}.hq__side{position:static}}
+
+
+/* =========================================================
+   WHY ALEAFIATE (Home v2) — photo + card, auto-playing points
+   ========================================================= */
+.wa__head{max-width:820px;margin:0 auto clamp(40px,5vw,64px);text-align:center}
+.wa__head h2{font-size:clamp(36px,4.6vw,72px);font-weight:600;letter-spacing:-.035em;margin-top:22px}
+.wa__head h2 em{font-style:normal;color:var(--teal-deep)}
+.wa__feature{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:center}
+.wa__stage{position:relative;aspect-ratio:16/10;border-radius:28px;overflow:hidden;background:var(--sand)}
+.wa__slide{position:absolute;inset:0;visibility:hidden}
+.wa__slide.is-active{visibility:visible}
+.wa__slide img{width:100%;height:100%;object-fit:cover;display:block}
+.wa__counter{position:absolute;left:20px;bottom:18px;z-index:3;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;color:var(--muted)}
+.wa__counter b{color:var(--ink);font-weight:600}
+.wa__card{position:relative;z-index:2;margin-left:-72px;padding:clamp(26px,2.8vw,40px);border-radius:24px;background:#dcefeb;box-shadow:0 40px 80px -50px rgba(13,13,48,.45)}
+.wa__card h3{font-size:clamp(20px,1.6vw,24px);font-weight:600}
+.wa__lead{margin-top:6px;font-family:var(--heading);font-size:clamp(17px,1.35vw,20px);line-height:1.45;color:var(--ink)}
+.wa__card p:not(.wa__lead){margin-top:18px;font-size:15px;line-height:1.75;color:var(--muted)}
+.wa__link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-weight:600;font-size:14px;color:var(--navy);border-bottom:1px solid currentColor;padding-bottom:2px}
+.wa__link svg{width:14px;height:14px;transition:transform .5s var(--ease)}
+.wa__link:hover svg{transform:translateX(4px)}
+.wa__points{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2.6vw,40px);margin-top:clamp(48px,6vw,80px)}
+.wa__point{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:0;border:0;background:none;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.wa__num,.wa__text{opacity:.5;transition:opacity .5s,transform .7s var(--ease)} /* dim/lift on children: GSAP animates the button itself */
+.wa__point:hover .wa__num,.wa__point:hover .wa__text,.wa__point.is-active .wa__num,.wa__point.is-active .wa__text{opacity:1}
+.wa__point.is-active .wa__num,.wa__point.is-active .wa__text{transform:translateY(-6px)}
+.wa__point:focus-visible{outline:2px solid var(--teal);outline-offset:8px;border-radius:6px}
+.wa__num{font-size:14px;color:var(--teal-deep);letter-spacing:.06em}
+.wa__text{font-size:15px;line-height:1.7;color:var(--ink);flex:1}
+.wa__bar{position:relative;display:block;width:100%;height:3px;margin-top:auto;border-radius:3px;background:rgba(19,19,46,.1);overflow:hidden}
+.wa__bar i{position:absolute;inset:0;background:var(--mint);transform:scaleX(0);transform-origin:left}
+@media (max-width:991px){
+  .wa__feature{grid-template-columns:minmax(0,1fr)}
+  .wa__card{margin:-60px 16px 0}
+  .wa__counter{bottom:auto;top:16px;left:16px}
+  .wa__points{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){.wa__points{grid-template-columns:minmax(0,1fr)}.wa__stage{aspect-ratio:4/3}}
+
+
+/* =========================================================
+   WHAT DO YOU NEED HELP WITH (Home v2) — 3D flip cards
+   ========================================================= */
+.hw{padding:clamp(70px,8vw,110px) 0;background:#dcefeb}
+.hw__panel{background:#fff;border-radius:28px;padding:clamp(28px,4vw,56px) clamp(20px,2.5vw,32px) clamp(24px,3vw,36px)}
+.hw__head{text-align:center;margin-bottom:clamp(32px,4vw,48px)}
+.hw__head h2{font-size:clamp(34px,4.4vw,68px);font-weight:600;letter-spacing:-.035em}
+.hw__head h2 em{font-style:normal;color:var(--teal-deep)}
+.hw__head p{margin-top:14px;color:var(--muted)}
+.hw__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.fc{position:relative;height:280px;perspective:1400px;cursor:pointer;outline:none;border-radius:22px}
+.fc:focus-visible{box-shadow:0 0 0 3px var(--teal)}
+.fc__inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.65,.05,.36,1)}
+.fc.is-flipped .fc__inner{transform:rotateY(180deg)}
+.fc__face{position:absolute;inset:0;border-radius:22px;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+/* front: photo left, title top, text bottom */
+.fc__front{display:flex;background:var(--bone);border:1px solid rgba(19,19,46,.06)}
+.fc__img{width:40%;max-width:240px;flex:none;overflow:hidden}
+.fc__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.fc:hover .fc__img img{transform:scale(1.06)}
+.fc__body{display:flex;flex-direction:column;justify-content:space-between;gap:16px;flex:1;padding:28px 30px}
+.fc h3{font-size:clamp(20px,1.6vw,24px);font-weight:600;line-height:1.25}
+.fc__body p{font-size:15px;line-height:1.6;color:var(--muted)}
+.fc__hint{display:none}
+/* back: intro, two-column checklist, link */
+.fc__back{display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:28px 32px;background:var(--teal-deep);color:#fff;transform:rotateY(180deg)}
+.fc__back h3{display:none}
+.fc__back p{font-size:14px;line-height:1.55;color:rgba(255,255,255,.85);max-width:520px}
+.fc__back ul{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px}
+.fc__back li{display:flex;align-items:flex-start;gap:10px;font-size:14px;font-weight:500}
+.fc__back li svg{flex:none;width:18px;height:18px;margin-top:1px;color:var(--mint)}
+.fc__back li svg path{stroke:var(--navy)}
+.fc__cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:0;border:0;background:none;color:#fff;font:600 14px/1 var(--body);cursor:pointer}
+.fc__cta svg{width:20px;height:20px;color:var(--mint);transition:transform .5s var(--ease)}
+.fc__cta:hover svg{transform:translateX(5px)}
+.hw__foot{display:flex;align-items:center;gap:12px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(19,19,46,.1);font-size:15px;color:var(--ink)}
+.hw__foot-icon{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--sand);color:var(--teal-deep)}
+.hw__foot-icon svg{width:18px;height:18px}
+.hw__foot button{padding:0;border:0;background:none;font:inherit;font-weight:600;color:var(--teal-deep);border-bottom:1px solid currentColor;cursor:pointer}
+/* tablet: cards stack image on top */
+@media (max-width:991px){
+  .fc{height:470px}
+  .fc__front{flex-direction:column}
+  .fc__img{width:100%;max-width:none;height:250px}
+  .fc__body{justify-content:flex-start;padding:22px 24px}
+  .fc__back{padding:24px}
+  .fc__back h3{display:block}
+  .fc__back ul{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){.hw__grid{grid-template-columns:minmax(0,1fr)}.fc{height:440px}.fc__img{height:220px}}
+@media (prefers-reduced-motion:reduce){.fc__inner{transition:none}}
+
+/* split-text helpers */
+.split-line{overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1100px){
+  .nav__links,.nav__phone,.nav__right .btn{display:none}
+  .nav__burger{display:block}
+}
+@media (max-width: 1240px){
+  .nav__phone{display:none}
+  .nav__links{gap:22px}
+}
+@media (max-width: 991px){
+  .nav__links,.nav__phone{display:none}
+  .nav__burger{display:block}
+  .nav__right .btn{display:none}
+  .hero{min-height:0;display:block}
+  .hero__bg{position:relative;inset:auto;width:100%;height:56vh}
+  .hero__bg .media{inset:-6% 0}
+  .hero__veil{background:linear-gradient(0deg,#e9f4f2 2%,transparent 40%)}
+  .hero__inner{padding-top:28px;gap:28px}
+  .hero__copy{max-width:none}
+  .hero__book{grid-template-columns:1fr 1fr}
+  .hb__btn{grid-column:1/-1}
+  .voices__grid{grid-template-columns:1fr}
+  .footer__top{grid-template-columns:1fr 1fr}
+}
+@media (max-width: 600px){
+  .hero__book{grid-template-columns:1fr;padding:18px}
+  .hero__bg{height:46vh}
+  .marquee{grid-template-columns:1fr;height:520px}
+  .marquee__col--down{display:none}
+  .footer__top{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Aleafiate Health Clinics home"><img src="images/brand/aleafiate-logo.png" alt="Aleafiate Health Clinics" width="180" height="81"></a>
+  <nav class="nav__links" aria-label="Main">
+    <a href="#get-started">How it works</a><a href="#pricing">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav__right">
+    <a href="tel:+61734733396" class="nav__phone">07 3473 3396</a>
+    <a href="contact.html" class="btn btn--ghost" data-roll data-book><span class="btn__fill"></span><span class="btn__label">Book now</span><span class="btn__dot"></span></a>
+    <button class="nav__burger" aria-label="Open menu"><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu" aria-hidden="true"><a href="home-v3.html">Home</a><a href="#get-started">How it works</a><a href="#pricing">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a></div>
+
+<main id="top">
+
+<!-- ================= 1. HERO ================= -->
+<section class="hero" id="hero">
+  <div class="hero__bg"><div class="media" data-label="about-hero.webp"><img src="images/about/about-hero.webp" alt="Aleafiate practitioner welcoming a patient" data-hero-img></div></div>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <span class="eyebrow" data-fade>Aleafiate Health Clinics · Logan &amp; telehealth</span>
+      <h1 class="hero__title" data-hero-title>Your health, <em>our priority.</em></h1>
+      <p class="hero__sub" data-fade>Compassionate, personalised care from AHPRA-registered practitioners — in clinic at Logan Central or from home by telehealth.</p>
+      <ul class="hero__trust" data-fade><li>Free discovery call</li><li>AHPRA-registered</li><li>Scripts in 12–24 hrs</li></ul>
+    </div>
+    <form class="hero__book" data-hero-book novalidate aria-label="Book an appointment">
+      <div class="hb__field">
+        <label for="hb-type">Appointment</label>
+        <select id="hb-type" name="enquiry"><option value="Book a free discovery call">Free discovery call</option><option value="Book an initial consultation">Initial consultation</option><option value="Book a follow-up">Follow-up consultation</option></select>
+      </div>
+      <div class="hb__field">
+        <label for="hb-practitioner">Practitioner</label>
+        <select id="hb-practitioner" name="practitioner"><option>No preference</option><option>Dr Frank Guerrera</option><option>Jeremy Chou (Nurse Practitioner)</option></select>
+      </div>
+      <div class="hb__field hb__field--date">
+        <label for="hb-date">Preferred date</label>
+        <span class="hb__date"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="13" rx="2.5"/><path d="M3 8h14M7 2.5v3M13 2.5v3"/></svg><input id="hb-date" name="date" type="date"></span>
+      </div>
+      <button type="submit" class="hb__btn"><span>Book now</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= 2. PRICING STEPS — cards fan out on scroll ================= -->
+<section class="ps" id="pricing">
+  <div class="container">
+    <div class="ps__head">
+      <span class="ps__pill">Simple &amp; transparent pricing</span>
+      <h2 data-split>Your journey starts <em>free.</em></h2>
+      <p data-fade-up>No hidden fees. No commitment until you’re ready. Medicare rebates may apply.</p>
+      <a href="tel:+61734733396" class="ps__btn" data-book data-book-enquiry="Book a free discovery call"><span class="ps__btn-text">Get started free</span><span class="ps__btn-text ps__btn-text--abs" aria-hidden="true">Get started free</span><span class="ps__btn-bg"></span></a>
+    </div>
+  </div>
+  <div class="ps__wrapper">
+    <div class="ps__sticky" data-ps-sticky>
+      <div class="ps__flex">
+        <div class="ps-card-wrap">
+          <article class="ps-card is-1">
+            <div class="ps-card__content">
+              <div class="ps-card__top"><span class="ps-card__num">Step 01</span></div>
+              <h3 class="ps-card__title">Nurse call</h3>
+              <div class="ps-card__price">$0</div>
+              <p class="ps-card__meta">10–15 minutes · no obligation</p>
+              <ul class="ps-card__list"><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Speak with our team about your health needs — at zero cost</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Find out if you’re eligible before committing to anything</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No charge if you’re not eligible</span></li></ul>
+              <button type="button" class="ps-card__btn" data-book data-book-enquiry="Book a free discovery call">Book a free call<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+            </div>
+            <div class="ps-card__img"><img src="images/home/clinic-telehealth.webp" alt="Practitioner on a call with a patient" loading="lazy"></div>
+          </article>
+        </div>
+        <div class="ps-card-wrap">
+          <article class="ps-card is-2">
+            <div class="ps-card__content">
+              <div class="ps-card__top"><span class="ps-card__num">Step 02</span></div>
+              <h3 class="ps-card__title">Initial consultation</h3>
+              <div class="ps-card__price">$0</div>
+              <p class="ps-card__meta">30 minutes · comprehensive assessment</p>
+              <ul class="ps-card__list"><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Personalised treatment plan with an experienced practitioner</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>E-script sent directly to your pharmacy, if appropriate</span></li></ul>
+              <button type="button" class="ps-card__btn" data-book data-book-enquiry="Book an initial consultation">Book now<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+            </div>
+            <div class="ps-card__img"><img src="images/about/experience-consultation.webp" alt="Practitioner and patient in a consultation" loading="lazy"></div>
+          </article>
+        </div>
+        <div class="ps-card-wrap">
+          <article class="ps-card is-3">
+            <div class="ps-card__content">
+              <div class="ps-card__top"><span class="ps-card__num">Step 03</span><span class="ps-card__tag">Medicare eligible*</span></div>
+              <h3 class="ps-card__title">Follow-up consultations</h3>
+              <div class="ps-card__price">$65</div>
+              <p class="ps-card__meta">15 minutes · ongoing care review</p>
+              <ul class="ps-card__list"><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Treatment plan adjustments and prescription updates</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ongoing support from your care team</span></li></ul>
+              <button type="button" class="ps-card__btn" data-book data-book-enquiry="Book a follow-up">Book now<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+            </div>
+            <div class="ps-card__img"><img src="images/about/approach-4-follow-up.webp" alt="Patient on a follow-up video call" loading="lazy"></div>
+          </article>
+        </div>
+      </div>
+      <p class="ps__note">*Medicare rebate eligibility varies depending on individual circumstances. Speak to your practitioner for details. Medication costs are separate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. GET STARTED — cards swing in on scroll ================= -->
+<section class="gs" id="get-started">
+  <div class="container">
+    <div class="gs__marquee" aria-hidden="true"><span>Get started with Aleafiate</span><span>Get started with Aleafiate</span></div>
+    <div class="gs__intro">
+      <span class="eyebrow">How it works</span>
+      <h2 data-split>Get started with <em>Aleafiate</em></h2>
+      <p data-fade-up>Get started now with our simple, streamlined three-step process — from the comfort of your home.</p>
+    </div>
+    <div class="gs__list" role="list">
+        <div class="gs-item" role="listitem">
+          <div class="gs-item__content">
+            <div class="gs-item__side">
+              <span class="gs-item__num">Step 01 / 03</span>
+              <p class="gs-item__summary">Explore your Aleafiate journey and discover if natural therapies may support your wellbeing — start with a free, no-obligation call.</p>
+              <a href="#" class="gs-btn" data-book data-book-enquiry="Book a free discovery call">
+                <span class="gs-btn__box">
+                  <span class="gs-btn__text"><span class="gs-btn__flex"><span>Check eligibility</span><span aria-hidden="true">Check eligibility</span></span></span>
+                  <span class="gs-btn__arrow"><svg viewBox="0 0 28 28" fill="none"><path d="M8.34 19.66a.87.87 0 0 0 1.24 0l9.92-9.91a.88.88 0 1 0-1.24-1.24l-9.92 9.92a.87.87 0 0 0 0 1.23Z" fill="currentColor"/><path d="M18.88 20.5a.88.88 0 0 0 .87-.87V9.13a.88.88 0 0 0-.87-.88H8.38a.88.88 0 1 0 0 1.75H18v9.63c0 .48.39.87.88.87Z" fill="currentColor"/></svg></span>
+                </span>
+                <span class="gs-btn__bg"></span>
+              </a>
+            </div>
+            <div class="gs-item__image"><img src="images/home/step-1-free-call.webp" alt="Woman at home on a phone call with the Aleafiate team" loading="lazy"></div>
+            <div class="gs-item__title"><h3>Take our eligibility check</h3></div>
+          </div>
+        </div>
+        <div class="gs-item" role="listitem">
+          <div class="gs-item__content">
+            <div class="gs-item__side">
+              <span class="gs-item__num">Step 02 / 03</span>
+              <p class="gs-item__summary">Connect with our compassionate, AHPRA-registered practitioners to co-create a personalised treatment plan that supports your unique path to wellbeing.</p>
+              <a href="#" class="gs-btn" data-book data-book-enquiry="Book an initial consultation">
+                <span class="gs-btn__box">
+                  <span class="gs-btn__text"><span class="gs-btn__flex"><span>Book a consultation</span><span aria-hidden="true">Book a consultation</span></span></span>
+                  <span class="gs-btn__arrow"><svg viewBox="0 0 28 28" fill="none"><path d="M8.34 19.66a.87.87 0 0 0 1.24 0l9.92-9.91a.88.88 0 1 0-1.24-1.24l-9.92 9.92a.87.87 0 0 0 0 1.23Z" fill="currentColor"/><path d="M18.88 20.5a.88.88 0 0 0 .87-.87V9.13a.88.88 0 0 0-.87-.88H8.38a.88.88 0 1 0 0 1.75H18v9.63c0 .48.39.87.88.87Z" fill="currentColor"/></svg></span>
+                </span>
+                <span class="gs-btn__bg"></span>
+              </a>
+            </div>
+            <div class="gs-item__image"><img src="images/home/step-3-consultation.webp" alt="Practitioner talking with a patient in a consultation room" loading="lazy"></div>
+            <div class="gs-item__title"><h3>Consultation</h3></div>
+          </div>
+        </div>
+        <div class="gs-item" role="listitem">
+          <div class="gs-item__content">
+            <div class="gs-item__side">
+              <span class="gs-item__num">Step 03 / 03</span>
+              <p class="gs-item__summary">If treatment is right for you, your prescription is sent to your chosen pharmacy within 12–24 hours — the next step on your journey to wellbeing.</p>
+              <a href="faq.html#faq-prescriptions" class="gs-btn" >
+                <span class="gs-btn__box">
+                  <span class="gs-btn__text"><span class="gs-btn__flex"><span>How it works</span><span aria-hidden="true">How it works</span></span></span>
+                  <span class="gs-btn__arrow"><svg viewBox="0 0 28 28" fill="none"><path d="M8.34 19.66a.87.87 0 0 0 1.24 0l9.92-9.91a.88.88 0 1 0-1.24-1.24l-9.92 9.92a.87.87 0 0 0 0 1.23Z" fill="currentColor"/><path d="M18.88 20.5a.88.88 0 0 0 .87-.87V9.13a.88.88 0 0 0-.87-.88H8.38a.88.88 0 1 0 0 1.75H18v9.63c0 .48.39.87.88.87Z" fill="currentColor"/></svg></span>
+                </span>
+                <span class="gs-btn__bg"></span>
+              </a>
+            </div>
+            <div class="gs-item__image"><img src="images/about/approach-3-plan.webp" alt="Practitioner handing a written plan to a patient" loading="lazy"></div>
+            <div class="gs-item__title"><h3>Receive your prescriptions</h3></div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. WHAT DO YOU NEED HELP WITH — flip cards ================= -->
+<section class="hw" id="help">
+  <div class="container">
+    <div class="hw__panel">
+      <div class="hw__head">
+        <h2 data-split>What do you need <em>help with?</em></h2>
+        <p data-fade-up>Our practitioners may support patients experiencing:</p>
+      </div>
+      <div class="hw__grid" data-hw-grid>
+      <div class="fc" tabindex="0" role="button" aria-pressed="false" aria-label="Pain and Physical discomfort — show more">
+        <div class="fc__inner">
+          <div class="fc__face fc__front">
+            <div class="fc__img"><img src="images/home/care-pain.webp" alt="" loading="lazy" style="object-position:50% 30%"></div>
+            <div class="fc__body">
+              <h3>Pain &amp; Physical discomfort</h3>
+              <p>Managing pain can make life challenging. Speak to one of our practitioners about your symptoms.</p>
+              <span class="fc__hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.6M4 20v-4h4"/></svg><span>Hover to see more</span></span>
+            </div>
+          </div>
+          <div class="fc__face fc__back" aria-hidden="true">
+            <div>
+              <h3>Pain &amp; Physical discomfort</h3>
+              <p>Ongoing pain can affect your sleep, work and mood. Our practitioners can talk with you about:</p>
+              <ul><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ongoing pain</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Joint pain or stiffness</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Muscle tension</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back discomfort</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Headaches</span></li></ul>
+            </div>
+            <button type="button" class="fc__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="fc" tabindex="0" role="button" aria-pressed="false" aria-label="Sleep and Rest — show more">
+        <div class="fc__inner">
+          <div class="fc__face fc__front">
+            <div class="fc__img"><img src="images/home/care-sleep.webp" alt="" loading="lazy" style="object-position:30% 50%"></div>
+            <div class="fc__body">
+              <h3>Sleep &amp; Rest</h3>
+              <p>Poor sleep can affect your energy, mood, and overall wellbeing. Our practitioners can help you explore options for improving your sleep.</p>
+              <span class="fc__hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.6M4 20v-4h4"/></svg><span>Hover to see more</span></span>
+            </div>
+          </div>
+          <div class="fc__face fc__back" aria-hidden="true">
+            <div>
+              <h3>Sleep &amp; Rest</h3>
+              <p>Sleep shapes how you feel every day. Our practitioners can talk with you about:</p>
+              <ul><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Trouble falling asleep</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waking during the night</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Restless or light sleep</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Difficulty staying asleep</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Waking unrefreshed</span></li></ul>
+            </div>
+            <button type="button" class="fc__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="fc" tabindex="0" role="button" aria-pressed="false" aria-label="Mental and Emotional Wellbeing — show more">
+        <div class="fc__inner">
+          <div class="fc__face fc__front">
+            <div class="fc__img"><img src="images/home/care-wellbeing.webp" alt="" loading="lazy" style="object-position:50% 35%"></div>
+            <div class="fc__body">
+              <h3>Mental &amp; Emotional Wellbeing</h3>
+              <p>Mental wellbeing is an important part of your overall health. Our practitioners are here to support you and discuss your concerns.</p>
+              <span class="fc__hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.6M4 20v-4h4"/></svg><span>Hover to see more</span></span>
+            </div>
+          </div>
+          <div class="fc__face fc__back" aria-hidden="true">
+            <div>
+              <h3>Mental &amp; Emotional Wellbeing</h3>
+              <p>It can be hard to ask for help — we offer a calm, non-judgemental space to talk about:</p>
+              <ul><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Low mood</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Feeling on edge</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Feeling overwhelmed</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Difficulty relaxing</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Loss of interest in usual activities</span></li></ul>
+            </div>
+            <button type="button" class="fc__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="fc" tabindex="0" role="button" aria-pressed="false" aria-label="Women’s Health — show more">
+        <div class="fc__inner">
+          <div class="fc__face fc__front">
+            <div class="fc__img"><img src="images/home/care-womens-health.webp" alt="" loading="lazy" style="object-position:60% 30%"></div>
+            <div class="fc__body">
+              <h3>Women’s Health</h3>
+              <p>Women’s health needs can change throughout different stages of life. Our practitioners can help you manage your symptoms.</p>
+              <span class="fc__hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.6M4 20v-4h4"/></svg><span>Hover to see more</span></span>
+            </div>
+          </div>
+          <div class="fc__face fc__back" aria-hidden="true">
+            <div>
+              <h3>Women’s Health</h3>
+              <p>We take women’s health seriously and plan care around your stage of life, including:</p>
+              <ul><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Menstrual pain &amp; cramping</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Menopause symptoms</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Changes in mood or sleep</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.8 10.2l2.7 2.7 5.7-6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Changes in appetite</span></li></ul>
+            </div>
+            <button type="button" class="fc__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="hw__foot" data-fade-up>
+        <span class="hw__foot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.6M4 20v-4h4"/></svg></span>
+        <p>Not sure where you fit? <button type="button" data-book data-book-enquiry="Book a free discovery call">Book a free nurse call</button> and we’ll talk it through — no obligation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. WHY CHOOSE ALEAFIATE — feature + auto-playing points ================= -->
+<section class="section wa" id="why">
+  <div class="container">
+    <div class="wa__head">
+      <span class="ps__pill">Why Aleafiate</span>
+      <h2 data-split>Choose Aleafiate, leaders in <em>alternative health.</em></h2>
+    </div>
+    <div class="wa__feature">
+      <div class="wa__stage" data-wa-stage><div class="wa__slide is-active"><img src="images/home/why-practitioner.webp" alt="Practitioner explaining a plan to a patient" loading="lazy"></div><div class="wa__slide"><img src="images/about/approach-3-plan.webp" alt="Practitioner handing a written plan to a patient" loading="lazy"></div><div class="wa__slide"><img src="images/home/clinic-consult-room.webp" alt="Private consultation room at the Aleafiate Logan clinic" loading="lazy"></div><div class="wa__slide"><img src="images/home/why-telehealth.webp" alt="Patient on a telehealth consultation at home" loading="lazy"></div>
+        <span class="wa__counter" aria-hidden="true"><b data-wa-count>01</b> / 04</span>
+      </div>
+      <div class="wa__card" data-wa-card>
+        <h3>Why Aleafiate?</h3>
+        <p class="wa__lead">At Aleafiate Health Clinics, we believe healing is a shared journey.</p>
+        <p>Your wellbeing is at the heart of everything we do. We offer patient-focused care that’s personalised, compassionate, and grounded in clinical integrity. Our team walks alongside you — supporting your health journey with respect, understanding, and a shared commitment to achieving meaningful outcomes together.</p>
+        <a href="about.html" class="wa__link">More about us <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+    <div class="wa__points" data-wa-points>
+      <button type="button" class="wa__point is-active" data-wa-point="0" aria-pressed="true">
+        <span class="wa__num">( 01 )</span>
+        <span class="wa__text">All prescriptions are issued by qualified practitioners in full compliance with regulations, ensuring safe and clinically responsible care.</span>
+        <span class="wa__bar" aria-hidden="true"><i></i></span>
+      </button>
+      <button type="button" class="wa__point" data-wa-point="1" aria-pressed="false">
+        <span class="wa__num">( 02 )</span>
+        <span class="wa__text">Eligible patients can dispense immediately following their consultation, as our prescribers are Authorised Prescribers. Prescriptions are processed promptly and sent directly to the pharmacy.</span>
+        <span class="wa__bar" aria-hidden="true"><i></i></span>
+      </button>
+      <button type="button" class="wa__point" data-wa-point="2" aria-pressed="false">
+        <span class="wa__num">( 03 )</span>
+        <span class="wa__text">Face-to-face consultations are now available at our welcoming Aleafiate Logan Clinic inside Chempro Pharmacy, Logan Central Plaza, 38/74 Wembley Road, Logan Central QLD 4114 — with spacious private clinic rooms located to the side of the pharmacy, supporting your journey to natural wellness in person.</span>
+        <span class="wa__bar" aria-hidden="true"><i></i></span>
+      </button>
+      <button type="button" class="wa__point" data-wa-point="3" aria-pressed="false">
+        <span class="wa__num">( 04 )</span>
+        <span class="wa__text">Choose the care that suits you — face-to-face appointments and telehealth consultations are both available to support your wellness journey.</span>
+        <span class="wa__bar" aria-hidden="true"><i></i></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. TESTIMONIALS ================= -->
+<section class="section voices">
+  <div class="container voices__grid">
+    <div>
+      <span class="eyebrow">Testimonials</span>
+      <h2 data-split>Trusted by Australians</h2>
+      <p data-fade-up style="color:var(--muted);max-width:380px">Real Google reviews from our patients about their experience with our team.</p>
+      <div class="rating" data-fade-up>
+        <div><div class="rating__stars" style="font-size:22px">★★★★★</div><p>Five-star reviews on Google</p></div>
+      </div>
+    </div>
+    <div class="marquee">
+      <div class="marquee__col" data-marquee>
+        <div class="quote"><div class="quote__stars" aria-label="5 out of 5 stars">★★★★★</div><p>Amazing customer service. Tianna (practice manager) was so nice. She went above &amp; beyond to help me over the past 2 weeks, &amp;…</p><div class="quote__who"><span class="quote__avatar" aria-hidden="true">C</span><div><b>Charmaine Maguire</b><span>Google review</span></div></div></div>
+        <div class="quote"><div class="quote__stars" aria-label="5 out of 5 stars">★★★★★</div><p>I had such a wonderful experience at Aleafiate. From the moment I walked into the clinic, I was made to feel genuinely welcome and at ease. The…</p><div class="quote__who"><span class="quote__avatar" aria-hidden="true">S</span><div><b>Sasha Logsdale</b><span>Google review</span></div></div></div>
+      </div>
+      <div class="marquee__col marquee__col--down" data-marquee>
+        <div class="quote"><div class="quote__stars" aria-label="5 out of 5 stars">★★★★★</div><p>Spoke to P from reception on the phone this morning, her customer service is amazing and she really went out of her way to try solve a…</p><div class="quote__who"><span class="quote__avatar" aria-hidden="true">R</span><div><b>Ricchi Ciarrocchi</b><span>Google review</span></div></div></div>
+        <div class="quote"><div class="quote__stars" aria-label="5 out of 5 stars">★★★★★</div><p>Very helpful and efficient in responding to my enquiries..</p><div class="quote__who"><span class="quote__avatar" aria-hidden="true">A</span><div><b>Anna Jeffries</b><span>Google review</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9. FAQ — sticky heading, accordion ================= -->
+<section class="section hq" id="faqs">
+  <div class="container hq__grid">
+    <div class="hq__side">
+      <span class="eyebrow">FAQs</span>
+      <h2 data-split>Your questions, <em>answered.</em></h2>
+      <p data-fade-up>Straight answers about getting started, consultations, scripts and fees. Can’t find yours? We’re happy to help.</p>
+      <div class="hq__actions" data-fade-up>
+        <a href="contact.html" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Contact us</span><span class="btn__dot"></span></a>
+        <a href="faq.html" class="btn btn--ghost" data-roll><span class="btn__fill"></span><span class="btn__label">All FAQs</span></a>
+      </div>
+    </div>
+    <div class="hq__list" data-stagger>
+        <div class="hq__item is-open">
+          <button class="hq__q" type="button" aria-expanded="true" aria-controls="hq-a0" id="hq-q0"><span>How do I get started?</span><span class="hq__icon" aria-hidden="true"></span></button>
+          <div class="hq__a" id="hq-a0" role="region" aria-labelledby="hq-q0"><p>Start with a free, no-obligation nurse call. Our team will talk through your health needs and explain how everything works. If you’d like to go ahead, you’ll complete an intake form and book an initial consultation with an AHPRA-registered practitioner.</p></div>
+        </div>
+        <div class="hq__item">
+          <button class="hq__q" type="button" aria-expanded="false" aria-controls="hq-a1" id="hq-q1"><span>Is the first call really free?</span><span class="hq__icon" aria-hidden="true"></span></button>
+          <div class="hq__a" id="hq-a1" role="region" aria-labelledby="hq-q1"><p>Yes. The nurse call is $0 with no obligation. You can find out whether you’re eligible before committing to anything, and there’s no charge if you’re not eligible.</p></div>
+        </div>
+        <div class="hq__item">
+          <button class="hq__q" type="button" aria-expanded="false" aria-controls="hq-a2" id="hq-q2"><span>Are Aleafiate practitioners qualified?</span><span class="hq__icon" aria-hidden="true"></span></button>
+          <div class="hq__a" id="hq-a2" role="region" aria-labelledby="hq-q2"><p>Yes. All of our practitioners are qualified health professionals registered with AHPRA. Every prescribing decision is made independently, in line with Australian law.</p></div>
+        </div>
+        <div class="hq__item">
+          <button class="hq__q" type="button" aria-expanded="false" aria-controls="hq-a3" id="hq-q3"><span>Do you offer telehealth and face-to-face consultations?</span><span class="hq__icon" aria-hidden="true"></span></button>
+          <div class="hq__a" id="hq-a3" role="region" aria-labelledby="hq-q3"><p>Yes. See a practitioner in person at our clinic in Logan Central Plaza, 38/74 Wembley Rd, or from home by telehealth — whichever suits you best.</p></div>
+        </div>
+        <div class="hq__item">
+          <button class="hq__q" type="button" aria-expanded="false" aria-controls="hq-a4" id="hq-q4"><span>How much do consultations cost?</span><span class="hq__icon" aria-hidden="true"></span></button>
+          <div class="hq__a" id="hq-a4" role="region" aria-labelledby="hq-q4"><p>The nurse call and initial consultation are $0. Follow-up consultations are $65, and Medicare rebates may apply depending on your circumstances. Medication costs are separate, and you’ll always know the cost before you book.</p></div>
+        </div>
+        <div class="hq__item">
+          <button class="hq__q" type="button" aria-expanded="false" aria-controls="hq-a5" id="hq-q5"><span>How quickly are scripts sent to my pharmacy?</span><span class="hq__icon" aria-hidden="true"></span></button>
+          <div class="hq__a" id="hq-a5" role="region" aria-labelledby="hq-q5"><p>After your consultation, prescriptions are sent directly to your chosen pharmacy within 12–24 hours, along with any required TGA approvals. Scripts are released once payment is complete.</p></div>
+        </div>
+        <div class="hq__item">
+          <button class="hq__q" type="button" aria-expanded="false" aria-controls="hq-a6" id="hq-q6"><span>Do I need follow-up consultations?</span><span class="hq__icon" aria-hidden="true"></span></button>
+          <div class="hq__a" id="hq-a6" role="region" aria-labelledby="hq-q6"><p>Yes. Regular follow-ups let your practitioner review your progress and adjust your plan, so your treatment stays safe and effective.</p></div>
+        </div>
+        <div class="hq__item">
+          <button class="hq__q" type="button" aria-expanded="false" aria-controls="hq-a7" id="hq-q7"><span>How do I reschedule an appointment?</span><span class="hq__icon" aria-hidden="true"></span></button>
+          <div class="hq__a" id="hq-a7" role="region" aria-labelledby="hq-q7"><p>Please give us at least 24 hours’ notice so we can offer the time to another patient. Call 07 3473 3396 or email admin@aleafiate.com.au.</p></div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. BLOG ================= -->
+<section class="section blog" id="blog">
+  <div class="container">
+    <div class="blog__head">
+      <span class="eyebrow">From our blog</span>
+      <h2 data-split>Insights &amp; health updates</h2>
+      <p data-fade-up>Practical guides and updates from our team — from preparing for your first consultation to travelling with your medication.</p>
+    </div>
+    <div class="blog__grid" data-stagger>
+      <a class="post" href="blog-first-telehealth-consultation.html">
+        <div class="post__media"><img src="images/home/why-telehealth.webp" alt="" loading="lazy"><span class="post__tag">Telehealth</span></div>
+        <span class="post__date"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="13" rx="2.5"/><path d="M3 8h14M7 2.5v3M13 2.5v3"/></svg>October 20, 2026</span>
+        <h3>What to expect at your first telehealth consultation</h3>
+        <span class="post__more">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+      </a>
+      <a class="post" href="blog-initial-consultation-checklist.html">
+        <div class="post__media"><img src="images/home/step-2-intake-form.webp" alt="" loading="lazy"><span class="post__tag">Getting started</span></div>
+        <span class="post__date"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="13" rx="2.5"/><path d="M3 8h14M7 2.5v3M13 2.5v3"/></svg>October 13, 2026</span>
+        <h3>Preparing for your initial consultation: a simple checklist</h3>
+        <span class="post__more">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+      </a>
+      <a class="post" href="blog-why-follow-ups-matter.html">
+        <div class="post__media"><img src="images/about/approach-4-follow-up.webp" alt="" loading="lazy"><span class="post__tag">Ongoing care</span></div>
+        <span class="post__date"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="13" rx="2.5"/><path d="M3 8h14M7 2.5v3M13 2.5v3"/></svg>October 6, 2026</span>
+        <h3>Why regular follow-up consultations matter</h3>
+        <span class="post__more">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+      </a>
+    </div>
+    <div class="blog__cta"><a href="blog.html" class="btn btn--ghost" data-roll><span class="btn__fill"></span><span class="btn__label">View all blogs</span><svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12L12 4M5 4h7v7"/></svg></a></div>
+  </div>
+</section>
+
+<!-- ================= 10. CTA ================= -->
+<section class="cta" id="contact">
+  <div class="cta__bg"><div class="media" data-label="cta-background.webp"><img src="images/home/cta-background.webp" alt="Man meditating outdoors at sunrise" loading="lazy" data-cta-img></div></div>
+  <div class="container cta__inner">
+    <h2 class="cta__title" data-split>Start with a free call.</h2>
+    <div class="cta__card" data-cta-card>
+      <div class="media" data-label="cta-card.webp"><img src="images/home/cta-card.webp" alt="Hands holding a phone, ready to call" loading="lazy"></div>
+      <h3>Book a free call</h3>
+      <p>A no-obligation chat with our team to see whether Aleafiate is right for you. Monday to Friday, 9am – 5pm.</p>
+      <a href="tel:+61734733396" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Book a free call</span><span class="btn__dot"></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer footer--v2">
+  <div class="container">
+    <div class="fv2__top">
+      <div class="fv2__brand">
+        <a href="home-v3.html" class="fv2__logo"><img src="images/brand/aleafiate-logo.png" alt="Aleafiate Health Clinics" width="180" height="81" loading="lazy"></a>
+        <p class="fv2__tag">Alternative healthcare,<br>personalised to you.</p>
+        <ul class="fv2__contact"><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span><small>Call us</small><a href="tel:+61734733396">07 3473 3396</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Email</small><a href="mailto:admin@aleafiate.com.au">admin@aleafiate.com.au</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span><small>Visit</small><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Logan+Central+Plaza,+74+Wembley+Rd,+Logan+Central+QLD+4114" target="_blank" rel="noopener">38/74 Wembley Rd,<br>Logan Central QLD 4114</a></span></li><li><span class="fv2__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><small>Opening hours</small>Monday – Friday<br>9:00 AM – 5:00 PM</span></li></ul>
+      </div>
+      <nav class="fv2__cols" aria-label="Footer">
+        <div><h4>Clinic</h4><ul><li><a href="home-v3.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="#get-started">How it works</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+        <div><h4>Patients</h4><ul><li><a href="practitioners.html">Practitioners</a></li><li><a href="faq.html">FAQs</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div><h4>Policies</h4><ul><li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="travel-policy.html">Travel Policy</a></li></ul></div>
+      </nav>
+      <div class="fv2__news">
+        <h4>Newsletter</h4>
+        <p class="fv2__news-title">Clinic news, practical guides and health updates — once a month.</p>
+        <form class="fv2__form" data-news novalidate>
+          <label for="fv2-email" class="sr-only">Email address</label>
+          <div class="fv2__row">
+            <input id="fv2-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required>
+            <button type="submit">Join</button>
+          </div>
+          <p class="fv2__msg" aria-live="polite">No spam. Unsubscribe any time.</p>
+        </form>
+      </div>
+    </div>
+    <div class="fv2__bar">
+      <span>© <span data-year></span> Aleafiate Health Clinics. All rights reserved.</span>
+      <nav class="fv2__social" aria-label="Social media"><a href="https://www.linkedin.com/company/aleafiate/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/aleafiate" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/aleafiate.com.au/" target="_blank" rel="noopener">Instagram</a></nav>
+    </div>
+    <p class="fv2__disclaimer"><b>Disclaimer:</b> The information on this website is provided for general educational purposes only and is not intended as medical advice. Aleafiate Health Clinics does not advertise, promote, or encourage the use of medicinal cannabis or any prescription-only treatments. Medicinal cannabis in Australia is a regulated medication governed by the Therapeutic Goods Administration (TGA), and further details can be found on their website. All prescribing decisions are made independently by qualified AHPRA-registered practitioners in accordance with Australian law. Treatment suitability varies between individuals, and medicinal cannabis may not be appropriate for everyone and may involve potential risks or side effects. If you are considering treatment, please consult a registered healthcare professional for personalised medical advice.</p>
+  </div>
+</footer>
+
+<!-- ================= LIBRARIES ================= -->
+<script src="js/booking.js"></script>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/vendor/SplitText.min.js"></script>
+<script src="js/vendor/Draggable.min.js"></script>
+<script src="js/vendor/lenis.min.js"></script>
+
+<script>
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+  /* Image placeholders: hide label once a real image loads */
+  $$('.media img').forEach(img => {
+    const mark = () => img.getAttribute('src') && img.naturalWidth && img.closest('.media').classList.add('has-img');
+    const clear = () => img.getAttribute('src') && img.setAttribute('src', ''); // missing file → keep the placeholder
+    img.addEventListener('error', clear);
+    if (img.complete && img.getAttribute('src') && !img.naturalWidth) clear();
+    img.complete ? mark() : img.addEventListener('load', mark);
+  });
+  $('[data-year]').textContent = new Date().getFullYear();
+
+  /* Mobile menu */
+  $('.nav__burger').addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  $$('.mobile-menu a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+
+  /* Help flip cards: hover flips on desktop (CSS); tap / Enter flips on touch and keyboard */
+  const canHover = matchMedia('(hover: hover)').matches;
+  $$('.fc').forEach(card => {
+    const back = $('.fc__back', card), cta = $('.fc__cta', card);
+    const flip = on => { card.classList.toggle('is-flipped', on); card.setAttribute('aria-pressed', on); back.setAttribute('aria-hidden', !on); cta.tabIndex = on ? 0 : -1; };
+    card.addEventListener('click', e => { if (e.target.closest('.fc__cta') || canHover) return; flip(!card.classList.contains('is-flipped')); });
+    card.addEventListener('keydown', e => { if (e.target === card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); flip(!card.classList.contains('is-flipped')); } });
+    if (canHover) { card.addEventListener('mouseenter', () => flip(true)); card.addEventListener('mouseleave', () => flip(false)); }
+  });
+
+  /* Testimonials marquee: duplicate content for a seamless loop */
+  $$('[data-marquee]').forEach(col => col.innerHTML += col.innerHTML);
+
+  /* Hero booking bar: opens the booking form with the choices filled in */
+  const hb = $('[data-hero-book]');
+  if (hb) {
+    const date = $('#hb-date', hb); date.min = new Date().toISOString().slice(0, 10);
+    hb.addEventListener('submit', e => {
+      e.preventDefault();
+      const d = date.value ? new Date(date.value + 'T00:00').toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : '';
+      const go = () => window.aleafiateBook({ enquiry: hb.elements.enquiry.value, practitioner: hb.elements.practitioner.value, message: d ? `Preferred date: ${d}` : '' }, $('.hb__btn', hb));
+      window.aleafiateBook ? go() : (location.href = 'contact.html');
+    });
+  }
+
+  /* Footer newsletter: no mailing-list service yet, so a valid address opens an email to the clinic */
+  const news = $('[data-news]');
+  if (news) news.addEventListener('submit', e => {
+    e.preventDefault();
+    const input = news.elements.email, msg = $('.fv2__msg', news), v = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { msg.textContent = 'Please enter a valid email address.'; msg.classList.remove('is-ok'); msg.classList.add('is-error'); input.focus(); return; }
+    msg.classList.remove('is-error'); msg.classList.add('is-ok');
+    location.href = `mailto:admin@aleafiate.com.au?subject=${encodeURIComponent('Newsletter sign-up')}&body=${encodeURIComponent('Please add me to the Aleafiate newsletter: ' + v)}`;
+    msg.textContent = 'Thanks! Your email app should open — just press send.';
+    news.reset();
+  });
+
+  /* FAQ accordion (one open at a time) */
+  const hqItems = $$('.hq__item');
+  const setHq = (item, open) => {
+    const a = $('.hq__a', item);
+    item.classList.toggle('is-open', open);
+    $('.hq__q', item).setAttribute('aria-expanded', open);
+    if (!window.gsap) { a.style.height = open ? 'auto' : '0'; return; }
+    gsap.fromTo(a, { height: a.offsetHeight }, { height: open ? 'auto' : 0, duration: .6, ease: 'expo.inOut', overwrite: true, onComplete: () => window.ScrollTrigger && ScrollTrigger.refresh() });
+  };
+  hqItems.forEach(item => $('.hq__q', item).addEventListener('click', () => {
+    const open = !item.classList.contains('is-open');
+    hqItems.forEach(o => o !== item && o.classList.contains('is-open') && setHq(o, false));
+    setHq(item, open);
+  }));
+
+  if (!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger, SplitText, Draggable);
+
+  /* ---------- Button letter-roll + cursor-follow fill ---------- */
+  $$('[data-roll]').forEach(btn => {
+    const label = $('.btn__label', btn);
+    const text = label.textContent.trim();
+    btn.setAttribute('aria-label', text);
+    const make = cls => `<span class="btn__text ${cls}" aria-hidden="true">${[...text].map(ch => `<span class="btn__char">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('')}</span>`;
+    label.innerHTML = make('') + make('btn__text--clone');
+    const [a, b] = $$('.btn__text', label).map(t => $$('.btn__char', t));
+    gsap.set(b, { yPercent: 110 });
+    const roll = dir => {
+      gsap.to(a, { yPercent: dir ? -110 : 0, duration: .5, ease: 'power3.inOut', stagger: .018, overwrite: true });
+      gsap.to(b, { yPercent: dir ? 0 : 110, duration: .5, ease: 'power3.inOut', stagger: .018, overwrite: true });
+    };
+    const fill = $('.btn__fill', btn);
+    btn.addEventListener('mouseenter', e => {
+      const r = btn.getBoundingClientRect();
+      fill && (btn.style.setProperty('--x', `${e.clientX - r.left}px`), btn.style.setProperty('--y', `${e.clientY - r.top}px`));
+      roll(true);
+    });
+    btn.addEventListener('mouseleave', () => roll(false));
+  });
+
+  if (reduce) { gsap.set('.o-item', { clipPath: 'none' }); return; }
+
+  /* ---------- Lenis smooth scroll ---------- */
+  const lenis = window.__lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); if (id.length < 2) return;
+    const el = $(id); if (!el) return;
+    e.preventDefault(); lenis.scrollTo(el, { offset: 0, duration: 1.6 });
+  }));
+
+  /* ---------- Nav: hide on scroll down, show on scroll up ---------- */
+  const nav = $('#nav'); let lastY = 0;
+  lenis.on('scroll', ({ scroll }) => {
+    nav.classList.toggle('is-hidden', scroll > lastY && scroll > 200 && !document.body.classList.contains('menu-open'));
+    nav.classList.toggle('is-solid', scroll > 40);
+    lastY = scroll;
+  });
+
+  document.fonts.ready.then(() => {
+    const mm = gsap.matchMedia();
+
+    /* ---------- Pricing steps: slide in, then the stacked cards fan out (desktop) ---------- */
+    const psSticky = $('[data-ps-sticky]');
+    if (psSticky) {
+      ScrollTrigger.create({ trigger: psSticky, start: 'top 85%', once: true, onEnter: () => psSticky.classList.add('is-in') });
+      mm.add('(min-width: 992px)', () => {
+        const [c1, c2, c3] = ['.ps-card.is-1', '.ps-card.is-2', '.ps-card.is-3'];
+        gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '.ps__wrapper', start: 'top bottom', end: 'bottom top', scrub: .9 } })
+          .fromTo(c1, { xPercent: 100, rotation: 0 }, { xPercent: 0, rotation: -5, duration: 47 }, 28)
+          .fromTo(c2, { yPercent: 0 }, { yPercent: -4, duration: 47 }, 28)
+          .fromTo(c3, { xPercent: -100, rotation: 0 }, { xPercent: 0, rotation: 5, duration: 47 }, 28)
+          .set({}, {}, 100);
+        return () => gsap.set([c1, c2, c3], { clearProps: 'transform' });
+      });
+    }
+
+    /* ---------- Get started: each card's image swings up into place, text fades in then out (desktop) ---------- */
+    mm.add('(min-width: 992px)', () => {
+      $$('.gs-item__content').forEach(card => {
+        const img = $('.gs-item__image', card), texts = card.querySelectorAll('.gs-item__side, .gs-item__title');
+        gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: .9 } })
+          .fromTo(img, { y: '100vh', rotation: 90, scale: 1.1 }, { y: 0, rotation: 0, scale: 1, duration: 50 }, 0)
+          .to(img, { scale: .9, duration: 50 }, 50)
+          .fromTo(texts, { opacity: 0 }, { opacity: 1, duration: 4 }, 38)
+          .to(texts, { opacity: 0, duration: 4 }, 62)
+          .set({}, {}, 100);
+      });
+    });
+    mm.add('(max-width: 991px)', () => {
+      $$('.gs-item__content').forEach(card => gsap.from(card.children, { y: 40, autoAlpha: 0, duration: 1.1, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: card, start: 'top 85%' } }));
+    });
+
+
+    /* ---------- Hero banner: intro + soft parallax ---------- */
+    const heroSplit = SplitText.create('[data-hero-title]', { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });
+    gsap.timeline({ defaults: { ease: 'expo.out' } })
+      .from('[data-hero-img]', { scale: 1.25, duration: 2.2 })
+      .from('.hero__bg', { clipPath: 'inset(0 0 0 100%)', duration: 1.6, ease: 'expo.inOut' }, 0)
+      .from(heroSplit.words, { yPercent: 110, duration: 1.2, stagger: .05 }, .5)
+      .from('.hero [data-fade]', { y: 24, autoAlpha: 0, duration: 1, stagger: .1 }, .8)
+      .from('[data-hero-book]', { y: 60, autoAlpha: 0, duration: 1.3 }, 1)
+      .from('[data-hero-book] > *', { y: 20, autoAlpha: 0, duration: .9, stagger: .08 }, 1.2)
+      .from('#nav', { autoAlpha: 0, duration: 1 }, .4); // fade only: .nav has a CSS transform transition
+    gsap.to('.hero__bg .media', { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+    /* ---------- Generic heading reveal (lines slide up from mask) ---------- */
+    $$('[data-split]').forEach(el => {
+      SplitText.create(el, { type: 'lines', mask: 'lines', linesClass: 'split-line', autoSplit: true,
+        onSplit: s => gsap.from(s.lines, { yPercent: 105, duration: 1.2, ease: 'expo.out', stagger: .1,
+          scrollTrigger: { trigger: el, start: 'top 85%' } }) });
+    });
+
+    /* ---------- Fades ---------- */
+    $$('[data-fade-up]').forEach(el => gsap.from(el, { y: 30, autoAlpha: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
+    $$('[data-stagger]').forEach(el => gsap.from(el.children, { y: 50, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: .1, scrollTrigger: { trigger: el, start: 'top 85%' } }));
+
+    /* ---------- Parallax helpers ---------- */
+    $$('[data-speed]').forEach(el => gsap.to(el, { yPercent: parseFloat(el.dataset.speed) * 100, ease: 'none',
+      scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));
+
+    /* ---------- Help flip cards: rise in with a slight tilt ---------- */
+    gsap.from('.fc', { y: 70, rotationX: -14, transformPerspective: 900, autoAlpha: 0, duration: 1.2, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '[data-hw-grid]', start: 'top 85%' } });
+
+    /* ---------- Why Aleafiate: entrance, then points auto-play (bar fills → photo wipes to the next) ---------- */
+    const wa = $('#why');
+    if (wa) {
+      const points = $$('[data-wa-point]', wa), slides = $$('.wa__slide', wa), bars = points.map(p => $('.wa__bar i', p)), count = $('[data-wa-count]', wa);
+      const DUR = 6; let cur = 0, fill = null;
+      gsap.timeline({ scrollTrigger: { trigger: wa, start: 'top 70%' } })
+        .from('[data-wa-stage]', { clipPath: 'inset(12% 12% 12% 12% round 28px)', duration: 1.6, ease: 'expo.inOut' })
+        .from('[data-wa-stage] .wa__slide.is-active img', { scale: 1.3, duration: 2, ease: 'expo.out' }, 0)
+        .from('[data-wa-card]', { x: 80, autoAlpha: 0, duration: 1.3, ease: 'expo.out' }, .5)
+        .from('[data-wa-card] > *', { y: 24, autoAlpha: 0, duration: 1, ease: 'expo.out', stagger: .08 }, .7);
+      gsap.fromTo(points, { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '[data-wa-points]', start: 'top 90%' } });
+      const show = (i, dir = 1) => {
+        if (i === cur) return;
+        const from = slides[cur], to = slides[i];
+        points[cur].classList.remove('is-active'); points[cur].setAttribute('aria-pressed', 'false');
+        points[i].classList.add('is-active'); points[i].setAttribute('aria-pressed', 'true');
+        gsap.set(bars[cur], { scaleX: 0 });
+        to.classList.add('is-active'); gsap.set(to, { zIndex: 2 }); gsap.set(from, { zIndex: 1 });
+        gsap.timeline({ onComplete: () => { from.classList.remove('is-active'); gsap.set(to, { clearProps: 'clipPath' }); } })
+          .fromTo(to, { clipPath: dir > 0 ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0%)', duration: 1.2, ease: 'expo.inOut' })
+          .fromTo($('img', to), { scale: 1.2 }, { scale: 1, duration: 1.6, ease: 'expo.out' }, 0);
+        count.textContent = String(i + 1).padStart(2, '0');
+        cur = i;
+      };
+      const play = () => {
+        fill && fill.kill();
+        fill = gsap.fromTo(bars[cur], { scaleX: 0 }, { scaleX: 1, duration: DUR, ease: 'none', onComplete: () => { show((cur + 1) % points.length); play(); } });
+      };
+      points.forEach((p, i) => {
+        p.addEventListener('click', () => { show(i, i > cur ? 1 : -1); play(); });
+        p.addEventListener('mouseenter', () => { if (i !== cur) { show(i, i > cur ? 1 : -1); play(); } });
+      });
+      ScrollTrigger.create({ trigger: wa, start: 'top 60%', end: 'bottom 20%', onToggle: st => st.isActive ? (fill ? fill.resume() : play()) : fill && fill.pause() }); // only runs while in view
+    }
+
+    /* ---------- Rating counter ---------- */
+    const num = $('[data-count]'), obj = { v: 0 };
+    if (num) gsap.to(obj, { v: parseFloat(num.dataset.count), duration: 2, ease: 'power2.out', onUpdate: () => num.textContent = obj.v.toFixed(1),
+      scrollTrigger: { trigger: num, start: 'top 90%' } });
+
+    /* ---------- CTA: background scale + card rise ---------- */
+    gsap.fromTo('[data-cta-img]', { scale: 1.3 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.cta', start: 'top bottom', end: 'bottom bottom', scrub: true } });
+    gsap.from('[data-cta-card]', { y: 120, autoAlpha: 0, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: '.cta', start: 'top 40%' } });
+
+    /* ---------- Footer wordmark: letters rise ---------- */
+    gsap.from('.fv2__top > *, .fv2__bar', { y: 40, autoAlpha: 0, duration: 1.2, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '.footer--v2', start: 'top 85%' } });
+
+    ScrollTrigger.refresh();
+  });
+})();
+</script>
+</body>
+</html>

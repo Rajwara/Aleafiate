@@ -13,6 +13,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - practitioners.html — Meet Our Prescribing Practitioners (filter + profile drawer)
 - faq.html — FAQ (search, section nav, accordions)
 - contact.html — Contact (info cards, request form, map)
+- home-v3.html — Copy of home-v2.html to experiment on
 - home-v2.html — Alternative home page (self-contained: its CSS and JS are inline; uses the shared js/vendor/ libraries)
 - css/style.css — all styles (colours & fonts at the top in :root; headings Montserrat, text Poppins)
 - css/booking.css + js/booking.js — floating "Book appointment" button and pop-up form on every page
