@@ -124,8 +124,8 @@ p{margin:0}
    ========================================================= */
 .hero{position:relative;min-height:max(640px,100vh);display:flex;overflow:hidden;background:linear-gradient(120deg,#eef7f5 0%,var(--sand) 45%,#dcefeb 100%)}
 .hero__bg{position:absolute;inset:0} /* photo covers the whole banner */
-.hero__bg .media{position:absolute;inset:-6% -18% -6% 0} /* wider than the banner so the people sit right of the text */
-.hero__bg img{object-position:50% 40%}
+.hero__bg .media{position:absolute;inset:-6% -28% -6% 0} /* extends past the right edge so the nurse and patient sit right of the text */
+.hero__bg img{object-position:50% 35%}
 .hero__veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(233,244,242,.94) 0%,rgba(233,244,242,.86) 30%,rgba(233,244,242,.4) 48%,transparent 66%),linear-gradient(0deg,rgba(233,244,242,.75),transparent 34%)}
 .hero__inner{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding-top:150px;padding-bottom:48px;min-height:inherit}
 .hero__copy{max-width:600px}
@@ -585,7 +585,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 
 <!-- ================= 1. HERO ================= -->
 <section class="hero" id="hero">
-  <div class="hero__bg"><div class="media" data-label="about-hero.webp"><img src="images/about/about-hero.webp" alt="Aleafiate practitioner welcoming a patient" data-hero-img></div></div>
+  <div class="hero__bg"><div class="media" data-label="images/home-v2/Hero-Image.webp"><img src="images/home-v2/Hero-Image.webp" alt="Aleafiate nurse holding hands with an older patient on a sofa" data-hero-img></div></div>
   <div class="hero__veil" aria-hidden="true"></div>
   <div class="container hero__inner">
     <div class="hero__copy">

@@ -458,7 +458,7 @@
         // enquiry card: grows with the image; photo starts shifted so the person stands left of the card
         if ($('[data-hero-form]')) tl
           .fromTo('[data-hero-form]', { width: 330, scale: .94 }, { width: 450, scale: 1, duration: 1, ease: 'power2.inOut' }, 0) // padding stays in CSS so short screens keep the compact version
-          .fromTo('[data-hero-img]', { objectPosition: '72% 50%', xPercent: 0 }, { objectPosition: '50% 50%', xPercent: -6, duration: 1, ease: 'power2.inOut' }, 0);
+          .fromTo('[data-hero-img]', { objectPosition: '58% 40%', xPercent: 0 }, { objectPosition: '50% 40%', xPercent: 0, duration: 1, ease: 'power2.inOut' }, 0);
         return () => st.revert();
       });
     }
