@@ -516,6 +516,11 @@ p{margin:0}
 @media (prefers-reduced-motion:reduce){.fc__inner{transition:none}}
 
 main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
+
+/* pricing cards: fill the width on tablets/phones; on short screens the pinned stack is scaled to fit (main script) */
+.ps__flex{transform-origin:50% 0}
+@media (max-width:991px){.ps-card-wrap{max-width:none!important}.ps__flex{transform:none!important}}
+@media (min-width:641px) and (max-width:991px){.ps-card-wrap:last-child{grid-column:1/-1;justify-self:center;width:calc(50% - 10px)}} /* odd card out sits centred */
 /* split-text helpers */
 .split-line{overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
 
@@ -1149,6 +1154,18 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 
   document.fonts.ready.then(() => {
     const mm = gsap.matchMedia();
+
+    /* Pricing: on short desktop screens scale the pinned card stack so it never runs off the bottom */
+    const psFlex = $('.ps__flex');
+    if (psFlex) {
+      const fit = () => {
+        if (innerWidth < 992) { psFlex.style.transform = ''; return; }
+        psFlex.style.transform = '';
+        const room = innerHeight - 130, h = psFlex.offsetHeight;
+        psFlex.style.transform = h > room ? `scale(${(room / h).toFixed(3)})` : '';
+      };
+      fit(); addEventListener('resize', fit);
+    }
 
     /* ---------- Pricing steps: slide in, then the stacked cards fan out (desktop) ---------- */
     const psSticky = $('[data-ps-sticky]');
