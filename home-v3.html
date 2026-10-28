@@ -122,35 +122,7 @@ p{margin:0}
 /* =========================================================
    1. HERO — split screen that expands on scroll
    ========================================================= */
-.hero{position:relative;min-height:max(640px,100vh);display:flex;overflow:hidden;background:linear-gradient(120deg,#eef7f5 0%,var(--sand) 45%,#dcefeb 100%)}
-.hero__bg{position:absolute;inset:0} /* photo covers the whole banner */
-.hero__bg .media{position:absolute;inset:-6% -28% -6% 0} /* extends past the right edge so the nurse and patient sit right of the text */
-.hero__bg img{object-position:50% 35%}
-.hero__veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(233,244,242,.94) 0%,rgba(233,244,242,.86) 30%,rgba(233,244,242,.4) 48%,transparent 66%),linear-gradient(0deg,rgba(233,244,242,.75),transparent 34%)}
-.hero__inner{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding-top:150px;padding-bottom:48px;min-height:inherit}
-.hero__copy{max-width:600px}
-.hero__title{font-size:clamp(40px,min(5.4vw,9vh),88px);font-weight:600;letter-spacing:-.035em;line-height:1.02;margin-top:20px;color:var(--ink)}
-.hero__title em{font-style:normal;color:var(--teal-deep,#247568)}
-.hero__sub{margin-top:22px;max-width:480px;font-size:clamp(16px,1.25vw,19px);color:var(--muted)}
-.hero__trust{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:28px 0 0;padding:0}
-.hero__trust li{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;color:var(--ink)}
-.hero__trust li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
 /* glass booking bar */
-.hero__book{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(180px,.6fr);align-items:end;gap:16px;width:100%;padding:20px 22px 22px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 30px 70px -30px rgba(13,13,48,.35)}
-.hb__field{display:flex;flex-direction:column;gap:8px;min-width:0}
-.hb__field label{font-size:13px;font-weight:600;color:var(--ink)}
-.hb__field select,.hb__date{height:50px;width:100%;border:1px solid rgba(19,19,46,.08);border-radius:12px;background-color:#fff;font:inherit;font-size:15px;color:var(--ink);transition:border-color .3s,box-shadow .3s}
-.hb__field select{-webkit-appearance:none;appearance:none;padding:0 40px 0 16px;cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2313132E' stroke-width='1.6'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 16px center}
-.hb__date{display:flex;align-items:center;gap:10px;padding:0 14px}
-.hb__date svg{flex:none;width:18px;height:18px;color:var(--muted)}
-.hb__date input{flex:1;min-width:0;height:100%;border:0;background:none;font:inherit;font-size:15px;color:var(--ink);outline:none}
-.hb__field select:hover,.hb__date:hover{border-color:rgba(19,19,46,.2)}
-.hb__field select:focus-visible,.hb__date:focus-within{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(48,153,136,.18)}
-.hb__btn{height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 30px;border:0;border-radius:12px;background:var(--teal-deep,#247568);color:#fff;font:600 15px/1 var(--body);cursor:pointer;white-space:nowrap;transition:background .4s} /* no transform transition: GSAP animates it on load */
-.hb__btn svg{width:16px;height:16px;transition:transform .5s var(--ease)}
-.hb__btn:hover{background:var(--navy)}
-.hb__btn:hover svg{transform:translateX(4px)}
-.hb__btn:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
 @keyframes scrollLine{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
 
 /* =========================================================
@@ -551,6 +523,80 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 @media (max-width:991px){.ps-deco__stage{position:absolute;inset:0;height:auto}.pd-dots,.pd-layer:not(.pd-wave){display:none}}
 @media (prefers-reduced-motion:reduce){.pd-wave,.pd-dots{animation:none}}
 
+
+/* =========================================================
+   HOME V3 — floating pill menu + full-photo banner
+   ========================================================= */
+.nav{inset:16px max(16px,calc((100% - 1440px) / 2 + 24px)) auto;padding:10px 10px 10px 26px;border-radius:999px;background:#fff;box-shadow:0 10px 40px -18px rgba(13,13,48,.35);transition:transform .6s var(--ease),background .5s,backdrop-filter .5s,box-shadow .5s,color .4s}
+.nav.is-hidden{transform:translateY(calc(-100% - 24px))}
+.nav.is-solid{background:rgba(255,255,255,.3);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 10px 40px -18px rgba(13,13,48,.35)}
+.nav.on-dark{background:rgba(17,17,69,.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.nav.on-dark:not(.is-solid){background:#fff;color:var(--ink);box-shadow:0 10px 40px -18px rgba(13,13,48,.35)} /* top of page: plain white bar */
+.nav.on-dark:not(.is-solid) .logo img{filter:none}
+.nav.on-dark:not(.is-solid) .nav__cta{background:var(--navy);color:#fff}
+.nav.on-dark:not(.is-solid) .nav__burger{border-color:rgba(19,19,46,.3)}
+.nav.on-dark:not(.is-solid) .nav__burger span{background:var(--ink)}
+.nav .logo img{height:44px}
+.nav__right{gap:16px}
+.nav__cta{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 6px 0 22px;border-radius:999px;background:var(--navy);color:#fff;font-weight:500;font-size:14px;transition:background .4s}
+.nav__cta-arrow{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);transition:transform .5s var(--ease),background .4s}
+.nav__cta-arrow svg{width:14px;height:14px}
+.nav__cta:hover{background:var(--teal-deep)}
+.nav__cta:hover .nav__cta-arrow{transform:rotate(-45deg);background:var(--mint);color:var(--navy)}
+.nav.on-dark .nav__cta{background:var(--mint);color:var(--navy)}
+.menu-open .nav{background:transparent;box-shadow:none;backdrop-filter:none}
+
+.hero--v3{position:relative;display:flex;min-height:max(660px,100svh);padding:16px;background:#fff;overflow:hidden}
+.hero--v3 .hero__bg{position:absolute;inset:16px;border-radius:28px;overflow:hidden}
+.hero--v3 .hero__bg img{width:100%;height:110%;margin-top:-3%;object-fit:cover;object-position:50% 38%;display:block}
+.hero__shade{position:absolute;inset:16px;z-index:1;border-radius:28px;pointer-events:none;background:linear-gradient(0deg,rgba(13,13,48,.78) 0%,rgba(13,13,48,.35) 38%,rgba(13,13,48,0) 62%),linear-gradient(90deg,rgba(13,13,48,.45),rgba(13,13,48,0) 55%)}
+.hero--v3 .hero__inner{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:40px;width:100%;padding-top:120px;padding-bottom:clamp(28px,4vw,48px)}
+.hero__badge{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;padding:6px 16px 6px 6px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;font-size:13px}
+.hero__badge b{color:#FFD36B;letter-spacing:1px;font-weight:500;margin-right:4px}
+.hero__faces{display:flex}
+.hero__faces i{display:grid;place-items:center;width:32px;height:32px;margin-left:-8px;border-radius:50%;border:2px solid #fff;background:var(--teal-deep);color:#fff;font-style:normal;font-size:12px;font-weight:600}
+.hero__faces i:first-child{margin-left:0;background:var(--navy)}
+.hero__faces i:nth-child(3){background:var(--mint);color:var(--navy)}
+.hero__bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+.hero--v3 .hero__copy{max-width:min(760px,60%)}
+.hero--v3 .hero__title{margin:0;color:#fff;font-size:clamp(40px,min(5.6vw,10vh),96px);font-weight:500;letter-spacing:-.04em;line-height:1.02}
+.hero--v3 .hero__sub{margin-top:20px;max-width:520px;color:rgba(255,255,255,.88);font-size:clamp(15px,1.15vw,18px)}
+.hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero__btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font:500 15px/1 var(--body);cursor:pointer;transition:background .4s,color .4s,border-color .4s}
+.hero__btn svg{width:15px;height:15px;transition:transform .5s var(--ease)}
+.hero__btn:hover svg{transform:translateX(4px)}
+.hero__btn--solid{border:0;background:#fff;color:var(--navy)}
+.hero__btn--solid:hover{background:var(--mint)}
+.hero__btn--ghost{border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.06);color:#fff;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hero__btn--ghost:hover{background:#fff;color:var(--navy)}
+.hero__cards{display:flex;gap:14px;flex:none}
+.hero__card{width:220px;padding:20px;border-radius:20px;background:#fff;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+.hero__card-label{font-size:13px;color:var(--muted)}
+.hero__stat{display:block;margin:18px 0 10px;font-family:var(--heading);font-weight:500;font-size:56px;line-height:1;letter-spacing:-.04em;color:var(--ink)}
+.hero__card--stat p{font-size:12px;line-height:1.5;color:var(--muted)}
+.hero__card--tags{display:flex;align-items:center}
+.hero__tags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;width:100%}
+.hero__tags li{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:7px 8px 7px 14px;border:1px solid rgba(19,19,46,.12);border-radius:999px;font-size:12.5px;color:var(--ink);transition:background .5s,color .5s,border-color .5s,transform .5s var(--ease)}
+.hero__tags li:nth-child(even){align-self:flex-end;padding:7px 14px 7px 8px}
+.hero__tags li span{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1px solid rgba(19,19,46,.15)}
+.hero__tags li svg{width:10px;height:10px}
+.hero__tags li.is-active{background:var(--navy);border-color:var(--navy);color:#fff;transform:scale(1.04)}
+.hero__tags li.is-active span{border-color:rgba(255,255,255,.4)}
+@media (max-width:1100px){.hero__card--tags{display:none}}
+@media (max-width:991px){
+  .nav{inset:12px 12px auto;padding:8px 8px 8px 18px}
+  .nav .logo img{height:38px}
+  .nav__cta{display:none}
+  .hero--v3{padding:10px}
+  .hero--v3 .hero__bg,.hero__shade{inset:10px;border-radius:22px}
+  .hero--v3 .hero__bg img{object-position:34% 30%}
+  .hero__shade{background:linear-gradient(0deg,rgba(13,13,48,.85) 0%,rgba(13,13,48,.45) 45%,rgba(13,13,48,.05) 70%)}
+  .hero--v3 .hero__inner{padding-top:96px}
+  .hero__bottom{flex-direction:column;align-items:stretch}
+  .hero--v3 .hero__copy{max-width:none}
+}
+@media (max-width:600px){.hero__cards{display:none}.hero__badge{font-size:12px}.hero__btn{height:48px;padding:0 20px}}
+
 /* split-text helpers */
 .split-line{overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
 
@@ -569,20 +615,10 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   .nav__links,.nav__phone{display:none}
   .nav__burger{display:block}
   .nav__right .btn{display:none}
-  .hero{min-height:0;display:block}
-  .hero__bg{position:relative;inset:auto;width:100%;height:56vh}
-  .hero__bg .media{inset:-6% 0}
-  .hero__veil{background:linear-gradient(0deg,#e9f4f2 2%,transparent 40%)}
-  .hero__inner{padding-top:28px;gap:28px}
-  .hero__copy{max-width:none}
-  .hero__book{grid-template-columns:1fr 1fr}
-  .hb__btn{grid-column:1/-1}
   .voices__grid{grid-template-columns:1fr}
   .footer__top{grid-template-columns:1fr 1fr}
 }
 @media (max-width: 600px){
-  .hero__book{grid-template-columns:1fr;padding:18px}
-  .hero__bg{height:46vh}
   .marquee{grid-template-columns:1fr;height:520px}
   .marquee__col--down{display:none}
   .footer__top{grid-template-columns:1fr}
@@ -602,7 +638,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   </nav>
   <div class="nav__right">
     <a href="tel:+61734733396" class="nav__phone">07 3473 3396</a>
-    <a href="contact.html" class="btn btn--ghost" data-roll data-book><span class="btn__fill"></span><span class="btn__label">Book now</span><span class="btn__dot"></span></a>
+    <a href="contact.html" class="nav__cta" data-book>Book now <span class="nav__cta-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
     <button class="nav__burger" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
@@ -611,31 +647,39 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 <main id="top">
 
 <!-- ================= 1. HERO ================= -->
-<section class="hero" id="hero">
-  <div class="hero__bg"><div class="media" data-label="images/home-v2/Hero-Image.webp"><img src="images/home-v2/Hero-Image.webp" alt="Aleafiate nurse holding hands with an older patient on a sofa" data-hero-img></div></div>
-  <div class="hero__veil" aria-hidden="true"></div>
+<section class="hero hero--v3" id="hero">
+  <div class="hero__bg"><img src="images/home-v2/Hero-Image.webp" alt="Aleafiate nurse holding hands with an older patient on a sofa" data-hero-img></div>
+  <div class="hero__shade" aria-hidden="true"></div>
   <div class="container hero__inner">
-    <div class="hero__copy">
-      <span class="eyebrow" data-fade>Aleafiate Health Clinics · Logan &amp; telehealth</span>
-      <h1 class="hero__title" data-hero-title>Your health, <em>our priority.</em></h1>
-      <p class="hero__sub" data-fade>Compassionate, personalised care from AHPRA-registered practitioners — in clinic at Logan Central or from home by telehealth.</p>
-      <ul class="hero__trust" data-fade><li>Free discovery call</li><li>AHPRA-registered</li><li>Scripts in 12–24 hrs</li></ul>
+    <div class="hero__badge" data-fade>
+      <span class="hero__faces" aria-hidden="true"><i>C</i><i>S</i><i>R</i><i>A</i></span>
+      <span><b>★★★★★</b> Rated 5 stars by our patients on Google</span>
     </div>
-    <form class="hero__book" data-hero-book novalidate aria-label="Book an appointment">
-      <div class="hb__field">
-        <label for="hb-type">Appointment</label>
-        <select id="hb-type" name="enquiry"><option value="Book a free discovery call">Free discovery call</option><option value="Book an initial consultation">Initial consultation</option><option value="Book a follow-up">Follow-up consultation</option></select>
+    <div class="hero__bottom">
+      <div class="hero__copy">
+        <h1 class="hero__title" data-hero-title>Your health, our priority.</h1>
+        <p class="hero__sub" data-fade>Compassionate, personalised care from AHPRA-registered practitioners — in clinic at Logan Central or from home by telehealth.</p>
+        <div class="hero__actions" data-fade>
+          <button type="button" class="hero__btn hero__btn--solid" data-book data-book-enquiry="Book a free discovery call">Book a free call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+          <a href="contact.html" class="hero__btn hero__btn--ghost">Contact us <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
       </div>
-      <div class="hb__field">
-        <label for="hb-practitioner">Practitioner</label>
-        <select id="hb-practitioner" name="practitioner"><option>No preference</option><option>Dr Frank Guerrera</option><option>Jeremy Chou (Nurse Practitioner)</option></select>
+      <div class="hero__cards">
+        <div class="hero__card hero__card--stat" data-hero-card>
+          <span class="hero__card-label">Your first step</span>
+          <b class="hero__stat">$0</b>
+          <p>Free nurse call and initial consultation — no obligation.</p>
+        </div>
+        <div class="hero__card hero__card--tags" data-hero-card>
+          <ul class="hero__tags" data-hero-tags>
+            <li class="is-active">Telehealth <span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2v8M2 6h8"/></svg></span></li>
+            <li><span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2v8M2 6h8"/></svg></span> In clinic</li>
+            <li>AHPRA-registered <span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2v8M2 6h8"/></svg></span></li>
+            <li><span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2v8M2 6h8"/></svg></span> Scripts in 12–24 hrs</li>
+          </ul>
+        </div>
       </div>
-      <div class="hb__field hb__field--date">
-        <label for="hb-date">Preferred date</label>
-        <span class="hb__date"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="13" rx="2.5"/><path d="M3 8h14M7 2.5v3M13 2.5v3"/></svg><input id="hb-date" name="date" type="date"></span>
-      </div>
-      <button type="submit" class="hb__btn"><span>Book now</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -1110,20 +1154,12 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   /* Testimonials marquee: duplicate content for a seamless loop */
   $$('[data-marquee]').forEach(col => col.innerHTML += col.innerHTML);
 
-  /* Hero booking bar: opens the booking form with the choices filled in */
-  const hb = $('[data-hero-book]');
-  if (hb) {
-    const date = $('#hb-date', hb); date.min = new Date().toISOString().slice(0, 10);
-    hb.addEventListener('submit', e => {
-      e.preventDefault();
-      const d = date.value ? new Date(date.value + 'T00:00').toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : '';
-      const go = () => window.aleafiateBook({ enquiry: hb.elements.enquiry.value, practitioner: hb.elements.practitioner.value, message: d ? `Preferred date: ${d}` : '' }, $('.hb__btn', hb));
-      window.aleafiateBook ? go() : (location.href = 'contact.html');
-    });
-  }
+  /* Hero tag card: highlight moves from tag to tag */
+  const heroTags = $$('[data-hero-tags] li');
+  if (heroTags.length) { let t = 0; setInterval(() => { heroTags[t].classList.remove('is-active'); t = (t + 1) % heroTags.length; heroTags[t].classList.add('is-active'); }, 2200); }
 
   /* Menu bar: white text while it sits over a dark (navy) section */
-  const navEl = $('#nav'), darkSecs = $$('.gs');
+  const navEl = $('#nav'), darkSecs = $$('.gs, .hero--v3');
   const navTone = () => { const y = navEl.offsetHeight / 2; navEl.classList.toggle('on-dark', darkSecs.some(d => { const r = d.getBoundingClientRect(); return r.top <= y && r.bottom >= y; })); };
   addEventListener('scroll', navTone, { passive: true }); navTone();
 
@@ -1252,17 +1288,16 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
     });
 
 
-    /* ---------- Hero banner: intro + soft parallax ---------- */
+    /* ---------- Hero banner: photo zooms out, heading rises, cards lift in ---------- */
     const heroSplit = SplitText.create('[data-hero-title]', { type: 'lines,words', mask: 'lines', linesClass: 'split-line' });
     gsap.timeline({ defaults: { ease: 'expo.out' } })
-      .from('[data-hero-img]', { scale: 1.25, duration: 2.2 })
-      .from('.hero__bg', { clipPath: 'inset(0 0 0 100%)', duration: 1.6, ease: 'expo.inOut' }, 0)
-      .from(heroSplit.words, { yPercent: 110, duration: 1.2, stagger: .05 }, .5)
-      .from('.hero [data-fade]', { y: 24, autoAlpha: 0, duration: 1, stagger: .1 }, .8)
-      .from('[data-hero-book]', { y: 60, autoAlpha: 0, duration: 1.3 }, 1)
-      .from('[data-hero-book] > *', { y: 20, autoAlpha: 0, duration: .9, stagger: .08 }, 1.2)
+      .from('.hero--v3 .hero__bg', { clipPath: 'inset(8% 8% 8% 8% round 28px)', duration: 1.6, ease: 'expo.inOut' })
+      .from('[data-hero-img]', { scale: 1.3, duration: 2.4 }, 0)
+      .from(heroSplit.words, { yPercent: 110, duration: 1.2, stagger: .05 }, .6)
+      .from('.hero [data-fade]', { y: 24, autoAlpha: 0, duration: 1, stagger: .1 }, .9)
+      .from('[data-hero-card]', { y: 60, autoAlpha: 0, duration: 1.2, stagger: .12 }, 1.1)
       .from('#nav', { autoAlpha: 0, duration: 1 }, .4); // fade only: .nav has a CSS transform transition
-    gsap.to('.hero__bg .media', { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('[data-hero-img]', { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
 
     /* ---------- Generic heading reveal (lines slide up from mask) ---------- */
     $$('[data-split]').forEach(el => {
