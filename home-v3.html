@@ -523,6 +523,7 @@ p{margin:0}
 @media (max-width:640px){.hw__grid{grid-template-columns:minmax(0,1fr)}.fc{height:440px}.fc__img{height:220px}}
 @media (prefers-reduced-motion:reduce){.fc__inner{transition:none}}
 
+main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 /* split-text helpers */
 .split-line{overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
 
@@ -627,7 +628,6 @@ p{margin:0}
         <div class="ps-card-wrap">
           <article class="ps-card is-1">
             <div class="ps-card__content">
-              <div class="ps-card__top"><span class="ps-card__num">Step 01</span></div>
               <h3 class="ps-card__title">Nurse call</h3>
               <div class="ps-card__price">$0</div>
               <p class="ps-card__meta">10–15 minutes · no obligation</p>
@@ -640,7 +640,6 @@ p{margin:0}
         <div class="ps-card-wrap">
           <article class="ps-card is-2">
             <div class="ps-card__content">
-              <div class="ps-card__top"><span class="ps-card__num">Step 02</span></div>
               <h3 class="ps-card__title">Initial consultation</h3>
               <div class="ps-card__price">$0</div>
               <p class="ps-card__meta">30 minutes · comprehensive assessment</p>
@@ -653,7 +652,7 @@ p{margin:0}
         <div class="ps-card-wrap">
           <article class="ps-card is-3">
             <div class="ps-card__content">
-              <div class="ps-card__top"><span class="ps-card__num">Step 03</span><span class="ps-card__tag">Medicare eligible*</span></div>
+              <div class="ps-card__top"><span class="ps-card__tag">Medicare eligible*</span></div>
               <h3 class="ps-card__title">Follow-up consultations</h3>
               <div class="ps-card__price">$65</div>
               <p class="ps-card__meta">15 minutes · ongoing care review</p>
