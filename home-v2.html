@@ -172,24 +172,9 @@ p{margin:0}
    6. SPACE — pinned horizontal gallery
    ========================================================= */
 
-/* =========================================================
-   7. TEAM — draggable slider
-   ========================================================= */
-.team{overflow:hidden}
-.team__controls{display:flex;gap:10px}
 .round-btn{width:52px;height:52px;border-radius:50%;border:1px solid rgba(19,19,46,.3);background:transparent;display:grid;place-items:center;cursor:pointer;transition:background .4s,color .4s,border-color .4s}
 .round-btn:hover{background:var(--moss);color:var(--bone);border-color:var(--moss)}
 .round-btn svg{width:16px;height:16px}
-.team__viewport{cursor:grab;touch-action:pan-y}
-.team__viewport:active{cursor:grabbing}
-.team__track{display:flex;gap:16px;width:max-content;padding:0 var(--gutter)}
-.member{width:clamp(250px,24vw,340px);user-select:none}
-.member .media{aspect-ratio:3/4;border-radius:var(--radius)}
-.member .media img{transition:transform 1.1s var(--ease);pointer-events:none}
-.member:hover .media img{transform:scale(1.06)}
-.member h3{font-size:24px;margin-top:18px}
-.member p{font-size:14px;color:var(--muted);margin-top:4px}
-.team__cta{display:flex;justify-content:center;margin-top:56px}
 
 /* =========================================================
    8. VOICES — vertical marquees
@@ -882,30 +867,6 @@ p{margin:0}
   </div>
 </section>
 
-<!-- ================= 7. TEAM (draggable) ================= -->
-<section class="section team">
-  <div class="container">
-    <div class="section__head">
-      <div><span class="eyebrow">Our team</span><h2 data-split>The people behind your care</h2></div>
-      <div class="team__controls">
-        <button class="round-btn" data-team-prev aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 3L5 8l5 5"/></svg></button>
-        <button class="round-btn" data-team-next aria-label="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3l5 5-5 5"/></svg></button>
-      </div>
-    </div>
-  </div>
-  <div class="team__viewport" data-team-viewport>
-    <div class="team__track" data-team-track>
-      <article class="member"><div class="media" data-label="Dr Frank Guerrera — portrait"><img src="images/practitioners/dr-frank-guerrera.jpg" alt="Portrait of Dr Frank Guerrera"></div><h3>Dr Frank Guerrera</h3><p>General Practitioner · MBBS FRACGP</p></article>
-      <article class="member"><div class="media" data-label="Jeremy Chou — portrait"><img src="images/practitioners/jeremy-chou.jpg" alt="Portrait of Jeremy Chou"></div><h3>Jeremy Chou</h3><p>Nurse Practitioner · NP MMH BN BPsychSc</p></article>
-      <article class="member"><div class="media" data-label="Dr Name Surname — portrait"><img src="" alt=""></div><h3>Dr Name Surname</h3><p>General Practitioner · Profile coming soon</p></article>
-      <article class="member"><div class="media" data-label="Name Surname — portrait"><img src="" alt=""></div><h3>Name Surname</h3><p>Nurse Practitioner · Profile coming soon</p></article>
-      <article class="member"><div class="media" data-label="Dr Name Surname — portrait"><img src="" alt=""></div><h3>Dr Name Surname</h3><p>General Practitioner · Profile coming soon</p></article>
-      <article class="member"><div class="media" data-label="Name Surname — portrait"><img src="" alt=""></div><h3>Name Surname</h3><p>Nurse Practitioner · Profile coming soon</p></article>
-    </div>
-  </div>
-  <div class="team__cta"><a href="practitioners.html" class="btn btn--ghost" data-roll><span class="btn__fill"></span><span class="btn__label">Meet our prescribing practitioners</span><svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12L12 4M5 4h7v7"/></svg></a></div>
-</section>
-
 <!-- ================= 8. TESTIMONIALS ================= -->
 <section class="section voices">
   <div class="container voices__grid">
@@ -1286,20 +1247,6 @@ p{margin:0}
       });
       ScrollTrigger.create({ trigger: wa, start: 'top 60%', end: 'bottom 20%', onToggle: st => st.isActive ? (fill ? fill.resume() : play()) : fill && fill.pause() }); // only runs while in view
     }
-
-    /* ---------- Team: draggable slider + buttons ---------- */
-    const vp = $('[data-team-viewport]'), track = $('[data-team-track]');
-    const minX = () => Math.min(0, vp.clientWidth - track.scrollWidth);
-    const drag = Draggable.create(track, { type: 'x', bounds: { minX: minX(), maxX: 0 }, edgeResistance: .85, dragClickables: true,
-      onPress() { this.applyBounds({ minX: minX(), maxX: 0 }); } })[0];
-    const step = () => ($('.member', track).offsetWidth + 16);
-    const go = dir => {
-      const x = gsap.utils.clamp(minX(), 0, gsap.getProperty(track, 'x') - dir * step());
-      gsap.to(track, { x, duration: .9, ease: 'expo.out', onUpdate: () => drag.update() });
-    };
-    $('[data-team-next]').addEventListener('click', () => go(1));
-    $('[data-team-prev]').addEventListener('click', () => go(-1));
-    gsap.from('.member', { x: 120, autoAlpha: 0, duration: 1.2, ease: 'expo.out', stagger: .08, scrollTrigger: { trigger: vp, start: 'top 85%' } });
 
     /* ---------- Rating counter ---------- */
     const num = $('[data-count]'), obj = { v: 0 };
