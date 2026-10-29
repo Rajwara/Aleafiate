@@ -401,7 +401,7 @@
     const mm = gsap.matchMedia();
 
     /* ---------- page intro ---------- */
-    gsap.from('#nav', { y: -30, autoAlpha: 0, duration: 1.2, ease: 'expo.out', delay: .2 });
+    gsap.from('#nav', { autoAlpha: 0, duration: 1.2, ease: 'power2.out', delay: .2 }); // fade only: .nav has a CSS transform transition (a GSAP slide would fight it and leave the header, logo included, at a blurry sub-pixel offset)
 
     /* ---------- text reveals ---------- */
     $$('[data-lines]').forEach(el => {
