@@ -30,7 +30,7 @@ Every placeholder is `<img src="" alt="">` with a size label.
 Change it to `<img src="images/your-photo.jpg" alt="Describe the photo">` — the label disappears automatically.
 
 ## Rebranding
-Brand colours are at the top of css/style.css. Logos live in images/logos/ (aleafiate-logo-dark.svg for light backgrounds, aleafiate-logo-light.svg for dark ones such as the footer). The favicon is favicon.ico in the site root, with PNG sizes in images/logos/.
+Brand colours are at the top of css/style.css. Logos live in images/logos/ (aleafiate-logo-dark-compact.svg for light backgrounds, aleafiate-logo-light-compact.svg for dark ones such as the footer). The favicon is favicon.ico in the site root, with PNG sizes in images/logos/.
 
 ## Practitioners
 Each practitioner is one `<article class="doc">` in practitioners.html. Edit the `data-name`, `data-role`,
