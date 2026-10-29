@@ -7,7 +7,7 @@
 <meta name="description" content="Aleafiate Health Clinics, Logan Central: consultations with AHPRA-registered practitioners in clinic or by telehealth. Start with a free, no-obligation call on 07 3473 3396.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/booking.css">
 <link rel="stylesheet" href="css/blog.css">
 <style>
@@ -497,31 +497,24 @@ p{margin:0}
 
 main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 
-/* ---------- Home v3: pricing background (assets in images/home-v3/Your journey starts free animation assets) ---------- */
-.ps{position:relative;background:#f9fcfc}
+/* ---------- Home v3: pricing background — soft brand-colour glows that drift slowly ---------- */
+.ps{position:relative;background:linear-gradient(180deg,#f7fbfb 0%,#eef8f6 55%,#f7fbfb 100%)}
 .ps>.container,.ps__wrapper{position:relative;z-index:1}
 .ps-deco{position:absolute;inset:0;z-index:0;pointer-events:none}
 .ps-deco__stage{position:sticky;top:0;height:100vh;overflow:hidden}
-.pd-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.pd-left{object-position:left center}
-.pd-right{object-position:right center}
-.pd-fade-r{-webkit-mask-image:linear-gradient(90deg,#000 32%,transparent 43%);mask-image:linear-gradient(90deg,#000 32%,transparent 43%)} /* asset ends in a hard edge */
-.pd-wave{will-change:transform}
-.pd-wave--a{animation:pdFloat 14s ease-in-out infinite}
-.pd-wave--b{animation:pdFloat 18s ease-in-out -4s infinite reverse}
-.pd-wave--c{animation:pdFloat 16s ease-in-out -2s infinite}
-.pd-wave--d{animation:pdFloat 20s ease-in-out -7s infinite reverse}
-@keyframes pdFloat{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-14px,0) scale(1.02)}}
-.ps-card-wrap{max-width:20rem} /* narrower so the side notes stay clear of the fanned cards */
+.pb{position:absolute;border-radius:50%;will-change:transform}
+.pb--mint{width:62vmax;height:62vmax;left:-22vmax;top:-18vmax;background:radial-gradient(circle,rgba(138,220,206,.55) 0%,rgba(138,220,206,0) 68%);animation:pbDriftA 24s ease-in-out infinite}
+.pb--teal{width:58vmax;height:58vmax;right:-20vmax;bottom:-22vmax;background:radial-gradient(circle,rgba(48,153,136,.30) 0%,rgba(48,153,136,0) 66%);animation:pbDriftB 28s ease-in-out infinite}
+.pb--lav{width:44vmax;height:44vmax;right:-8vmax;top:-14vmax;background:radial-gradient(circle,rgba(150,152,224,.26) 0%,rgba(150,152,224,0) 66%);animation:pbDriftC 30s ease-in-out infinite}
+.pb--soft{width:36vmax;height:36vmax;left:4vmax;bottom:-16vmax;background:radial-gradient(circle,rgba(138,220,206,.38) 0%,rgba(138,220,206,0) 66%);animation:pbDriftB 26s ease-in-out -9s infinite reverse}
+@keyframes pbDriftA{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(6vmax,4vmax,0) scale(1.08)}}
+@keyframes pbDriftB{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-5vmax,-4vmax,0) scale(1.06)}}
+@keyframes pbDriftC{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-4vmax,5vmax,0) scale(.94)}}
+.ps-card-wrap{max-width:20rem}
 .ps-card__content{padding:4px 4px 18px}
-.pd-line{stroke-dasharray:1;stroke-dashoffset:0}
-.pd-dots{animation:pdDots 6s ease-in-out infinite}
-@keyframes pdDots{0%,100%{opacity:1}50%{opacity:.45}}
-.pd-arrow{stroke-dasharray:1;stroke-dashoffset:0}
 @media (max-width:1599px){.ps-card-wrap{max-width:18.5rem}}
-@media (max-width:1359px){.pd-label{display:none}} /* notes need the side space beside the cards */
-@media (max-width:991px){.ps-deco__stage{position:absolute;inset:0;height:auto}.pd-dots,.pd-layer:not(.pd-wave){display:none}}
-@media (prefers-reduced-motion:reduce){.pd-wave,.pd-dots{animation:none}}
+@media (max-width:991px){.ps-deco__stage{position:absolute;inset:0;height:auto}}
+@media (prefers-reduced-motion:reduce){.pb{animation:none}}
 
 
 /* =========================================================
@@ -689,17 +682,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 <!-- ================= 2. PRICING STEPS — cards fan out on scroll ================= -->
 <section class="ps" id="pricing">
   <div class="ps-deco" aria-hidden="true"><div class="ps-deco__stage">
-    <img class="pd-layer pd-wave pd-wave--a pd-left" src="images/home-v3/Your%20journey%20starts%20free%20animation%20assets/01_left_soft_wave.svg" alt="">
-    <img class="pd-layer pd-wave pd-wave--b pd-fade-r pd-left" src="images/home-v3/Your%20journey%20starts%20free%20animation%20assets/02_bottom_left_wave.svg" alt="">
-    <img class="pd-layer pd-wave pd-wave--c pd-right" src="images/home-v3/Your%20journey%20starts%20free%20animation%20assets/03_right_soft_wave.svg" alt="">
-    <img class="pd-layer pd-wave pd-wave--d pd-right" src="images/home-v3/Your%20journey%20starts%20free%20animation%20assets/04_bottom_right_wave.svg" alt="">
-    <svg class="pd-layer" viewBox="0 0 1648 928" preserveAspectRatio="xMinYMid slice"><path class="pd-line" pathLength="1" d="M-65 408 C104 314 195 365 309 453 C373 504 422 510 488 474" fill="none" stroke="#7dbbb5" stroke-width="1.5" opacity=".78" stroke-linecap="round"/></svg>
-    <svg class="pd-layer" viewBox="0 0 1648 928" preserveAspectRatio="xMaxYMid slice"><path class="pd-line" pathLength="1" d="M1150 247 C1284 158 1386 110 1487 133 C1560 148 1614 206 1724 287" fill="none" stroke="#529d9b" stroke-width="1.5" opacity=".78" stroke-linecap="round"/></svg>
-    <img class="pd-layer pd-dots pd-left" src="images/home-v3/Your%20journey%20starts%20free%20animation%20assets/07_top_left_dots.svg" alt="">
-    <img class="pd-layer pd-dots pd-right" src="images/home-v3/Your%20journey%20starts%20free%20animation%20assets/08_lower_right_dots.svg" alt="">
-    <svg class="pd-layer pd-label" viewBox="0 0 1648 928" preserveAspectRatio="xMinYMid slice"><path class="pd-dot" d="M 179 144 m -23 0 a 23 23 0 1 0 46 0 a 23 23 0 1 0 -46 0" fill="#a4e6de" opacity=".9"/><g fill="none" stroke="#151342" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M172 134c2-3 4-4 6-2l4 5-3 4c3 5 6 8 10 10l4-3 5 4c2 2 1 5-2 7-14 4-29-12-24-25Z"/><path class="pd-arrow" pathLength="1" d="M248 232 C245 274 267 290 301 311 m-12 -2 12 2 -3 -12"/></g><g class="pd-text"><text x="218" y="163" font-family="Caveat, cursive" font-size="25" font-weight="500" fill="#151342">Real people.</text><text x="218" y="189" font-family="Caveat, cursive" font-size="25" font-weight="500" fill="#151342">Real support.</text></g></svg>
-    <svg class="pd-layer pd-label" viewBox="0 0 1648 928" preserveAspectRatio="xMinYMid slice"><path class="pd-dot" d="M 143 641 m -23 0 a 23 23 0 1 0 46 0 a 23 23 0 1 0 -46 0" fill="#a4e6de" opacity=".9"/><g fill="none" stroke="#151342" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="140" cy="637" r="4"/><circle cx="151" cy="639" r="3"/><path d="M132 650v-4c0-6 16-6 16 0v4z M151 645c5 0 7 2 7 6v2h-7"/><path class="pd-arrow" pathLength="1" d="M235 684 C241 718 265 731 302 744 m-11 -8 11 8 -11 5"/></g><g class="pd-text"><text x="179" y="636" font-family="Caveat, cursive" font-size="25" font-weight="500" fill="#151342">Expert care</text><text x="179" y="662" font-family="Caveat, cursive" font-size="25" font-weight="500" fill="#151342">from day one.</text></g></svg>
-    <svg class="pd-layer pd-label" viewBox="0 0 1648 928" preserveAspectRatio="xMaxYMid slice"><path class="pd-dot" d="M 1437 410 m -23 0 a 23 23 0 1 0 46 0 a 23 23 0 1 0 -46 0" fill="#a4e6de" opacity=".9"/><g fill="none" stroke="#151342" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="1428" y="402" width="18" height="18" rx="2"/><path d="M1432 398v7m10-7v7m-14 3h18m-12 4 3 3 6-7"/><path class="pd-arrow" pathLength="1" d="M1445 462 C1439 498 1415 511 1384 513 m12 -9 -12 9 12 6"/></g><g class="pd-text"><text x="1477" y="408" font-family="Caveat, cursive" font-size="25" font-weight="500" fill="#151342">Ongoing care</text><text x="1477" y="434" font-family="Caveat, cursive" font-size="25" font-weight="500" fill="#151342">that fits your life.</text></g></svg>
+    <span class="pb pb--mint"></span><span class="pb pb--lav"></span><span class="pb pb--teal"></span><span class="pb pb--soft"></span>
   </div></div>
     <div class="container">
     <div class="ps__head">
@@ -1242,20 +1225,9 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   document.fonts.ready.then(() => {
     const mm = gsap.matchMedia();
 
-    /* ---------- Home v3 pricing background: lines draw in, notes pop in with their arrows ---------- */
+    /* ---------- Home v3 pricing background: colour glows fade in, then drift (CSS) ---------- */
     if ($('.ps-deco')) {
-      gsap.set('.pd-line, .pd-arrow', { strokeDashoffset: 1 });
-      gsap.set('.pd-label .pd-dot', { scale: 0, transformOrigin: 'center', transformBox: 'fill-box' });
-      gsap.set('.pd-label .pd-text, .pd-label g:not(.pd-text) path:not(.pd-arrow), .pd-label g:not(.pd-text) rect, .pd-label g:not(.pd-text) circle', { autoAlpha: 0 });
-      const deco = gsap.timeline({ scrollTrigger: { trigger: '.ps', start: 'top 60%' } });
-      deco.from('.pd-wave', { autoAlpha: 0, x: i => (i % 2 ? 1 : -1) * 60, duration: 1.6, ease: 'expo.out', stagger: .12 })
-        .to('.pd-line', { strokeDashoffset: 0, duration: 2.2, ease: 'power2.inOut', stagger: .3 }, .3)
-        .from('.pd-dots', { autoAlpha: 0, duration: 1.2 }, .6);
-      $$('.pd-label').forEach((l, i) => deco
-        .to($('.pd-dot', l), { scale: 1, duration: .8, ease: 'back.out(2.2)' }, .9 + i * .35)
-        .to(l.querySelectorAll('g:not(.pd-text) path:not(.pd-arrow), g:not(.pd-text) rect, g:not(.pd-text) circle'), { autoAlpha: 1, duration: .4 }, '<.2')
-        .to($('.pd-text', l), { autoAlpha: 1, duration: .8 }, '<')
-        .to($('.pd-arrow', l), { strokeDashoffset: 0, duration: .9, ease: 'power2.out' }, '<.25'));
+      gsap.from('.pb', { autoAlpha: 0, duration: 2, ease: 'power2.out', stagger: .25, scrollTrigger: { trigger: '.ps', start: 'top 70%' } });
       gsap.to('.ps-deco__stage', { yPercent: -4, ease: 'none', scrollTrigger: { trigger: '.ps', start: 'top bottom', end: 'bottom top', scrub: true } });
     }
 
