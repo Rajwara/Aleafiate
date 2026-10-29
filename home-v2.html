@@ -316,6 +316,7 @@ p{margin:0}
 .gs-item__summary{font-size:clamp(16px,1.2vw,18px);line-height:1.55;color:rgba(246,249,249,.85)}
 .gs-item__image{border-radius:32px;overflow:hidden;aspect-ratio:914/632;background:#1d1d5a;will-change:transform}
 .gs-item__image img{width:100%;height:100%;object-fit:cover;display:block}
+.gs-item__image.media::after{color:rgba(246,249,249,.6)}
 .gs-item__title h3{font-size:clamp(30px,3.3vw,52px);line-height:1.15;font-weight:500;color:#fff}
 /* pill button: text rolls up, dark fill grows from the arrow */
 .gs-btn{position:relative;display:inline-block;overflow:hidden;padding:4px 4px 4px 22px;border-radius:999px;background:#fff;color:var(--navy);box-shadow:0 2px 40px rgba(0,0,0,.12)}
@@ -688,7 +689,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
                 <span class="gs-btn__bg"></span>
               </a>
             </div>
-            <div class="gs-item__image"><img src="images/home-v2/start-eligibility-check.webp" alt="Woman at home filling in a form on her laptop" loading="lazy"></div>
+            <div class="gs-item__image media" data-label="Eligibility check — image coming soon"><img src="images/home-v2/start-eligibility-check.webp" alt="Woman at home filling in a form on her laptop" loading="lazy"></div>
             <div class="gs-item__title"><h3>Take our eligibility check</h3></div>
           </div>
         </div>
@@ -742,7 +743,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
       <div class="fc" tabindex="0" role="button" aria-pressed="false" aria-label="Pain and Physical discomfort — show more">
         <div class="fc__inner">
           <div class="fc__face fc__front">
-            <div class="fc__img"><img src="images/home-v2/help-pain.webp" alt="" loading="lazy"></div>
+            <div class="fc__img media" data-label="Pain &amp; physical discomfort — image coming soon"><img src="images/home-v2/help-pain.webp" alt="" loading="lazy"></div>
             <div class="fc__body">
               <h3>Pain &amp; Physical discomfort</h3>
               <p>Managing pain can make life challenging. Speak to one of our practitioners about your symptoms.</p>
@@ -802,7 +803,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
       <div class="fc" tabindex="0" role="button" aria-pressed="false" aria-label="Sleep and Rest — show more">
         <div class="fc__inner">
           <div class="fc__face fc__front">
-            <div class="fc__img"><img src="images/home-v2/help-sleep.webp" alt="" loading="lazy"></div>
+            <div class="fc__img media" data-label="Sleep &amp; rest — image coming soon"><img src="images/home-v2/help-sleep.webp" alt="" loading="lazy"></div>
             <div class="fc__body">
               <h3>Sleep &amp; Rest</h3>
               <p>Poor sleep can affect your energy, mood, and overall wellbeing. Our practitioners can help you explore options for improving your sleep.</p>
