@@ -20,7 +20,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - js/main.js — all animations (driven by data-attributes, see comment at top)
 - js/vendor/ — GSAP 3.13 (ScrollTrigger, SplitText, Draggable) + Lenis
 - images/ — one folder per page; each folder's README lists the file names, sizes and AI prompts
-  - images/brand/ — logos
+  - images/logos/ — logos and favicons
   - images/home/ — homepage (index.html)
   - images/practitioners/ — practitioner photos (also used on the homepage) and the practitioners page
   - images/about/, images/home-v2/, images/contact/, images/faq/ — the other pages
@@ -30,7 +30,7 @@ Every placeholder is `<img src="" alt="">` with a size label.
 Change it to `<img src="images/your-photo.jpg" alt="Describe the photo">` — the label disappears automatically.
 
 ## Rebranding
-Brand colours are at the top of css/style.css. Logos live in images/brand/ (aleafiate-logo.png for light backgrounds, aleafiate-logo-white.png for the footer).
+Brand colours are at the top of css/style.css. Logos live in images/logos/ (aleafiate-logo-dark.webp for light backgrounds, aleafiate-logo-light.webp for dark ones such as the footer). The favicon is favicon.ico in the site root, with PNG sizes in images/logos/.
 
 ## Practitioners
 Each practitioner is one `<article class="doc">` in practitioners.html. Edit the `data-name`, `data-role`,
