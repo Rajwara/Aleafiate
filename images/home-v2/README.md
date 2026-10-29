@@ -8,11 +8,11 @@ Images used by `home-v2.html` and `home-v3.html`. Keep these file names: the pag
 | Pricing — Nurse call | `pricing-nurse-call.webp` |
 | Pricing — Initial consultation | `pricing-initial-consultation.webp` |
 | Pricing — Follow-up consultations | `pricing-follow-up.webp` |
-| Get started — Take our eligibility check | `start-eligibility-check.webp` — **waiting for upload** |
+| Get started — Take our eligibility check | `start-eligibility-check.webp` |
 | Get started — Consultation | `start-consultation.webp` |
 | Get started — Receive your prescriptions | `start-receive-prescriptions.webp` |
-| How we can help — Pain & physical discomfort | `help-pain.webp` — **waiting for upload** |
-| How we can help — Sleep & rest | `help-sleep.webp` — **waiting for upload** |
+| How we can help — Pain & physical discomfort | `help-pain.webp` |
+| How we can help — Sleep & rest | `help-sleep.webp` |
 | How we can help — Mental & emotional wellbeing | `help-wellbeing.webp` |
 | How we can help — Women's health | `help-womens-health.webp` |
 | Blog — first telehealth consultation | `blog-first-telehealth-consultation.webp` |
