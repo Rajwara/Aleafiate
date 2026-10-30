@@ -14,7 +14,7 @@ Images used by `home-v2.html` and `home-v3.html`. Keep these file names: the pag
 | How we can help — Pain & physical discomfort | `help-pain.webp` |
 | How we can help — Sleep & rest | `help-sleep.webp` |
 | How we can help — Mental & emotional wellbeing | `help-wellbeing.webp` |
-| How we can help — Women's health | `help-womens-health.webp` — **waiting for upload** |
+| How we can help — Women's health | `help-womens-health.webp` |
 | Blog — first telehealth consultation | `blog-first-telehealth-consultation.webp` |
 | Blog — initial consultation checklist | `blog-initial-consultation-checklist.webp` |
 | Blog — follow-up consultations | `blog-follow-up-consultations.webp` |
