@@ -9,3 +9,5 @@
 The logo SVGs are the designer's files with the canvas trimmed to the artwork, so the logo lines up with the page. To replace one, upload the new file with the same name.
 
 `aleafiate-logo-dark-compact.svg` / `aleafiate-logo-light-compact.svg` are the same logo with the "HEALTH CLINICS" line enlarged (and its letter spacing tightened so it stays narrower than the wordmark), so it stays readable when the logo is small (used in the header and footer on every page).
+
+`aleafiate-logo-dark-no-tagline.svg` / `aleafiate-logo-light-no-tagline.svg` are the flame and "ALEAFIATE" only, without the "HEALTH CLINICS" line (used in the homepage menu and footer).
