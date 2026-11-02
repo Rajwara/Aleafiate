@@ -19,7 +19,7 @@ labelled placeholder.
 
 **Add this to the "negative prompt" box** (or to the end of the prompt as "Avoid: …"):
 
-> cannabis leaves or plants, marijuana, hemp, pills, capsules, medicine bottles, oils, droppers, syringes, smoking, vaping, before-and-after, distressed or crying people, hospital beds, text, logos
+> leaves or plants of any kind, pills, capsules, medicine bottles, oils, droppers, syringes, smoking, vaping, before-and-after, distressed or crying people, hospital beds, text, logos
 
 **Why the restrictions:** Australian advertising rules (TGA) don't allow a clinic's
 website to show or hint at prescription medicines, and that includes plant imagery that

@@ -21,4 +21,4 @@ Images used by the homepage `index.html` (the folder name comes from the old hom
 
 To replace one, upload the new file with the same name. For sharp images on phones and retina screens, export at about twice the size the image shows on the page.
 
-Rules for every image on the site: no cannabis leaves or plants, no pills, capsules, medicine bottles, oils, droppers or syringes, no text or logos, and never AI images of real staff.
+Rules for every image on the site: no leaves or plants of any kind, no pills, capsules, medicine bottles, oils, droppers or syringes, no text or logos, and never AI images of real staff.
