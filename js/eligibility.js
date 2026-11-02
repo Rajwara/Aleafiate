@@ -33,11 +33,11 @@
       options: ['Prescription medication', 'Alternative therapies including (but not limited to) physiotherapy, psychological therapy, chiropractor, naturopath and osteopaths', 'I have not treated my condition'],
       notes: { 'I have not treated my condition': { kind: 'soft', text: `<b>You may not be eligible.</b> Please contact our clinic on <a href="${TEL}">${PHONE}</a> — or continue and we’ll talk it through with you.` } } },
     { key: 'pregnant', q: 'And to check, are you pregnant?', options: ['Yes', 'No'],
-      notes: { Yes: { kind: 'stop', text: `<b>You are not eligible.</b> Call us for more details on <a href="${TEL}">${PHONE}</a>.` } } },
+      notes: { Yes: { kind: 'stop', final: true, text: `<b>You are not eligible.</b> Call us for more details on <a href="${TEL}">${PHONE}</a>.` } } },
     { key: 'psychosis', q: 'Do you have a history of schizophrenia, bipolar type 1 and 2 disorder or have experienced psychosis?',
       hint: 'Psychosis – a severe mental disorder in which thought and emotions are so impaired that contact is lost with external reality.',
       options: ['Yes', 'No'],
-      notes: { Yes: { kind: 'stop', text: `<b>You are not eligible.</b> Call us for more details on <a href="${TEL}">${PHONE}</a>.` } } },
+      notes: { Yes: { kind: 'stop', final: true, text: `<b>You are not eligible.</b> Call us for more details on <a href="${TEL}">${PHONE}</a>.` } } },
     { key: 'details', type: 'details', q: 'Last step — where can we reach you?', hint: 'Our team will call you within one business day to talk through your result.' }
   ];
   const RESULT = { eligible: 'Likely eligible', review: 'Needs review', no: 'Not eligible' };
@@ -179,6 +179,8 @@
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (at !== STEPS.length - 1) return;
+    const blocked = STEPS.findIndex(st => st.notes && Object.entries(st.notes).some(([ans, n]) => n.final && form.elements[st.key].value === ans));
+    if (blocked > -1) { show(blocked, -1); return; } // a not-eligible answer: back to that question, no submission
     const bad = inputs.filter(el => !check(el));
     if (bad.length) { bad[0].focus(); form.classList.remove('qz--shake'); void form.offsetWidth; form.classList.add('qz--shake'); return; }
     const v = Object.fromEntries(new FormData(form));
