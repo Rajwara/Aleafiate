@@ -287,6 +287,8 @@ p{margin:0}
 .fv2__row input{flex:1;min-width:0;height:42px;border:0;background:none;font:inherit;font-size:14px;color:var(--ink);outline:none}
 .fv2__row button{flex:none;height:42px;padding:0 22px;border:0;border-radius:999px;background:var(--navy);color:#fff;font:600 14px/1 var(--body);cursor:pointer;transition:background .4s}
 .fv2__row button:hover{background:var(--teal-deep)}
+.fv2__captcha{margin:14px 0 0;min-height:0}
+.fv2__captcha[hidden]{display:none}
 .fv2__msg{min-height:18px;margin-top:10px;font-size:12px;color:var(--muted)}
 .fv2__msg.is-ok{color:var(--teal-deep)}
 .fv2__msg.is-error{color:#a2482f}
@@ -651,6 +653,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
             <input id="fv2-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required>
             <button type="submit">Join</button>
           </div>
+          <div class="captcha fv2__captcha" hidden><div data-captcha></div><p class="captcha__err" hidden>Please tick “I’m not a robot”.</p></div>
           <p class="fv2__msg" aria-live="polite">No spam. Unsubscribe any time.</p>
         </form>
       </div>
@@ -721,17 +724,25 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   // ActiveCampaign "Website – Newsletter" form (ID 18), sent through js/booking.js (window.aleafiateAC)
   const NEWSLETTER_AC = { url: 'https://aleafiate.activehosted.com/proc.php', id: '18',
     hidden: { u: '18', f: '18', s: '', c: '0', m: '0', act: 'sub', v: '2', or: 'd05bf4c7-76d6-4b49-b3ad-82d0b90e540e' } };
+  // reCAPTCHA (js/booking.js): the box appears once someone starts on the email field
+  const newsCap = news && $('.fv2__captcha', news), newsBox = newsCap && $('[data-captcha]', newsCap);
+  const showNewsCap = () => { if (!newsCap || !window.aleafiateCaptcha) return; newsCap.hidden = false; window.aleafiateCaptcha.mount(newsBox); };
+  if (news) news.elements.email.addEventListener('focus', showNewsCap);
   if (news) news.addEventListener('submit', async e => {
     e.preventDefault();
     const input = news.elements.email, msg = $('.fv2__msg', news), btn = $('button', news), v = input.value.trim();
     const say = (text, ok) => { msg.textContent = text; msg.classList.toggle('is-ok', ok); msg.classList.toggle('is-error', !ok); };
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { say('Please enter a valid email address.', false); input.focus(); return; }
+    showNewsCap();
+    if (window.aleafiateCaptcha && !window.aleafiateCaptcha.check(newsBox)) { say('', true); return; }
     btn.disabled = true; btn.style.opacity = '.6'; say('Subscribing…', true);
+    const token = window.aleafiateCaptcha ? window.aleafiateCaptcha.token(newsBox) : '';
     try {
-      await window.aleafiateAC.submit(NEWSLETTER_AC, [['email', v]]);
+      await window.aleafiateAC.submit(NEWSLETTER_AC, token ? [['email', v], ['g-recaptcha-response', token]] : [['email', v]]);
       say('Thanks for subscribing! Look out for our next update.', true);
       news.reset();
     } catch (err) { say('Sorry, that didn’t work. Please try again.', false); }
+    window.aleafiateCaptcha && window.aleafiateCaptcha.reset(newsBox);
     btn.disabled = false; btn.style.opacity = '';
   });
 

@@ -17,7 +17,7 @@
   const ACTIVECAMPAIGN = {
     url: 'https://aleafiate.activehosted.com/proc.php',
     id: '16',
-    hidden: { u: '16', f: '16', s: '', c: '0', m: '0', act: 'sub', v: '2', or: '00f8f876-fdb0-4aad-a73a-08e8da657b23' },
+    hidden: { u: '16', f: '16', s: '', c: '0', m: '0', act: 'sub', v: '2', or: '434a74a4-1a20-44ca-b8eb-d25408133419' }, // 'or' changes whenever the form is edited in ActiveCampaign
     fields: { name: 'fullname', phone: 'phone', email: 'email', enquiry: 'field[7]', appointment: 'field[8]', time: 'field[9]', practitioner: 'field[10]', message: 'field[11]' },
     consent: { name: 'field[12][]', value: 'I agree to be contacted and have read the Privacy Policy' }
   };
@@ -47,6 +47,7 @@
           ${select(p, 'practitioner', 'Practitioner', ['No preference', 'Dr Frank Guerrera', 'Jeremy Chou (Nurse Practitioner)'])}
           <div class="field"><textarea id="${p}-message" name="message" placeholder=" " rows="2"></textarea><label for="${p}-message">Anything we should know?</label><span class="field__bar"></span></div>
           <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree to be contacted and have read the <a href="${PRIVACY_URL}"${PRIVACY_URL.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>. *</span></label>
+          <div class="captcha"><div data-captcha></div><p class="captcha__err" hidden>Please tick “I’m not a robot”.</p></div>
           <button type="submit" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Request appointment</span>${ARROW}</button>
           <p class="bk__alt">Prefer to talk? Call <a href="tel:+61734733396">07 3473 3396</a> · Mon – Fri, 9am – 5pm</p>
         </form>
@@ -143,6 +144,40 @@
     $$('.bk-inline').forEach(el => io.observe(el));
   }
 
+  /* ---------- reCAPTCHA ----------
+     ActiveCampaign's key (from the forms' Full Embed code): ActiveCampaign checks the token when the form
+     arrives, so a bot can't skip the box by posting to ActiveCampaign directly. Shared by every form on
+     the site through window.aleafiateCaptcha: mount(box), token(box), reset(box), check(box). */
+  const RECAPTCHA_SITEKEY = '6LcwIw8TAAAAACP1ysM08EhCgzd6q5JAOUR1a0Go';
+  const captcha = (() => {
+    const queue = []; let ready = false;
+    window.aleafiateRecaptchaReady = () => { ready = true; queue.splice(0).forEach(f => f()); };
+    const load = () => {
+      if (document.querySelector('script[data-recaptcha]')) return;
+      const t = document.createElement('script');
+      t.src = 'https://www.google.com/recaptcha/api.js?onload=aleafiateRecaptchaReady&render=explicit';
+      t.async = true; t.defer = true; t.dataset.recaptcha = '';
+      document.head.appendChild(t);
+    };
+    const err = el => el.closest('.captcha') && el.closest('.captcha').querySelector('.captcha__err');
+    const mount = el => {
+      if (!el || el.dataset.widget !== undefined || el.dataset.mounting) return;
+      el.dataset.mounting = '1'; load();
+      const go = () => {
+        el.dataset.widget = window.grecaptcha.render(el, {
+          sitekey: RECAPTCHA_SITEKEY, size: el.clientWidth && el.clientWidth < 304 ? 'compact' : 'normal',
+          callback: () => { const e = err(el); if (e) e.hidden = true; }
+        });
+      };
+      ready ? go() : queue.push(go);
+    };
+    const token = el => (el && window.grecaptcha && el.dataset.widget !== undefined) ? window.grecaptcha.getResponse(+el.dataset.widget) : '';
+    const reset = el => { if (el && window.grecaptcha && el.dataset.widget !== undefined) window.grecaptcha.reset(+el.dataset.widget); };
+    const check = el => { const ok = !!token(el), e = err(el); if (e) e.hidden = ok; return ok; };
+    return { mount, token, reset, check };
+  })();
+  window.aleafiateCaptcha = captcha;
+
   /* ---------- validation + submit (the pop-up and every inline copy) ---------- */
   const rules = { email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), tel: v => v.replace(/\D/g, '').length >= 7 };
   const check = el => {
@@ -151,24 +186,26 @@
     return ok;
   };
   const setup = (form, done, box, scroller) => {
-    const req = $$('[required]', form);
+    const req = $$('[required]', form), cap = $('[data-captcha]', form);
+    captcha.mount(cap);
     req.forEach(el => el.addEventListener(el.type === 'checkbox' ? 'change' : 'blur', () => check(el)));
     req.forEach(el => el.addEventListener('input', () => el.closest('.is-error') && check(el)));
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const bad = req.filter(el => !check(el));
+      if (!captcha.check(cap)) bad.push(cap);
       if (bad.length) {
-        bad[0].focus();
-        bad.forEach(el => { const w = el.closest('.field, .check'); w.classList.remove('bk-shake'); void w.offsetWidth; w.classList.add('bk-shake'); });
+        bad[0].focus && bad[0].focus();
+        bad.forEach(el => { const w = el.closest('.field, .check, .captcha'); w.classList.remove('bk-shake'); void w.offsetWidth; w.classList.add('bk-shake'); });
         return;
       }
       const data = new FormData(form);
       if (ACTIVECAMPAIGN) {
         const btn = $('button[type="submit"]', form);
         btn.disabled = true; btn.classList.add('is-sending');
-        try { await sendToActiveCampaign(data); }
+        try { await sendToActiveCampaign(data, captcha.token(cap)); }
         catch (err) {
-          btn.disabled = false; btn.classList.remove('is-sending');
+          btn.disabled = false; btn.classList.remove('is-sending'); captcha.reset(cap);
           alert('Sorry, something went wrong sending your request. Please try again, or call us on 07 3473 3396.');
           return;
         }
@@ -178,6 +215,7 @@
         location.href = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent('Appointment request')}&body=${encodeURIComponent(lines.join('\n'))}`;
         $('[data-bk-note]', done).textContent = 'Your email app should now open with your request filled in — just press send.';
       }
+      captcha.reset(cap); // a token works once
       form.hidden = true; done.hidden = false; box.classList.add('is-done');
       if (scroller) scroller.scrollTop = 0;
     });
@@ -230,7 +268,7 @@
   // other forms on the site (e.g. the eligibility quiz) send through the same code
   window.aleafiateAC = { submit: acSubmit, phone: auPhone };
 
-  const sendToActiveCampaign = data => {
+  const sendToActiveCampaign = (data, token) => {
     const ac = ACTIVECAMPAIGN, pairs = [];
     Object.entries(ac.fields).forEach(([ours, theirs]) => {
       let v = (data.get(ours) || '').toString().trim();
@@ -239,6 +277,7 @@
     });
     pairs.push([ac.consent.name, '~|']); // ActiveCampaign's checkbox fields always send this placeholder first
     if (data.get('consent')) pairs.push([ac.consent.name, ac.consent.value]);
+    if (token) pairs.push(['g-recaptcha-response', token]);
     return acSubmit(ac, pairs);
   };
 })();

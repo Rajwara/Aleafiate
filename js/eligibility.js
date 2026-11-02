@@ -73,7 +73,7 @@
       <legend class="qz__q" tabindex="-1" data-q></legend>
       ${s.hint ? `<p class="qz__hint">${esc(s.hint)}</p>` : ''}
       ${s.input ? `<div class="qz__input"><input name="${s.key}" type="${s.input.type}" autocomplete="${s.input.autocomplete}" placeholder="${esc(s.input.placeholder)}"${s.input.type === 'tel' ? ' inputmode="tel"' : ''} aria-label="${esc(s.input.placeholder)}"><em class="qz__err">${s.input.err}</em></div>` : ''}
-      ${s.type === 'final' ? `<label class="qz__consent"><input type="checkbox" name="consent"><span>I agree to be contacted and have read the <a href="${privacy}"${privacy.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>.</span></label>` : ''}
+      ${s.type === 'final' ? `<label class="qz__consent"><input type="checkbox" name="consent"><span>I agree to be contacted and have read the <a href="${privacy}"${privacy.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>.</span></label><div class="captcha qz__captcha"><div data-captcha></div><p class="captcha__err" hidden>Please tick “I’m not a robot”.</p></div>` : ''}
       ${s.options ? `<div class="qz__opts qz__opts--${s.type}" role="radiogroup">${s.options.map((o, j) => opt(s, o, j)).join('')}</div>` : ''}
       ${s.notes ? `<div class="qz__note" hidden role="alert"><p data-qz-note></p><div class="qz__note-actions" data-qz-actions></div></div>` : ''}
       ${s.input ? `<button type="button" class="qz__btn qz__btn--solid qz__go" data-qz-go><span>${s.type === 'final' ? 'See my result' : 'Continue'}</span>${ARROW}</button>` : ''}
@@ -113,6 +113,7 @@
       from.hidden = true; from.classList.remove('is-out', 'is-out-back');
       into.hidden = false; into.classList.add(dir > 0 ? 'is-in' : 'is-in-back');
       at = to; paint();
+      window.aleafiateCaptcha && window.aleafiateCaptcha.mount($('[data-captcha]', into));
       const field = $('.qz__input input', into);
       field ? field.focus({ preventScroll: true }) : $('.qz__q', into).focus({ preventScroll: true });
       if (root.getBoundingClientRect().top < 0) window.__lenis ? window.__lenis.scrollTo(root, { offset: -140, duration: .8 }) : root.scrollIntoView({ behavior: 'smooth' });
@@ -153,7 +154,8 @@
         if (s.type !== 'final') return good;
         const c = form.elements.consent;
         c.closest('.qz__consent').classList.toggle('is-error', !c.checked);
-        return good && c.checked;
+        const human = !window.aleafiateCaptcha || window.aleafiateCaptcha.check($('[data-captcha]', step));
+        return good && c.checked && human;
       };
       el.addEventListener('input', () => { wrap.classList.toggle('has-value', !!el.value.trim()); if (wrap.classList.contains('is-error')) wrap.classList.toggle('is-error', !s.input.check(el.value)); });
       const go = () => {
@@ -184,9 +186,12 @@
       const pairs = [[f.name, v.name.trim()], [f.email, v.email.trim()], [f.phone, window.aleafiateAC.phone(v.phone)],
         ...['existing', 'condition', 'treated', 'pregnant', 'psychosis'].map(k => [f[k], v[k] || '']),
         [f.result, RESULT[res]], [ac.consent.name, '~|'], [ac.consent.name, ac.consent.value]];
+      const cap = $('[data-captcha]', steps[at]), token = window.aleafiateCaptcha ? window.aleafiateCaptcha.token(cap) : '';
+      if (token) pairs.push(['g-recaptcha-response', token]);
       b.disabled = true; b.classList.add('is-sending');
-      try { await window.aleafiateAC.submit(ac, pairs); }
+      try { await window.aleafiateAC.submit(ac, pairs); window.aleafiateCaptcha && window.aleafiateCaptcha.reset(cap); }
       catch (err) {
+        window.aleafiateCaptcha && window.aleafiateCaptcha.reset(cap);
         b.disabled = false; b.classList.remove('is-sending');
         alert(`Sorry, something went wrong sending your answers. Please try again, or call us on ${PHONE}.`);
         return;

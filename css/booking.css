@@ -67,6 +67,10 @@
 .bk-shake{animation:bkShake .5s var(--ease,ease)}
 @keyframes bkShake{20%{transform:translateX(-7px)}45%{transform:translateX(6px)}70%{transform:translateX(-3px)}100%{transform:none}}
 
+/* reCAPTCHA ("I'm not a robot") above the submit button */
+.captcha{margin:4px 0 18px;min-height:78px}
+.captcha__err{margin:6px 0 0;font-size:12px;color:#a2482f}
+.captcha__err[hidden]{display:none}
 /* inline copy (e.g. the homepage's closing section): no pop-up entrance, so the fields show straight away */
 .bk-inline .bk__form>*{opacity:1;transform:none}
 
