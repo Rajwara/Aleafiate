@@ -5,12 +5,22 @@
      <script src="js/booking.js"></script>   (before main.js)
    Load it before main.js so main.js upgrades the dropdowns and
    button hover effects. Any element with [data-book] opens the form.
-   Without a form-service URL in BOOKING_ENDPOINT, a request opens the
-   visitor's email app addressed to BOOKING_EMAIL.
+   Requests go to the ActiveCampaign form in ACTIVECAMPAIGN (list, tag,
+   custom fields and the admin notification automation are set up there).
+   With ACTIVECAMPAIGN set to null, a request opens the visitor's email app
+   addressed to BOOKING_EMAIL instead.
    ========================================================= */
 (() => {
   const BOOKING_EMAIL = 'admin@aleafiate.com.au';
-  const BOOKING_ENDPOINT = ''; // e.g. a Formspree URL — then requests are POSTed there
+  // ActiveCampaign "Website – Book appointment" form (ID 16). Values come from its Full Embed code:
+  // the hidden inputs, and the field[n] names of the custom fields.
+  const ACTIVECAMPAIGN = {
+    url: 'https://aleafiate.activehosted.com/proc.php',
+    id: '16',
+    hidden: { u: '16', f: '16', s: '', c: '0', m: '0', act: 'sub', v: '2', or: '00f8f876-fdb0-4aad-a73a-08e8da657b23' },
+    fields: { name: 'fullname', phone: 'phone', email: 'email', enquiry: 'field[7]', appointment: 'field[8]', time: 'field[9]', practitioner: 'field[10]', message: 'field[11]' },
+    consent: { name: 'field[12][]', value: 'I agree to be contacted and have read the Privacy Policy' }
+  };
   const PRIVACY_URL = document.body.dataset.privacyUrl || 'privacy-policy.html'; // a page can link the consent box elsewhere: <body data-privacy-url="…">
 
   const ARROW = '<svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12L12 4M5 4h7v7"/></svg>';
@@ -134,11 +144,16 @@
       return;
     }
     const data = new FormData(form);
-    if (BOOKING_ENDPOINT) {
-      try {
-        const r = await fetch(BOOKING_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-        if (!r.ok) throw new Error(r.status);
-      } catch (err) { alert('Sorry, something went wrong sending your request. Please call us on 07 3473 3396.'); return; }
+    if (ACTIVECAMPAIGN) {
+      const btn = $('button[type="submit"]', form);
+      btn.disabled = true; btn.classList.add('is-sending');
+      try { await sendToActiveCampaign(data); }
+      catch (err) {
+        btn.disabled = false; btn.classList.remove('is-sending');
+        alert('Sorry, something went wrong sending your request. Please try again, or call us on 07 3473 3396.');
+        return;
+      }
+      btn.disabled = false; btn.classList.remove('is-sending');
     } else {
       const lines = []; data.forEach((v, k) => v && lines.push(`${k}: ${v}`));
       location.href = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent('Appointment request')}&body=${encodeURIComponent(lines.join('\n'))}`;
@@ -146,5 +161,45 @@
     }
     form.hidden = true; done.hidden = false; bk.classList.add('is-done');
     panel.scrollTop = 0;
+  });
+
+  /* ---------- ActiveCampaign ----------
+     Sent the way ActiveCampaign's own embed code sends it: a GET to proc.php with jsonp=true, loaded as
+     a script. The reply is JavaScript that calls window._show_thank_you / _show_error with the form ID. */
+  const auPhone = v => { // ActiveCampaign expects international format (its own form sends +61 …)
+    const d = v.replace(/[^\d+]/g, '');
+    if (d.startsWith('+')) return d;
+    if (d.startsWith('61')) return '+' + d;
+    if (d.startsWith('0')) return '+61' + d.slice(1);
+    return '+61' + d;
+  };
+  const sendToActiveCampaign = data => new Promise((resolve, reject) => {
+    const ac = ACTIVECAMPAIGN, q = new URLSearchParams(ac.hidden);
+    Object.entries(ac.fields).forEach(([ours, theirs]) => {
+      let v = (data.get(ours) || '').toString().trim();
+      if (ours === 'phone' && v) v = auPhone(v);
+      q.append(theirs, v);
+    });
+    q.append(ac.consent.name, '~|'); // ActiveCampaign's checkbox fields always send this placeholder first
+    if (data.get('consent')) q.append(ac.consent.name, ac.consent.value);
+    q.append('jsonp', 'true');
+    let settled = false, script;
+    const finish = ok => {
+      if (settled) return; settled = true;
+      clearTimeout(timer); script && script.remove();
+      ok ? resolve() : reject(new Error('ActiveCampaign rejected the request'));
+    };
+    const isOurs = id => String(id) === ac.id;
+    // replies from proc.php call these globals (the names come from ActiveCampaign's embed code)
+    const prev = { ty: window._show_thank_you, err: window._show_error, ferr: window._show_field_error };
+    window._show_thank_you = function (id) { isOurs(id) ? finish(true) : prev.ty && prev.ty.apply(this, arguments); };
+    window._show_error = function (id) { isOurs(id) ? finish(false) : prev.err && prev.err.apply(this, arguments); };
+    window._show_field_error = function (id) { isOurs(id) ? finish(false) : prev.ferr && prev.ferr.apply(this, arguments); };
+    window._load_script = window._load_script || (url => { const t = document.createElement('script'); t.src = url; document.head.appendChild(t); }); // site-tracking follow-up
+    const timer = setTimeout(() => finish(false), 20000);
+    script = document.createElement('script');
+    script.src = `${ac.url}?${q.toString().replace(/%0A/g, '%5Cn')}`; // ActiveCampaign wants line breaks as \n
+    script.onerror = () => finish(false);
+    document.head.appendChild(script);
   });
 })();

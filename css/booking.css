@@ -61,6 +61,7 @@
 .bk .check a{color:var(--ink,#13132e);border-bottom:1px solid currentColor}
 .bk .check.is-error{color:#a2482f}
 .bk .bk__form .btn{width:100%;justify-content:center}
+.bk .bk__form .btn.is-sending{opacity:.6;cursor:progress;pointer-events:none} /* waiting for ActiveCampaign */
 .bk__alt{margin-top:16px;text-align:center;font-size:13px;color:var(--muted,#5b6178)}
 .bk__alt a{color:var(--ink,#13132e);font-weight:500;border-bottom:1px solid currentColor}
 .bk-shake{animation:bkShake .5s var(--ease,ease)}

@@ -16,7 +16,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - contact.html — Contact (info cards, request form, map)
 - test-mock.html — Test page with the old home-v2 nav and banner (not indexed)
 - css/style.css — all styles (colours & fonts at the top in :root; headings Montserrat, text Poppins)
-- css/booking.css + js/booking.js — floating "Book appointment" button and pop-up form on every page
+- css/booking.css + js/booking.js — floating "Book appointment" button and pop-up form on every page. Requests go to the ActiveCampaign form "Website – Book appointment" (ID 16; settings at the top of js/booking.js)
 - js/main.js — all animations (driven by data-attributes, see comment at top)
 - js/vendor/ — GSAP 3.13 (ScrollTrigger, SplitText, Draggable) + Lenis
 - images/ — one folder per page; each folder's README lists the file names, sizes and AI prompts
