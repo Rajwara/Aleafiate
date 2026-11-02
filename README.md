@@ -4,7 +4,7 @@ Open `index.html` in a browser (double-click). Works offline — all animation l
 Fonts load from Google Fonts when online (falls back to Georgia / system font offline).
 
 ## Structure
-- index.html — Home (the former home-v3; self-contained: its CSS and JS are inline. /home-v2 and /home-v3 redirect here)
+- index.html — Home (the former home-v3; self-contained: its CSS and JS are inline. /home-v2 redirects here)
 - home-v1.html — The previous homepage, kept for reference (not indexed by search engines)
 - about.html — About
 - terms-and-conditions.html — Terms & Conditions

@@ -49,16 +49,6 @@
   ],
   "redirects": [
     {
-      "source": "/home-v3",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/home-v3.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/home-v2",
       "destination": "/",
       "permanent": true
