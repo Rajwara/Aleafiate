@@ -881,14 +881,21 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 
   /* Footer newsletter: no mailing-list service yet, so a valid address opens an email to the clinic */
   const news = $('[data-news]');
-  if (news) news.addEventListener('submit', e => {
+  // ActiveCampaign "Website – Newsletter" form (ID 18), sent through js/booking.js (window.aleafiateAC)
+  const NEWSLETTER_AC = { url: 'https://aleafiate.activehosted.com/proc.php', id: '18',
+    hidden: { u: '18', f: '18', s: '', c: '0', m: '0', act: 'sub', v: '2', or: 'd05bf4c7-76d6-4b49-b3ad-82d0b90e540e' } };
+  if (news) news.addEventListener('submit', async e => {
     e.preventDefault();
-    const input = news.elements.email, msg = $('.fv2__msg', news), v = input.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { msg.textContent = 'Please enter a valid email address.'; msg.classList.remove('is-ok'); msg.classList.add('is-error'); input.focus(); return; }
-    msg.classList.remove('is-error'); msg.classList.add('is-ok');
-    location.href = `mailto:admin@aleafiate.com.au?subject=${encodeURIComponent('Newsletter sign-up')}&body=${encodeURIComponent('Please add me to the Aleafiate newsletter: ' + v)}`;
-    msg.textContent = 'Thanks! Your email app should open — just press send.';
-    news.reset();
+    const input = news.elements.email, msg = $('.fv2__msg', news), btn = $('button', news), v = input.value.trim();
+    const say = (text, ok) => { msg.textContent = text; msg.classList.toggle('is-ok', ok); msg.classList.toggle('is-error', !ok); };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { say('Please enter a valid email address.', false); input.focus(); return; }
+    btn.disabled = true; btn.style.opacity = '.6'; say('Subscribing…', true);
+    try {
+      await window.aleafiateAC.submit(NEWSLETTER_AC, [['email', v]]);
+      say('Thanks for subscribing! Look out for our next update.', true);
+      news.reset();
+    } catch (err) { say('Sorry, that didn’t work. Please try again.', false); }
+    btn.disabled = false; btn.style.opacity = '';
   });
 
   /* FAQ accordion (one open at a time) */
