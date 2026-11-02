@@ -41,7 +41,7 @@
     { key: 'treated', type: 'rows', q: 'Great, and how have you tried treating your condition?',
       hint: 'Under TGA guidelines you must have tried other treatments before alternative options can be considered.',
       options: ['Prescription medication', 'Alternative therapies including (but not limited to) physiotherapy, psychological therapy, chiropractor, naturopath and osteopaths', 'I have not treated my condition'],
-      notes: { 'I have not treated my condition': { kind: 'soft', text: `<b>You may not be eligible.</b> Please contact our clinic on <a href="${TEL}">${PHONE}</a> — or continue and we’ll talk it through with you.` } } },
+      notes: { 'I have not treated my condition': { kind: 'soft', text: `<b>You may not be eligible.</b> Please contact our clinic on <a href="${TEL}">${PHONE}</a>, or continue and we’ll talk it through with you.` } } },
     { key: 'pregnant', type: 'circles', q: 'And to check, are you pregnant?', options: ['Yes', 'No'],
       notes: { Yes: { kind: 'stop', final: true, text: NOT_ELIGIBLE } } },
     { key: 'psychosis', type: 'circles', q: 'Do you have a history of schizophrenia, bipolar type 1 and 2 disorder or have experienced psychosis?',
@@ -205,8 +205,8 @@
   const showResult = (res, v) => {
     const name = first();
     const copy = {
-      eligible: { icon: 'tick', title: `Great news, ${name} — you may be eligible.`, text: 'With your eligibility check complete, your journey to wellness begins now. Our team will call you within one business day to arrange your free, no-obligation nurse call.', quote: 'This is your moment to rise, reclaim your strength, and move forward with purpose. Wellness isn’t just a destination — it’s the power within you, ready to unfold.', cta: true },
-      review: { icon: 'chat', title: `Thanks, ${name} — let’s talk it through.`, text: `Based on your answers, we’ll need to check a few things with you first. Our team will call you within one business day, or you can call us now on <a href="${TEL}">${PHONE}</a>.`, cta: true },
+      eligible: { icon: 'tick', title: `Great news, ${name}! You may be eligible.`, text: 'With your eligibility check complete, your journey to wellness begins now. Our team will call you within one business day to arrange your free, no-obligation nurse call.', quote: 'This is your moment to rise, reclaim your strength, and move forward with purpose. Wellness isn’t just a destination. It’s the power within you, ready to unfold.', cta: true },
+      review: { icon: 'chat', title: `Thanks, ${name}. Let’s talk it through.`, text: `Based on your answers, we’ll need to check a few things with you first. Our team will call you within one business day, or you can call us now on <a href="${TEL}">${PHONE}</a>.`, cta: true },
       no: { icon: 'info', title: `Thanks for checking, ${name}.`, text: `Based on your answers, you are not eligible for treatment through our clinic at this time. Please speak with your GP, or call us on <a href="${TEL}">${PHONE}</a> for more details.`, cta: false }
     }[res];
     const icons = {

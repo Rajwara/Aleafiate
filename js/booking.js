@@ -26,7 +26,7 @@
   const ARROW = '<svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12L12 4M5 4h7v7"/></svg>';
   const CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg>';
   const X = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3l10 10M13 3L3 13"/></svg>';
-  const options = list => list.map(o => `<option>${o}</option>`).join('');
+  const options = list => list.map(o => `<option value="${o}">${o.replace(' — ', ', ')}</option>`).join(''); // values match ActiveCampaign's options; labels avoid the long dash
   const input = (p, n, label, type, err, ac) =>
     `<div class="field"><input id="${p}-${n}" name="${n}" type="${type}" placeholder=" " required autocomplete="${ac}"><label for="${p}-${n}">${label} *</label><span class="field__bar"></span><span class="field__err">${err}</span></div>`;
   const select = (p, n, label, list) =>
@@ -215,7 +215,7 @@
       } else {
         const lines = []; data.forEach((v, k) => v && lines.push(`${k}: ${v}`));
         location.href = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent('Appointment request')}&body=${encodeURIComponent(lines.join('\n'))}`;
-        $('[data-bk-note]', done).textContent = 'Your email app should now open with your request filled in — just press send.';
+        $('[data-bk-note]', done).textContent = 'Your email app should now open with your request filled in. Just press send.';
       }
       captcha.reset(cap); // a token works once
       form.hidden = true; done.hidden = false; box.classList.add('is-done');

@@ -365,7 +365,7 @@
       } else {
         const lines = []; data.forEach((v, k) => v && lines.push(`${k}: ${v}`));
         location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent('Consultation request')}&body=${encodeURIComponent(lines.join('\n'))}`;
-        $('[data-success-note]', done).textContent = 'Your email app should now open with your request filled in — just press send.';
+        $('[data-success-note]', done).textContent = 'Your email app should now open with your request filled in. Just press send.';
       }
       const tick = $$('path, circle', $('svg', done));
       lenis && lenis.scrollTo(form.closest('.form-card'), { offset: -100, duration: 1.2 });
