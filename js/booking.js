@@ -203,15 +203,10 @@
     if (d.startsWith('0')) return '+61' + d.slice(1);
     return '+61' + d;
   };
-  const sendToActiveCampaign = data => new Promise((resolve, reject) => {
-    const ac = ACTIVECAMPAIGN, q = new URLSearchParams(ac.hidden);
-    Object.entries(ac.fields).forEach(([ours, theirs]) => {
-      let v = (data.get(ours) || '').toString().trim();
-      if (ours === 'phone' && v) v = auPhone(v);
-      q.append(theirs, v);
-    });
-    q.append(ac.consent.name, '~|'); // ActiveCampaign's checkbox fields always send this placeholder first
-    if (data.get('consent')) q.append(ac.consent.name, ac.consent.value);
+  // generic sender: ac = { url, id, hidden }, pairs = [[ActiveCampaign field name, value], …]
+  const acSubmit = (ac, pairs) => new Promise((resolve, reject) => {
+    const q = new URLSearchParams(ac.hidden);
+    pairs.forEach(([k, v]) => q.append(k, v));
     q.append('jsonp', 'true');
     let settled = false, script;
     const finish = ok => {
@@ -219,7 +214,7 @@
       clearTimeout(timer); script && script.remove();
       ok ? resolve() : reject(new Error('ActiveCampaign rejected the request'));
     };
-    const isOurs = id => String(id) === ac.id;
+    const isOurs = id => String(id) === String(ac.id);
     // replies from proc.php call these globals (the names come from ActiveCampaign's embed code)
     const prev = { ty: window._show_thank_you, err: window._show_error, ferr: window._show_field_error };
     window._show_thank_you = function (id) { isOurs(id) ? finish(true) : prev.ty && prev.ty.apply(this, arguments); };
@@ -232,4 +227,18 @@
     script.onerror = () => finish(false);
     document.head.appendChild(script);
   });
+  // other forms on the site (e.g. the eligibility quiz) send through the same code
+  window.aleafiateAC = { submit: acSubmit, phone: auPhone };
+
+  const sendToActiveCampaign = data => {
+    const ac = ACTIVECAMPAIGN, pairs = [];
+    Object.entries(ac.fields).forEach(([ours, theirs]) => {
+      let v = (data.get(ours) || '').toString().trim();
+      if (ours === 'phone' && v) v = auPhone(v);
+      pairs.push([theirs, v]);
+    });
+    pairs.push([ac.consent.name, '~|']); // ActiveCampaign's checkbox fields always send this placeholder first
+    if (data.get('consent')) pairs.push([ac.consent.name, ac.consent.value]);
+    return acSubmit(ac, pairs);
+  };
 })();
