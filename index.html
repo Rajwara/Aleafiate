@@ -819,7 +819,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
             <div class="gs-item__side">
               <span class="gs-item__num">Step 03 / 03</span>
               <p class="gs-item__summary">If treatment is right for you, your prescription is sent to your chosen pharmacy within 12–24 hours — the next step on your journey to wellbeing.</p>
-              <a href="#faqs" class="gs-btn" >
+              <a href="#faq-prescription" class="gs-btn" >
                 <span class="gs-btn__box">
                   <span class="gs-btn__text"><span class="gs-btn__flex"><span>How it works</span><span aria-hidden="true">How it works</span></span></span>
                   <span class="gs-btn__arrow"><svg viewBox="0 0 28 28" fill="none"><path d="M8.34 19.66a.87.87 0 0 0 1.24 0l9.92-9.91a.88.88 0 1 0-1.24-1.24l-9.92 9.92a.87.87 0 0 0 0 1.23Z" fill="currentColor"/><path d="M18.88 20.5a.88.88 0 0 0 .87-.87V9.13a.88.88 0 0 0-.87-.88H8.38a.88.88 0 1 0 0 1.75H18v9.63c0 .48.39.87.88.87Z" fill="currentColor"/></svg></span>
@@ -1017,7 +1017,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
           <button class="hq__q" type="button" aria-expanded="true" aria-controls="hq-a0" id="hq-q0"><span>How do I get started?</span><span class="hq__icon" aria-hidden="true"></span></button>
           <div class="hq__a" id="hq-a0" role="region" aria-labelledby="hq-q0"><p>Start with a free, no-obligation nurse call. Our team will talk through your health needs and explain how everything works. If you’d like to go ahead, you’ll complete an intake form and book an initial consultation with an AHPRA-registered practitioner.</p></div>
         </div>
-        <div class="hq__item">
+        <div class="hq__item" id="faq-prescription">
           <button class="hq__q" type="button" aria-expanded="false" aria-controls="hq-a1" id="hq-q1"><span>Will I get a prescription?</span><span class="hq__icon" aria-hidden="true"></span></button>
           <div class="hq__a" id="hq-a1" role="region" aria-labelledby="hq-q1"><p>Not every consultation ends in a prescription. Your practitioner first reviews your health history, current medications and goals, and only prescribes if a treatment is clinically appropriate and you meet the legal requirements. If it is, your prescription is sent to your chosen pharmacy within 12–24 hours. If not, they’ll talk you through other options.</p></div>
         </div>
@@ -1235,6 +1235,8 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
     hqItems.forEach(o => o !== item && o.classList.contains('is-open') && setHq(o, false));
     setHq(item, open);
   }));
+  // links straight to one question (e.g. href="#faq-prescription"): open it, close the others
+  window.openFaq = item => { hqItems.forEach(o => o !== item && o.classList.contains('is-open') && setHq(o, false)); if (!item.classList.contains('is-open')) setHq(item, true); };
 
   if (!window.gsap) return;
   gsap.registerPlugin(ScrollTrigger, SplitText, Draggable);
@@ -1271,8 +1273,17 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href'); if (id.length < 2) return;
     const el = $(id); if (!el) return;
-    e.preventDefault(); lenis.scrollTo(el, { offset: 0, duration: 1.6 });
+    e.preventDefault();
+    if (el.classList.contains('hq__item')) { // a single FAQ: open it first, then land on it below the floating menu
+      window.openFaq(el);
+      setTimeout(() => lenis.scrollTo(el, { offset: -130, duration: 1.4 }), 650);
+      return;
+    }
+    lenis.scrollTo(el, { offset: 0, duration: 1.6 });
   }));
+  // arriving with a FAQ address (e.g. index.html#faq-prescription from another page)
+  const hashFaq = location.hash && document.querySelector(location.hash.replace(/[^#\w-]/g, ''));
+  if (hashFaq && hashFaq.classList.contains('hq__item')) addEventListener('load', () => { window.openFaq(hashFaq); setTimeout(() => lenis.scrollTo(hashFaq, { offset: -130, immediate: true }), 700); });
 
   /* ---------- Nav: hide on scroll down, show on scroll up ---------- */
   const nav = $('#nav'); let lastY = 0;
