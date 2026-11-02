@@ -1,6 +1,6 @@
 # Home v2 / v3 page images
 
-Images used by `home-v2.html` and `home-v3.html`. Keep these file names: the pages point at them.
+Images used by `home-v2.html` and the homepage `index.html` (formerly home-v3). Keep these file names: the pages point at them.
 
 | Section | File |
 |---|---|

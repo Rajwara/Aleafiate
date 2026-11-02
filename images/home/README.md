@@ -1,6 +1,6 @@
 # Homepage images — sizes and AI prompts
 
-Upload images for `index.html` here. (Practitioner photos go in `images/practitioners/`.)
+Upload images for `home-v1.html` (the previous homepage) here. (Practitioner photos go in `images/practitioners/`.)
 
 Generate each image, save it with the **exact file name** below into `images/home/`,
 and it appears on the homepage automatically. Until a file exists, its slot shows a

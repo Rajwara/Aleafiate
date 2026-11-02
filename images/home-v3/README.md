@@ -1,6 +1,6 @@
 # Home v3 page images
 
-Upload images and other assets for `home-v3.html` (https://aleafiate.vercel.app/home-v3) here.
+Upload images and other assets for the homepage, `index.html` (https://aleafiate.vercel.app — formerly home-v3) here.
 
 Home v3 currently uses images from `images/home-v2/`, `images/home/`, `images/about/` and `images/practitioners/`. Upload any new or replacement files for this page here, then tell Claude which section each one is for.
 

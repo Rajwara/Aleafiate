@@ -4,7 +4,8 @@ Open `index.html` in a browser (double-click). Works offline — all animation l
 Fonts load from Google Fonts when online (falls back to Georgia / system font offline).
 
 ## Structure
-- index.html — Home
+- index.html — Home (the former home-v3; /home-v3 redirects here)
+- home-v1.html — The previous homepage, kept for reference (not indexed by search engines)
 - about.html — About
 - terms-and-conditions.html — Terms & Conditions
 - blog.html + blog-*.html — Blog listing and three articles (styles in css/blog.css, shared with the Home v2 blog section)
@@ -13,7 +14,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - practitioners.html — Meet Our Prescribing Practitioners (filter + profile drawer)
 - faq.html — FAQ (search, section nav, accordions)
 - contact.html — Contact (info cards, request form, map)
-- home-v3.html — Copy of home-v2.html to experiment on
+- test-mock.html — Test page with home-v2's nav and banner (not indexed)
 - home-v2.html — Alternative home page (self-contained: its CSS and JS are inline; uses the shared js/vendor/ libraries)
 - css/style.css — all styles (colours & fonts at the top in :root; headings Montserrat, text Poppins)
 - css/booking.css + js/booking.js — floating "Book appointment" button and pop-up form on every page
@@ -21,7 +22,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - js/vendor/ — GSAP 3.13 (ScrollTrigger, SplitText, Draggable) + Lenis
 - images/ — one folder per page; each folder's README lists the file names, sizes and AI prompts
   - images/logos/ — logos and favicons
-  - images/home/ — homepage (index.html)
+  - images/home/ — previous homepage (home-v1.html) and shared images
   - images/practitioners/ — practitioner photos (also used on the homepage) and the practitioners page
   - images/about/, images/home-v2/, images/contact/, images/faq/ — the other pages
 
