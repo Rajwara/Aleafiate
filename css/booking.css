@@ -16,7 +16,7 @@
 @keyframes bkPulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.8);opacity:0}}
 .hero__scroll{transition:opacity .5s}
 .bk-fab-on .hero__scroll{opacity:0} /* the button takes the bottom-left corner once you scroll */
-.bk-open .bk-fab,.menu-open .bk-fab,.is-locked .bk-fab{transform:translateY(140%);opacity:0;pointer-events:none}
+.bk-open .bk-fab,.menu-open .bk-fab,.is-locked .bk-fab,.bk-inline-on .bk-fab{transform:translateY(140%);opacity:0;pointer-events:none}
 
 /* ---------- dialog ---------- */
 .bk{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:clamp(12px,3vw,32px);visibility:hidden;transition:visibility 0s .6s}
@@ -44,35 +44,38 @@
 .bk.is-open .bk__form>*:nth-child(1){transition-delay:.18s}.bk.is-open .bk__form>*:nth-child(2){transition-delay:.23s}.bk.is-open .bk__form>*:nth-child(3){transition-delay:.28s}.bk.is-open .bk__form>*:nth-child(4){transition-delay:.33s}.bk.is-open .bk__form>*:nth-child(5){transition-delay:.38s}.bk.is-open .bk__form>*:nth-child(6){transition-delay:.43s}.bk.is-open .bk__form>*:nth-child(7){transition-delay:.48s}.bk.is-open .bk__form>*:nth-child(8){transition-delay:.53s}.bk.is-open .bk__form>*:nth-child(9){transition-delay:.58s}
 
 /* form fields (same look as the site's forms; complete here so any page can use the dialog) */
-.bk .field{position:relative;margin-bottom:20px}
-.bk .field input,.bk .field select,.bk .field textarea{display:block;width:100%;border:0;border-bottom:1px solid rgba(19,19,46,.22);border-radius:0;background:transparent;padding:22px 0 8px;font:inherit;font-family:var(--body,"Poppins",sans-serif);font-size:15px;color:var(--ink,#13132e);outline:none;-webkit-appearance:none;appearance:none}
-.bk .field textarea{resize:vertical;min-height:64px}
-.bk .field select{cursor:pointer;padding-right:24px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2313132E' stroke-width='1.4'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 2px center}
-.bk .field label{position:absolute;left:0;top:22px;font-size:15px;color:var(--muted,#5b6178);pointer-events:none;transform-origin:left top;transition:transform .5s var(--ease,ease),color .4s}
-.bk .field input:focus+label,.bk .field input:not(:placeholder-shown)+label,.bk .field textarea:focus+label,.bk .field textarea:not(:placeholder-shown)+label,.bk .field--static label{transform:translateY(-20px) scale(.8);color:var(--ink,#13132e)}
-.bk .field__bar{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--navy,#111145);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease,ease)}
-.bk .field :focus~.field__bar,.bk .dd.is-open .field__bar{transform:scaleX(1)}
-.bk .field__err{position:absolute;left:0;top:100%;margin-top:4px;font-size:12px;color:#a2482f;opacity:0;transition:opacity .3s}
-.bk .field.is-error input{border-bottom-color:#a2482f}
-.bk .field.is-error .field__err{opacity:1}
-.bk .dd__btn{padding:22px 0 8px;font-size:15px}
-.bk .check{display:flex;gap:10px;align-items:flex-start;margin:6px 0 20px;font-size:13px;color:var(--muted,#5b6178);cursor:pointer}
-.bk .check input{width:18px;height:18px;margin:1px 0 0;flex:none;accent-color:var(--navy,#111145)}
-.bk .check a{color:var(--ink,#13132e);border-bottom:1px solid currentColor}
-.bk .check.is-error{color:#a2482f}
-.bk .bk__form .btn{width:100%;justify-content:center}
-.bk .bk__form .btn.is-sending{opacity:.6;cursor:progress;pointer-events:none} /* waiting for ActiveCampaign */
+:is(.bk,.bk-inline) .field{position:relative;margin-bottom:20px}
+:is(.bk,.bk-inline) .field input,:is(.bk,.bk-inline) .field select,:is(.bk,.bk-inline) .field textarea{display:block;width:100%;border:0;border-bottom:1px solid rgba(19,19,46,.22);border-radius:0;background:transparent;padding:22px 0 8px;font:inherit;font-family:var(--body,"Poppins",sans-serif);font-size:15px;color:var(--ink,#13132e);outline:none;-webkit-appearance:none;appearance:none}
+:is(.bk,.bk-inline) .field textarea{resize:vertical;min-height:64px}
+:is(.bk,.bk-inline) .field select{cursor:pointer;padding-right:24px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2313132E' stroke-width='1.4'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 2px center}
+:is(.bk,.bk-inline) .field label{position:absolute;left:0;top:22px;font-size:15px;color:var(--muted,#5b6178);pointer-events:none;transform-origin:left top;transition:transform .5s var(--ease,ease),color .4s}
+:is(.bk,.bk-inline) .field input:focus+label,:is(.bk,.bk-inline) .field input:not(:placeholder-shown)+label,:is(.bk,.bk-inline) .field textarea:focus+label,:is(.bk,.bk-inline) .field textarea:not(:placeholder-shown)+label,:is(.bk,.bk-inline) .field--static label{transform:translateY(-20px) scale(.8);color:var(--ink,#13132e)}
+:is(.bk,.bk-inline) .field__bar{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--navy,#111145);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease,ease)}
+:is(.bk,.bk-inline) .field :focus~.field__bar,:is(.bk,.bk-inline) .dd.is-open .field__bar{transform:scaleX(1)}
+:is(.bk,.bk-inline) .field__err{position:absolute;left:0;top:100%;margin-top:4px;font-size:12px;color:#a2482f;opacity:0;transition:opacity .3s}
+:is(.bk,.bk-inline) .field.is-error input{border-bottom-color:#a2482f}
+:is(.bk,.bk-inline) .field.is-error .field__err{opacity:1}
+:is(.bk,.bk-inline) .dd__btn{padding:22px 0 8px;font-size:15px}
+:is(.bk,.bk-inline) .check{display:flex;gap:10px;align-items:flex-start;margin:6px 0 20px;font-size:13px;color:var(--muted,#5b6178);cursor:pointer}
+:is(.bk,.bk-inline) .check input{width:18px;height:18px;margin:1px 0 0;flex:none;accent-color:var(--navy,#111145)}
+:is(.bk,.bk-inline) .check a{color:var(--ink,#13132e);border-bottom:1px solid currentColor}
+:is(.bk,.bk-inline) .check.is-error{color:#a2482f}
+:is(.bk,.bk-inline) .bk__form .btn{width:100%;justify-content:center}
+:is(.bk,.bk-inline) .bk__form .btn.is-sending{opacity:.6;cursor:progress;pointer-events:none} /* waiting for ActiveCampaign */
 .bk__alt{margin-top:16px;text-align:center;font-size:13px;color:var(--muted,#5b6178)}
 .bk__alt a{color:var(--ink,#13132e);font-weight:500;border-bottom:1px solid currentColor}
 .bk-shake{animation:bkShake .5s var(--ease,ease)}
 @keyframes bkShake{20%{transform:translateX(-7px)}45%{transform:translateX(6px)}70%{transform:translateX(-3px)}100%{transform:none}}
 
+/* inline copy (e.g. the homepage's closing section): no pop-up entrance, so the fields show straight away */
+.bk-inline .bk__form>*{opacity:1;transform:none}
+
 /* success */
 .bk__done{text-align:center;padding:24px 0 8px}
 .bk__done svg{width:76px;height:76px;margin:0 auto 18px;color:var(--teal-deep,#247568)}
 .bk__done svg *{stroke-dasharray:300;stroke-dashoffset:300}
-.bk.is-done .bk__done svg *{animation:bkDraw 1.2s var(--ease,ease) forwards}
-.bk.is-done .bk__done svg path{animation-delay:.35s}
+.bk.is-done .bk__done svg *,.bk-inline.is-done .bk__done svg *{animation:bkDraw 1.2s var(--ease,ease) forwards}
+.bk.is-done .bk__done svg path,.bk-inline.is-done .bk__done svg path{animation-delay:.35s}
 .bk__done h3{font-family:var(--heading,"Montserrat",sans-serif);font-weight:500;font-size:32px;letter-spacing:-.02em;margin-bottom:10px}
 .bk__done p{color:var(--muted,#5b6178);max-width:360px;margin:0 auto 24px}
 @keyframes bkDraw{to{stroke-dashoffset:0}}

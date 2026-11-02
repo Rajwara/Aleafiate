@@ -198,6 +198,10 @@ p{margin:0}
 .cta__card .media{aspect-ratio:16/10;border-radius:12px}
 .cta__card h3{font-size:26px}
 .cta__card p{font-size:15px;color:var(--muted)}
+.cta:has(.cta__card--form){height:auto;min-height:110vh;padding:clamp(110px,12vw,160px) 0 clamp(60px,8vw,110px)} /* the form card is taller than the photo card was */
+.cta__card--form{width:min(100%,540px);gap:10px;padding:clamp(24px,3vw,40px)}
+.cta__card--form .eyebrow{color:var(--teal-deep)}
+.cta__card--form [data-booking-inline]{margin-top:4px}
 
 /* =========================================================
    FOOTER
@@ -1057,11 +1061,11 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   <div class="cta__bg"><div class="media" data-label="cta-background.webp"><img src="images/home/cta-background.webp" alt="Man meditating outdoors at sunrise" loading="lazy" data-cta-img></div></div>
   <div class="container cta__inner">
     <h2 class="cta__title" data-split>Start with a free call.</h2>
-    <div class="cta__card" data-cta-card>
-      <div class="media" data-label="cta-card.webp"><img src="images/home/cta-card.webp" alt="Hands holding a phone, ready to call" loading="lazy"></div>
-      <h3>Book a free call</h3>
-      <p>A no-obligation chat with our team to see whether Aleafiate is right for you. Monday to Friday, 9am – 5pm.</p>
-      <a href="tel:+61734733396" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Book a free call</span><span class="btn__dot"></span></a>
+    <div class="cta__card cta__card--form" data-cta-card>
+      <span class="eyebrow">Free · no obligation</span>
+      <h3>Book an appointment</h3>
+      <p>Leave your details and our team will call you back within one business day to confirm a time.</p>
+      <div data-booking-inline></div> <!-- js/booking.js builds the same form as the pop-up here (sends to ActiveCampaign) -->
     </div>
   </div>
 </section>
