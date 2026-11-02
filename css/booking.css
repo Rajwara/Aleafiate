@@ -61,6 +61,7 @@
 :is(.bk,.bk-inline) .check a{color:var(--ink,#13132e);border-bottom:1px solid currentColor}
 :is(.bk,.bk-inline) .check.is-error{color:#a2482f}
 :is(.bk,.bk-inline) .bk__form .btn{width:100%;justify-content:center}
+@media (max-width:400px){:is(.bk,.bk-inline) .bk__form .btn{padding:0 14px;gap:8px}} /* keeps "Request appointment" on one line in narrow cards */
 :is(.bk,.bk-inline) .bk__form .btn.is-sending{opacity:.6;cursor:progress;pointer-events:none} /* waiting for ActiveCampaign */
 .bk__alt{margin-top:16px;text-align:center;font-size:13px;color:var(--muted,#5b6178)}
 .bk__alt a{color:var(--ink,#13132e);font-weight:500;border-bottom:1px solid currentColor}

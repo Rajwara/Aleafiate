@@ -742,3 +742,6 @@ p{margin:0}
   .journey__line i{--p:1}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* very narrow phones: keep long button labels on one line */
+@media (max-width:400px){.btn{padding:0 18px;gap:8px;font-size:14px}}
