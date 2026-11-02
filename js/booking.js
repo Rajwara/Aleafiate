@@ -47,6 +47,7 @@
           ${select(p, 'practitioner', 'Practitioner', ['No preference', 'Dr Frank Guerrera', 'Jeremy Chou (Nurse Practitioner)'])}
           <div class="field"><textarea id="${p}-message" name="message" placeholder=" " rows="2"></textarea><label for="${p}-message">Anything we should know?</label><span class="field__bar"></span></div>
           <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree to be contacted and have read the <a href="${PRIVACY_URL}"${PRIVACY_URL.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>. *</span></label>
+          <div class="form-error" data-form-error role="alert" hidden></div>
           <div class="captcha"><div data-captcha></div><p class="captcha__err" hidden>Please tick “I’m not a robot”.</p></div>
           <button type="submit" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Request appointment</span>${ARROW}</button>
           <p class="bk__alt">Prefer to talk? Call <a href="tel:+61734733396">07 3473 3396</a> · Mon – Fri, 9am – 5pm</p>
@@ -203,10 +204,11 @@
       if (ACTIVECAMPAIGN) {
         const btn = $('button[type="submit"]', form);
         btn.disabled = true; btn.classList.add('is-sending');
+        hideError($('[data-form-error]', form));
         try { await sendToActiveCampaign(data, captcha.token(cap)); }
         catch (err) {
           btn.disabled = false; btn.classList.remove('is-sending'); captcha.reset(cap);
-          alert('Sorry, something went wrong sending your request. Please try again, or call us on 07 3473 3396.');
+          showError($('[data-form-error]', form), err);
           return;
         }
         btn.disabled = false; btn.classList.remove('is-sending');
@@ -247,26 +249,41 @@
     pairs.forEach(([k, v]) => q.append(k, v));
     q.append('jsonp', 'true');
     let settled = false, script;
-    const finish = ok => {
+    const finish = (ok, reason) => {
       if (settled) return; settled = true;
       clearTimeout(timer); script && script.remove();
-      ok ? resolve() : reject(new Error('ActiveCampaign rejected the request'));
+      const why = (reason || 'Your request was not accepted.').trim();
+      ok ? resolve() : reject(new Error(/[.!?]$/.test(why) ? why : why + '.'));
     };
+    const text = html => { const d = document.createElement('div'); d.innerHTML = html || ''; return d.textContent.replace(/\s+/g, ' ').trim(); };
     const isOurs = id => String(id) === String(ac.id);
     // replies from proc.php call these globals (the names come from ActiveCampaign's embed code)
     const prev = { ty: window._show_thank_you, err: window._show_error, ferr: window._show_field_error };
     window._show_thank_you = function (id) { isOurs(id) ? finish(true) : prev.ty && prev.ty.apply(this, arguments); };
-    window._show_error = function (id) { isOurs(id) ? finish(false) : prev.err && prev.err.apply(this, arguments); };
-    window._show_field_error = function (id) { isOurs(id) ? finish(false) : prev.ferr && prev.ferr.apply(this, arguments); };
+    // ActiveCampaign's own wording is passed on, e.g. "Please verify your request." or a blocked email domain
+    window._show_error = function (id, message, html) { isOurs(id) ? finish(false, [text(message), text(html)].filter(Boolean).join(' ')) : prev.err && prev.err.apply(this, arguments); };
+    window._show_field_error = function (id, field, message) { isOurs(id) ? finish(false, text(message)) : prev.ferr && prev.ferr.apply(this, arguments); };
     window._load_script = window._load_script || (url => { const t = document.createElement('script'); t.src = url; document.head.appendChild(t); }); // site-tracking follow-up
-    const timer = setTimeout(() => finish(false), 20000);
+    if (navigator.onLine === false) { settled = true; reject(new Error('You appear to be offline. Please check your internet connection.')); return; }
+    const timer = setTimeout(() => finish(false, 'Our booking system took too long to respond (timed out after 20 seconds).'), 20000);
     script = document.createElement('script');
     script.src = `${ac.url}?${q.toString().replace(/%0A/g, '%5Cn')}`; // ActiveCampaign wants line breaks as \n
-    script.onerror = () => finish(false);
+    script.onerror = () => finish(false, 'We couldn’t reach our booking system. Please check your internet connection, or turn off any ad or tracker blocker for this site.');
     document.head.appendChild(script);
   });
+  // shows the exact reason a submission failed, inside the form (box = a [data-form-error] element)
+  const showError = (box, err) => {
+    if (!box) return alert(err && err.message);
+    box.innerHTML = '';
+    const b = document.createElement('b'); b.textContent = 'Your request couldn’t be sent. ';
+    const m = document.createElement('span'); m.textContent = (err && err.message) || 'Something went wrong.';
+    const c = document.createElement('span'); c.innerHTML = ' Please try again, or call us on <a href="tel:+61734733396">07 3473 3396</a>.';
+    box.append(b, m, c); box.hidden = false;
+    box.scrollIntoView && box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  };
+  const hideError = box => { if (box) { box.hidden = true; box.innerHTML = ''; } };
   // other forms on the site (e.g. the eligibility quiz) send through the same code
-  window.aleafiateAC = { submit: acSubmit, phone: auPhone };
+  window.aleafiateAC = { submit: acSubmit, phone: auPhone, showError, hideError };
 
   const sendToActiveCampaign = (data, token) => {
     const ac = ACTIVECAMPAIGN, pairs = [];

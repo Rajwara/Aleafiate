@@ -73,7 +73,7 @@
       <legend class="qz__q" tabindex="-1" data-q></legend>
       ${s.hint ? `<p class="qz__hint">${esc(s.hint)}</p>` : ''}
       ${s.input ? `<div class="qz__input"><input name="${s.key}" type="${s.input.type}" autocomplete="${s.input.autocomplete}" placeholder="${esc(s.input.placeholder)}"${s.input.type === 'tel' ? ' inputmode="tel"' : ''} aria-label="${esc(s.input.placeholder)}"><em class="qz__err">${s.input.err}</em></div>` : ''}
-      ${s.type === 'final' ? `<label class="qz__consent"><input type="checkbox" name="consent"><span>I agree to be contacted and have read the <a href="${privacy}"${privacy.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>.</span></label><div class="captcha qz__captcha"><div data-captcha></div><p class="captcha__err" hidden>Please tick “I’m not a robot”.</p></div>` : ''}
+      ${s.type === 'final' ? `<label class="qz__consent"><input type="checkbox" name="consent"><span>I agree to be contacted and have read the <a href="${privacy}"${privacy.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>.</span></label><div class="form-error qz__error" data-form-error role="alert" hidden></div><div class="captcha qz__captcha"><div data-captcha></div><p class="captcha__err" hidden>Please tick “I’m not a robot”.</p></div>` : ''}
       ${s.options ? `<div class="qz__opts qz__opts--${s.type}" role="radiogroup">${s.options.map((o, j) => opt(s, o, j)).join('')}</div>` : ''}
       ${s.notes ? `<div class="qz__note" hidden role="alert"><p data-qz-note></p><div class="qz__note-actions" data-qz-actions></div></div>` : ''}
       ${s.input ? `<button type="button" class="qz__btn qz__btn--solid qz__go" data-qz-go><span>${s.type === 'final' ? 'See my result' : 'Continue'}</span>${ARROW}</button>` : ''}
@@ -188,12 +188,13 @@
         [f.result, RESULT[res]], [ac.consent.name, '~|'], [ac.consent.name, ac.consent.value]];
       const cap = $('[data-captcha]', steps[at]), token = window.aleafiateCaptcha ? window.aleafiateCaptcha.token(cap) : '';
       if (token) pairs.push(['g-recaptcha-response', token]);
-      b.disabled = true; b.classList.add('is-sending');
+      const errBox = $('[data-form-error]', steps[at]);
+      b.disabled = true; b.classList.add('is-sending'); window.aleafiateAC.hideError(errBox);
       try { await window.aleafiateAC.submit(ac, pairs); window.aleafiateCaptcha && window.aleafiateCaptcha.reset(cap); }
       catch (err) {
         window.aleafiateCaptcha && window.aleafiateCaptcha.reset(cap);
         b.disabled = false; b.classList.remove('is-sending');
-        alert(`Sorry, something went wrong sending your answers. Please try again, or call us on ${PHONE}.`);
+        window.aleafiateAC.showError(errBox, err);
         return;
       }
     }

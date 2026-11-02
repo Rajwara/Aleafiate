@@ -67,6 +67,11 @@
 .bk-shake{animation:bkShake .5s var(--ease,ease)}
 @keyframes bkShake{20%{transform:translateX(-7px)}45%{transform:translateX(6px)}70%{transform:translateX(-3px)}100%{transform:none}}
 
+/* exact reason a submission failed (js/booking.js showError) */
+.form-error{margin:0 0 16px;padding:14px 16px;border-radius:12px;background:#fff1ed;border:1px solid #f3cfc3;color:#7a2e1d;font-size:14px;line-height:1.55;text-align:left}
+.form-error[hidden]{display:none}
+.form-error b{color:#5e2010}
+.form-error a{color:inherit;font-weight:600;border-bottom:1px solid currentColor}
 /* reCAPTCHA ("I'm not a robot") above the submit button */
 .captcha{margin:4px 0 18px;min-height:78px}
 .captcha__err{margin:6px 0 0;font-size:12px;color:#a2482f}

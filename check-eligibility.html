@@ -668,6 +668,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 .qz__input.is-error input{border-color:#d0654b;box-shadow:0 0 0 4px rgba(208,101,75,.14)}
 .qz__input.is-error .qz__err{display:block}
 .qz__go{margin-top:22px}
+.qz__error{max-width:580px;margin:18px auto 0}
 .qz__captcha{display:flex;flex-direction:column;align-items:center;margin:18px 0 0}
 .qz__captcha .captcha__err{text-align:center}
 .qz__consent{display:flex;gap:12px;align-items:flex-start;justify-content:center;max-width:580px;margin:18px auto 0;font-size:14px;line-height:1.5;color:var(--muted);cursor:pointer;text-align:left}
@@ -906,7 +907,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
       await window.aleafiateAC.submit(NEWSLETTER_AC, token ? [['email', v], ['g-recaptcha-response', token]] : [['email', v]]);
       say('Thanks for subscribing! Look out for our next update.', true);
       news.reset();
-    } catch (err) { say('Sorry, that didn’t work. Please try again.', false); }
+    } catch (err) { say(`Couldn’t subscribe: ${err && err.message ? err.message : 'something went wrong.'} Please try again.`, false); }
     window.aleafiateCaptcha && window.aleafiateCaptcha.reset(newsBox);
     btn.disabled = false; btn.style.opacity = '';
   });
