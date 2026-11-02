@@ -1163,7 +1163,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   const news = $('[data-news]');
   // ActiveCampaign "Website – Newsletter" form (ID 18), sent through js/booking.js (window.aleafiateAC)
   const NEWSLETTER_AC = { url: 'https://aleafiate.activehosted.com/proc.php', id: '18',
-    hidden: { u: '18', f: '18', s: '', c: '0', m: '0', act: 'sub', v: '2', or: 'd05bf4c7-76d6-4b49-b3ad-82d0b90e540e' } };
+    hidden: { u: '18', f: '18', s: '', c: '0', m: '0', act: 'sub', v: '2', or: '1dbc94dc-2e26-413a-a8c6-86cf567e1298' } }; // 'or' changes whenever the form is edited in ActiveCampaign
   // reCAPTCHA (js/booking.js): the box appears once someone starts on the email field
   const newsCap = news && $('.fv2__captcha', news), newsBox = newsCap && $('[data-captcha]', newsCap);
   const showNewsCap = () => { if (!newsCap || !window.aleafiateCaptcha) return; newsCap.hidden = false; window.aleafiateCaptcha.mount(newsBox); };
