@@ -4,7 +4,7 @@ Open `index.html` in a browser (double-click). Works offline — all animation l
 Fonts load from Google Fonts when online (falls back to Georgia / system font offline).
 
 ## Structure
-- index.html — Home (the former home-v3; /home-v3 redirects here)
+- index.html — Home (the former home-v3; self-contained: its CSS and JS are inline. /home-v2 and /home-v3 redirect here)
 - home-v1.html — The previous homepage, kept for reference (not indexed by search engines)
 - about.html — About
 - terms-and-conditions.html — Terms & Conditions
@@ -14,8 +14,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - practitioners.html — Meet Our Prescribing Practitioners (filter + profile drawer)
 - faq.html — FAQ (search, section nav, accordions)
 - contact.html — Contact (info cards, request form, map)
-- test-mock.html — Test page with home-v2's nav and banner (not indexed)
-- home-v2.html — Alternative home page (self-contained: its CSS and JS are inline; uses the shared js/vendor/ libraries)
+- test-mock.html — Test page with the old home-v2 nav and banner (not indexed)
 - css/style.css — all styles (colours & fonts at the top in :root; headings Montserrat, text Poppins)
 - css/booking.css + js/booking.js — floating "Book appointment" button and pop-up form on every page
 - js/main.js — all animations (driven by data-attributes, see comment at top)
