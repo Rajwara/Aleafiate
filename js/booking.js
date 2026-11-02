@@ -11,6 +11,7 @@
 (() => {
   const BOOKING_EMAIL = 'admin@aleafiate.com.au';
   const BOOKING_ENDPOINT = ''; // e.g. a Formspree URL — then requests are POSTed there
+  const PRIVACY_URL = document.body.dataset.privacyUrl || 'privacy-policy.html'; // a page can link the consent box elsewhere: <body data-privacy-url="…">
 
   const ARROW = '<svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12L12 4M5 4h7v7"/></svg>';
   const CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg>';
@@ -49,7 +50,7 @@
           </div>
           ${select('practitioner', 'Practitioner', ['No preference', 'Dr Frank Guerrera', 'Jeremy Chou (Nurse Practitioner)'])}
           <div class="field"><textarea id="bk-message" name="message" placeholder=" " rows="2"></textarea><label for="bk-message">Anything we should know?</label><span class="field__bar"></span></div>
-          <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree to be contacted and have read the <a href="privacy-policy.html">Privacy Policy</a>. *</span></label>
+          <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree to be contacted and have read the <a href="${PRIVACY_URL}"${PRIVACY_URL.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>. *</span></label>
           <button type="submit" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Request appointment</span>${ARROW}</button>
           <p class="bk__alt">Prefer to talk? Call <a href="tel:+61734733396">07 3473 3396</a> · Mon – Fri, 9am – 5pm</p>
         </form>
