@@ -448,6 +448,11 @@ p{margin:0}
 .wa__slide{position:absolute;inset:0;visibility:hidden}
 .wa__slide.is-active{visibility:visible}
 .wa__slide img{width:100%;height:100%;object-fit:cover;display:block}
+/* placeholder until a slide's photo is uploaded (img src cleared when the file is missing) */
+.wa__slide[data-label]{background:linear-gradient(135deg,var(--stone),var(--sand) 55%,#B9DED7)}
+.wa__slide[data-label]::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;padding:20px;text-align:center;font:500 12px/1.4 var(--body);letter-spacing:.14em;text-transform:uppercase;color:rgba(19,19,46,.45);pointer-events:none}
+.wa__slide.has-img::after{display:none}
+.wa__slide img[src=""]{opacity:0}
 .wa__counter{position:absolute;left:20px;bottom:18px;z-index:3;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;color:var(--muted)}
 .wa__counter b{color:var(--ink);font-weight:600}
 .wa__card{position:relative;z-index:2;margin-left:-72px;padding:clamp(26px,2.8vw,40px);border-radius:24px;background:#dcefeb;box-shadow:0 40px 80px -50px rgba(13,13,48,.45)}
@@ -942,7 +947,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
       <h2 data-split>Choose Aleafiate, leaders in <em>alternative health.</em></h2>
     </div>
     <div class="wa__feature">
-      <div class="wa__stage" data-wa-stage><div class="wa__slide is-active"><img src="images/home/why-practitioner.webp" alt="Practitioner explaining a plan to a patient" loading="lazy"></div><div class="wa__slide"><img src="images/about/approach-3-plan.webp" alt="Practitioner handing a written plan to a patient" loading="lazy"></div><div class="wa__slide"><img src="images/home/clinic-consult-room.webp" alt="Private consultation room at the Aleafiate Logan clinic" loading="lazy"></div><div class="wa__slide"><img src="images/home/why-telehealth.webp" alt="Patient on a telehealth consultation at home" loading="lazy"></div>
+      <div class="wa__stage" data-wa-stage><div class="wa__slide is-active" data-label="01 · Qualified practitioners — image coming soon"><img src="images/home-v2/why-1-qualified-practitioners.webp" alt="Practitioner explaining a plan to a patient" loading="lazy"></div><div class="wa__slide" data-label="02 · Prompt prescriptions — image coming soon"><img src="images/home-v2/why-2-prescriptions.webp" alt="Practitioner handing a written plan to a patient" loading="lazy"></div><div class="wa__slide" data-label="03 · Logan clinic — image coming soon"><img src="images/home-v2/why-3-logan-clinic.webp" alt="Private consultation room at the Aleafiate Logan clinic" loading="lazy"></div><div class="wa__slide" data-label="04 · Telehealth & face-to-face — image coming soon"><img src="images/home-v2/why-4-telehealth.webp" alt="Patient on a telehealth consultation at home" loading="lazy"></div>
         <span class="wa__counter" aria-hidden="true"><b data-wa-count>01</b> / 04</span>
       </div>
       <div class="wa__card" data-wa-card>
@@ -1160,6 +1165,13 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
   /* Image placeholders: hide label once a real image loads */
+  // "Why Aleafiate" slides: drop the label once the photo loads; keep the placeholder if the file is missing
+  $$('.wa__slide img').forEach(img => {
+    const ok = () => img.getAttribute('src') && img.naturalWidth && img.parentNode.classList.add('has-img');
+    img.addEventListener('error', () => img.setAttribute('src', ''));
+    if (img.complete && img.getAttribute('src') && !img.naturalWidth) img.setAttribute('src', '');
+    img.complete ? ok() : img.addEventListener('load', ok);
+  });
   $$('.media img').forEach(img => {
     const mark = () => img.getAttribute('src') && img.naturalWidth && img.closest('.media').classList.add('has-img');
     const clear = () => img.getAttribute('src') && img.setAttribute('src', ''); // missing file → keep the placeholder
