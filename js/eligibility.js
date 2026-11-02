@@ -15,7 +15,7 @@
   // hidden inputs, and the field[n] name of each custom field (consent shares the booking form's field 12).
   const ACTIVECAMPAIGN = {
     url: 'https://aleafiate.activehosted.com/proc.php', id: '17',
-    hidden: { u: '17', f: '17', s: '', c: '0', m: '0', act: 'sub', v: '2', or: '014a609e-3e39-49ce-b61d-2efc3510ce0b' },
+    hidden: { u: '17', f: '17', s: '', c: '0', m: '0', act: 'sub', v: '2', or: 'ae7c8525-7fed-483c-a37a-917cca5cec07' }, // 'or' changes whenever the form is edited in ActiveCampaign
     fields: { name: 'fullname', email: 'email', phone: 'phone', existing: 'field[13]', condition: 'field[14]',
               treated: 'field[15]', pregnant: 'field[16]', psychosis: 'field[17]', result: 'field[18]' },
     consent: { name: 'field[12][]', value: 'I agree to be contacted and have read the Privacy Policy' }
