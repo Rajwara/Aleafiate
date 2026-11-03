@@ -81,6 +81,8 @@
 :is(.bk,.bk-inline) .field--date input{min-height:52px;cursor:pointer;color:var(--ink,#13132e)}
 :is(.bk,.bk-inline) .field--date input::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.6}
 :is(.bk,.bk-inline) .field.is-error input[type=date]{border-bottom-color:#a2482f}
+/* a page's own layout (e.g. the homepage two-column grid) must never keep a hidden form or message on screen */
+.bk__form[hidden],.bk__done[hidden]{display:none!important}
 /* inline copy (e.g. the homepage's closing section): no pop-up entrance, so the fields show straight away */
 .bk-inline .bk__form>*{opacity:1;transform:none}
 

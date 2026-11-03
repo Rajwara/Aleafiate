@@ -229,8 +229,13 @@
         $('[data-bk-note]', done).textContent = 'Your email app should now open with your request filled in. Just press send.';
       }
       captcha.reset(cap); // a token works once
+      // sent: empty every field, then swap the form for the thank-you message
+      form.reset();
+      $$('.is-error', form).forEach(x => x.classList.remove('is-error'));
+      $$('select', form).forEach(x => x.dispatchEvent(new Event('change'))); // custom dropdowns show the reset value
       form.hidden = true; done.hidden = false; box.classList.add('is-done');
       if (scroller) scroller.scrollTop = 0;
+      else if (box.getBoundingClientRect().top < 80) { const top = box.closest('.cta__card') || box; window.__lenis ? window.__lenis.scrollTo(top, { offset: -120, duration: .9 }) : top.scrollIntoView({ behavior: 'smooth' }); }
     });
   };
   setup(form, done, bk, panel);
