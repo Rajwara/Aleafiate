@@ -8,8 +8,8 @@ Images used by the homepage `index.html` (the folder name comes from the old hom
 | Pricing — Nurse call | `pricing-nurse-call.webp` |
 | Pricing — Initial consultation | `pricing-initial-consultation.webp` |
 | Pricing — Follow-up consultations | `pricing-follow-up.webp` |
-| Get started — Take our eligibility check | `start-eligibility-check.webp` |
-| Get started — Consultation | `start-consultation.webp` |
+| Get started — Take our eligibility check | `start-eligibility-check.webp`, **waiting for upload** |
+| Get started — Consultation | `start-consultation.webp`, **waiting for upload** |
 | Get started — Receive your prescriptions | `start-receive-prescriptions.webp` |
 | How we can help — Pain & physical discomfort | `help-pain.webp` |
 | How we can help — Sleep & rest | `help-sleep.webp` |
