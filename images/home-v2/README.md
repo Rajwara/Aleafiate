@@ -12,8 +12,8 @@ Images used by the homepage `index.html` (the folder name comes from the old hom
 | Get started — Consultation | `start-consultation.webp` |
 | Get started — Receive your prescriptions | `start-receive-prescriptions.webp` |
 | How we can help — Pain & physical discomfort | `help-pain.webp` |
-| How we can help — Sleep & rest | `help-sleep.webp`, **waiting for upload** |
-| How we can help — Mental & emotional wellbeing | `help-wellbeing.webp`, **waiting for upload** |
+| How we can help — Sleep & rest | `help-sleep.webp` |
+| How we can help — Mental & emotional wellbeing | `help-wellbeing.webp` |
 | How we can help — Women's health | `help-womens-health.webp` |
 | Why Aleafiate — slide 1 (qualified practitioners) | `why-1-qualified-practitioners.webp` |
 | Why Aleafiate — slide 2 (prompt prescriptions) | `why-2-prescriptions.webp` |
