@@ -19,7 +19,10 @@
     id: '16',
     hidden: { u: '16', f: '16', s: '', c: '0', m: '0', act: 'sub', v: '2', or: '434a74a4-1a20-44ca-b8eb-d25408133419' }, // 'or' changes whenever the form is edited in ActiveCampaign
     fields: { name: 'fullname', phone: 'phone', email: 'email', enquiry: 'field[7]', appointment: 'field[8]', time: 'field[9]', practitioner: 'field[10]', message: 'field[11]' },
-    consent: { name: 'field[12][]', value: 'I agree to be contacted and have read the Privacy Policy' }
+    consent: { name: 'field[12][]', value: 'I agree to be contacted and have read the Privacy Policy' },
+    // the form has no date field yet: while this is null the preferred date is added to "Anything we should know?"
+    // (once a date field is added to the ActiveCampaign form, put its name here, e.g. 'field[19]')
+    dateField: null
   };
   const PRIVACY_URL = document.body.dataset.privacyUrl || 'privacy-policy.html'; // a page can link the consent box elsewhere: <body data-privacy-url="…">
 
@@ -44,7 +47,10 @@
             ${select(p, 'appointment', 'Appointment type', ['Not sure yet', 'Telehealth', 'In clinic — Logan Central'])}
             ${select(p, 'time', 'Best time to call', ['Any time', 'Morning (9am – 12pm)', 'Afternoon (12pm – 5pm)'])}
           </div>
-          ${select(p, 'practitioner', 'Practitioner', ['No preference', 'Dr Frank Guerrera', 'Jeremy Chou (Nurse Practitioner)'])}
+          <div class="bk__row">
+            ${select(p, 'practitioner', 'Practitioner', ['No preference', 'Dr Frank Guerrera', 'Jeremy Chou (Nurse Practitioner)'])}
+            <div class="field field--static field--date"><input id="${p}-date" name="date" type="date" data-date><label for="${p}-date">Preferred date</label><span class="field__bar"></span><span class="field__err">Please choose a weekday from today on</span></div>
+          </div>
           <div class="field"><textarea id="${p}-message" name="message" placeholder=" " rows="2"></textarea><label for="${p}-message">Anything we should know?</label><span class="field__bar"></span></div>
           <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree to be contacted and have read the <a href="${PRIVACY_URL}"${PRIVACY_URL.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>. *</span></label>
           <div class="form-error" data-form-error role="alert" hidden></div>
@@ -181,14 +187,19 @@
 
   /* ---------- validation + submit (the pop-up and every inline copy) ---------- */
   const rules = { email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), tel: v => v.replace(/\D/g, '').length >= 7 };
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const dateOk = v => { if (!v) return true; const day = new Date(v + 'T00:00:00').getDay(); return v >= iso(new Date()) && day > 0 && day < 6; }; // optional; weekdays from today
+  const niceDate = v => new Date(v + 'T00:00:00').toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
   const check = el => {
+    if (el.type === 'date') { const ok = dateOk(el.value); el.closest('.field').classList.toggle('is-error', !ok); return ok; }
     const v = el.value.trim(), ok = el.type === 'checkbox' ? el.checked : !!v && (!rules[el.type] || rules[el.type](v));
     (el.closest('.field') || el.closest('.check')).classList.toggle('is-error', !ok);
     return ok;
   };
   const setup = (form, done, box, scroller) => {
-    const req = $$('[required]', form), cap = $('[data-captcha]', form);
+    const req = [...$$('[required]', form), ...$$('[data-date]', form)], cap = $('[data-captcha]', form);
     captcha.mount(cap);
+    $$('[data-date]', form).forEach(d => { d.min = iso(new Date()); d.addEventListener('change', () => check(d)); });
     req.forEach(el => el.addEventListener(el.type === 'checkbox' ? 'change' : 'blur', () => check(el)));
     req.forEach(el => el.addEventListener('input', () => el.closest('.is-error') && check(el)));
     form.addEventListener('submit', async e => {
@@ -292,6 +303,12 @@
       if (ours === 'phone' && v) v = auPhone(v);
       pairs.push([theirs, v]);
     });
+    const date = (data.get('date') || '').toString();
+    if (date && ac.dateField) pairs.push([ac.dateField, date]); // ActiveCampaign date fields take YYYY-MM-DD
+    else if (date) {
+      const msg = pairs.find(([k]) => k === ac.fields.message), line = `Preferred date: ${niceDate(date)}`;
+      msg[1] = msg[1] ? `${line}\n${msg[1]}` : line;
+    }
     pairs.push([ac.consent.name, '~|']); // ActiveCampaign's checkbox fields always send this placeholder first
     if (data.get('consent')) pairs.push([ac.consent.name, ac.consent.value]);
     if (token) pairs.push(['g-recaptcha-response', token]);

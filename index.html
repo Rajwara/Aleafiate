@@ -220,6 +220,7 @@ p{margin:0}
 .cta__card--form .bk__form>*{grid-column:1/-1}
 .cta__card--form .bk__form .field{grid-column:auto;margin-bottom:16px}
 .cta__card--form .bk__form .field textarea{min-height:46px;height:46px;padding-top:22px}
+.cta__card--form .bk__form .field:has(textarea){grid-column:1/-1} /* message gets its own row */
 .cta__card--form .bk-inline .check{margin:2px 0 14px}
 .cta__card--form .bk-inline .captcha{margin:0 0 14px}
 @media (max-width:1100px){.cta__inner--form{grid-template-columns:minmax(0,1fr)}.cta__left{gap:28px}.cta__card--form{justify-self:stretch;width:100%}.cta__contact{max-width:none}}

@@ -77,6 +77,10 @@
 .captcha{margin:4px 0 18px;min-height:78px}
 .captcha__err{margin:6px 0 0;font-size:12px;color:#a2482f}
 .captcha__err[hidden]{display:none}
+/* preferred date (native picker), styled like the other fields */
+:is(.bk,.bk-inline) .field--date input{min-height:52px;cursor:pointer;color:var(--ink,#13132e)}
+:is(.bk,.bk-inline) .field--date input::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.6}
+:is(.bk,.bk-inline) .field.is-error input[type=date]{border-bottom-color:#a2482f}
 /* inline copy (e.g. the homepage's closing section): no pop-up entrance, so the fields show straight away */
 .bk-inline .bk__form>*{opacity:1;transform:none}
 
