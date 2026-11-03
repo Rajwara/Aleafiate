@@ -16,9 +16,9 @@ Images used by the homepage `index.html` (the folder name comes from the old hom
 | How we can help — Mental & emotional wellbeing | `help-wellbeing.webp` |
 | How we can help — Women's health | `help-womens-health.webp` |
 | Why Aleafiate — slide 1 (qualified practitioners) | `why-1-qualified-practitioners.webp` |
-| Why Aleafiate — slide 2 (prompt prescriptions) | `why-2-prescriptions.webp` |
+| Why Aleafiate — slide 2 (prompt prescriptions) | `why-2-prescriptions.webp`, **waiting for upload** |
 | Why Aleafiate — slide 3 (Logan clinic) | `why-3-logan-clinic.webp` |
-| Why Aleafiate — slide 4 (telehealth & face-to-face) | `why-4-telehealth.webp` |
+| Why Aleafiate — slide 4 (telehealth & face-to-face) | `why-4-telehealth.webp`, **waiting for upload** |
 | Blog — first telehealth consultation | `blog-first-telehealth-consultation.webp` |
 | Blog — initial consultation checklist | `blog-initial-consultation-checklist.webp` |
 | Blog — follow-up consultations | `blog-follow-up-consultations.webp` |
