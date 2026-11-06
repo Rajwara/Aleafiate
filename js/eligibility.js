@@ -198,6 +198,11 @@
         return;
       }
     }
+    if (ACTIVECAMPAIGN && window.aleafiateAC) { // sent: show the thank-you page for this result
+      try { sessionStorage.setItem('aleafiateThanks', JSON.stringify({ form: 'eligibility', result: res, name: v.name, email: v.email, phone: v.phone })); } catch (e) {}
+      location.href = `thank-you.html?form=eligibility&result=${res}`;
+      return;
+    }
     showResult(res, v);
   };
 

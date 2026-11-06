@@ -233,6 +233,11 @@
       form.reset();
       $$('.is-error', form).forEach(x => x.classList.remove('is-error'));
       $$('select', form).forEach(x => x.dispatchEvent(new Event('change'))); // custom dropdowns show the reset value
+      if (ACTIVECAMPAIGN) { // sent: show the thank-you page (first name kept in this tab only, not in the address)
+        try { sessionStorage.setItem('aleafiateThanks', JSON.stringify({ form: 'booking', name: (data.get('name') || '').toString() })); } catch (e) {}
+        location.href = 'thank-you.html?form=booking';
+        return;
+      }
       form.hidden = true; done.hidden = false; box.classList.add('is-done');
       if (scroller) scroller.scrollTop = 0;
       else if (box.getBoundingClientRect().top < 80) { const top = box.closest('.cta__card') || box; window.__lenis ? window.__lenis.scrollTo(top, { offset: -120, duration: .9 }) : top.scrollIntoView({ behavior: 'smooth' }); }

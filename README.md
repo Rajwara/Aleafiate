@@ -15,6 +15,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - faq.html — FAQ (search, section nav, accordions)
 - contact.html — Contact (info cards, request form, map)
 - check-eligibility.html + js/eligibility.js — "Check eligibility" quiz (homepage header/footer; questions and ActiveCampaign settings at the top of js/eligibility.js)
+- thank-you.html + js/thank-you.js — page shown after a booking or eligibility-check submission (?form=booking | eligibility&result=…)
 - test-mock.html — Test page with the old home-v2 nav and banner (not indexed)
 - css/style.css — all styles (colours & fonts at the top in :root; headings Montserrat, text Poppins)
 - css/footer.css + js/footer.js — the site footer (same on every page) and its newsletter sign-up
