@@ -10,7 +10,6 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - terms-and-conditions.html — Terms & Conditions
 - blog.html + blog-*.html — Blog listing and three articles (styles in css/blog.css, shared with the Home v2 blog section)
 - privacy-policy.html — Privacy Policy
-- travel-policy.html — Travel Policy (legal page template)
 - practitioners.html — Meet Our Prescribing Practitioners (filter + profile drawer)
 - faq.html — FAQ (search, section nav, accordions)
 - contact.html — Contact (info cards, request form, map)
