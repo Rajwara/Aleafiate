@@ -25,6 +25,7 @@
     try {
       await window.aleafiateAC.submit(NEWSLETTER_AC, token ? [['email', v], ['g-recaptcha-response', token]] : [['email', v]]);
       say('Thanks for subscribing! Look out for our next update.', true);
+      (window.dataLayer = window.dataLayer || []).push({ event: 'form_submit_success', form_name: 'newsletter', form_result: '' }); // Google Tag Manager
       news.reset();
     } catch (err) { say(`Couldn’t subscribe: ${err && err.message ? err.message : 'something went wrong.'} Please try again.`, false); }
     window.aleafiateCaptcha && window.aleafiateCaptcha.reset(newsBox);

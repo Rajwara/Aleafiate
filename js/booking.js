@@ -303,6 +303,8 @@
     box.scrollIntoView && box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   };
   const hideError = box => { if (box) { box.hidden = true; box.innerHTML = ''; } };
+  // Google Tag Manager: taps on the phone number (any tel: link on the page)
+  document.addEventListener('click', e => { const a = e.target.closest && e.target.closest('a[href^="tel:"]'); if (a) (window.dataLayer = window.dataLayer || []).push({ event: 'phone_click', link_location: location.pathname }); });
   // other forms on the site (e.g. the eligibility quiz) send through the same code
   window.aleafiateAC = { submit: acSubmit, phone: auPhone, showError, hideError };
 

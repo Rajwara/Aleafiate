@@ -39,6 +39,14 @@
     set('[data-ty-step1]', 'Our team reviews your appointment request.');
   }
 
+  // Google Tag Manager: the conversion event (form name and result only, never personal details)
+  // only once per real submission: not on a reload, or when the page is opened directly
+  window.dataLayer = window.dataLayer || [];
+  if (saved.form && !saved.counted) {
+    window.dataLayer.push({ event: 'form_submit_success', form_name: form, form_result: form === 'eligibility' ? (result || '') : '' });
+    try { sessionStorage.setItem('aleafiateThanks', JSON.stringify({ ...saved, counted: true })); } catch (e) {}
+  }
+
   // after the quiz: offer the booking form, filled in with what they already entered
   if (form === 'eligibility') {
     const book = $('[data-ty-book]'), home = $('[data-ty-home]');
