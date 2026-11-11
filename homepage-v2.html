@@ -1111,6 +1111,12 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 .sb:has(.sb__photo){background:none}
 .sb:has(.sb__photo) .sb__cloud{opacity:.45}
 .sb__inner{min-height:0;padding-top:clamp(90px,10vw,140px);padding-bottom:clamp(90px,10vw,140px)}
+
+/* trust strip (from test-mock) */
+.kc__trust{display:flex;flex-wrap:wrap;justify-content:center;gap:12px clamp(28px,5vw,72px);list-style:none;margin:0;padding:14px var(--gutter);background:#e3f4f1}
+.kc__trust li{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--navy)}
+.kc__trust svg{width:18px;height:18px;color:var(--teal-deep)}
+.kc__trust{margin:12px 0 0}
 </style>
 </head>
 <body>
@@ -1156,6 +1162,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<!-- trust strip (from test-mock) -->
+<ul class="kc__trust" aria-label="Why patients trust Aleafiate"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/></svg>AHPRA-registered practitioners</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/></svg>Rated 4.7 on Google</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/></svg>Clinic at Logan Central</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/></svg>Telehealth Australia-wide</li></ul>
 
 <!-- ================= 2. RIGHT FIT (moved up, straight after the banner) ================= -->
 <section class="rf" aria-labelledby="rf-title">
