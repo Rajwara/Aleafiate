@@ -830,6 +830,61 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 @media (max-width:860px){.we__row{grid-template-columns:1fr 1fr}.we__photo{grid-column:1/-1;order:-1;border-radius:200px}}
 @media (max-width:520px){.we__row{grid-template-columns:1fr}.we__stat,.we__quote{border-radius:28px}.we__stat-card{max-width:none}}
 </style>
+<style>
+/* What do you need help with (from homepage-v2): shared buttons, pill, heading, reveal */
+/* Buttons: same family as the live page (Poppins 500 15px, pill, 52px), with a colour fill that rises and a rolling label */
+.v2-btn{--bg:var(--navy);--fg:#fff;--fill:var(--teal-deep);--ffg:#fff;--ibg:#fff;--ifg:var(--navy);--line:transparent;position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:14px;height:52px;padding:0 6px 0 24px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--fg);font:500 15px/1 var(--body);text-decoration:none;white-space:nowrap;cursor:pointer;transition:color .5s,border-color .5s}
+.v2-btn::before{content:"";position:absolute;z-index:-1;left:50%;top:100%;width:150%;aspect-ratio:1;border-radius:50%;background:var(--fill);transform:translate(-50%,0);transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.v2-btn:hover::before,.v2-btn:focus-visible::before{transform:translate(-50%,-70%)}
+.v2-btn:hover,.v2-btn:focus-visible{color:var(--ffg);border-color:var(--fill)}
+.v2-btn__t{display:block;height:1.25em;overflow:hidden;line-height:1.25em}
+.v2-btn__t span{display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.v2-btn__t span::after{content:attr(data-t);display:block}
+.v2-btn:hover .v2-btn__t span,.v2-btn:focus-visible .v2-btn__t span{transform:translateY(-50%)}
+.v2-btn i{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--ibg);color:var(--ifg);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.v2-btn i svg{width:15px;height:15px}
+.v2-btn:hover i,.v2-btn:focus-visible i{transform:rotate(-45deg)}
+.v2-btn--plain{padding:0 26px}
+.v2-btn--light{--bg:#fff;--fg:var(--navy);--fill:var(--mint);--ffg:var(--navy);--ibg:var(--teal-deep);--ifg:#fff}
+.v2-btn--teal{--bg:var(--teal-deep);--fg:#fff;--fill:#fff;--ffg:var(--navy);--ibg:#fff;--ifg:var(--teal-deep)}
+.v2-btn--ghost{--bg:transparent;--fg:var(--navy);--line:rgba(17,17,69,.3);--fill:var(--navy);--ffg:#fff;--ibg:var(--navy);--ifg:#fff}
+.v2-btn--glass{--bg:rgba(255,255,255,.08);--fg:#fff;--line:rgba(255,255,255,.55);--fill:#fff;--ffg:var(--navy);--ibg:#fff;--ifg:var(--navy);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.v2-btn:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.v2-btn::before,.v2-btn__t span,.v2-btn i{transition:none}}
+.v2-pill{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 8px;border:1px solid rgba(17,17,69,.12);border-radius:99px;font-size:13px;color:var(--ink)}
+.v2-pill::before{content:"";width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,var(--teal-deep) 0 3.5px,rgba(48,153,136,.22) 4px)}
+.v2-h2{margin:18px 0 0;font-family:var(--heading);font-weight:500;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.03em;color:var(--navy)}
+.v2-h2 em{font-style:normal;color:var(--teal-deep)}
+.v2-lead{margin:18px 0 0;max-width:520px;font-size:16px;line-height:1.7;color:var(--muted)}
+[data-v2]{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+[data-v2].is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){[data-v2]{opacity:1;transform:none;transition:none}}
+
+/* help with: four tall photo cards that open up on hover */
+.hp{padding:clamp(80px,9vw,120px) 0;background:var(--bone)}
+.hp__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 60px;margin-bottom:clamp(36px,4vw,56px)}
+.hp__head .v2-lead{max-width:440px;margin:0}
+.hp__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.hp-card{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;min-height:clamp(420px,36vw,520px);padding:24px;border-radius:24px;color:#fff;background:var(--navy)}
+.hp-card img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.hp-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(17,17,69,0) 30%,rgba(17,17,69,.88) 85%);transition:background .6s}
+.hp-card:hover img,.hp-card:focus-within img{transform:scale(1.06)}
+.hp-card:hover::after,.hp-card:focus-within::after{background:linear-gradient(180deg,rgba(17,17,69,.15) 0%,rgba(17,17,69,.92) 60%)}
+.hp-card__num{position:absolute;left:24px;top:22px;padding:6px 12px;border-radius:99px;background:rgba(17,17,69,.4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:12px;font-weight:500}
+.hp-card h3{font-family:var(--heading);font-weight:500;font-size:clamp(20px,1.7vw,25px);line-height:1.2;letter-spacing:-.015em}
+.hp-card__more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.16,1,.3,1)}
+.hp-card__more>div{overflow:hidden}
+.hp-card:hover .hp-card__more,.hp-card:focus-within .hp-card__more{grid-template-rows:1fr}
+.hp-card p{margin:12px 0 0;font-size:14px;line-height:1.55;color:rgba(255,255,255,.85)}
+.hp-card__tag{display:inline-block;margin-top:12px;padding:5px 11px;border-radius:99px;background:rgba(138,220,206,.22);color:var(--mint);font-size:12.5px}
+.hp-card .v2-btn{margin-top:18px;height:46px}
+.hp--how{background:#fff}
+.hp-card .v2-btn i{width:34px;height:34px}
+@media (hover:none){.hp-card__more{grid-template-rows:1fr}}
+@media (max-width:1100px){.hp__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hp-card{min-height:440px}}
+@media (max-width:560px){.hp__grid{grid-template-columns:1fr}.hp-card{min-height:400px}}
+
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1188,6 +1243,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<!-- ================= WHAT DO YOU NEED HELP WITH (moved from homepage-v2) ================= -->
+<section class="hp" aria-labelledby="hp-title">
+  <div class="container">
+    <div class="hp__head" data-v2>
+      <div><span class="v2-pill">How we can help</span><h2 class="v2-h2" id="hp-title">What do you need <em>help with?</em></h2></div>
+      <p class="v2-lead">Our practitioners support adults with a range of ongoing health concerns. Hover a card to learn more, or start with a free nurse call.</p>
+    </div>
+    <div class="hp__grid" data-v2>
+      <article class="hp-card" tabindex="0">
+        <img src="images/home/care-sleep.webp" alt="A man sleeping peacefully" loading="lazy">
+        <span class="hp-card__num">01</span>
+        <h3>Sleep &amp; Rest</h3>
+        <div class="hp-card__more"><div>
+          <p>Poor sleep can affect your energy, mood, and overall wellbeing. Our practitioners can help you explore options for improving your sleep.</p>
+          <span class="hp-card__tag">Including: Waking unrefreshed</span><br>
+          <button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        </div></div>
+      </article>
+      <article class="hp-card" tabindex="0">
+        <img src="images/home/care-wellbeing.webp" alt="A woman relaxing at home with a warm drink" loading="lazy">
+        <span class="hp-card__num">02</span>
+        <h3>Mental &amp; Emotional Wellbeing</h3>
+        <div class="hp-card__more"><div>
+          <p>Mental wellbeing is an important part of your overall health. Our practitioners are here to support you and discuss your concerns.</p>
+          <span class="hp-card__tag">Including: Loss of interest in usual activities</span><br>
+          <button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        </div></div>
+      </article>
+      <article class="hp-card" tabindex="0">
+        <img src="images/home/care-womens-health.webp" alt="A woman resting comfortably on her sofa" loading="lazy">
+        <span class="hp-card__num">03</span>
+        <h3>Women’s Health</h3>
+        <div class="hp-card__more"><div>
+          <p>Women’s health needs can change throughout different stages of life. Our practitioners can help you manage your symptoms.</p>
+          <span class="hp-card__tag">Including: Changes in appetite</span><br>
+          <button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        </div></div>
+      </article>
+      <article class="hp-card" tabindex="0">
+        <img src="images/home/care-pain.webp" alt="A woman stretching her shoulder at home" loading="lazy">
+        <span class="hp-card__num">04</span>
+        <h3>Pain &amp; Physical Discomfort</h3>
+        <div class="hp-card__more"><div>
+          <p>Managing pain can make life challenging. Speak to one of our practitioners about your symptoms.</p>
+          <span class="hp-card__tag">Including: Headaches</span><br>
+          <button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        </div></div>
+      </article>
+    </div>
+  </div>
+</section>
+<script>
+(() => { const els = document.querySelectorAll('.hp [data-v2]');
+  if (!('IntersectionObserver' in window)) return els.forEach(e => e.classList.add('is-in'));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: .12 }); els.forEach(e => io.observe(e)); })();
+</script>
 
 <!-- ================= LIBRARIES ================= -->
 <script src="js/booking.js"></script>
