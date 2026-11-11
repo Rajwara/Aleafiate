@@ -873,6 +873,58 @@ a.tm-card-inner:hover .tm-more svg{transform:translateX(4px)}
 .st-card__img{aspect-ratio:16/10}
 .st__foot{display:flex;justify-content:center;margin-top:8px}
 .st__foot .lv-btn{align-self:center}
+
+/* FAQ (from homepage-v2): shared buttons, pill, heading and reveal */
+/* Buttons: same family as the live page (Poppins 500 15px, pill, 52px), with a colour fill that rises and a rolling label */
+.v2-btn{--bg:var(--navy);--fg:#fff;--fill:var(--teal-deep);--ffg:#fff;--ibg:#fff;--ifg:var(--navy);--line:transparent;position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:14px;height:52px;padding:0 6px 0 24px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--fg);font:500 15px/1 var(--body);text-decoration:none;white-space:nowrap;cursor:pointer;transition:color .5s,border-color .5s}
+.v2-btn::before{content:"";position:absolute;z-index:-1;left:50%;top:100%;width:150%;aspect-ratio:1;border-radius:50%;background:var(--fill);transform:translate(-50%,0);transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.v2-btn:hover::before,.v2-btn:focus-visible::before{transform:translate(-50%,-70%)}
+.v2-btn:hover,.v2-btn:focus-visible{color:var(--ffg);border-color:var(--fill)}
+.v2-btn__t{display:block;height:1.25em;overflow:hidden;line-height:1.25em}
+.v2-btn__t span{display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.v2-btn__t span::after{content:attr(data-t);display:block}
+.v2-btn:hover .v2-btn__t span,.v2-btn:focus-visible .v2-btn__t span{transform:translateY(-50%)}
+.v2-btn i{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--ibg);color:var(--ifg);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.v2-btn i svg{width:15px;height:15px}
+.v2-btn:hover i,.v2-btn:focus-visible i{transform:rotate(-45deg)}
+.v2-btn--plain{padding:0 26px}
+.v2-btn--light{--bg:#fff;--fg:var(--navy);--fill:var(--mint);--ffg:var(--navy);--ibg:var(--teal-deep);--ifg:#fff}
+.v2-btn--teal{--bg:var(--teal-deep);--fg:#fff;--fill:#fff;--ffg:var(--navy);--ibg:#fff;--ifg:var(--teal-deep)}
+.v2-btn--ghost{--bg:transparent;--fg:var(--navy);--line:rgba(17,17,69,.3);--fill:var(--navy);--ffg:#fff;--ibg:var(--navy);--ifg:#fff}
+.v2-btn--glass{--bg:rgba(255,255,255,.08);--fg:#fff;--line:rgba(255,255,255,.55);--fill:#fff;--ffg:var(--navy);--ibg:#fff;--ifg:var(--navy);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.v2-btn:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.v2-btn::before,.v2-btn__t span,.v2-btn i{transition:none}}
+.v2-pill{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 8px;border:1px solid rgba(17,17,69,.12);border-radius:99px;font-size:13px;color:var(--ink)}
+.v2-pill::before{content:"";width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,var(--teal-deep) 0 3.5px,rgba(48,153,136,.22) 4px)}
+.v2-h2{margin:18px 0 0;font-family:var(--heading);font-weight:500;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.03em;color:var(--navy)}
+.v2-h2 em{font-style:normal;color:var(--teal-deep)}
+.v2-lead{margin:18px 0 0;max-width:520px;font-size:16px;line-height:1.7;color:var(--muted)}
+[data-v2]{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+[data-v2].is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){[data-v2]{opacity:1;transform:none;transition:none}}
+
+/* faq */
+.fq{padding:clamp(80px,9vw,120px) 0;background:var(--bone)}
+.fq__grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,5vw,80px);align-items:start}
+.fq__side{position:sticky;top:120px}
+.fq__side .v2-lead{max-width:400px}
+.fq__btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.fq__list{display:grid;gap:10px}
+.fq__item{border-radius:18px;background:#fff;box-shadow:0 16px 36px -32px rgba(17,17,69,.45);transition:box-shadow .4s}
+.fq__item.is-open{box-shadow:0 0 0 1.5px var(--teal-deep),0 20px 40px -30px rgba(17,17,69,.4)}
+.fq__q{display:flex;justify-content:space-between;align-items:center;gap:20px;width:100%;padding:22px 24px;border:0;background:none;text-align:left;font:500 17px/1.4 var(--heading);color:var(--navy);cursor:pointer}
+.fq__icon{position:relative;flex:none;width:34px;height:34px;border-radius:50%;background:#eef4f3;transition:background .4s,transform .5s cubic-bezier(.16,1,.3,1)}
+.fq__icon::before,.fq__icon::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.6px;background:var(--navy);transform:translate(-50%,-50%);transition:background .4s}
+.fq__icon::after{transform:translate(-50%,-50%) rotate(90deg)}
+.fq__item.is-open .fq__icon{background:var(--navy);transform:rotate(45deg)}
+.fq__item.is-open .fq__icon::before,.fq__item.is-open .fq__icon::after{background:#fff}
+.fq__a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1)}
+.fq__item.is-open .fq__a{grid-template-rows:1fr}
+.fq__a>div{overflow:hidden}
+.fq__a p{margin:0;padding:0 24px 22px;font-size:15px;line-height:1.7;color:#4a5068}
+.fq__a a{color:var(--teal-deep);font-weight:500}
+@media (max-width:900px){.fq__grid{grid-template-columns:1fr}.fq__side{position:static}}
+
 </style>
 </head>
 <body>
@@ -1008,7 +1060,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="tm-info">
                   <h3 class="tm-name">Your Next Steps</h3>
                   <p class="tm-text">Following your consultation, your practitioner will discuss the next steps based on your individual healthcare needs and clinical assessment.</p>
-                  <a class="tm-cta" href="#pricing">How it works <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a>
+                  <a class="tm-cta" href="#faqs">How it works <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a>
                 </div>
               </div>
             </div>
@@ -1121,6 +1173,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="st__bar" aria-hidden="true"><span></span></div>
   <div class="st__foot"><button type="button" class="lv-btn" data-book data-book-enquiry="Book a free discovery call"><span class="lv-btn__text">Book a free call</span><span class="lv-btn__text lv-btn__text--abs" aria-hidden="true">Book a free call</span><span class="lv-btn__bg"></span></button></div>
+</section>
+
+<!-- ================= FAQ (from homepage-v2) ================= -->
+<section class="fq" id="faqs" aria-labelledby="fq-title">
+  <div class="container fq__grid">
+    <div class="fq__side" data-v2>
+      <span class="v2-pill">FAQs</span>
+      <h2 class="v2-h2" id="fq-title">Your questions, <em>answered.</em></h2>
+      <p class="v2-lead">Straight answers about getting started, consultations, care options and fees. Can’t find yours? We’re happy to help.</p>
+      <div class="fq__btns"><a class="v2-btn v2-btn--navy" href="contact.html"><span class="v2-btn__t"><span data-t="Contact us">Contact us</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a><button class="v2-btn v2-btn--ghost v2-btn--plain" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span></button></div>
+    </div>
+    <div class="fq__list" data-v2>
+        <div class="fq__item is-open">
+          <button class="fq__q" type="button" aria-expanded="true" aria-controls="fq-a0" id="fq-q0"><span>How do I get started?</span><span class="fq__icon" aria-hidden="true"></span></button>
+          <div class="fq__a" id="fq-a0" role="region" aria-labelledby="fq-q0"><div><p>Start with a free nurse call. Our team will talk through your health needs and explain how everything works. If you’d like to go ahead, you’ll complete an intake form and book an initial consultation with an AHPRA-registered practitioner.</p></div></div>
+        </div>
+        <div class="fq__item">
+          <button class="fq__q" type="button" aria-expanded="false" aria-controls="fq-a1" id="fq-q1"><span>Is the first call really free?</span><span class="fq__icon" aria-hidden="true"></span></button>
+          <div class="fq__a" id="fq-a1" role="region" aria-labelledby="fq-q1"><div><p>Yes. Your initial nurse call is completely free. Our team will discuss your healthcare needs, explain the eligibility process and guide you through the next steps.</p></div></div>
+        </div>
+        <div class="fq__item">
+          <button class="fq__q" type="button" aria-expanded="false" aria-controls="fq-a2" id="fq-q2"><span>Are Aleafiate practitioners qualified?</span><span class="fq__icon" aria-hidden="true"></span></button>
+          <div class="fq__a" id="fq-a2" role="region" aria-labelledby="fq-q2"><div><p>Yes. Our healthcare practitioners are qualified professionals registered with AHPRA. They provide personalised care guided by Australian healthcare standards and individual patient needs.</p></div></div>
+        </div>
+        <div class="fq__item">
+          <button class="fq__q" type="button" aria-expanded="false" aria-controls="fq-a3" id="fq-q3"><span>Do you offer telehealth and face-to-face consultations?</span><span class="fq__icon" aria-hidden="true"></span></button>
+          <div class="fq__a" id="fq-a3" role="region" aria-labelledby="fq-q3"><div><p>Yes. See a practitioner in person at our clinic in Logan Central Plaza, 38/74 Wembley Rd, or from home by telehealth, whichever suits you best.</p></div></div>
+        </div>
+        <div class="fq__item">
+          <button class="fq__q" type="button" aria-expanded="false" aria-controls="fq-a4" id="fq-q4"><span>How much do consultations cost?</span><span class="fq__icon" aria-hidden="true"></span></button>
+          <div class="fq__a" id="fq-a4" role="region" aria-labelledby="fq-q4"><div><p>The nurse call and initial consultation are $0 for new patients. Follow-up consultations cost $65, and Medicare rebates may apply depending on individual circumstances. Any additional costs will be explained clearly.</p></div></div>
+        </div>
+        <div class="fq__item">
+          <button class="fq__q" type="button" aria-expanded="false" aria-controls="fq-a5" id="fq-q5"><span>Do I need follow-up consultations?</span><span class="fq__icon" aria-hidden="true"></span></button>
+          <div class="fq__a" id="fq-a5" role="region" aria-labelledby="fq-q5"><div><p>Follow-up consultations may be recommended based on your individual healthcare needs. They allow your practitioner to review your progress, discuss any concerns and adjust your care plan where appropriate.</p></div></div>
+        </div>
+        <div class="fq__item">
+          <button class="fq__q" type="button" aria-expanded="false" aria-controls="fq-a6" id="fq-q6"><span>How do I reschedule an appointment?</span><span class="fq__icon" aria-hidden="true"></span></button>
+          <div class="fq__a" id="fq-a6" role="region" aria-labelledby="fq-q6"><div><p>Please give us at least 24 hours’ notice so we can offer the time to another patient. Call <a href="tel:+61734733396">07 3473 3396</a> or email <a href="mailto:admin@aleafiate.com.au">admin@aleafiate.com.au</a>.</p></div></div>
+        </div>
+    </div>
+  </div>
 </section>
 </main>
 
@@ -1577,6 +1671,24 @@ window.addEventListener('load', () => {
   addEventListener('pointermove', e => { if (!down) return; const dx = e.clientX - startX; if (Math.abs(dx) > 5) { moved = true; track.classList.add('is-drag'); } track.scrollLeft = startLeft - dx; });
   addEventListener('pointerup', () => { if (!down) return; down = false; track.classList.remove('is-drag'); });
   track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+})();
+</script>
+
+<script>
+/* FAQ (from homepage-v2): reveal on scroll + accordion */
+(() => {
+  const els = document.querySelectorAll('[data-v2]');
+  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: .12 }); els.forEach(e => io.observe(e)); }
+  else els.forEach(e => e.classList.add('is-in'));
+  document.querySelectorAll('.fq__item').forEach(item => {
+    const q = item.querySelector('.fq__q');
+    q.addEventListener('click', () => {
+      const open = !item.classList.contains('is-open');
+      document.querySelectorAll('.fq__item.is-open').forEach(o => { if (o !== item) { o.classList.remove('is-open'); o.querySelector('.fq__q').setAttribute('aria-expanded', 'false'); } });
+      item.classList.toggle('is-open', open); q.setAttribute('aria-expanded', open);
+      window.ScrollTrigger && setTimeout(() => ScrollTrigger.refresh(), 550);
+    });
+  });
 })();
 </script>
 </body>
