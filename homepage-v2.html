@@ -1240,6 +1240,52 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 .m2b{padding-top:clamp(20px,3vw,40px)}
 .m2b [data-m2]{opacity:1;transform:none}
 @media (min-width:861px){.m2b .container{width:min(100% - 32px,1392px);max-width:none;padding-inline:0}}
+
+/* Trust strip + blog (from mock-test-3) */
+.m3s{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px clamp(24px,4vw,56px);margin:12px;padding:26px 20px;border-radius:20px;background:#fff}
+.m3s small{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.m3s span{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#7d8597}
+.m3s svg{width:18px;height:18px;color:var(--teal)}
+.m3r{padding:12px 12px 70px}
+.m3r__panel{padding:clamp(28px,4vw,56px)}
+.m3r__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.m3r__nav{display:flex;gap:6px}
+.m3r__nav button{display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:var(--navy);cursor:pointer;transition:background .3s}
+.m3r__nav button:hover{background:var(--sand)}
+.m3r__nav button:disabled{opacity:.3;cursor:default;background:transparent}
+.m3r__nav svg{width:18px;height:18px}
+.m3r__grid{display:grid;grid-template-columns:2.05fr 1fr;gap:clamp(20px,3vw,40px);align-items:start}
+.m3r__track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.m3r__track::-webkit-scrollbar{display:none}
+.m3-post{flex:none;width:calc((100% - 24px)/3);scroll-snap-align:start;color:var(--navy);text-decoration:none}
+.m3-post__img{position:relative;aspect-ratio:4/4.3;border-radius:18px;overflow:hidden}
+.m3-post__img img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.m3-post:hover .m3-post__img img{transform:scale(1.05)}
+.m3-post__img span{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.92);font-size:12px;color:var(--navy)}
+.m3-post b{display:block;margin-top:16px;font-family:var(--heading);font-weight:500;font-size:17px;line-height:1.3}
+.m3-post p{margin:10px 0 0;font-size:13px;line-height:1.55;color:var(--muted)}
+.m3-post em{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-style:normal;font-size:13px;color:var(--navy)}
+.m3-post em svg{width:15px;height:15px;transition:transform .35s}
+.m3-post:hover em svg{transform:translateX(4px)}
+.m3r h2{margin:0;font-family:var(--heading);font-weight:500;font-size:clamp(28px,2.6vw,38px);line-height:1.18;letter-spacing:-.03em;color:var(--navy)}
+.m3r__side p{margin:18px 0 0;font-size:14.5px;line-height:1.65;color:#4a5068}
+.m3r__all{display:inline-flex;align-items:center;gap:10px;margin-top:20px;font-size:14px;font-weight:500;color:var(--navy);text-decoration:none}
+.m3r__all svg{width:16px;height:16px;transition:transform .35s}
+.m3r__all:hover svg{transform:translateX(4px)}
+.m3r__cta{margin-top:30px;padding:24px;border-radius:20px;background:var(--mint);color:var(--navy)}
+.m3r__cta b{display:block;font-family:var(--heading);font-weight:600;font-size:19px}
+.m3r__cta p{margin:8px 0 0;font-size:13.5px;line-height:1.55;color:#24305a}
+.m3r__cta .m3-btn{margin-top:18px}
+.m3r__cta small{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:12px;color:#24305a}
+@media (max-width:1100px){
+  .m3-post{width:calc((100% - 12px)/2)}
+}
+@media (max-width:640px){
+  .m3-post{width:82%}
+}
+@media (min-width:861px){.m3s,.m3r{box-sizing:border-box;width:min(100% - 32px,1392px);margin-inline:auto}.m3r{padding-left:0;padding-right:0}}
+.m3s{margin-top:12px}
+.m3s [data-m3],.m3r [data-m3]{opacity:1;transform:none}
 </style>
 </head>
 <body>
@@ -1440,6 +1486,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </blockquote>
       <ul class="m2b__tags" aria-label="Areas we can help with"><li>Sleep &amp; Rest</li><li>Mental Wellbeing</li><li>Women’s Health</li><li>Pain Support</li><li>Telehealth</li></ul>
     </div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP (from mock-test-3) ================= -->
+<div class="m3s" data-m3><small>Care you can trust</small><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>AHPRA-registered</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg>4.7 Google rating</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Logan Central clinic</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Telehealth Australia-wide</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Medicare rebates may apply*</span></div>
+
+<!-- ================= BLOG + CTA (from mock-test-3) ================= -->
+<section class="m3r m3" id="blog" aria-labelledby="m3r-title">
+  <div class="m3-panel m3r__panel">
+    <div class="m3r__head" data-m3><span class="m3-tag">From our blog</span><div class="m3r__nav"><button type="button" data-m3-prev aria-label="Previous articles"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"/></svg></button><button type="button" data-m3-next aria-label="Next articles"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></div></div>
+    <div class="m3r__grid">
+      <div class="m3r__track" data-m3 data-m3-track><a class="m3-post" href="blog-first-telehealth-consultation.html"><div class="m3-post__img"><img src="images/home-v2/blog-first-telehealth-consultation.webp" alt="" loading="lazy"><span>Telehealth</span></div><b>Your first telehealth consultation</b><p>What to expect, and how to get set up at home.</p><em>Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></em></a><a class="m3-post" href="blog-initial-consultation-checklist.html"><div class="m3-post__img"><img src="images/home-v2/blog-initial-consultation-checklist.webp" alt="" loading="lazy"><span>Getting started</span></div><b>Preparing for your initial consultation</b><p>A simple checklist to help you get the most from it.</p><em>Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></em></a><a class="m3-post" href="blog-why-follow-ups-matter.html"><div class="m3-post__img"><img src="images/home-v2/blog-follow-up-consultations.webp" alt="" loading="lazy"><span>Ongoing care</span></div><b>Why regular follow-ups matter</b><p>How follow-ups keep your care on track.</p><em>Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></em></a></div>
+      <div class="m3r__side" data-m3>
+        <h2 id="m3r-title">Real Care. Real Support. A Better You.</h2>
+        <p>Practical guides to help you prepare for your consultations and get the most from your ongoing care.</p>
+        <a class="m3r__all" href="blog.html">View all articles <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <div class="m3r__cta">
+          <b>Not sure where to start?</b>
+          <p>Book a free nurse call. Our team will talk through your health needs and explain how everything works.</p>
+          <button class="m3-btn m3-btn--solid" type="button" data-book data-book-enquiry="Book a free discovery call">Book a free call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+          <small><span class="m3h__faces" aria-hidden="true"><span>C</span><span>S</span><span>R</span></span>No obligation, no cost</small>
+        </div>
+      </div>
+    </div>
+    <p style="margin:30px 0 0;font-size:12.5px;color:var(--muted)">*Medicare rebate eligibility varies depending on individual circumstances. Speak to your practitioner for details.</p>
   </div>
 </section>
 <!-- ================= 2. PRICING: photo follows the hovered card ================= -->
@@ -2095,6 +2166,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     c.addEventListener('click', e => { if (e.target.closest('.kc-card__btn') || matchMedia('(hover: hover)').matches) return; c.classList.toggle('is-flipped'); });
     c.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === c) { e.preventDefault(); c.classList.toggle('is-flipped'); } });
   });
+})();
+</script>
+
+<script>
+/* Blog (from mock-test-3): article arrows */
+(() => {
+  const t = document.querySelector('[data-m3-track]'), prev = document.querySelector('[data-m3-prev]'), next = document.querySelector('[data-m3-next]'); if (!t) return;
+  const step = () => t.querySelector('.m3-post').offsetWidth + 12;
+  const sync = () => { prev.disabled = t.scrollLeft < 4; next.disabled = t.scrollLeft > t.scrollWidth - t.clientWidth - 4; prev.parentElement.style.visibility = t.scrollWidth > t.clientWidth + 4 ? '' : 'hidden'; };
+  prev.addEventListener('click', () => t.scrollBy({ left: -step() })); next.addEventListener('click', () => t.scrollBy({ left: step() }));
+  t.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); sync();
 })();
 </script>
 </body>
