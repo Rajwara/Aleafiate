@@ -1166,6 +1166,51 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   .rf__grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
   .rf__visual{min-height:620px}
 }
+
+/* Know the cost: flip cards (photo front, details back) */
+.kc-flip{padding:0;border:0;background:none;perspective:1400px;min-height:380px;outline:none}
+.kc-flip.is-main{box-shadow:none}
+.kc-flip.is-main::after{z-index:-1}
+.kc-flip__inner{position:relative;height:100%;min-height:380px;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.65,.05,.36,1)}
+.kc-flip:hover .kc-flip__inner,.kc-flip:focus-within .kc-flip__inner,.kc-flip.is-flipped .kc-flip__inner{transform:rotateY(180deg)}
+.kc-flip__face{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;border-radius:16px;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.kc-flip__front{justify-content:flex-end;color:#fff;background:var(--navy);isolation:isolate}
+.kc-flip__front img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover}
+.kc-flip__front::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(17,17,69,.05) 20%,rgba(17,17,69,.88) 85%)}
+.kc-flip.is-main .kc-flip__front{box-shadow:0 0 0 2px var(--mint),0 40px 70px -30px rgba(48,153,136,.5)}
+.kc-flip__front-body{padding:24px}
+.kc-flip__front .kc-card__step{color:rgba(255,255,255,.75)}
+.kc-flip__front .kc-card__price{color:#fff;font-size:40px}
+.kc-flip__front .kc-card__price--text{font-size:28px}
+.kc-flip__front h3{color:#fff;font-size:17px}
+.kc-flip__front .kc-card__chips span{background:rgba(255,255,255,.18);color:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.kc-flip.is-main .kc-flip__front .kc-card__chips span{background:var(--mint);color:var(--navy)}
+.kc-flip__hint{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:12.5px;color:var(--mint)}
+.kc-flip__hint::before{content:"";width:18px;height:1.5px;background:currentColor}
+.kc-flip__back{padding:24px;background:#fff;color:var(--navy);border:1px solid rgba(17,17,69,.08);transform:rotateY(180deg)}
+.kc-flip.is-main .kc-flip__back{border-color:transparent;box-shadow:0 0 0 1px rgba(36,117,104,.18)}
+.kc-flip__back h3{margin:8px 0 0;font-family:var(--heading);font-weight:600;font-size:20px;color:var(--navy)}
+.kc-flip__back p{font-size:14.5px}
+.kc-flip__back .kc-card__body{flex:1}
+@media (hover:none){.kc-flip__hint{font-size:0}.kc-flip__hint::after{content:"Tap to see more";font-size:12.5px}}
+@media (prefers-reduced-motion:reduce){.kc-flip__inner{transition:none}}
+
+/* right fit: richer journey card over the photo */
+.rf__visual img{object-position:40% 18%}
+.rf__visual::after{background:linear-gradient(180deg,rgba(17,17,69,0) 35%,rgba(17,17,69,.55))}
+.rf__notes{left:auto;right:24px;top:auto;bottom:24px;transform:none;width:min(calc(100% - 48px),400px);gap:8px;padding:16px;border-radius:18px;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 30px 60px -30px rgba(17,17,69,.55)}
+.rf__notes-head{display:flex;justify-content:space-between;align-items:center;padding:2px 4px 6px;font-size:12.5px;color:var(--muted)}
+.rf__notes-head b{font-family:var(--heading);font-size:15px;font-weight:600;color:var(--navy)}
+.rf__note,.rf__note:nth-child(n){display:flex;flex-direction:row;align-items:flex-start;gap:12px;margin:0;padding:12px;border-radius:12px;background:#fff;box-shadow:none;font-size:13px}
+.rf__note i{flex:none;width:34px;height:34px;border-radius:10px;background:var(--sand);color:var(--teal-deep)}
+.rf__note i svg{width:17px;height:17px}
+.rf__note>div{flex:1;min-width:0}
+.rf__note small{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.rf__note b{display:block;margin-top:2px;font-size:14px;font-weight:600;color:var(--navy)}
+.rf__note span{display:block;margin-top:3px;font-size:12.5px;line-height:1.45;color:#4a5068}
+.rf__note em{flex:none;align-self:center;padding:4px 10px;border-radius:99px;background:var(--mint);font-style:normal;font-size:11.5px;font-weight:600;color:var(--navy)}
+.rf__note:nth-child(2){transition-delay:.15s}.rf__note:nth-child(3){transition-delay:.3s}.rf__note:nth-child(4){transition-delay:.45s}
+@media (max-width:640px){.rf__notes{left:12px;right:12px;bottom:12px;width:calc(100% - 24px);padding:12px}.rf__note span{display:none}}
 </style>
 </head>
 <body>
@@ -1220,46 +1265,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="kc__wrap">
     <h2 class="kc__h" id="kc-title">Know the cost, <span>before you book</span></h2>
     <div class="kc__grid">
-      <article class="kc-card">
-        <div class="kc-card__body">
-          <span class="kc-card__step">Step 1 · Optional</span>
-          <div class="kc-card__price">$0</div>
-          <h3>Free Nurse Call</h3>
-          <div class="kc-card__chips"><span>10–15 min</span><span>By phone</span></div>
-          <p>Ask questions and find out whether Aleafiate may be a good fit for you.</p>
-          <p>No obligation to book.</p>
+      <article class="kc-card kc-flip" tabindex="0" aria-label="Free Nurse Call: show details">
+        <div class="kc-flip__inner">
+          <div class="kc-flip__face kc-flip__front">
+            <img src="images/home/step-1-free-call.webp" alt="A woman on the phone at home" loading="lazy">
+            <div class="kc-flip__front-body"><span class="kc-card__step">Step 1 · Optional</span><div class="kc-card__price">$0</div><h3>Free Nurse Call</h3><div class="kc-card__chips"><span>10–15 min</span><span>By phone</span></div>
+              <span class="kc-flip__hint">Hover to see more</span>
+            </div>
+          </div>
+          <div class="kc-flip__face kc-flip__back">
+            <div class="kc-card__body"><span class="kc-card__step">Step 1 · Optional</span><h3>Free Nurse Call</h3><p>Ask questions and find out whether Aleafiate may be a good fit for you.</p><p>No obligation to book.</p></div>
+            <button class="kc-card__btn kc-card__btn--soft" type="button" data-book data-book-enquiry="Book a free discovery call">Book a <b>Free Nurse Call</b></button>
+          </div>
         </div>
-        <button class="kc-card__btn kc-card__btn--soft" type="button" data-book data-book-enquiry="Book a free discovery call">Book a <b>Free Nurse Call</b></button>
       </article>
-      <article class="kc-card is-main">
-        <div class="kc-card__body">
-          <span class="kc-card__step">Step 2</span>
-          <div class="kc-card__price">$0</div>
-          <h3>Initial Consultation</h3>
-          <div class="kc-card__chips"><span>30 min</span><span>In clinic or telehealth</span></div>
-          <p>An AHPRA-registered practitioner talks through your health history and care options. Where clinically appropriate, you’ll receive a personalised care plan.</p>
+      <article class="kc-card kc-flip is-main" tabindex="0" aria-label="Initial Consultation: show details">
+        <div class="kc-flip__inner">
+          <div class="kc-flip__face kc-flip__front">
+            <img src="images/home-v2/start-consultation.webp" alt="A practitioner talking with a patient" loading="lazy">
+            <div class="kc-flip__front-body"><span class="kc-card__step">Step 2</span><div class="kc-card__price">$0</div><h3>Initial Consultation</h3><div class="kc-card__chips"><span>30 min</span><span>In clinic or telehealth</span></div>
+              <span class="kc-flip__hint">Hover to see more</span>
+            </div>
+          </div>
+          <div class="kc-flip__face kc-flip__back">
+            <div class="kc-card__body"><span class="kc-card__step">Step 2</span><h3>Initial Consultation</h3><p>An AHPRA-registered practitioner talks through your health history and care options. Where clinically appropriate, you’ll receive a personalised care plan.</p></div>
+            <button class="kc-card__btn kc-card__btn--solid" type="button" data-book data-book-enquiry="Book an initial consultation">Book a <b>Consultation</b> <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
+          </div>
         </div>
-        <button class="kc-card__btn kc-card__btn--solid" type="button" data-book data-book-enquiry="Book an initial consultation">Book a <b>Consultation</b> <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
       </article>
-      <article class="kc-card">
-        <div class="kc-card__body">
-          <span class="kc-card__step">Step 3</span>
-          <div class="kc-card__price kc-card__price--text">Ongoing care</div>
-          <h3>Support from your care team</h3>
-          <p>Follow-up consultations to review your progress, discuss any concerns and adjust your care plan where appropriate.</p>
-          <p>Medicare rebates may apply.*</p>
+      <article class="kc-card kc-flip" tabindex="0" aria-label="Support from your care team: show details">
+        <div class="kc-flip__inner">
+          <div class="kc-flip__face kc-flip__front">
+            <img src="images/home/step-4-ongoing-care.webp" alt="A practitioner checking in with a patient" loading="lazy">
+            <div class="kc-flip__front-body"><span class="kc-card__step">Step 3</span><div class="kc-card__price kc-card__price--text">Ongoing care</div><h3>Support from your care team</h3>
+              <span class="kc-flip__hint">Hover to see more</span>
+            </div>
+          </div>
+          <div class="kc-flip__face kc-flip__back">
+            <div class="kc-card__body"><span class="kc-card__step">Step 3</span><h3>Support from your care team</h3><p>Follow-up consultations to review your progress, discuss any concerns and adjust your care plan where appropriate.</p><p>Medicare rebates may apply.*</p></div>
+            <a class="kc-card__btn kc-card__btn--soft" href="check-eligibility.html">Check my <b>Eligibility</b></a>
+          </div>
         </div>
-        <a class="kc-card__btn kc-card__btn--soft" href="check-eligibility.html">Check my <b>Eligibility</b></a>
       </article>
     </div>
 
-    <h2 class="kc__h kc__h--2"><span>Ongoing care</span> made easy</h2>
-    <div class="kc__grid">
-      <div class="kc-mini"><b>Free</b><span>Care team support</span></div>
-      <div class="kc-mini"><b>$65</b><span>Follow-up consultation</span><small>15 min</small></div>
-      <div class="kc-mini"><b>Medicare</b><span>Rebates may apply*</span><small>Follow-ups</small></div>
-    </div>
-    <div class="kc__more"><a href="#pricing">See full <b>pricing</b></a></div>
     <p class="kc__note">*Medicare rebate eligibility varies depending on individual circumstances. Speak to your practitioner for details.</p>
   </div>
 </section>
@@ -1282,9 +1331,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="rf__visual" data-v2>
       <img src="images/about/experience-welcome.webp" alt="A patient being welcomed at the Aleafiate clinic reception" loading="lazy" width="971" height="1619">
       <div class="rf__notes" aria-hidden="true">
-        <div class="rf__note"><i><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2.5 6.2l2.2 2.2 4.8-4.9"/></svg></i>Your free nurse call is booked</div>
-        <div class="rf__note"><i><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2.5 6.2l2.2 2.2 4.8-4.9"/></svg></i>Initial consultation confirmed<small>In clinic or by telehealth</small></div>
-        <div class="rf__note"><i><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2.5 6.2l2.2 2.2 4.8-4.9"/></svg></i>Your care plan is ready to discuss<small>With your practitioner</small></div>
+        <div class="rf__notes-head"><b>Your care journey</b><span>3 of 3 complete</span></div>
+        <div class="rf__note"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></i><div><small>Step 1</small><b>Free nurse call booked</b><span>Our team calls you within one business day · 10–15 min</span></div><em>Booked</em></div>
+        <div class="rf__note"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></i><div><small>Step 2</small><b>Initial consultation confirmed</b><span>30 minutes with an AHPRA-registered practitioner, in clinic or by telehealth</span></div><em>Confirmed</em></div>
+        <div class="rf__note"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></i><div><small>Step 3</small><b>Your care plan is ready to discuss</b><span>Personalised to your health needs, with follow-ups to review your progress</span></div><em>Ready</em></div>
       </div>
     </div>
   </div>
@@ -1992,6 +2042,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   else els.forEach(e => e.classList.add('is-in'));
   const f = document.querySelector('[data-m3-start]'); if (!f) return;
   f.addEventListener('submit', e => { e.preventDefault(); const email = f.querySelector('input').value.trim(); window.aleafiateBook && window.aleafiateBook({ email, enquiry: 'Book a free discovery call' }, f.querySelector('button')); });
+})();
+</script>
+
+<script>
+/* Know the cost flip cards: tap to flip on touch screens, Enter/Space with the keyboard */
+(() => {
+  document.querySelectorAll('.kc-flip').forEach(c => {
+    c.addEventListener('click', e => { if (e.target.closest('.kc-card__btn') || matchMedia('(hover: hover)').matches) return; c.classList.toggle('is-flipped'); });
+    c.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === c) { e.preventDefault(); c.classList.toggle('is-flipped'); } });
+  });
 })();
 </script>
 </body>
