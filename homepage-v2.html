@@ -794,6 +794,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 .hp-card p{margin:12px 0 0;font-size:14px;line-height:1.55;color:rgba(255,255,255,.85)}
 .hp-card__tag{display:inline-block;margin-top:12px;padding:5px 11px;border-radius:99px;background:rgba(138,220,206,.22);color:var(--mint);font-size:12.5px}
 .hp-card .v2-btn{margin-top:18px;height:46px}
+.hp--how{background:#fff}
 .hp-card .v2-btn i{width:34px;height:34px}
 @media (hover:none){.hp-card__more{grid-template-rows:1fr}}
 @media (max-width:1100px){.hp__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hp-card{min-height:440px}}
@@ -1443,6 +1444,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ================= HOW IT WORKS (help-card design, step content) ================= -->
+<section class="hp hp--how" id="get-started" aria-labelledby="how-title">
+  <div class="container">
+    <div class="hp__head" data-v2>
+      <div><span class="v2-pill">How it works</span><h2 class="v2-h2" id="how-title">Your care with us, <em>step by step</em></h2></div>
+      <p class="v2-lead">Four simple steps from your first call to ongoing care. Hover a card to learn more, or start with a free nurse call.</p>
+    </div>
+    <div class="hp__grid" data-v2>
+      <article class="hp-card" tabindex="0">
+        <img src="images/home/step-1-free-call.webp" alt="A member of the Aleafiate team on a call with a patient" loading="lazy">
+        <span class="hp-card__num">01</span>
+        <h3>Book your free nurse call</h3>
+        <div class="hp-card__more"><div>
+          <p>Speak with our team about your health needs at no cost. We’ll explain how everything works, answer your questions and guide you through the next steps, with no obligation to continue.</p>
+          <button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        </div></div>
+      </article>
+      <article class="hp-card" tabindex="0">
+        <img src="images/home-v2/start-eligibility-check.webp" alt="A woman at home filling in a form on her laptop" loading="lazy">
+        <span class="hp-card__num">02</span>
+        <h3>Take our eligibility check</h3>
+        <div class="hp-card__more"><div>
+          <p>Explore your healthcare options with Aleafiate and discover how personalised care may support your wellbeing. Our short eligibility check helps us understand your needs before your consultation.</p>
+          <a class="v2-btn v2-btn--light" href="check-eligibility.html"><span class="v2-btn__t"><span data-t="Check eligibility">Check eligibility</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a>
+        </div></div>
+      </article>
+      <article class="hp-card" tabindex="0">
+        <img src="images/home-v2/start-consultation.webp" alt="A practitioner talking with a patient in a consultation room" loading="lazy">
+        <span class="hp-card__num">03</span>
+        <h3>Meet your practitioner</h3>
+        <div class="hp-card__more"><div>
+          <p>Connect with our compassionate, AHPRA-registered practitioners in a 30-minute initial consultation, in clinic at Logan Central or by telehealth, to discuss your health concerns and explore personalised care options suited to your individual needs.</p>
+          <button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book an initial consultation"><span class="v2-btn__t"><span data-t="Book a consultation">Book a consultation</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        </div></div>
+      </article>
+      <article class="hp-card" tabindex="0">
+        <img src="images/home/step-4-ongoing-care.webp" alt="A practitioner checking in with a patient" loading="lazy">
+        <span class="hp-card__num">04</span>
+        <h3>Your next steps and ongoing care</h3>
+        <div class="hp-card__more"><div>
+          <p>Following your consultation, your practitioner will discuss the next steps based on your individual healthcare needs and clinical assessment. Follow-up consultations give you time to review your progress and discuss any changes to your care.</p>
+          <button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book a follow-up"><span class="v2-btn__t"><span data-t="Book a follow-up">Book a follow-up</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        </div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ================= 3. CARE: soft sky, centred copy (from test-mock) ================= -->
 <section class="sb" aria-labelledby="sb-title">
     <div class="sb__photo" aria-hidden="true"><img src="images/home/cta-background.webp" alt="" loading="lazy"></div>
@@ -1610,41 +1659,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ================= 3. HOW IT WORKS: swipeable step cards ================= -->
-<section class="st" id="get-started" aria-labelledby="st-title">
-  <h2 id="st-title">Your care with us, <span>step by step</span></h2>
-  <div class="st__track" tabindex="0" aria-label="Steps, scroll sideways">
-    <article class="st-card">
-      <div class="st-card__img"><img src="images/home/step-1-free-call.webp" alt="A member of the Aleafiate team on a call with a patient" loading="lazy"></div>
-      <span class="st-card__num">Step 01</span>
-      <h3>Book your free nurse call</h3>
-      <p>Speak with our team about your health needs at no cost. We’ll explain how everything works, answer your questions and guide you through the next steps, with no obligation to continue.</p>
-      <button class="st-card__link" type="button" data-book data-book-enquiry="Book a free discovery call">Book a free call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-    </article>
-    <article class="st-card">
-      <div class="st-card__img"><img src="images/home-v2/start-eligibility-check.webp" alt="A woman at home filling in a form on her laptop" loading="lazy"></div>
-      <span class="st-card__num">Step 02</span>
-      <h3>Take our eligibility check</h3>
-      <p>Explore your healthcare options with Aleafiate and discover how personalised care may support your wellbeing. Our short eligibility check helps us understand your needs before your consultation.</p>
-      <a class="st-card__link" href="check-eligibility.html">Check eligibility <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </article>
-    <article class="st-card">
-      <div class="st-card__img"><img src="images/home-v2/start-consultation.webp" alt="A practitioner talking with a patient in a consultation room" loading="lazy"></div>
-      <span class="st-card__num">Step 03</span>
-      <h3>Meet your practitioner</h3>
-      <p>Connect with our compassionate, AHPRA-registered practitioners in a 30-minute initial consultation, in clinic at Logan Central or by telehealth, to discuss your health concerns and explore personalised care options suited to your individual needs.</p>
-      <button class="st-card__link" type="button" data-book data-book-enquiry="Book an initial consultation">Book a consultation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-    </article>
-    <article class="st-card">
-      <div class="st-card__img"><img src="images/home/step-4-ongoing-care.webp" alt="A practitioner checking in with a patient" loading="lazy"></div>
-      <span class="st-card__num">Step 04</span>
-      <h3>Your next steps and ongoing care</h3>
-      <p>Following your consultation, your practitioner will discuss the next steps based on your individual healthcare needs and clinical assessment. Follow-up consultations give you time to review your progress and discuss any changes to your care.</p>
-      <button class="st-card__link" type="button" data-book data-book-enquiry="Book a follow-up">Book a follow-up <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-    </article>
-  </div>
-  <div class="st__bar" aria-hidden="true"><span></span></div>
-</section>
+
 
 <!-- ================= 4. WHAT DO YOU NEED HELP WITH ================= -->
 <section class="hp" id="help" aria-labelledby="hp-title">
