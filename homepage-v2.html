@@ -1310,6 +1310,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const io = new IntersectionObserver(e => { if (e[0].isIntersecting) { sb.classList.add('is-in'); io.disconnect(); } }, { threshold: .2 });
   io.observe(sb); })();
 </script>
+
+<!-- ================= 4. REVIEWS (moved up, after the care section): we see you ================= -->
+<section class="we" id="reviews" aria-labelledby="we-title">
+  <div class="container">
+    <h2 id="we-title">You’ve been managing this alone for too long. We see you, and we’re here to help.</h2>
+    <p class="we__sub">Your health concerns are real, and you deserve care that takes the time to understand them. Here’s what our patients say.</p>
+    <div class="we__row">
+      <div class="we__stat"><div class="we__stat-card"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></i><b>4.7</b><span>average rating from our Google reviews</span></div></div>
+      <div class="we__photo"><img src="images/home/home-hero.webp" alt="A smiling Aleafiate nurse outdoors" loading="lazy"><span class="we__pill"><b>$0</b> nurse call and initial consultation</span></div>
+      <div class="we__quote">
+        <div class="we__quote-top" aria-hidden="true"><span data-we-initial>C</span><i>“</i></div>
+        <div class="we__quote-card" aria-live="polite">
+          <figure class="we__slide is-active" data-we-slide aria-hidden="false">
+            <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>“Amazing customer service. Tianna (practice manager) was so nice. She went above &amp; beyond to help me over the past 2 weeks.”</p>
+            <small>Charmaine Maguire<span>Google review</span></small>
+          </figure>
+          <figure class="we__slide" data-we-slide aria-hidden="true">
+            <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>“I had such a wonderful experience at Aleafiate. From the moment I walked into the clinic, I was made to feel genuinely welcome and at ease.”</p>
+            <small>Sasha Logsdale<span>Google review</span></small>
+          </figure>
+          <figure class="we__slide" data-we-slide aria-hidden="true">
+            <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>“Spoke to P from reception on the phone this morning, her customer service is amazing and she really went out of her way to help.”</p>
+            <small>Ricchi Ciarrocchi<span>Google review</span></small>
+          </figure>
+          <figure class="we__slide" data-we-slide aria-hidden="true">
+            <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>“Very helpful and efficient in responding to my enquiries.”</p>
+            <small>Anna Jeffries<span>Google review</span></small>
+          </figure>
+          <div class="we__dots"><button type="button" class="is-active" data-we-dot="0" aria-label="Review 1"></button><button type="button" class="" data-we-dot="1" aria-label="Review 2"></button><button type="button" class="" data-we-dot="2" aria-label="Review 3"></button><button type="button" class="" data-we-dot="3" aria-label="Review 4"></button></div>
+        </div>
+      </div>
+    </div>
+    <div class="we__link"><a class="v2-btn v2-btn--navy" href="https://www.google.com/maps/search/?api=1&amp;query=Aleafiate+Health+Clinics+Logan+Central" target="_blank" rel="noopener"><span class="v2-btn__t"><span data-t="Read our Google reviews">Read our Google reviews</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a></div>
+  </div>
+</section>
 <!-- ================= 2. PRICING: photo follows the hovered card ================= -->
 <section class="hv" id="pricing" aria-labelledby="hv-title">
   <div class="container">
@@ -1489,44 +1528,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ================= 6. REVIEWS: we see you ================= -->
-<section class="we" id="reviews" aria-labelledby="we-title">
-  <div class="container">
-    <h2 id="we-title">You’ve been managing this alone for too long. We see you, and we’re here to help.</h2>
-    <p class="we__sub">Your health concerns are real, and you deserve care that takes the time to understand them. Here’s what our patients say.</p>
-    <div class="we__row">
-      <div class="we__stat"><div class="we__stat-card"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></i><b>4.7</b><span>average rating from our Google reviews</span></div></div>
-      <div class="we__photo"><img src="images/home/home-hero.webp" alt="A smiling Aleafiate nurse outdoors" loading="lazy"><span class="we__pill"><b>$0</b> nurse call and initial consultation</span></div>
-      <div class="we__quote">
-        <div class="we__quote-top" aria-hidden="true"><span data-we-initial>C</span><i>“</i></div>
-        <div class="we__quote-card" aria-live="polite">
-          <figure class="we__slide is-active" data-we-slide aria-hidden="false">
-            <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p>“Amazing customer service. Tianna (practice manager) was so nice. She went above &amp; beyond to help me over the past 2 weeks.”</p>
-            <small>Charmaine Maguire<span>Google review</span></small>
-          </figure>
-          <figure class="we__slide" data-we-slide aria-hidden="true">
-            <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p>“I had such a wonderful experience at Aleafiate. From the moment I walked into the clinic, I was made to feel genuinely welcome and at ease.”</p>
-            <small>Sasha Logsdale<span>Google review</span></small>
-          </figure>
-          <figure class="we__slide" data-we-slide aria-hidden="true">
-            <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p>“Spoke to P from reception on the phone this morning, her customer service is amazing and she really went out of her way to help.”</p>
-            <small>Ricchi Ciarrocchi<span>Google review</span></small>
-          </figure>
-          <figure class="we__slide" data-we-slide aria-hidden="true">
-            <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p>“Very helpful and efficient in responding to my enquiries.”</p>
-            <small>Anna Jeffries<span>Google review</span></small>
-          </figure>
-          <div class="we__dots"><button type="button" class="is-active" data-we-dot="0" aria-label="Review 1"></button><button type="button" class="" data-we-dot="1" aria-label="Review 2"></button><button type="button" class="" data-we-dot="2" aria-label="Review 3"></button><button type="button" class="" data-we-dot="3" aria-label="Review 4"></button></div>
-        </div>
-      </div>
-    </div>
-    <div class="we__link"><a class="v2-btn v2-btn--navy" href="https://www.google.com/maps/search/?api=1&amp;query=Aleafiate+Health+Clinics+Logan+Central" target="_blank" rel="noopener"><span class="v2-btn__t"><span data-t="Read our Google reviews">Read our Google reviews</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a></div>
-  </div>
-</section>
+
 
 
 
