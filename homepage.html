@@ -664,7 +664,22 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 .hv__lead{margin:0;max-width:440px;justify-self:end;font-size:16px;line-height:1.7;color:var(--muted)}
 .hv__grid{display:grid;grid-template-columns:.95fr 1.25fr;gap:clamp(20px,2.4vw,32px);align-items:stretch}
 .hv__photo{position:relative;min-height:520px;border-radius:28px;overflow:hidden}
-.hv__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%}
+.hv__photo{isolation:isolate}
+.hv__img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;object-position:30% 50%;opacity:0;transform:scale(1.08);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
+.hv__img.is-active{opacity:1;transform:scale(1)}
+.hv__note>*{transition:opacity .35s,transform .35s}
+.hv__note.is-swapping>*{opacity:0;transform:translateY(6px)}
+.hv__list:hover .hv-t.is-featured:not(:hover){border-color:rgba(17,17,69,.08)}
+.hv-t.is-hover{border-color:var(--teal-deep)}
+/* entrance: photo rises in, tickets slide in from the right one after another */
+.hv.js-anim .hv__photo{opacity:0;translate:0 40px;clip-path:inset(12% 0 0 0 round 28px);transition:opacity 1s cubic-bezier(.16,1,.3,1),translate 1.2s cubic-bezier(.16,1,.3,1),clip-path 1.4s cubic-bezier(.16,1,.3,1)}
+.hv.js-anim .hv-t{opacity:0;translate:60px 0;transition:opacity .9s cubic-bezier(.16,1,.3,1),translate 1.1s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s,transform .45s cubic-bezier(.16,1,.3,1)}
+.hv.js-anim .hv-t:nth-child(2){transition-delay:.12s,.12s,0s,0s,0s}
+.hv.js-anim .hv-t:nth-child(3){transition-delay:.24s,.24s,0s,0s,0s}
+.hv.js-anim .hv__head>*{opacity:0;translate:0 24px;transition:opacity 1s cubic-bezier(.16,1,.3,1),translate 1s cubic-bezier(.16,1,.3,1)}
+.hv.js-anim .hv__head>:nth-child(2){transition-delay:.1s}
+.hv.js-anim.is-in .hv__photo,.hv.js-anim.is-in .hv-t,.hv.js-anim.is-in .hv__head>*{opacity:1;translate:0 0;clip-path:inset(0 0 0 0 round 28px)}
+@media (prefers-reduced-motion:reduce){.hv.js-anim .hv__photo,.hv.js-anim .hv-t,.hv.js-anim .hv__head>*{opacity:1;translate:none;clip-path:none;transition:none}.hv__img{transition:none}}
 .hv__note{position:absolute;left:20px;right:20px;bottom:20px;display:flex;border-radius:18px;background:#fff;box-shadow:0 20px 40px -24px rgba(17,17,69,.4);overflow:hidden}
 .hv__note-tag{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:92px;background:var(--sand);color:var(--teal-deep);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 .hv__note-tag svg{width:22px;height:22px}
@@ -766,12 +781,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="hv__lead">Every step has a clear price. Your nurse call and initial consultation are free for new patients, and Medicare rebates may apply to follow-up consultations.</p>
     </div>
     <div class="hv__grid">
-      <div class="hv__photo">
-        <img src="images/about/experience-telehealth.webp" alt="A patient on a telehealth consultation from home" width="1374" height="1145" loading="lazy">
-        <div class="hv__note"><span class="hv__note-tag"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2"/><path d="M15.5 10.5l6-3.5v10l-6-3.5"/></svg>Telehealth</span><div><b>Seen from home</b><p>Telehealth consultations are available Australia-wide, or visit us at our Logan Central clinic.</p></div></div>
+      <div class="hv__photo" data-hv-photo>
+        <img class="hv__img is-active" data-hv-img="default" src="images/about/experience-telehealth.webp" alt="A patient on a telehealth consultation from home" loading="lazy">
+        <img class="hv__img" data-hv-img="nurse" src="images/home/step-1-free-call.webp" alt="A woman talking on the phone at home" loading="lazy">
+        <img class="hv__img" data-hv-img="initial" src="images/home-v2/start-consultation.webp" alt="A practitioner talking with a patient in a consultation room" loading="lazy">
+        <img class="hv__img" data-hv-img="follow" src="images/home/step-4-ongoing-care.webp" alt="A practitioner checking in with a patient" loading="lazy">
+        <div class="hv__note" aria-live="polite"><span class="hv__note-tag"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2"/><path d="M15.5 10.5l6-3.5v10l-6-3.5"/></svg>Telehealth</span><div><b>Seen from home</b><p>Telehealth consultations are available Australia-wide, or visit us at our Logan Central clinic.</p></div></div>
+        <template data-hv-note="default"><span class="hv__note-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2"/><path d="M15.5 10.5l6-3.5v10l-6-3.5"/></svg>Telehealth</span><div><b>Seen from home</b><p>Telehealth consultations are available Australia-wide, or visit us at our Logan Central clinic.</p></div></template>
+        <template data-hv-note="nurse"><span class="hv__note-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>By phone</span><div><b>A friendly first chat</b><p>A 10–15 minute call with our team to talk through your health needs, at no cost.</p></div></template>
+        <template data-hv-note="initial"><span class="hv__note-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg>Consult</span><div><b>Time to be heard</b><p>A 30-minute assessment with an experienced practitioner, in clinic or by telehealth.</p></div></template>
+        <template data-hv-note="follow"><span class="hv__note-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg>Ongoing</span><div><b>Support that continues</b><p>Regular reviews with your care team to track your progress and adjust your care.</p></div></template>
       </div>
       <div class="hv__list">
-        <article class="hv-t is-featured">
+        <article class="hv-t is-featured" data-hv="nurse">
           <div class="hv-t__stub"><svg class="hv-t__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="hv-t__label">Free</span><span class="hv-t__price">$0</span><span class="hv-t__sub">No obligation</span></div>
           <div class="hv-t__body">
             <div class="hv-t__top"><h3>Nurse call</h3><span class="hv-t__chip">10–15 minutes</span><span class="hv-t__chip">By phone</span></div>
@@ -779,7 +801,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <button class="hv-t__btn" type="button" data-book data-book-enquiry="Book a free discovery call">Book your free call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
           </div>
         </article>
-        <article class="hv-t">
+        <article class="hv-t" data-hv="initial">
           <div class="hv-t__stub"><svg class="hv-t__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg><span class="hv-t__label">New patients</span><span class="hv-t__price">$0</span><span class="hv-t__sub">Comprehensive assessment</span></div>
           <div class="hv-t__body">
             <div class="hv-t__top"><h3>Initial consultation</h3><span class="hv-t__chip">30 minutes</span><span class="hv-t__chip">In clinic or telehealth</span></div>
@@ -787,7 +809,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <button class="hv-t__btn" type="button" data-book data-book-enquiry="Book an initial consultation">Book a consultation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
           </div>
         </article>
-        <article class="hv-t">
+        <article class="hv-t" data-hv="follow">
           <div class="hv-t__stub"><svg class="hv-t__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg><span class="hv-t__label">Per visit</span><span class="hv-t__price">$65</span><span class="hv-t__sub">Medicare rebates may apply*</span></div>
           <div class="hv-t__body">
             <div class="hv-t__top"><h3>Follow-up consultations</h3><span class="hv-t__chip">15 minutes</span><span class="hv-t__chip">Medicare eligible*</span></div>
@@ -1081,6 +1103,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     ScrollTrigger.refresh();
   });
+})();
+</script>
+
+<script>
+/* Pricing section: entrance animation + photo follows the hovered card */
+(() => {
+  const sec = document.querySelector('.hv'); if (!sec) return;
+  sec.classList.add('js-anim');
+  const show = () => sec.classList.add('is-in');
+  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(e => { if (e[0].isIntersecting) { show(); io.disconnect(); } }, { threshold: .2 }); io.observe(sec); } else show();
+
+  const photo = sec.querySelector('[data-hv-photo]'), note = photo.querySelector('.hv__note');
+  const imgs = [...photo.querySelectorAll('[data-hv-img]')];
+  let current = 'default', timer;
+  const set = key => {
+    if (key === current) return; current = key;
+    imgs.forEach(i => i.classList.toggle('is-active', i.dataset.hvImg === key));
+    sec.querySelectorAll('.hv-t').forEach(t => t.classList.toggle('is-hover', t.dataset.hv === key));
+    const tpl = photo.querySelector(`template[data-hv-note="${key}"]`);
+    note.classList.add('is-swapping'); clearTimeout(timer);
+    timer = setTimeout(() => { note.innerHTML = tpl.innerHTML; note.classList.remove('is-swapping'); }, 200);
+  };
+  // preload the other photos once the section is near, so the swap is instant
+  const warm = () => imgs.forEach(i => { i.loading = 'eager'; });
+  sec.addEventListener('pointerenter', warm, { once: true }); setTimeout(warm, 2500);
+  sec.querySelectorAll('.hv-t[data-hv]').forEach(t => {
+    t.addEventListener('pointerenter', () => set(t.dataset.hv));
+    t.addEventListener('focusin', () => set(t.dataset.hv));
+  });
+  const list = sec.querySelector('.hv__list');
+  list.addEventListener('pointerleave', () => set('default'));
+  list.addEventListener('focusout', e => { if (!list.contains(e.relatedTarget)) set('default'); });
 })();
 </script>
 </body>
