@@ -839,6 +839,40 @@ a.tm-card-inner:hover .tm-more svg{transform:translateX(4px)}
 @media (prefers-reduced-motion:reduce){.hb2 [data-hb2],.hb2__bento[data-hb2] .hb2-tile{opacity:1;transform:none;transition:none}.hb2-tile__back{transition:none}}
 @media (max-width:1100px){.hb2__panel{grid-template-columns:1fr}.hb2__feats{margin-top:0;padding-top:28px}}
 @media (max-width:520px){.hb2__panel{padding:22px 16px}.hb2__bento{grid-template-columns:1fr}.hb2-tile,.hb2-tile:not(.hb2-tile--wide){min-height:230px}.hb2-tile h3,.hb2-tile__front{max-width:58%}.hb2-tile__back h3{max-width:none}.hb2-tile>img,.hb2-tile:not(.hb2-tile--wide)>img{width:48%;height:100%;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%)}}
+
+/* Why Aleafiate: the step-by-step carousel from test-mock with the live "Choose Aleafiate" content */
+.st{padding:clamp(70px,8vw,110px) 0 clamp(60px,7vw,90px);background:#f2f7f6}
+.st__unused h2{margin:0 0 clamp(36px,4vw,56px);text-align:center;font-family:var(--heading);font-weight:600;font-size:clamp(22px,2vw,28px);letter-spacing:-.02em;color:var(--navy)}
+.st h2 span{font-weight:400;color:var(--teal-deep)}
+.st__track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(var(--gutter),calc((100vw - 1440px)/2 + var(--gutter)));padding:4px max(var(--gutter),calc((100vw - 1440px)/2 + var(--gutter))) 8px;scrollbar-width:none;cursor:grab}
+.st__track::-webkit-scrollbar{display:none}
+.st__track.is-drag{cursor:grabbing;scroll-snap-type:none}
+.st__track.is-drag *{pointer-events:none}
+.st-card{flex:none;width:clamp(280px,27vw,400px);scroll-snap-align:start;display:flex;flex-direction:column;padding:clamp(18px,1.8vw,26px);border-radius:22px;background:#fff;box-shadow:0 20px 40px -34px rgba(17,17,69,.4);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.st-card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -34px rgba(17,17,69,.5)}
+.st-card__img{aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--sand)}
+.st-card__img img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.st-card:hover .st-card__img img{transform:scale(1.04)}
+.st-card__num{margin-top:28px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.st-card h3{margin:18px 0 0;font-family:var(--heading);font-weight:600;font-size:clamp(17px,1.3vw,19px);line-height:1.35;letter-spacing:-.01em;color:var(--navy)}
+.st-card p{margin:14px 0 0;font-size:15px;line-height:1.65;color:#4a5068}
+.st-card__link{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:22px 0 0;border:0;background:none;color:var(--teal-deep);font:600 14px/1 var(--body);text-decoration:none;cursor:pointer;align-self:flex-start}
+.st-card__link svg{width:14px;height:14px;transition:transform .35s}
+.st-card__link:hover svg{transform:translateX(4px)}
+.st__bar{position:relative;width:min(430px,60vw);height:6px;margin:clamp(30px,3.5vw,44px) auto 0;border-radius:99px;background:rgba(17,17,69,.1);overflow:hidden}
+.st__bar span{position:absolute;inset:0 auto 0 0;width:40%;border-radius:inherit;background:var(--navy);transition:transform .15s linear}
+@media (max-width:560px){.st-card{width:84vw}}
+.st{background:var(--bone);padding-top:0}
+.st__head{max-width:760px;margin:0 auto clamp(36px,4vw,56px);padding:0 var(--gutter);text-align:center}
+.st__pill{display:inline-block;padding:8px 16px;border:1px solid var(--navy);border-radius:999px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--navy)}
+.st__head h2{margin:18px 0 0;font-family:var(--heading);font-weight:600;font-size:clamp(34px,4.2vw,64px);line-height:1.08;letter-spacing:-.035em;color:var(--ink);text-align:center}
+.st__head h2 span{font-weight:600;color:var(--teal-deep)}
+.st__lead{margin:20px auto 0;font-family:var(--heading);font-weight:500;font-size:clamp(17px,1.4vw,20px);color:var(--teal-deep)}
+.st__text{margin:10px auto 0;max-width:640px;font-size:15.5px;line-height:1.7;color:var(--muted)}
+.st-card__num{font-family:var(--heading);font-weight:500;letter-spacing:.04em;color:var(--teal-deep)}
+.st-card__img{aspect-ratio:16/10}
+.st__foot{display:flex;justify-content:center;margin-top:8px}
+.st__foot .lv-btn{align-self:center}
 </style>
 </head>
 <body>
@@ -1045,6 +1079,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </div>
+</section>
+
+<!-- ================= WHY ALEAFIATE: swipeable cards (step-by-step design from test-mock), live content ================= -->
+<section class="st" id="why" aria-labelledby="st-title">
+  <div class="st__head">
+    <span class="st__pill">Why Aleafiate</span>
+    <h2 id="st-title">Choose Aleafiate, leaders in <span>alternative health.</span></h2>
+    <p class="st__lead">At Aleafiate Health Clinics, we believe healing is a shared journey.</p>
+    <p class="st__text">Your wellbeing is at the heart of everything we do. We offer patient-focused care that’s personalised, compassionate, and grounded in clinical integrity. Our team walks alongside you, supporting your health journey with respect, understanding, and a shared commitment to achieving meaningful outcomes together.</p>
+  </div>
+  <div class="st__track" tabindex="0" aria-label="Why choose Aleafiate, scroll sideways">
+    <article class="st-card">
+      <div class="st-card__img"><img src="images/home-v2/why-1-qualified-practitioners.webp" alt="A practitioner explaining a plan to a patient" loading="lazy"></div>
+      <span class="st-card__num">( 01 )</span>
+      <h3>Qualified Healthcare Practitioners</h3>
+      <p>Our AHPRA-registered practitioners provide personalised healthcare consultations guided by professional standards and individual patient needs.</p>
+      <a class="st-card__link" href="practitioners.html">Meet our practitioners <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </article>
+    <article class="st-card">
+      <div class="st-card__img"><img src="images/home-v2/why-2-prescriptions.webp" alt="A practitioner listening to a patient" loading="lazy"></div>
+      <span class="st-card__num">( 02 )</span>
+      <h3>Individualised Care</h3>
+      <p>Every consultation begins with understanding your health concerns, medical history and individual needs to explore clinically appropriate care options.</p>
+      <button class="st-card__link" type="button" data-book data-book-enquiry="Book an initial consultation">Book a consultation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    </article>
+    <article class="st-card">
+      <div class="st-card__img"><img src="images/home-v2/why-3-logan-clinic.webp" alt="The Aleafiate clinic at Logan Central" loading="lazy"></div>
+      <span class="st-card__num">( 03 )</span>
+      <h3>Face-to-Face Consultations</h3>
+      <p>Face-to-face consultations are available at our Aleafiate Logan Clinic, located inside Chempro Pharmacy at Logan Central Plaza, 38/74 Wembley Road, Logan Central QLD 4114.</p>
+      <a class="st-card__link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Logan+Central+Plaza,+74+Wembley+Rd,+Logan+Central+QLD+4114" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </article>
+    <article class="st-card">
+      <div class="st-card__img"><img src="images/home-v2/why-4-telehealth.webp" alt="A patient on a telehealth call" loading="lazy"></div>
+      <span class="st-card__num">( 04 )</span>
+      <h3>Flexible Consultation Options</h3>
+      <p>Choose the care that suits you, with face-to-face appointments and Australia-wide telehealth consultations available to support your healthcare needs.</p>
+      <button class="st-card__link" type="button" data-book data-book-enquiry="Book a free discovery call">Book a free call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    </article>
+  </div>
+  <div class="st__bar" aria-hidden="true"><span></span></div>
+  <div class="st__foot"><button type="button" class="lv-btn" data-book data-book-enquiry="Book a free discovery call"><span class="lv-btn__text">Book a free call</span><span class="lv-btn__text lv-btn__text--abs" aria-hidden="true">Book a free call</span><span class="lv-btn__bg"></span></button></div>
 </section>
 </main>
 
@@ -1483,6 +1559,24 @@ window.addEventListener('load', () => {
     t.addEventListener('click', e => { if (e.target.closest('.fc2__cta')) return; if (matchMedia('(hover: hover)').matches) return; const open = !t.classList.contains('is-open'); tiles.forEach(o => setOpen(o, false)); setOpen(t, open); });
     t.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === t) { e.preventDefault(); setOpen(t, !t.classList.contains('is-open')); } if (e.key === 'Escape') setOpen(t, false); });
   });
+})();
+</script>
+<script>
+(() => {
+  const track = document.querySelector('.st__track'), bar = document.querySelector('.st__bar span'); if (!track) return;
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth, share = max > 0 ? track.clientWidth / track.scrollWidth : 1;
+    bar.style.width = (share * 100) + '%';
+    bar.style.transform = `translateX(${max > 0 ? (track.scrollLeft / max) * (1 / share - 1) * 100 : 0}%)`;
+    bar.parentElement.hidden = max <= 0;
+  };
+  track.addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); update();
+  // drag to scroll with a mouse (touch and trackpads scroll natively)
+  let down = false, startX = 0, startLeft = 0, moved = false;
+  track.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft; });
+  addEventListener('pointermove', e => { if (!down) return; const dx = e.clientX - startX; if (Math.abs(dx) > 5) { moved = true; track.classList.add('is-drag'); } track.scrollLeft = startLeft - dx; });
+  addEventListener('pointerup', () => { if (!down) return; down = false; track.classList.remove('is-drag'); });
+  track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
 })();
 </script>
 </body>
