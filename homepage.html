@@ -931,6 +931,55 @@ a.tm-card-inner:hover .tm-more svg{transform:translateX(4px)}
 .st__track>.st-card:last-child{margin-right:auto}
 .st__track.is-linked{scroll-snap-type:none;scroll-behavior:auto}
 #why .st__track{padding-left:var(--gutter);padding-right:var(--gutter);scroll-padding-inline:var(--gutter)}
+
+/* Blog: white panel over a full-width photo, counter + arrows on the left, sliding article cards on the right */
+.bl2{position:relative;isolation:isolate;padding:clamp(70px,8vw,120px) 0}
+.bl2__bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.bl2__bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.bl2__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(246,249,249,.25),rgba(17,17,69,.15))}
+.bl2__panel{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);grid-template-rows:auto 1fr;gap:clamp(30px,4vw,56px) clamp(30px,4vw,60px);padding:clamp(28px,4vw,56px);border-radius:28px;background:#fff;box-shadow:0 40px 90px -50px rgba(17,17,69,.45)}
+.bl2__head{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 60px}
+.bl2__tag{display:inline-block;padding:6px 12px;border:1px solid rgba(17,17,69,.15);border-radius:8px;font-size:12.5px;color:var(--ink)}
+.bl2 h2{margin:16px 0 0;font-family:var(--heading);font-weight:600;font-size:clamp(34px,4vw,58px);line-height:1.08;letter-spacing:-.035em;color:var(--ink)}
+.bl2 h2 em{font-style:normal;color:var(--teal-deep)}
+.bl2__intro{margin:0;max-width:340px;font-size:15px;line-height:1.65;color:var(--muted)}
+.bl2__side{display:flex;flex-direction:column}
+.bl2__count{font-family:var(--heading);font-weight:400;font-size:clamp(44px,4.4vw,64px);line-height:1;letter-spacing:-.04em;color:var(--ink)}
+.bl2__count small{font-size:.42em;letter-spacing:0;color:var(--muted)}
+.bl2__desc{min-height:4.8em;margin:16px 0 0;max-width:280px;font-size:14.5px;line-height:1.6;color:var(--muted);transition:opacity .35s}
+.bl2__desc.is-swap{opacity:0}
+.bl2__nav{display:flex;gap:10px;margin-top:auto;padding-top:30px}
+.bl2__nav button{display:grid;place-items:center;width:48px;height:48px;border-radius:10px;border:1px solid rgba(17,17,69,.18);background:#fff;color:var(--navy);cursor:pointer;transition:background .35s,color .35s,border-color .35s,opacity .35s}
+.bl2__nav button:last-child{background:var(--navy);border-color:var(--navy);color:#fff}
+.bl2__nav button:hover:not(:disabled){background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+.bl2__nav button:disabled{opacity:.35;cursor:default}
+.bl2__nav svg{width:18px;height:18px}
+.bl2__all{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:14px;font-weight:600;color:var(--teal-deep);text-decoration:none}
+.bl2__all svg{width:14px;height:14px;transition:transform .35s}
+.bl2__all:hover svg{transform:translateX(4px)}
+.bl2__view{overflow:hidden;border-radius:22px}
+.bl2__track{display:flex;gap:14px;transition:transform .8s cubic-bezier(.65,.05,.36,1)}
+.bl2-card{position:relative;isolation:isolate;flex:none;width:calc((100% - 14px)/2);aspect-ratio:1/1.02;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;border-radius:22px;color:#fff;text-decoration:none;background:var(--navy)}
+.bl2-card img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.bl2-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(17,17,69,0) 35%,rgba(17,17,69,.82))}
+.bl2-card:hover img,.bl2-card:focus-visible img{transform:scale(1.06)}
+.bl2-card__tag{position:absolute;left:18px;top:18px;padding:5px 10px;border-radius:7px;background:rgba(255,255,255,.85);font-size:12px;color:var(--navy)}
+.bl2-card b{display:block;max-width:20ch;font-family:var(--heading);font-weight:500;font-size:clamp(19px,1.7vw,24px);line-height:1.2;letter-spacing:-.015em}
+.bl2-card p{margin:10px 0 0;max-width:34ch;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.82)}
+.bl2-card__more{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--mint)}
+.bl2-card__more svg{width:14px;height:14px;transition:transform .35s}
+.bl2-card:hover .bl2-card__more svg{transform:translateX(4px)}
+.bl2-card--all{justify-content:center;align-items:flex-start;background:var(--sand);color:var(--navy)}
+.bl2-card--all::after{display:none}
+.bl2-card--all b{max-width:14ch;font-size:clamp(22px,2vw,28px)}
+.bl2-card--all p{color:var(--muted)}
+.bl2-card--all .bl2-card__more{color:var(--teal-deep)}
+.bl2-card:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.bl2 [data-bl2]{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.bl2 [data-bl2].is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.bl2 [data-bl2]{opacity:1;transform:none;transition:none}.bl2__track{transition:none}}
+@media (max-width:1100px){.bl2__panel{grid-template-columns:1fr}.bl2__desc{min-height:0}.bl2__nav{padding-top:22px}}
+@media (max-width:600px){.bl2__panel{padding:24px 18px}.bl2-card{width:86%;aspect-ratio:1/1.1}}
 </style>
 </head>
 <body>
@@ -1219,6 +1268,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button class="fq__q" type="button" aria-expanded="false" aria-controls="fq-a6" id="fq-q6"><span>How do I reschedule an appointment?</span><span class="fq__icon" aria-hidden="true"></span></button>
           <div class="fq__a" id="fq-a6" role="region" aria-labelledby="fq-q6"><div><p>Please give us at least 24 hours’ notice so we can offer the time to another patient. Call <a href="tel:+61734733396">07 3473 3396</a> or email <a href="mailto:admin@aleafiate.com.au">admin@aleafiate.com.au</a>.</p></div></div>
         </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BLOG: panel over a photo, counter + arrows, sliding article cards ================= -->
+<section class="bl2" id="blog" aria-labelledby="bl2-title">
+  <div class="bl2__bg" aria-hidden="true"><img src="images/home/cta-background.webp" alt="" loading="lazy"></div>
+  <div class="container">
+    <div class="bl2__panel" data-bl2>
+      <div class="bl2__head">
+        <div><span class="bl2__tag">From our blog</span><h2 id="bl2-title">Guides for Your<br><em>Care Journey</em></h2></div>
+        <p class="bl2__intro">Practical, easy-to-read guides to help you prepare for your consultations and get the most from your ongoing care.</p>
+      </div>
+      <div class="bl2__side">
+        <div class="bl2__count" aria-live="polite"><span data-bl2-num>01</span><small>/03</small></div>
+        <p class="bl2__desc" data-bl2-desc>Seeing a practitioner from home is simple once you know how it works. Here’s how to get ready, what happens during the call, and what comes next.</p>
+        <a class="bl2__all" href="blog.html">View all articles <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <div class="bl2__nav"><button type="button" data-bl2-prev aria-label="Previous article"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 5L3.5 9.5 8 14M4 9.5h8a4.5 4.5 0 0 1 4.5 4.5v1"/></svg></button><button type="button" data-bl2-next aria-label="Next article"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 5l4.5 4.5L12 14M16 9.5H8A4.5 4.5 0 0 0 3.5 14v1"/></svg></button></div>
+      </div>
+      <div class="bl2__view">
+        <div class="bl2__track" data-bl2-track>
+          <a class="bl2-card" href="blog-first-telehealth-consultation.html" data-desc="Seeing a practitioner from home is simple once you know how it works. Here’s how to get ready, what happens during the call, and what comes next.">
+            <img src="images/home/why-telehealth.webp" alt="" loading="lazy">
+            <span class="bl2-card__tag">Telehealth</span>
+            <b>Your First Telehealth Consultation</b>
+            <p>What to expect, and how to get set up at home.</p>
+            <span class="bl2-card__more">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a class="bl2-card" href="blog-initial-consultation-checklist.html" data-desc="A little preparation helps you and your practitioner make the most of your first appointment. Use this checklist in the days before you meet.">
+            <img src="images/home/step-2-intake-form.webp" alt="" loading="lazy">
+            <span class="bl2-card__tag">Getting started</span>
+            <b>Preparing for Your Initial Consultation</b>
+            <p>A simple checklist for the days before you meet.</p>
+            <span class="bl2-card__more">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a class="bl2-card" href="blog-why-follow-ups-matter.html" data-desc="Your first consultation is only the beginning. Regular follow-ups are how your practitioner keeps your care safe, effective and right for you as things change.">
+            <img src="images/about/approach-4-follow-up.webp" alt="" loading="lazy">
+            <span class="bl2-card__tag">Ongoing care</span>
+            <b>Why Regular Follow-ups Matter</b>
+            <p>How follow-ups keep your care on track.</p>
+            <span class="bl2-card__more">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a class="bl2-card bl2-card--all" href="blog.html" data-desc="More practical guides to help you prepare for your consultations and get the most from your ongoing care.">
+            <b>More guides for your care journey</b>
+            <p>Browse every article on the Aleafiate blog.</p>
+            <span class="bl2-card__more">View all articles <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1716,6 +1814,35 @@ window.addEventListener('load', () => {
     return () => { st.kill(); track.classList.remove('is-linked'); };
   });
 });
+</script>
+
+<script>
+/* Blog: reveal, arrows slide the cards, counter + description follow the first card in view, swipe on touch */
+(() => {
+  const sec = document.querySelector('.bl2'); if (!sec) return;
+  const panel = sec.querySelector('[data-bl2]');
+  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(e => { if (e[0].isIntersecting) { panel.classList.add('is-in'); io.disconnect(); } }, { threshold: .15 }); io.observe(panel); } else panel.classList.add('is-in');
+  const track = sec.querySelector('[data-bl2-track]'), cards = [...track.children], prev = sec.querySelector('[data-bl2-prev]'), next = sec.querySelector('[data-bl2-next]');
+  const num = sec.querySelector('[data-bl2-num]'), desc = sec.querySelector('[data-bl2-desc]'), posts = cards.filter(c => !c.classList.contains('bl2-card--all')).length;
+  let i = 0, t;
+  const visible = () => Math.max(1, Math.round(track.parentElement.clientWidth / (cards[0].offsetWidth + 14)));
+  const maxI = () => Math.max(0, cards.length - visible());
+  const go = n => {
+    i = Math.min(Math.max(n, 0), maxI());
+    track.style.transform = `translateX(${-i * (cards[0].offsetWidth + 14)}px)`;
+    prev.disabled = i === 0; next.disabled = i === maxI();
+    cards.forEach((c, k) => c.tabIndex = k >= i && k < i + visible() ? 0 : -1);
+    num.textContent = String(Math.min(i + 1, posts)).padStart(2, '0');
+    desc.classList.add('is-swap'); clearTimeout(t);
+    t = setTimeout(() => { desc.textContent = cards[i].dataset.desc; desc.classList.remove('is-swap'); }, 250);
+  };
+  prev.addEventListener('click', () => go(i - 1)); next.addEventListener('click', () => go(i + 1));
+  addEventListener('resize', () => go(i));
+  let x0 = null;
+  track.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  go(0);
+})();
 </script>
 </body>
 </html>
