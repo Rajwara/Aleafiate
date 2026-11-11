@@ -780,6 +780,65 @@ a.tm-card-inner:hover .tm-more svg{transform:translateX(4px)}
 .tm-cta i svg{width:13px;height:13px}
 .tm-cta:hover{background:var(--teal-deep)}
 .tm-cta:hover i{transform:rotate(-45deg)}
+
+/* What do you need help with: bento layout from test-mock, live-page content, colours, fonts and buttons */
+.hb2{padding:clamp(60px,7vw,100px) 0 clamp(80px,9vw,120px);background:var(--bone)}
+.hb2__panel{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,4vw,60px);padding:clamp(28px,4vw,56px);border-radius:28px;background:#fff}
+.hb2__copy{display:flex;flex-direction:column}
+.hb2__rating{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--navy)}
+.hb2__stars{display:flex;gap:2px}
+.hb2__stars i{display:grid;place-items:center;width:17px;height:17px;background:var(--teal-deep);color:#fff;font-style:normal;font-size:11px;line-height:1}
+.hb2__rating b{font-weight:600}
+.hb2__rating span{opacity:.5}
+.hb2 h2{margin:22px 0 0;font-family:var(--heading);font-weight:600;font-size:clamp(34px,3.8vw,58px);line-height:1.08;letter-spacing:-.035em;color:var(--ink)}
+.hb2 h2 em{font-style:normal;color:var(--teal-deep)}
+.hb2__sub{margin:16px 0 0;font-size:16px;line-height:1.65;color:var(--muted)}
+/* live-page button (same as the pricing "Get started free" button): navy pill, teal fill rises, label rolls */
+.lv-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;overflow:hidden;isolation:isolate;margin-top:28px;padding:16px 30px;border:0;border-radius:999px;background:var(--navy);cursor:pointer;text-decoration:none}
+.lv-btn__text{position:relative;z-index:1;font:600 15px/1 var(--body);color:#fff;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.lv-btn__text--abs{position:absolute;transform:translateY(300%)}
+.lv-btn__bg{position:absolute;z-index:0;width:14rem;min-width:120%;height:8rem;border-radius:50%;background:var(--teal-deep);transform:translateY(100%);transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.lv-btn:hover .lv-btn__bg,.lv-btn:focus-visible .lv-btn__bg{transform:translateY(0)}
+.lv-btn:hover .lv-btn__text,.lv-btn:focus-visible .lv-btn__text{transform:translateY(-300%)}
+.lv-btn:hover .lv-btn__text--abs,.lv-btn:focus-visible .lv-btn__text--abs{transform:translateY(0)}
+.lv-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.hb2__feats{display:grid;gap:12px;list-style:none;margin:auto 0 0;padding:40px 0 0}
+.hb2__feats li{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--ink)}
+.hb2__feats svg{flex:none;width:18px;height:18px;color:var(--teal-deep)}
+.hb2__foot{display:flex;align-items:center;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid rgba(19,19,46,.1);font-size:14.5px;color:var(--ink)}
+.hb2__foot-icon{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--sand);color:var(--teal-deep)}
+.hb2__foot-icon svg{width:18px;height:18px}
+.hb2__foot p{margin:0}
+.hb2__foot button{padding:0;border:0;background:none;font:inherit;font-weight:600;color:var(--teal-deep);border-bottom:1px solid currentColor;cursor:pointer}
+.hb2__bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hb2-tile{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(220px,18vw,260px);padding:22px;border-radius:22px;background:var(--sand);color:var(--ink);outline:none}
+.hb2-tile--wide{grid-column:1/-1}
+.hb2-tile>img{position:absolute;right:0;bottom:0;z-index:-1;height:100%;width:60%;object-fit:cover;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.hb2-tile:not(.hb2-tile--wide)>img{width:100%;height:50%;-webkit-mask:linear-gradient(180deg,transparent,#000 40%);mask:linear-gradient(180deg,transparent,#000 40%)}
+.hb2-tile:not(.hb2-tile--wide){min-height:clamp(290px,24vw,330px)}
+.hb2-tile h3{position:relative;max-width:16ch;font-family:var(--heading);font-weight:600;font-size:clamp(18px,1.5vw,22px);line-height:1.2;letter-spacing:-.015em}
+.hb2-tile__front{display:block;max-width:24ch;margin-top:8px;font-size:13px;line-height:1.5;color:var(--muted)}
+.hb2-tile__go{position:absolute;left:22px;bottom:22px;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--navy);transition:background .35s,color .35s}
+.hb2-tile__go svg{width:14px;height:14px}
+.hb2-tile__back{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:22px;background:var(--navy);color:#fff;clip-path:circle(0 at 40px calc(100% - 40px));transition:clip-path .8s cubic-bezier(.65,.05,.36,1)}
+.hb2-tile__back h3{color:#fff}
+.hb2-tile__back p{margin:10px 0 0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.8)}
+.hb2-tile__back ul{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:12px 0 0;padding:0}
+.hb2-tile__back li{padding:5px 11px;border-radius:99px;background:rgba(138,220,206,.18);color:var(--mint);font-size:12.5px}
+.hb2-tile:hover .hb2-tile__back,.hb2-tile:focus-within .hb2-tile__back,.hb2-tile.is-open .hb2-tile__back{clip-path:circle(150% at 40px calc(100% - 40px))}
+.hb2-tile:hover>img{transform:scale(1.04)}
+/* live-page card link: white text, mint arrow */
+.fc2__cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:0;border:0;background:none;color:#fff;font:600 14px/1 var(--body);cursor:pointer}
+.fc2__cta svg{width:20px;height:20px;color:var(--mint);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.fc2__cta:hover svg{transform:translateX(5px)}
+.hb2 [data-hb2]{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.hb2 [data-hb2].is-in{opacity:1;transform:none}
+.hb2__bento[data-hb2] .hb2-tile{opacity:0;transform:translateY(30px) scale(.97);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.hb2__bento.is-in .hb2-tile{opacity:1;transform:none}
+.hb2__bento.is-in .hb2-tile:nth-child(2){transition-delay:.1s}.hb2__bento.is-in .hb2-tile:nth-child(3){transition-delay:.2s}.hb2__bento.is-in .hb2-tile:nth-child(4){transition-delay:.3s}
+@media (prefers-reduced-motion:reduce){.hb2 [data-hb2],.hb2__bento[data-hb2] .hb2-tile{opacity:1;transform:none;transition:none}.hb2-tile__back{transition:none}}
+@media (max-width:1100px){.hb2__panel{grid-template-columns:1fr}.hb2__feats{margin-top:0;padding-top:28px}}
+@media (max-width:520px){.hb2__panel{padding:22px 16px}.hb2__bento{grid-template-columns:1fr}.hb2-tile,.hb2-tile:not(.hb2-tile--wide){min-height:230px}.hb2-tile h3,.hb2-tile__front{max-width:58%}.hb2-tile__back h3{max-width:none}.hb2-tile>img,.hb2-tile:not(.hb2-tile--wide)>img{width:48%;height:100%;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%)}}
 </style>
 </head>
 <body>
@@ -919,6 +978,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT DO YOU NEED HELP WITH: bento layout (from test-mock), live content and styling ================= -->
+<section class="hb2" id="help" aria-labelledby="hb2-title">
+  <div class="container">
+    <div class="hb2__panel">
+      <div class="hb2__copy" data-hb2>
+        <div class="hb2__rating"><span class="hb2__stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><b>4.7 stars</b><span>|</span>Google reviews</div>
+        <h2 id="hb2-title">What do you need <em>help with?</em></h2>
+        <p class="hb2__sub">Our practitioners may support patients experiencing:</p>
+        <button type="button" class="lv-btn" data-book data-book-enquiry="Book a free discovery call"><span class="lv-btn__text">Book a free nurse call</span><span class="lv-btn__text lv-btn__text--abs" aria-hidden="true">Book a free nurse call</span><span class="lv-btn__bg"></span></button>
+        <ul class="hb2__feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>In clinic at Logan Central or telehealth Australia-wide</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg>AHPRA-registered practitioners</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Free nurse call, no obligation</li>
+        </ul>
+        <div class="hb2__foot"><span class="hb2__foot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8M8 13h5"/></svg></span><p>Not sure where you fit? <button type="button" data-book data-book-enquiry="Book a free discovery call">Book a free nurse call</button> and discuss your healthcare needs with our team.</p></div>
+      </div>
+      <div class="hb2__bento" data-hb2>
+        <div class="hb2-tile hb2-tile--wide" tabindex="0" role="button" aria-expanded="false" aria-label="Sleep and Rest: show more">
+          <img src="images/home/care-sleep.webp" alt="A man sleeping peacefully" loading="lazy">
+          <h3>Sleep &amp; Rest</h3>
+          <span class="hb2-tile__front">Poor sleep can affect your energy, mood, and overall wellbeing. Our practitioners can help you explore options for improving your sleep.</span>
+          <span class="hb2-tile__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          <div class="hb2-tile__back">
+            <div><h3>Sleep &amp; Rest</h3><p>Sleep shapes how you feel every day. Our practitioners can talk with you about:</p><ul><li>Waking unrefreshed</li></ul></div>
+            <button type="button" class="fc2__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
+          </div>
+        </div>
+        <div class="hb2-tile" tabindex="0" role="button" aria-expanded="false" aria-label="Mental and Emotional Wellbeing: show more">
+          <img src="images/home/care-wellbeing.webp" alt="A woman relaxing at home with a warm drink" loading="lazy">
+          <h3>Mental &amp; Emotional Wellbeing</h3>
+          <span class="hb2-tile__front">Mental wellbeing is an important part of your overall health.</span>
+          <span class="hb2-tile__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          <div class="hb2-tile__back">
+            <div><h3>Mental &amp; Emotional Wellbeing</h3><p>It can be hard to ask for help. We offer a calm, non-judgemental space to talk about:</p><ul><li>Loss of interest in usual activities</li></ul></div>
+            <button type="button" class="fc2__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
+          </div>
+        </div>
+        <div class="hb2-tile" tabindex="0" role="button" aria-expanded="false" aria-label="Women’s Health: show more">
+          <img src="images/home/care-womens-health.webp" alt="A woman resting comfortably on her sofa" loading="lazy">
+          <h3>Women’s Health</h3>
+          <span class="hb2-tile__front">Women’s health needs can change throughout different stages of life.</span>
+          <span class="hb2-tile__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          <div class="hb2-tile__back">
+            <div><h3>Women’s Health</h3><p>We take women’s health seriously and plan care around your stage of life, including:</p><ul><li>Changes in appetite</li></ul></div>
+            <button type="button" class="fc2__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
+          </div>
+        </div>
+        <div class="hb2-tile hb2-tile--wide" tabindex="0" role="button" aria-expanded="false" aria-label="Pain and Physical discomfort: show more">
+          <img src="images/home/care-pain.webp" alt="A woman stretching her shoulder at home" loading="lazy">
+          <h3>Pain &amp; Physical discomfort</h3>
+          <span class="hb2-tile__front">Managing pain can make life challenging. Speak to one of our practitioners about your symptoms.</span>
+          <span class="hb2-tile__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          <div class="hb2-tile__back">
+            <div><h3>Pain &amp; Physical discomfort</h3><p>Ongoing pain can affect your sleep, work and mood. Our practitioners can talk with you about:</p><ul><li>Headaches</li></ul></div>
+            <button type="button" class="fc2__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
           </div>
         </div>
       </div>
@@ -1346,6 +1467,23 @@ window.addEventListener('load', () => {
   initTeamSection(document.querySelector('.tm-section'), window.gsap, window.ScrollTrigger);
   window.ScrollTrigger && ScrollTrigger.refresh();
 });
+</script>
+
+<script>
+/* Help section: reveal on scroll; tap/Enter opens a tile on touch and keyboard (hover opens it with a mouse) */
+(() => {
+  const sec = document.querySelector('.hb2'); if (!sec) return;
+  const els = sec.querySelectorAll('[data-hb2]');
+  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: .15 }); els.forEach(e => io.observe(e)); }
+  else els.forEach(e => e.classList.add('is-in'));
+  const tiles = [...sec.querySelectorAll('.hb2-tile')];
+  const setOpen = (t, open) => { t.classList.toggle('is-open', open); t.setAttribute('aria-expanded', open); const b = t.querySelector('.fc2__cta'); b.tabIndex = open ? 0 : -1; t.querySelector('.hb2-tile__back').setAttribute('aria-hidden', !open); };
+  tiles.forEach(t => {
+    setOpen(t, false);
+    t.addEventListener('click', e => { if (e.target.closest('.fc2__cta')) return; if (matchMedia('(hover: hover)').matches) return; const open = !t.classList.contains('is-open'); tiles.forEach(o => setOpen(o, false)); setOpen(t, open); });
+    t.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === t) { e.preventDefault(); setOpen(t, !t.classList.contains('is-open')); } if (e.key === 'Escape') setOpen(t, false); });
+  });
+})();
 </script>
 </body>
 </html>
