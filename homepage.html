@@ -925,6 +925,12 @@ a.tm-card-inner:hover .tm-more svg{transform:translateX(4px)}
 .fq__a a{color:var(--teal-deep);font-weight:500}
 @media (max-width:900px){.fq__grid{grid-template-columns:1fr}.fq__side{position:static}}
 
+
+/* Why cards: centred when they all fit; on desktop the row slides sideways as the page scrolls */
+.st__track>.st-card:first-child{margin-left:auto}
+.st__track>.st-card:last-child{margin-right:auto}
+.st__track.is-linked{scroll-snap-type:none;scroll-behavior:auto}
+#why .st__track{padding-left:var(--gutter);padding-right:var(--gutter);scroll-padding-inline:var(--gutter)}
 </style>
 </head>
 <body>
@@ -1690,6 +1696,26 @@ window.addEventListener('load', () => {
     });
   });
 })();
+</script>
+
+<script>
+/* Why cards: link the sideways position of the row to page scroll (desktop with a mouse; touch keeps swiping) */
+window.addEventListener('load', () => {
+  const sec = document.querySelector('section.st#why'), track = sec && sec.querySelector('.st__track');
+  if (!track || !window.gsap || !window.ScrollTrigger || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 900px) and (hover: hover)', () => {
+    const max = () => track.scrollWidth - track.clientWidth;
+    if (max() <= 4) return;                       // all cards fit: they are simply centred
+    track.classList.add('is-linked');
+    const st = ScrollTrigger.create({
+      trigger: track, start: 'top 85%', end: 'bottom 25%', scrub: true, invalidateOnRefresh: true,
+      onUpdate: self => { track.scrollLeft = self.progress * max(); }
+    });
+    return () => { st.kill(); track.classList.remove('is-linked'); };
+  });
+});
 </script>
 </body>
 </html>
