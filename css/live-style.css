@@ -1,0 +1,76 @@
+/* =========================================================
+   Live-page styling for the draft homepages (homepage.html, homepage-v2.html)
+   Matches https://aleafiate.vercel.app/ (index.html):
+   - headings: Montserrat 600, ink, accent words in teal (not italic)
+   - text: Poppins
+   - buttons: 52px pill, Poppins 500 15px
+       primary   navy  -> teal-deep on hover  (like "Get started free" / FAQ "Contact us")
+       secondary outline -> fills on hover    (like "Book a free call" ghost)
+       on photos white  -> mint on hover       (like the hero "Book a free call")
+                 glass outline -> white        (like the hero "Contact us")
+   Loaded after each page's own styles so it wins on equal specificity.
+   ========================================================= */
+
+/* ---------- headings ---------- */
+main h2:not(#_){font-family:var(--heading);font-weight:600;color:var(--ink);letter-spacing:-.035em}
+main h2:not(#_) em,main h2:not(#_) span:not([class]){font-style:normal;color:var(--teal-deep)}
+main h3:not(#_){font-family:var(--heading)}
+/* headings that sit on dark panels stay light */
+.ct__left h2:not(#_){color:#fff}
+.ct__left h2:not(#_) em{color:var(--mint)}
+main p,main li{font-family:var(--body)}
+
+/* ---------- shared button base ---------- */
+:is(.v2-btn,.lv-btn,.tm-cta,.hh__btn,.m3-btn,.kc-card__btn,.sb__btn,.rf__btn,.nb__btn,.m4-btn,.hb2 .lv-btn){
+  font-family:var(--body);font-weight:500;font-size:15px;line-height:1;letter-spacing:0;
+  border-radius:999px;text-decoration:none;cursor:pointer;white-space:nowrap;
+  transition:background .4s,color .4s,border-color .4s,box-shadow .4s}
+:is(.v2-btn,.hh__btn,.m3-btn,.sb__btn,.rf__btn,.m4-btn){height:52px;padding:0 26px;gap:10px}
+.kc-card__btn{height:52px}
+.tm-cta{height:46px;padding:0 22px;gap:10px}
+.lv-btn{padding:0 30px;height:52px}
+.lv-btn__text{font-family:var(--body);font-weight:500;font-size:15px}
+
+/* arrows: plain inline arrow like the live hero buttons (no circle) */
+:is(.v2-btn,.hh__btn,.tm-cta) i{width:auto;height:auto;background:none;color:inherit;border-radius:0}
+:is(.v2-btn,.hh__btn,.tm-cta,.m3-btn,.kc-card__btn,.sb__btn,.rf__btn) svg{width:15px;height:15px;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+:is(.v2-btn,.hh__btn,.tm-cta,.m3-btn,.kc-card__btn,.sb__btn,.rf__btn):hover svg{transform:translateX(4px)}
+:is(.v2-btn,.hh__btn,.tm-cta):hover i{transform:none}
+.v2-btn{padding:0 26px}
+
+/* ---------- primary: navy -> teal-deep ---------- */
+:is(.v2-btn--navy,.m3-btn--solid,.kc-card__btn--solid,.sb__btn--solid,.rf__btn--solid,.tm-cta,.m4-btn--navy){
+  --bg:var(--navy);--fill:var(--teal-deep);--fg:#fff;--ffg:#fff;--line:var(--navy);
+  background:var(--navy);color:#fff;border:1px solid var(--navy)}
+:is(.m3-btn--solid,.kc-card__btn--solid,.sb__btn--solid,.rf__btn--solid,.tm-cta):hover{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+:is(.v2-btn--navy,.m3-btn--solid,.kc-card__btn--solid,.sb__btn--solid,.tm-cta) svg{color:inherit}
+.sb__btn--solid b,.kc-card__btn--solid b{color:inherit}
+
+/* ---------- secondary: outline -> fills navy ---------- */
+:is(.v2-btn--ghost,.m3-btn--ghost,.kc-card__btn--soft,.sb__btn--line,.rf__btn--soft){
+  --bg:transparent;--fg:var(--ink);--line:rgba(19,19,46,.35);--fill:var(--navy);--ffg:#fff;
+  background:transparent;color:var(--ink);border:1px solid rgba(19,19,46,.35);-webkit-backdrop-filter:none;backdrop-filter:none}
+:is(.m3-btn--ghost,.kc-card__btn--soft,.sb__btn--line,.rf__btn--soft):hover{background:var(--navy);border-color:var(--navy);color:#fff}
+:is(.m3-btn--ghost,.kc-card__btn--soft,.sb__btn--line,.rf__btn--soft):hover b{color:inherit}
+.sb__btn--line b,.kc-card__btn--soft b{color:inherit;font-weight:600}
+
+/* ---------- on photos / dark panels ---------- */
+:is(.v2-btn--light,.hh__btn--light){
+  --bg:#fff;--fg:var(--navy);--fill:var(--mint);--ffg:var(--navy);--line:#fff;
+  background:#fff;color:var(--navy);border:1px solid #fff}
+.hh__btn--light:hover{background:var(--mint);border-color:var(--mint)}
+:is(.v2-btn--glass,.hh__btn--solid){
+  --bg:rgba(255,255,255,.06);--fg:#fff;--fill:#fff;--ffg:var(--navy);--line:rgba(255,255,255,.6);
+  background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hh__btn--solid:hover{background:#fff;color:var(--navy)}
+.hh__btn--solid i,.hh__btn--light i{color:inherit}
+
+/* cards: keep full-width card buttons */
+.kc-card__btn{width:100%;justify-content:center}
+.hp-card .v2-btn{height:46px}
+
+/* text links: live style (600, small arrow) */
+:is(.hv-t__btn,.st-card__link,.bl2__all,.m3r__all,.bl2-card__more,.m3-post em){font-family:var(--body);font-weight:600}
+
+@media (max-width:760px){.hh__cta :is(.hh__btn,.v2-btn){width:100%;justify-content:center}}
+@media (prefers-reduced-motion:reduce){:is(.v2-btn,.hh__btn,.tm-cta,.m3-btn,.kc-card__btn,.sb__btn,.rf__btn) svg{transition:none}}
