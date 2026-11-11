@@ -1104,6 +1104,12 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   .sb__feats li{font-size:14px}
 }
 
+/* care section: photo behind the sky */
+.sb__photo{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.sb__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.04)}
+.sb__photo::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 45%,rgba(238,248,246,.9),rgba(222,242,238,.72) 60%,rgba(207,236,230,.55)),linear-gradient(180deg,rgba(238,248,246,.35),rgba(238,248,246,.85))}
+.sb:has(.sb__photo){background:none}
+.sb:has(.sb__photo) .sb__cloud{opacity:.45}
 .sb__inner{min-height:0;padding-top:clamp(90px,10vw,140px);padding-bottom:clamp(90px,10vw,140px)}
 </style>
 </head>
@@ -1179,7 +1185,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ================= 3. CARE: soft sky, centred copy (from test-mock) ================= -->
 <section class="sb" aria-labelledby="sb-title">
-    <div class="sb__sky" aria-hidden="true"><span class="sb__glow"></span><span class="sb__cloud sb__cloud--1"></span><span class="sb__cloud sb__cloud--2"></span><span class="sb__cloud sb__cloud--3"></span><span class="sb__cloud sb__cloud--4"></span></div>
+    <div class="sb__photo" aria-hidden="true"><img src="images/home/cta-background.webp" alt="" loading="lazy"></div>
+  <div class="sb__sky" aria-hidden="true"><span class="sb__glow"></span><span class="sb__cloud sb__cloud--1"></span><span class="sb__cloud sb__cloud--2"></span><span class="sb__cloud sb__cloud--3"></span><span class="sb__cloud sb__cloud--4"></span></div>
   <div class="container sb__inner">
     <h2 id="sb-title">Personalised healthcare, <em>delivered with care</em></h2>
     <p class="sb__sub">Aleafiate connects you with AHPRA-registered practitioners who take the time to understand your health, your history and the care options that may suit you. In clinic at Logan Central or by telehealth, Australia-wide.</p>
