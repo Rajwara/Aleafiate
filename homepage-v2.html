@@ -1286,6 +1286,34 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 @media (min-width:861px){.m3s,.m3r{box-sizing:border-box;width:min(100% - 32px,1392px);margin-inline:auto}.m3r{padding-left:0;padding-right:0}}
 .m3s{margin-top:12px}
 .m3s [data-m3],.m3r [data-m3]{opacity:1;transform:none}
+
+/* Our approach (from mock-test-3) */
+.m3a{padding:12px}
+.m3a__panel{display:grid;grid-template-columns:.85fr 1.4fr;gap:clamp(24px,3vw,44px);align-items:center;padding:clamp(28px,4vw,56px)}
+.m3a h2{margin:22px 0 0;font-family:var(--heading);font-weight:500;font-size:clamp(32px,3.3vw,48px);line-height:1.15;letter-spacing:-.03em;color:var(--navy)}
+.m3a h2 em{font-style:normal;color:var(--teal-deep)}
+.m3a p{margin:22px 0 0;max-width:380px;font-size:15px;line-height:1.65;color:#4a5068}
+.m3a__btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.m3a__btns .m3-btn--ghost{border:1px solid rgba(17,17,69,.12)}
+.m3a__cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.m3a-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:clamp(320px,28vw,400px);padding:22px;border-radius:20px;overflow:hidden;color:#fff;isolation:isolate}
+.m3a-card img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.m3a-card:hover img{transform:scale(1.06)}
+.m3a-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(17,17,69,0) 30%,rgba(17,17,69,.85))}
+.m3a-card i{display:grid;place-items:center;width:46px;height:46px;margin-bottom:auto;border-radius:50%;background:#fff;color:var(--teal-deep)}
+.m3a-card i svg{width:22px;height:22px}
+.m3a-card b{display:block;font-family:var(--heading);font-weight:500;font-size:clamp(18px,1.6vw,22px);line-height:1.2}
+.m3a-card span{display:block;margin-top:10px;font-size:13px;line-height:1.5;opacity:.85}
+@media (max-width:1100px){
+  .m3a__panel,.m3r__grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .m3a,.m3r{padding-left:8px;padding-right:8px}
+  .m3a__cards{grid-template-columns:1fr}
+  .m3a-card{min-height:260px}
+}
+@media (min-width:861px){.m3a{box-sizing:border-box;width:min(100% - 32px,1392px);margin-inline:auto;padding-left:0;padding-right:0}}
+.m3a [data-m3]{opacity:1;transform:none}
 </style>
 </head>
 <body>
@@ -1511,6 +1539,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <p style="margin:30px 0 0;font-size:12.5px;color:var(--muted)">*Medicare rebate eligibility varies depending on individual circumstances. Speak to your practitioner for details.</p>
+  </div>
+</section>
+
+<!-- ================= OUR APPROACH (from mock-test-3) ================= -->
+<section class="m3a m3" id="approach" aria-labelledby="m3a-title">
+  <div class="m3-panel m3a__panel">
+    <div data-m3>
+      <span class="m3-tag">Our approach</span>
+      <h2 id="m3a-title">Care That’s <em>Personal</em>, Professional and Close to Home.</h2>
+      <p>Every consultation begins with understanding your health concerns, medical history and individual needs, so we can explore clinically appropriate care options together.</p>
+      <div class="m3a__btns">
+        <a class="m3-btn m3-btn--solid" href="check-eligibility.html">Check eligibility <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <button class="m3-btn m3-btn--ghost" type="button" data-book data-book-enquiry="Book a free discovery call">Book a free call</button>
+      </div>
+    </div>
+    <div class="m3a__cards" data-m3><article class="m3a-card"><img src="images/home-v2/why-1-qualified-practitioners.webp" alt="A practitioner greeting a patient" loading="lazy"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><b>Qualified Practitioners</b><span>AHPRA-registered and guided by professional standards.</span></article><article class="m3a-card"><img src="images/home/care-wellbeing.webp" alt="A woman relaxing at home" loading="lazy"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></i><b>Individualised Care</b><span>Every plan starts with your history and needs.</span></article><article class="m3a-card"><img src="images/about/experience-telehealth.webp" alt="A patient on a telehealth call" loading="lazy"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i><b>Flexible Options</b><span>In clinic at Logan Central or telehealth Australia-wide.</span></article></div>
   </div>
 </section>
 <!-- ================= 2. PRICING: photo follows the hovered card ================= -->
