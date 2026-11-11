@@ -764,6 +764,72 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 @media (prefers-reduced-motion:reduce){.rf__note{opacity:1;transform:none;transition:none}}
 @media (max-width:860px){.rf__grid{grid-template-columns:1fr}.rf__visual{min-height:440px}}
 </style>
+<style>
+/* ---------- Bento banner + "We see you" (after Right fit, for review) ---------- */
+.bh{background:linear-gradient(180deg,#d6efea 0%,#e7f5f2 100%);padding:clamp(100px,10vw,140px) 0 clamp(50px,5vw,70px)}
+.bh__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(30px,4vw,60px);align-items:stretch}
+.bh__copy{display:flex;flex-direction:column;padding:12px 0}
+.bh__rating{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--navy)}
+.bh__stars{display:flex;gap:2px}
+.bh__stars i{display:grid;place-items:center;width:17px;height:17px;background:var(--teal-deep);color:#fff;font-style:normal;font-size:11px;line-height:1}
+.bh__rating b{font-weight:600}
+.bh__rating span{opacity:.5}
+.bh h2{margin:22px 0 0;font-family:var(--heading);font-weight:400;font-size:clamp(32px,3.4vw,50px);line-height:1.15;letter-spacing:-.025em;color:var(--navy)}
+.bh h2 em{font-style:normal;font-weight:600}
+.bh__sub{margin:18px 0 0;font-size:15px;color:#3d4560}
+.bh__cta{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;margin-top:30px;height:50px;padding:0 24px;border-radius:99px;background:var(--navy);color:#fff;font:500 15px/1 var(--body);text-decoration:none;transition:background .35s}
+.bh__cta svg{width:15px;height:15px;transition:transform .35s}
+.bh__cta:hover{background:var(--teal-deep)}
+.bh__cta:hover svg{transform:translateX(4px)}
+.bh__feats{display:grid;gap:12px;list-style:none;margin:auto 0 0;padding:44px 0 0}
+.bh__feats li{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--navy)}
+.bh__feats svg{flex:none;width:18px;height:18px;color:var(--teal-deep)}
+.bh__bento{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:10px}
+.bh-tile{position:relative;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;overflow:hidden;min-height:clamp(200px,17vw,250px);padding:20px;border-radius:22px;background:#fff;color:var(--navy);text-align:left;text-decoration:none;border:0;cursor:pointer;font:inherit;box-shadow:0 20px 40px -32px rgba(17,17,69,.35);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.bh-tile:hover{transform:translateY(-4px);box-shadow:0 30px 50px -30px rgba(17,17,69,.45)}
+.bh-tile--big{grid-column:1/-1;min-height:clamp(220px,19vw,280px)}
+.bh-tile img{position:absolute;right:0;bottom:0;height:100%;width:62%;object-fit:cover;object-position:center;-webkit-mask:linear-gradient(90deg,transparent,#000 30%);mask:linear-gradient(90deg,transparent,#000 30%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.bh-tile:not(.bh-tile--big){min-height:clamp(260px,21vw,300px)}
+.bh-tile:not(.bh-tile--big) img{width:100%;height:56%;-webkit-mask:linear-gradient(180deg,transparent,#000 35%);mask:linear-gradient(180deg,transparent,#000 35%)}
+.bh-tile:hover img{transform:scale(1.04)}
+.bh-tile b{position:relative;z-index:1;display:block;font-family:var(--heading);font-weight:500;font-size:clamp(18px,1.5vw,22px);letter-spacing:-.01em}
+.bh-tile small{position:relative;z-index:1;display:block;max-width:22ch;margin-top:6px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.bh-tile__go{position:absolute;z-index:1;left:20px;bottom:20px;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#eef4f3;color:var(--navy);transition:background .35s,color .35s}
+.bh-tile__go svg{width:14px;height:14px}
+.bh-tile:hover .bh-tile__go{background:var(--navy);color:#fff}
+.bh-tile__badge{position:absolute;z-index:1;right:18px;bottom:18px;display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:10px;background:#fff;font-size:12.5px;font-weight:500;box-shadow:0 8px 20px -10px rgba(17,17,69,.35)}
+.bh-tile__badge i{display:grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--mint);color:var(--navy)}
+.bh-tile__badge i svg{width:13px;height:13px}
+@media (max-width:900px){.bh__grid{grid-template-columns:1fr}.bh__feats{margin-top:0;padding-top:30px}}
+@media (max-width:480px){.bh__bento{grid-template-columns:1fr}.bh-tile:not(.bh-tile--big) img{width:55%;height:100%;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%)}.bh-tile,.bh-tile:not(.bh-tile--big){min-height:180px}.bh-tile__badge{display:none}}
+
+.we{padding:clamp(80px,9vw,120px) 0;background:#fff;text-align:center}
+.we h2{max-width:20ch;margin:0 auto;font-family:var(--heading);font-weight:400;font-size:clamp(30px,3.6vw,52px);line-height:1.18;letter-spacing:-.025em;color:var(--navy)}
+.we__sub{margin:20px auto 0;max-width:520px;font-size:15px;color:#3d4560}
+.we__row{display:grid;grid-template-columns:.62fr 1.25fr .62fr;gap:14px;align-items:stretch;max-width:1120px;margin:clamp(44px,5vw,64px) auto 0}
+.we__stat{display:flex;align-items:center;justify-content:center;padding:26px;border-radius:40px;background:linear-gradient(160deg,#cfece6,#e9f6f3)}
+.we__stat-card{width:100%;max-width:190px;padding:20px;border-radius:16px;background:#fff;text-align:left;box-shadow:0 20px 40px -30px rgba(17,17,69,.4)}
+.we__stat-card i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#e3f4f1;color:var(--teal-deep);font-style:normal}
+.we__stat-card i svg{width:15px;height:15px}
+.we__stat-card b{display:block;margin-top:22px;font:400 clamp(40px,3.6vw,52px)/1 var(--heading);letter-spacing:-.04em;color:var(--navy)}
+.we__stat-card span{display:block;margin-top:8px;font-size:12px;line-height:1.4;color:var(--muted)}
+.we__photo{position:relative;min-height:clamp(300px,25vw,360px);border-radius:999px;overflow:hidden}
+.we__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.we__pill{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:7px 14px 7px 7px;border-radius:99px;background:#fff;font-size:13px;white-space:nowrap;color:var(--navy);box-shadow:0 10px 24px -14px rgba(17,17,69,.45)}
+.we__pill b{padding:3px 8px;border-radius:99px;background:var(--mint);font-size:12px;font-weight:600}
+.we__quote{display:flex;flex-direction:column;padding:16px;border-radius:40px;background:linear-gradient(160deg,#efe7dc,#f6f1ea);text-align:left}
+.we__quote-top{display:flex;gap:6px;padding:4px}
+.we__quote-top span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--mint);font-weight:600}
+.we__quote-top i{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--navy);font:600 22px/1 Georgia,serif;font-style:normal}
+.we__quote-card{flex:1;display:flex;flex-direction:column;margin-top:12px;padding:16px;border-radius:16px;background:#fff}
+.we__quote-card .st{display:none}
+.we__quote-card p{margin:0;font-size:14px;line-height:1.55;color:var(--ink)}
+.we__quote-card small{margin-top:auto;padding-top:16px;font-size:13px;font-weight:600;color:var(--navy)}
+.we__quote-card small span{display:block;font-size:11.5px;font-weight:400;color:var(--muted)}
+.we__stars{margin-bottom:8px;color:var(--teal-deep);font-size:13px;letter-spacing:2px}
+@media (max-width:860px){.we__row{grid-template-columns:1fr 1fr}.we__photo{grid-column:1/-1;order:-1;border-radius:200px}}
+@media (max-width:520px){.we__row{grid-template-columns:1fr}.we__stat,.we__quote{border-radius:28px}.we__stat-card{max-width:none}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1068,6 +1134,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const io = new IntersectionObserver(e => { if (e[0].isIntersecting) { rf.classList.add('is-in'); io.disconnect(); } }, { threshold: .3 });
   io.observe(rf); })();
 </script>
+
+<!-- ================= BENTO BANNER (placed after Right fit for review) ================= -->
+<section class="bh" aria-labelledby="bh-title">
+  <div class="container bh__grid">
+    <div class="bh__copy">
+      <div class="bh__rating"><span class="bh__stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><b>4.7 stars</b><span>|</span>Google reviews</div>
+      <h2 id="bh-title">Personalised care from <em>real practitioners</em>, designed around you.</h2>
+      <p class="bh__sub">Your practitioner. Your plan. Ongoing support, not one-and-done.</p>
+      <a class="bh__cta" href="check-eligibility.html">Start your journey <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <ul class="bh__feats">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>In clinic at Logan Central or telehealth Australia-wide</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg>AHPRA-registered practitioners</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Free nurse call, no obligation</li>
+      </ul>
+    </div>
+    <div class="bh__bento">
+      <button class="bh-tile bh-tile--big" type="button" data-book data-book-enquiry="Book a free discovery call">
+          <img src="images/home/care-sleep.webp" alt="A man sleeping peacefully" loading="lazy">
+          <b>Sleep &amp; Rest</b><small>Explore options for better sleep with a practitioner in your corner</small>
+          <span class="bh-tile__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="bh-tile__badge"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i>AHPRA-registered</span>
+        </button>
+      <button class="bh-tile" type="button" data-book data-book-enquiry="Book a free discovery call">
+          <img src="images/home/care-wellbeing.webp" alt="A woman relaxing at home with a warm drink" loading="lazy">
+          <b>Mental Wellbeing</b><small>Support for your mind and mood</small>
+          <span class="bh-tile__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </button>
+      <button class="bh-tile" type="button" data-book data-book-enquiry="Book a free discovery call">
+          <img src="images/home/care-womens-health.webp" alt="A woman resting comfortably on her sofa" loading="lazy">
+          <b>Women’s Health</b><small>Care that understands you</small>
+          <span class="bh-tile__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WE SEE YOU (placed after the bento banner for review) ================= -->
+<section class="we" aria-labelledby="we-title">
+  <div class="container">
+    <h2 id="we-title">You’ve been managing this alone for too long. We see you, and we’re here to help.</h2>
+    <p class="we__sub">Your health concerns are real, and you deserve care that takes the time to understand them.</p>
+    <div class="we__row">
+      <div class="we__stat"><div class="we__stat-card"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></i><b>4.7</b><span>average rating from our Google reviews</span></div></div>
+      <div class="we__photo"><img src="images/home/home-hero.webp" alt="A smiling Aleafiate nurse outdoors" loading="lazy"><span class="we__pill"><b>$0</b> nurse call and initial consultation</span></div>
+      <div class="we__quote">
+        <div class="we__quote-top" aria-hidden="true"><span>S</span><i>“</i></div>
+        <figure class="we__quote-card" style="margin:12px 0 0">
+          <div class="we__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>“I had such a wonderful experience at Aleafiate. From the moment I walked into the clinic, I was made to feel genuinely welcome and at ease.”</p>
+          <small>Sasha Logsdale<span>Google review</span></small>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ================= LIBRARIES ================= -->
 <script src="js/booking.js"></script>
