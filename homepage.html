@@ -929,7 +929,8 @@ a.tm-card-inner:hover .tm-more svg{transform:translateX(4px)}
 /* Why cards: centred when they all fit; on desktop the row slides sideways as the page scrolls */
 .st__track>.st-card:first-child{margin-left:auto}
 .st__track>.st-card:last-child{margin-right:auto}
-.st__track.is-linked{scroll-snap-type:none;scroll-behavior:auto}
+.st__track.is-linked{scroll-snap-type:none;scroll-behavior:auto;overflow:visible;cursor:default}
+#why.st{overflow-x:clip}
 #why .st__track{padding-left:var(--gutter);padding-right:var(--gutter);scroll-padding-inline:var(--gutter)}
 
 /* Blog: white panel over a full-width photo, counter + arrows on the left, sliding article cards on the right */
@@ -1553,8 +1554,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     gsap.from('.fc', { y: 70, rotationX: -14, transformPerspective: 900, autoAlpha: 0, duration: 1.2, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '[data-hw-grid]', start: 'top 85%' } });
 
     /* ---------- Why Aleafiate: entrance, then points auto-play (bar fills → photo wipes to the next) ---------- */
-    const wa = $('#why');
-    if (wa) {
+    const wa = $('#why.wa'); // only the old live-page layout (the new Why cards use a different script)
+    if (wa && $('[data-wa-point]', wa)) {
       const points = $$('[data-wa-point]', wa), slides = $$('.wa__slide', wa), bars = points.map(p => $('.wa__bar i', p)), count = $('[data-wa-count]', wa);
       const DUR = 6; let cur = 0, fill = null;
       gsap.timeline({ scrollTrigger: { trigger: wa, start: 'top 70%' } })
@@ -1797,21 +1798,24 @@ window.addEventListener('load', () => {
 </script>
 
 <script>
-/* Why cards: link the sideways position of the row to page scroll (desktop with a mouse; touch keeps swiping) */
+/* Why cards: on desktop the whole row glides from right to left as the page scrolls (touch screens keep swiping) */
 window.addEventListener('load', () => {
-  const sec = document.querySelector('section.st#why'), track = sec && sec.querySelector('.st__track');
+  const sec = document.querySelector('section.st#why'), track = sec && sec.querySelector('.st__track'), bar = sec && sec.querySelector('.st__bar span');
   if (!track || !window.gsap || !window.ScrollTrigger || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   gsap.registerPlugin(ScrollTrigger);
   const mm = gsap.matchMedia();
   mm.add('(min-width: 900px) and (hover: hover)', () => {
-    const max = () => track.scrollWidth - track.clientWidth;
-    if (max() <= 4) return;                       // all cards fit: they are simply centred
+    track.scrollLeft = 0;
     track.classList.add('is-linked');
-    const st = ScrollTrigger.create({
-      trigger: track, start: 'top 85%', end: 'bottom 25%', scrub: true, invalidateOnRefresh: true,
-      onUpdate: self => { track.scrollLeft = self.progress * max(); }
+    const overflow = () => Math.max(0, track.scrollWidth - track.clientWidth);   // extra width when the cards don't all fit
+    const tween = gsap.fromTo(track, { x: () => innerWidth * 0.45 }, {
+      x: () => -overflow(), ease: 'none', immediateRender: true,
+      scrollTrigger: {
+        trigger: track, start: 'top bottom', end: 'bottom 35%', scrub: 0.6, invalidateOnRefresh: true,
+        onUpdate: self => { if (bar) { bar.style.width = '35%'; bar.style.transform = `translateX(${self.progress * (100 / 35 - 1) * 100}%)`; } }
+      }
     });
-    return () => { st.kill(); track.classList.remove('is-linked'); };
+    return () => { tween.scrollTrigger && tween.scrollTrigger.kill(); tween.kill(); gsap.set(track, { clearProps: 'transform' }); track.classList.remove('is-linked'); };
   });
 });
 </script>
