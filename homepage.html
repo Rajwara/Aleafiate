@@ -654,6 +654,65 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   .hh__btn{width:100%;justify-content:space-between}
   .hh__track li{font-size:14px;gap:22px;padding-right:22px}
 }
+/* Ways to start: photo + three visit "tickets" */
+.hv{padding:clamp(80px,9vw,130px) 0;background:#fff}
+.hv__head{display:grid;grid-template-columns:1.25fr 1fr;gap:40px 60px;align-items:end;margin-bottom:clamp(40px,4.5vw,60px)}
+.hv__pill{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 8px;border:1px solid rgba(17,17,69,.12);border-radius:99px;font-size:13px;color:var(--ink)}
+.hv__pill::before{content:"";width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,var(--teal-deep) 0 3.5px,rgba(48,153,136,.22) 4px)}
+.hv h2{margin-top:18px;font-family:var(--heading);font-weight:500;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.03em;color:var(--navy)}
+.hv h2 em{font-style:normal;color:var(--teal-deep)}
+.hv__lead{margin:0;max-width:440px;justify-self:end;font-size:16px;line-height:1.7;color:var(--muted)}
+.hv__grid{display:grid;grid-template-columns:.95fr 1.25fr;gap:clamp(20px,2.4vw,32px);align-items:stretch}
+.hv__photo{position:relative;min-height:520px;border-radius:28px;overflow:hidden}
+.hv__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%}
+.hv__note{position:absolute;left:20px;right:20px;bottom:20px;display:flex;border-radius:18px;background:#fff;box-shadow:0 20px 40px -24px rgba(17,17,69,.4);overflow:hidden}
+.hv__note-tag{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:92px;background:var(--sand);color:var(--teal-deep);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.hv__note-tag svg{width:22px;height:22px}
+.hv__note div{padding:16px 20px}
+.hv__note b{display:block;font-family:var(--heading);font-weight:500;font-size:19px;color:var(--navy)}
+.hv__note p{margin:4px 0 0;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.hv__list{display:grid;gap:16px}
+.hv-t{--bg:#fff;position:relative;display:grid;grid-template-columns:clamp(150px,13vw,190px) 1fr;border:1.5px solid rgba(17,17,69,.08);border-radius:22px;background:var(--bg);box-shadow:0 18px 40px -30px rgba(17,17,69,.35);transition:border-color .35s,box-shadow .35s,transform .45s cubic-bezier(.16,1,.3,1)}
+.hv-t:hover,.hv-t:focus-within{border-color:var(--teal-deep);box-shadow:0 26px 50px -30px rgba(36,117,104,.5);transform:translateY(-3px)}
+.hv-t.is-featured{border-color:var(--navy)}
+.hv-t__stub{position:relative;display:flex;flex-direction:column;padding:22px;border-radius:20px 0 0 20px;background:var(--sand);color:var(--navy)}
+.hv-t__stub::before,.hv-t__stub::after{content:"";position:absolute;right:-9px;width:18px;height:18px;border-radius:50%;background:#fff;border:1.5px solid rgba(17,17,69,.08);z-index:1} /* ticket notches */
+.hv-t__stub::before{top:-10px;clip-path:inset(50% 0 0 0)}
+.hv-t__stub::after{bottom:-10px;clip-path:inset(0 0 50% 0)}
+.hv-t__icon{width:24px;height:24px;color:var(--teal-deep)}
+.hv-t__label{margin-top:auto;padding-top:18px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hv-t__price{margin-top:6px;font:600 clamp(34px,3vw,44px)/1 var(--heading);letter-spacing:-.04em;color:var(--navy)}
+.hv-t__sub{margin-top:8px;font-size:13px;color:var(--muted)}
+.hv-t__body{display:flex;flex-direction:column;padding:22px 26px 22px 28px;border-left:1.5px dashed rgba(17,17,69,.14)}
+.hv-t__top{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.hv-t__top h3{flex-basis:100%;margin:0 0 4px}
+.hv-t h3{margin-right:6px;font-family:var(--heading);font-weight:500;font-size:clamp(21px,1.8vw,26px);letter-spacing:-.02em;color:var(--navy)}
+.hv-t__chip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:99px;background:#eef6f5;color:var(--teal-deep);font-size:12.5px;font-weight:500}
+.hv-t__chip::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.hv-t p{margin:12px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
+.hv-t__btn{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:16px;border:0;background:none;color:var(--navy);font:600 14px/1 var(--body);cursor:pointer;align-self:flex-start}
+.hv-t__btn::after{content:"";position:absolute;inset:0;border-radius:22px} /* whole ticket is clickable */
+.hv-t__btn svg{width:14px;height:14px;transition:transform .35s}
+.hv-t:hover .hv-t__btn svg{transform:translateX(4px)}
+.hv-t__btn:focus-visible{outline:none}
+.hv__foot{margin:22px 0 0;font-size:13px;color:var(--muted)}
+@media (max-width:1024px){
+  .hv__head,.hv__grid{grid-template-columns:1fr}
+  .hv__lead{justify-self:start}
+  .hv__photo{min-height:420px}
+}
+@media (max-width:560px){
+  .hv-t{grid-template-columns:1fr}
+  .hv-t__stub{display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:12px;border-radius:20px 20px 0 0}
+  .hv-t__stub::before,.hv-t__stub::after{display:none}
+  .hv-t__icon,.hv-t__label{grid-column:1/-1}
+  .hv-t__label{padding-top:12px}
+  .hv-t__price{margin:0}
+  .hv-t__sub{margin:0 0 4px}
+  .hv-t__body{border-left:0;border-top:1.5px dashed rgba(17,17,69,.14);padding:20px}
+  .hv__photo{min-height:380px}
+  .hv__note-tag{width:74px}
+}
 </style>
 </head>
 <body>
@@ -694,6 +753,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="hh__strip" aria-label="Highlights">
     <div class="hh__track"><ul><li>Free nurse call</li><li>AHPRA-registered practitioners</li><li>$0 initial consultation for new patients</li><li>Telehealth Australia-wide</li><li>In clinic at Logan Central</li><li>Rated 4.7 on Google</li><li>Personalised care plans</li></ul><ul aria-hidden="true"><li>Free nurse call</li><li>AHPRA-registered practitioners</li><li>$0 initial consultation for new patients</li><li>Telehealth Australia-wide</li><li>In clinic at Logan Central</li><li>Rated 4.7 on Google</li><li>Personalised care plans</li></ul></div>
+  </div>
+</section>
+<!-- ================= WAYS TO START: nurse call, initial consultation, follow-ups ================= -->
+<section class="hv" id="pricing" aria-labelledby="hv-title">
+  <div class="container">
+    <div class="hv__head">
+      <div>
+        <span class="hv__pill">Simple, transparent pricing</span>
+        <h2 id="hv-title"><em>Start free,</em> then care that fits your life</h2>
+      </div>
+      <p class="hv__lead">Every step has a clear price. Your nurse call and initial consultation are free for new patients, and Medicare rebates may apply to follow-up consultations.</p>
+    </div>
+    <div class="hv__grid">
+      <div class="hv__photo">
+        <img src="images/about/experience-telehealth.webp" alt="A patient on a telehealth consultation from home" width="1374" height="1145" loading="lazy">
+        <div class="hv__note"><span class="hv__note-tag"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2"/><path d="M15.5 10.5l6-3.5v10l-6-3.5"/></svg>Telehealth</span><div><b>Seen from home</b><p>Telehealth consultations are available Australia-wide, or visit us at our Logan Central clinic.</p></div></div>
+      </div>
+      <div class="hv__list">
+        <article class="hv-t is-featured">
+          <div class="hv-t__stub"><svg class="hv-t__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="hv-t__label">Free</span><span class="hv-t__price">$0</span><span class="hv-t__sub">No obligation</span></div>
+          <div class="hv-t__body">
+            <div class="hv-t__top"><h3>Nurse call</h3><span class="hv-t__chip">10–15 minutes</span><span class="hv-t__chip">By phone</span></div>
+            <p>Speak with our team about your health needs, find out if you’re eligible and get guidance on the next steps.</p>
+            <button class="hv-t__btn" type="button" data-book data-book-enquiry="Book a free discovery call">Book your free call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+          </div>
+        </article>
+        <article class="hv-t">
+          <div class="hv-t__stub"><svg class="hv-t__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg><span class="hv-t__label">New patients</span><span class="hv-t__price">$0</span><span class="hv-t__sub">Comprehensive assessment</span></div>
+          <div class="hv-t__body">
+            <div class="hv-t__top"><h3>Initial consultation</h3><span class="hv-t__chip">30 minutes</span><span class="hv-t__chip">In clinic or telehealth</span></div>
+            <p>Personalised care based on your individual health needs, with an experienced practitioner to discuss suitable healthcare options.</p>
+            <button class="hv-t__btn" type="button" data-book data-book-enquiry="Book an initial consultation">Book a consultation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+          </div>
+        </article>
+        <article class="hv-t">
+          <div class="hv-t__stub"><svg class="hv-t__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg><span class="hv-t__label">Per visit</span><span class="hv-t__price">$65</span><span class="hv-t__sub">Medicare rebates may apply*</span></div>
+          <div class="hv-t__body">
+            <div class="hv-t__top"><h3>Follow-up consultations</h3><span class="hv-t__chip">15 minutes</span><span class="hv-t__chip">Medicare eligible*</span></div>
+            <p>Review your progress, discuss any concerns and get ongoing support from your care team.</p>
+            <button class="hv-t__btn" type="button" data-book data-book-enquiry="Book a follow-up">Book a follow-up <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+          </div>
+        </article>
+      </div>
+    </div>
+    <p class="hv__foot">*Medicare rebate eligibility varies depending on individual circumstances. Speak to your practitioner for details.</p>
   </div>
 </section>
 </main>
