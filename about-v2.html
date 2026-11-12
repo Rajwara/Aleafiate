@@ -1333,6 +1333,30 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
   .avh__bg::after{background:linear-gradient(180deg,rgba(238,248,246,.92) 0%,rgba(238,248,246,.5) 35%,rgba(17,17,69,.15) 60%,rgba(17,17,69,.55) 100%)}
 }
 </style>
+<style>
+/* Our story: statement fills word by word on scroll; centred photo carousel */
+.ast{padding:clamp(90px,10vw,140px) 0 clamp(80px,9vw,120px);background:#fbfcfa;overflow:hidden}
+.ast__head{max-width:1000px;margin:0 auto;padding:0 var(--gutter);text-align:center}
+.ast__pill{display:inline-block;padding:6px 14px;border-radius:99px;background:#eef1ea;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6b6f5e}
+.ast__text:not(#_){margin:22px 0 0;font-family:var(--heading);font-weight:500;font-size:clamp(24px,2.6vw,38px);line-height:1.32;letter-spacing:-.02em;color:var(--navy)}
+.ast__text .w{color:rgba(17,17,69,.22);transition:color .35s}
+.ast__text .w.is-on{color:var(--navy)}
+.ast__stage{position:relative;height:clamp(240px,24vw,340px);margin-top:clamp(40px,5vw,64px)}
+.ast__slide{position:absolute;left:50%;top:50%;margin:0;width:clamp(200px,20vw,280px);aspect-ratio:1/1.15;border-radius:18px;overflow:hidden;transform:translate(-50%,-50%) translateX(calc(var(--o,0) * 115%)) scale(var(--sc,1));opacity:var(--op,1);z-index:var(--z,1);transition:transform 1s cubic-bezier(.65,.05,.36,1),opacity 1s,filter 1s;filter:saturate(var(--sat,1))}
+.ast__slide img{width:100%;height:100%;object-fit:cover}
+.ast__slide.is-center{box-shadow:0 30px 60px -30px rgba(17,17,69,.45)}
+.ast__stage::before,.ast__stage::after{content:"";position:absolute;top:0;bottom:0;width:22%;z-index:10;pointer-events:none}
+.ast__stage::before{left:0;background:linear-gradient(90deg,#fbfcfa 20%,rgba(251,252,250,0))}
+.ast__stage::after{right:0;background:linear-gradient(-90deg,#fbfcfa 20%,rgba(251,252,250,0))}
+.ast__cta{display:flex;justify-content:center;margin-top:clamp(36px,4vw,52px)}
+.ast__btn{display:inline-flex;align-items:center;gap:12px;height:50px;padding:0 6px 0 22px;border:1px solid rgba(17,17,69,.12);border-radius:999px;background:#fff;color:var(--navy);font:500 15px/1 var(--body);text-decoration:none;box-shadow:0 14px 30px -22px rgba(17,17,69,.5);transition:background .4s,border-color .4s,color .4s}
+.ast__btn i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;transition:transform .5s cubic-bezier(.16,1,.3,1),background .4s,color .4s}
+.ast__btn i svg{width:14px;height:14px}
+.ast__btn:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.ast__btn:hover i{transform:rotate(-45deg);background:var(--mint);color:var(--navy)}
+@media (max-width:640px){.ast__slide{width:58vw}.ast__stage{height:72vw}}
+@media (prefers-reduced-motion:reduce){.ast__slide{transition:none}.ast__text .w{color:var(--navy)}}
+</style>
 </head>
 <body class="draft-home">
 <!-- Google Tag Manager (noscript) -->
@@ -1371,6 +1395,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+<!-- ================= OUR STORY: words fill in as you scroll + photo carousel ================= -->
+<section class="ast" aria-labelledby="ast-title">
+  <div class="ast__head">
+    <span class="ast__pill">Our story</span>
+    <h2 class="ast__text" id="ast-title" data-ast-text>At Aleafiate, we move beyond quick fixes. We believe real health is found where clinical expertise meets compassionate listening and care that fits your life. Our team is here to walk beside you, every step of the way.</h2>
+  </div>
+  <div class="ast__stage" data-ast-stage aria-label="Moments from the Aleafiate clinic"><figure class="ast__slide" data-ast-slide><img src="images/about/experience-welcome.webp" alt="A patient being welcomed at the clinic reception" loading="lazy"></figure><figure class="ast__slide" data-ast-slide><img src="images/about/approach-1-listen.webp" alt="A practitioner listening to a patient" loading="lazy"></figure><figure class="ast__slide" data-ast-slide><img src="images/about/experience-consultation.webp" alt="A calm consultation with a practitioner" loading="lazy"></figure><figure class="ast__slide" data-ast-slide><img src="images/about/about-mission.webp" alt="A practitioner smiling during a consultation" loading="lazy"></figure><figure class="ast__slide" data-ast-slide><img src="images/about/approach-4-follow-up.webp" alt="A patient on a telehealth follow-up" loading="lazy"></figure></div>
+  <div class="ast__cta"><a class="ast__btn" href="practitioners.html"><span>Meet our practitioners</span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a></div>
+</section>
+
 <section class="pg-sec" style="padding-top:0" aria-label="Aleafiate at a glance">
   <div class="container">
     <div class="pstats">
@@ -1770,5 +1804,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script src="js/pages.js"></script>
+
+<script>
+/* Our story: words fill as the paragraph scrolls through the screen; photos rotate with the centre one largest */
+(() => {
+  const sec = document.querySelector('.ast'); if (!sec) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const text = sec.querySelector('[data-ast-text]');
+  text.innerHTML = text.textContent.trim().split(/\s+/).map(w => `<span class="w">${w}</span>`).join(' ');
+  const words = [...text.querySelectorAll('.w')];
+  const fill = () => {
+    const r = text.getBoundingClientRect(), vh = innerHeight;
+    const k = Math.min(1, Math.max(0, (vh * .85 - r.top) / (r.height + vh * .45)));
+    const n = reduce ? words.length : Math.round(k * words.length);
+    words.forEach((w, i) => w.classList.toggle('is-on', i < n));
+  };
+  addEventListener('scroll', fill, { passive: true }); window.__lenis && window.__lenis.on('scroll', fill); fill();
+
+  const slides = [...sec.querySelectorAll('[data-ast-slide]')], N = slides.length; let c = Math.floor(N / 2);
+  const place = () => slides.forEach((sl, i) => {
+    let o = i - c; if (o > N / 2) o -= N; if (o < -N / 2) o += N;
+    const a = Math.abs(o);
+    sl.style.setProperty('--o', o * (a > 1 ? .92 : 1));
+    sl.style.setProperty('--sc', a === 0 ? 1.18 : a === 1 ? .86 : .72);
+    sl.style.setProperty('--op', a === 0 ? 1 : a === 1 ? .85 : .35);
+    sl.style.setProperty('--sat', a === 0 ? 1 : .6);
+    sl.style.setProperty('--z', 10 - a);
+    sl.classList.toggle('is-center', a === 0);
+  });
+  place();
+  if (!reduce) { let t = setInterval(() => { c = (c + 1) % N; place(); }, 3200);
+    sec.querySelector('[data-ast-stage]').addEventListener('mouseenter', () => clearInterval(t));
+    sec.querySelector('[data-ast-stage]').addEventListener('mouseleave', () => { t = setInterval(() => { c = (c + 1) % N; place(); }, 3200); }); }
+})();
+</script>
 </body>
 </html>
