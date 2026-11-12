@@ -1357,6 +1357,71 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 @media (max-width:640px){.ast__slide{width:58vw}.ast__stage{height:72vw}}
 @media (prefers-reduced-motion:reduce){.ast__slide{transition:none}.ast__text .w{color:var(--navy)}}
 </style>
+<style>
+/* Our mission: in the "Is Aleafiate the right fit for you?" design from homepage-v2 */
+.rf__btn b{margin-left:.3em}
+.rf__btn svg{margin-left:10px}
+.rf{background:#f6f9f9;padding:0 0 clamp(80px,9vw,120px)}
+.rf__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);max-width:1040px;margin:0 auto;padding:0 var(--gutter);align-items:center}
+.rf h2{margin:0;font-family:var(--body);font-size:clamp(18px,1.5vw,21px);font-weight:600;letter-spacing:0;color:var(--navy)}
+.rf__lead{margin:14px 0 0;font-size:15px;line-height:1.6;color:var(--teal-deep)}
+.rf__list{display:grid;gap:8px;list-style:none;margin:26px 0 0;padding:0}
+.rf__list li{display:flex;gap:14px;padding:16px;border-radius:10px;background:#fff;box-shadow:0 10px 30px -26px rgba(17,17,69,.45)}
+.rf__num{flex:none;display:grid;place-items:center;width:32px;height:30px;border-radius:5px;background:var(--mint);font:500 14px/1 var(--heading);color:var(--navy)}
+.rf__list b{display:block;font-size:15px;font-weight:600;color:var(--navy)}
+.rf__list p{margin:5px 0 0;font-size:13.5px;line-height:1.55;color:#4a5068}
+.rf h3{margin:34px 0 0;font-family:var(--body);font-size:15px;font-weight:600;color:var(--navy)}
+.rf__q{margin:10px 0 0;font-size:13.5px;line-height:1.6;color:var(--teal-deep)}
+.rf__btns{display:grid;gap:8px;width:min(100%,250px);margin-top:18px}
+.rf__btn{display:flex;align-items:center;justify-content:center;gap:0;height:44px;border-radius:8px;font:400 14px/1 var(--body);text-decoration:none;cursor:pointer;transition:background .3s,border-color .3s}
+.rf__btn b{font-weight:600}
+.rf__btn svg{width:16px;height:16px;color:var(--mint);transition:transform .3s}
+.rf__btn:hover svg{transform:translateX(3px)}
+.rf__btn--solid{border:0;background:var(--navy);color:#fff}
+.rf__btn--solid:hover{background:var(--teal-deep)}
+.rf__btn--soft{border:1px solid rgba(17,17,69,.15);background:#eef4f3;color:var(--navy)}
+.rf__btn--soft:hover{background:var(--sand);border-color:var(--teal-deep)}
+.rf__visual{position:relative;min-height:560px;border-radius:18px;overflow:hidden;background:#8fb9b3}
+.rf__visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+.rf__visual::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,17,69,.35),rgba(17,17,69,0) 65%)}
+.rf__notes{position:absolute;z-index:1;left:28px;top:50%;transform:translateY(-50%);display:grid;gap:12px;width:min(62%,260px)}
+.rf__note{display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:10px;background:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:13px;line-height:1.4;color:var(--navy);box-shadow:0 20px 40px -24px rgba(17,17,69,.5);opacity:0;transform:translateY(14px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rf__note:nth-child(2){margin-left:24px;transition-delay:.25s}
+.rf__note:nth-child(3){margin-left:48px;transition-delay:.5s}
+.rf__note i{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--mint);color:var(--navy)}
+.rf__note i svg{width:12px;height:12px}
+.rf__note small{font-size:11.5px;color:var(--muted)}
+.rf.is-in .rf__note{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rf__note{opacity:1;transform:none;transition:none}}
+@media (max-width:860px){.rf__grid{grid-template-columns:1fr}.rf__visual{min-height:440px}}
+.rf{padding-top:clamp(80px,9vw,120px)}
+.rf__btns{display:flex;flex-wrap:wrap;gap:10px;width:auto;margin-top:20px}
+
+.rf__visual{min-height:620px}
+.rf__visual img{object-position:40% 18%}
+.rf__visual::after{background:linear-gradient(180deg,rgba(17,17,69,0) 35%,rgba(17,17,69,.55))}
+.rf__notes{left:auto;right:24px;top:auto;bottom:24px;transform:none;width:min(calc(100% - 48px),400px);gap:8px;padding:16px;border-radius:18px;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 30px 60px -30px rgba(17,17,69,.55)}
+.rf__notes-head{display:flex;justify-content:space-between;align-items:center;padding:2px 4px 6px;font-size:12.5px;color:var(--muted)}
+.rf__notes-head b{font-family:var(--heading);font-size:15px;font-weight:600;color:var(--navy)}
+.rf__note,.rf__note:nth-child(n){display:flex;flex-direction:row;align-items:flex-start;gap:12px;margin:0;padding:12px;border-radius:12px;background:#fff;box-shadow:none;font-size:13px}
+.rf__note i{flex:none;width:34px;height:34px;border-radius:10px;background:var(--sand);color:var(--teal-deep)}
+.rf__note i svg{width:17px;height:17px}
+.rf__note>div{flex:1;min-width:0}
+.rf__note small{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.rf__note b{display:block;margin-top:2px;font-size:14px;font-weight:600;color:var(--navy)}
+.rf__note span{display:block;margin-top:3px;font-size:12.5px;line-height:1.45;color:#4a5068}
+.rf__note em{flex:none;align-self:center;padding:4px 10px;border-radius:99px;background:var(--mint);font-style:normal;font-size:11.5px;font-weight:600;color:var(--navy)}
+.rf__note:nth-child(2){transition-delay:.15s}.rf__note:nth-child(3){transition-delay:.3s}.rf__note:nth-child(4){transition-delay:.45s}
+@media (max-width:640px){.rf__notes{left:12px;right:12px;bottom:12px;width:calc(100% - 24px);padding:12px}.rf__note span{display:none}}
+.rf--mission{padding:clamp(80px,9vw,130px) 0}
+@media (min-width:861px){.rf--mission .rf__grid{box-sizing:border-box;width:min(100% - 32px,1392px);max-width:none;margin-inline:auto;padding-inline:0;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}.rf--mission .rf__visual{min-height:680px}}
+.rf--mission h2:not(#_){font-family:var(--heading);font-weight:600;font-size:clamp(28px,2.6vw,40px);line-height:1.12;letter-spacing:-.03em;color:var(--navy)}
+.rf--mission .rf__visual img{object-position:50% 20%}
+@media (max-width:860px){.rf--mission .rf__grid{padding:0 16px}}
+.rf--mission .rf__btn{gap:0}
+.rf--mission .rf__btn b{margin-left:.3em}
+.rf--mission .rf__btn svg{margin-left:10px}
+</style>
 </head>
 <body class="draft-home">
 <!-- Google Tag Manager (noscript) -->
@@ -1406,19 +1471,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 
-<section class="pg-sec pg-sec--white" aria-labelledby="mission-title">
-  <div class="container psplit">
-    <div class="psplit__side">
-      <span class="v2-pill" data-a="up">Our mission</span>
-      <h2 class="v2-h2 split" id="mission-title">Patient-focused care, <em>every step of the way.</em></h2>
-      <p class="v2-lead" data-a="up" style="--i:3">At Aleafiate Health Clinics, we believe healing is a shared journey. Three promises guide every decision our team makes.</p>
-      <div class="psplit__media" data-a="scale" style="--i:4"><img src="images/about/about-mission.webp" alt="A practitioner and patient in conversation" loading="lazy" data-parallax></div>
+<section class="rf rf--mission" id="mission" aria-labelledby="mission-title">
+  <div class="rf__grid">
+    <div>
+      <span class="v2-pill" style="margin-bottom:18px">Our mission</span>
+      <h2 id="mission-title">Patient-focused care, every step of the way.</h2>
+      <p class="rf__lead">At Aleafiate Health Clinics, we believe healing is a shared journey. These promises guide every decision our team makes:</p>
+      <ol class="rf__list"><li><span class="rf__num">01</span><div><b>We listen first</b><p>Every consultation begins with understanding your health concerns, medical history and individual needs. Nothing is rushed.</p></div></li><li><span class="rf__num">02</span><div><b>Honest, independent advice</b><p>Every patient is assessed independently by an AHPRA-registered practitioner. If an option isn’t right for you, we’ll tell you, and explain which may suit you better.</p></div></li><li><span class="rf__num">03</span><div><b>Support that continues</b><p>We plan for the long term. Regular follow-ups mean your care plan is reviewed and adjusted as your health changes.</p></div></li><li><span class="rf__num">04</span><div><b>Care that fits your life</b><p>Face-to-face appointments at our Logan Central clinic, or telehealth consultations available Australia-wide.</p></div></li></ol>
+      <h3>Want to see how it works?</h3>
+      <p class="rf__q">Start with a free nurse call. Our team will talk through your health needs and explain the next steps, with no obligation.</p>
+      <div class="rf__btns">
+        <a class="rf__btn rf__btn--solid" href="check-eligibility.html">Check <b>eligibility</b> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <button class="rf__btn rf__btn--soft" type="button" data-book data-book-enquiry="Book a free discovery call">Book a <b>free call</b></button>
+      </div>
     </div>
-    <div class="pcards">
-      <article class="pcard" data-a="right"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8M8 13h5"/></svg></span><div><h3>We listen first</h3><p>Every consultation begins with understanding your health concerns, medical history and individual needs. Nothing is rushed, and there’s no pressure to make a decision on the spot.</p></div></article>
-      <article class="pcard" data-a="right" style="--i:1"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><h3>Honest, independent advice</h3><p>Every patient is assessed independently by an AHPRA-registered practitioner. If an option isn’t right for you, we’ll tell you, and explain which other options may suit you better.</p></div></article>
-      <article class="pcard" data-a="right" style="--i:2"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg></span><div><h3>Support that continues</h3><p>We plan for the long term. Regular follow-ups mean your care plan is reviewed and adjusted as your health changes, with our care team on hand between visits.</p></div></article>
-      <article class="pcard" data-a="right" style="--i:3"><span class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><div><h3>Care that fits your life</h3><p>Choose the care that suits you, with face-to-face appointments at our Logan Central clinic and telehealth consultations available Australia-wide.</p></div></article>
+    <div class="rf__visual">
+      <img src="images/about/about-mission.webp" alt="An Aleafiate practitioner smiling during a consultation" loading="lazy">
+      <div class="rf__notes" aria-hidden="true">
+        <div class="rf__notes-head"><b>Our promise to you</b><span>Every visit</span></div><div class="rf__note"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8M8 13h5"/></svg></i><div><small>Listen</small><b>Your story, heard first</b><span>Time to talk through your health and history</span></div><em>Always</em></div><div class="rf__note"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><div><small>Assess</small><b>Honest, independent advice</b><span>From an AHPRA-registered practitioner</span></div><em>Always</em></div><div class="rf__note"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg></i><div><small>Support</small><b>Care that continues</b><span>Follow-ups to review your progress</span></div><em>Ongoing</em></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1827,6 +1898,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     sec.querySelector('[data-ast-stage]').addEventListener('mouseenter', () => clearInterval(t));
     sec.querySelector('[data-ast-stage]').addEventListener('mouseleave', () => { t = setInterval(() => { c = (c + 1) % N; place(); }, 3200); }); }
 })();
+</script>
+
+<script>
+/* Our mission: reveal the promise card notes when the section comes into view */
+(() => { const rf = document.querySelector('.rf--mission'); if (!rf) return;
+  if (!('IntersectionObserver' in window)) return rf.classList.add('is-in');
+  const io = new IntersectionObserver(e => { if (e[0].isIntersecting) { rf.classList.add('is-in'); io.disconnect(); } }, { threshold: .25 }); io.observe(rf); })();
 </script>
 </body>
 </html>
