@@ -1472,6 +1472,12 @@ main .pcta h2:not(#_):not(#__):not(#___):not(#____){color:#fff}
 main .pcta h2:not(#_):not(#__):not(#___):not(#____) em{color:var(--mint)}
 .avh__title:not(#_){font-weight:600;color:var(--navy)}
 </style>
+<style>
+/* Review photo banner (from mock-test-2) */
+.m2b{padding:clamp(20px,3vw,40px) 0 clamp(80px,9vw,120px)}
+.m2b [data-m2]{opacity:1;transform:none}
+@media (min-width:861px){.m2b .container{width:auto;max-width:none;padding-inline:0;margin-inline:max(16px,calc((100% - 1440px) / 2 + 24px))}}
+</style>
 </head>
 <body class="draft-home">
 <!-- Google Tag Manager (noscript) -->
@@ -1588,6 +1594,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="ppl-card__more">Read full profile <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEW PHOTO BANNER (from mock-test-2) ================= -->
+<section class="m2b" aria-label="What patients say">
+  <div class="container">
+    <div class="m2b__card" data-m2>
+      <img src="images/home-v2/Hero-Image.webp" alt="An Aleafiate nurse holding hands with a patient on a sofa" width="1920" height="1080" loading="lazy">
+      <blockquote class="m2b__quote">
+        <p>“I had such a wonderful experience at Aleafiate. From the moment I walked into the clinic, I was made to feel genuinely welcome and at ease.”</p>
+        <cite>Sasha Logsdale, Google review</cite>
+      </blockquote>
+      <ul class="m2b__tags" aria-label="Areas we can help with"><li>Sleep &amp; Rest</li><li>Mental Wellbeing</li><li>Women’s Health</li><li>Pain Support</li><li>Telehealth</li></ul>
     </div>
   </div>
 </section>
