@@ -1291,6 +1291,48 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 </style>
 <link rel="stylesheet" href="css/pages.css">
 <link rel="stylesheet" href="css/live-style.css"> <!-- live-page fonts, colours and buttons -->
+<style>
+/* About v2 banner: full-bleed photo, centred headline, intro bottom-left, glass card bottom-right */
+.avh{position:relative;isolation:isolate;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;color:var(--ink)}
+.avh__bg{position:absolute;inset:0;z-index:-2}
+.avh__bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.08);animation:avhZoom 2.4s cubic-bezier(.16,1,.3,1) forwards}
+.avh__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(238,248,246,.9) 0%,rgba(238,248,246,.55) 32%,rgba(238,248,246,0) 58%),linear-gradient(0deg,rgba(17,17,69,.28),rgba(17,17,69,0) 40%),radial-gradient(60% 45% at 0% 100%,rgba(17,17,69,.55),rgba(17,17,69,0) 70%)}
+@keyframes avhZoom{to{transform:scale(1)}}
+.avh__inner{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(130px,16vh,170px) max(16px,calc((100% - 1440px) / 2 + 24px)) clamp(28px,5vh,48px)}
+.avh__title{margin:0;text-align:center;font-family:var(--heading);font-weight:600;font-size:clamp(40px,6vw,92px);line-height:1.04;letter-spacing:-.045em;color:var(--navy)}
+.avh__title em{font-style:normal;color:var(--teal-deep)}
+.avh__line{display:block;padding-bottom:.04em}
+.avh__line{opacity:0;transform:translateY(40px);animation:avhUp 1.1s cubic-bezier(.16,1,.3,1) .15s forwards}
+.avh__line+.avh__line{animation-delay:.3s}
+@keyframes avhUp{to{opacity:1;transform:none}}
+.avh__bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:40px}
+.avh__copy{max-width:400px;opacity:0;animation:avhUp 1s cubic-bezier(.16,1,.3,1) .6s forwards;transform:translateY(30px)}
+.avh__copy p{margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#fff;text-shadow:0 2px 20px rgba(17,17,69,.45)}
+.avh__copy b{font-weight:600}
+.avh__btn{display:inline-flex;align-items:center;gap:12px;margin-top:22px;height:50px;padding:0 6px 0 22px;border-radius:999px;background:#fff;color:var(--navy);font:500 15px/1 var(--body);text-decoration:none;box-shadow:0 14px 30px -18px rgba(17,17,69,.6);transition:background .4s}
+.avh__btn i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;transition:transform .5s cubic-bezier(.16,1,.3,1),background .4s,color .4s}
+.avh__btn i svg{width:14px;height:14px}
+.avh__btn:hover{background:var(--mint)}
+.avh__btn:hover i{transform:rotate(-45deg)}
+.avh__card{width:min(100%,320px);padding:20px 22px 22px;border-radius:22px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);color:var(--navy);text-decoration:none;box-shadow:0 30px 60px -30px rgba(17,17,69,.55);opacity:0;transform:translateY(30px);animation:avhUp 1s cubic-bezier(.16,1,.3,1) .8s forwards;transition:background .4s}
+.avh__card:hover{background:rgba(255,255,255,.88)}
+.avh__faces{display:flex}
+.avh__faces i{display:grid;place-items:center;width:34px;height:34px;margin-left:-8px;border:2px solid #fff;border-radius:50%;background:var(--navy);color:var(--mint);font:600 12px/1 var(--body);font-style:normal}
+.avh__faces i:first-child{margin-left:0}
+.avh__faces i:nth-child(2){background:var(--teal-deep);color:#fff}.avh__faces i:nth-child(3){background:var(--mint);color:var(--navy)}.avh__faces i:nth-child(4){background:#fff;color:var(--navy)}
+.avh__card b{display:block;margin-top:16px;font-family:var(--heading);font-weight:600;font-size:24px;line-height:1.15;letter-spacing:-.02em}
+.avh__card b em{font-style:normal;color:var(--teal-deep)}
+.avh__card small{display:block;margin-top:8px;font-size:13px;line-height:1.5;color:#3d4560}
+.avh__bar{display:block;margin-top:18px;height:3px;border-radius:3px;background:rgba(17,17,69,.12);overflow:hidden}
+.avh__bar span{display:block;width:35%;height:100%;background:var(--navy);animation:avhBar 3.4s ease-in-out infinite alternate}
+@keyframes avhBar{to{width:100%}}
+@media (prefers-reduced-motion:reduce){.avh *{animation:none!important;opacity:1!important;transform:none!important}}
+@media (max-width:760px){
+  .avh__bottom{flex-direction:column;align-items:stretch}
+  .avh__card{width:auto}
+  .avh__bg::after{background:linear-gradient(180deg,rgba(238,248,246,.92) 0%,rgba(238,248,246,.5) 35%,rgba(17,17,69,.15) 60%,rgba(17,17,69,.55) 100%)}
+}
+</style>
 </head>
 <body class="draft-home">
 <!-- Google Tag Manager (noscript) -->
@@ -1311,15 +1353,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="mobile-menu" aria-hidden="true"><a href="index.html">Home</a><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="about-v2.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
 
 <main id="top" class="pg">
-<section class="ph" aria-labelledby="ph-title">
-  <span class="ph__blob ph__blob--a" aria-hidden="true"></span><span class="ph__blob ph__blob--b" aria-hidden="true"></span>
-  <div class="container">
-    <span class="v2-pill" data-a="up">About Aleafiate</span>
-    <h1 class="split" id="ph-title">Healthcare built around <em>listening.</em></h1>
-    <p class="ph__lead" data-a="up" style="--i:3">Aleafiate Health Clinics makes alternative healthcare simple and personal, with AHPRA-registered practitioners who take the time to understand your health, in clinic at Logan Central or by telehealth.</p>
-    <div class="ph__cta" data-a="up" style="--i:4"><button class="v2-btn v2-btn--navy" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button><a class="v2-btn v2-btn--ghost" href="#team"><span class="v2-btn__t"><span data-t="Meet our practitioners">Meet our practitioners</span></span></a></div>
-    
-    <div class="ph__media"><img src="images/about/about-hero.webp" alt="A practitioner welcoming a patient at the Aleafiate clinic" data-parallax fetchpriority="high"><div class="ph__float ph__float--a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></i><div><b>4.7 on Google</b>Rated by our patients</div></div><div class="ph__float ph__float--b"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></i><div><b>$0 nurse call</b>No obligation</div></div></div>
+<section class="avh" aria-labelledby="avh-title">
+  <div class="avh__bg" aria-hidden="true"><img src="images/home/cta-background.webp" alt="" fetchpriority="high"></div>
+  <div class="avh__inner">
+    <h1 class="avh__title" id="avh-title"><span class="avh__line">Healthcare built</span> <span class="avh__line">around <em>listening.</em></span></h1>
+    <div class="avh__bottom">
+      <div class="avh__copy">
+        <p><b>Discover personalised care</b> from AHPRA-registered practitioners who take the time to understand your health, in clinic at Logan Central or by telehealth.</p>
+        <a class="avh__btn" href="check-eligibility.html"><span>Start your journey</span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a>
+      </div>
+      <a class="avh__card" href="#team">
+        <span class="avh__faces" aria-hidden="true"><i>F</i><i>J</i><i>S</i><i>+</i></span>
+        <b>Meet your <em>care team</em></b>
+        <small>Experienced practitioners who listen first and support you every step of the way.</small>
+        <span class="avh__bar" aria-hidden="true"><span></span></span>
+      </a>
+    </div>
   </div>
 </section>
 <section class="pg-sec" style="padding-top:0" aria-label="Aleafiate at a glance">
