@@ -34,68 +34,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/live-style.css"> <!-- live-page fonts and buttons -->
 <style>
-/* What do you need help with: bento layout from test-mock, live-page content, colours, fonts and buttons */
-.hb2{padding:clamp(60px,7vw,100px) 0 clamp(80px,9vw,120px);background:var(--bone)}
-.hb2__panel{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,4vw,60px);padding:clamp(28px,4vw,56px);border-radius:28px;background:#fff}
-.hb2__copy{display:flex;flex-direction:column}
-.hb2__rating{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--navy)}
-.hb2__stars{display:flex;gap:2px}
-.hb2__stars i{display:grid;place-items:center;width:17px;height:17px;background:var(--teal-deep);color:#fff;font-style:normal;font-size:11px;line-height:1}
-.hb2__rating b{font-weight:600}
-.hb2__rating span{opacity:.5}
-.hb2 h2{margin:22px 0 0;font-family:var(--heading);font-weight:600;font-size:clamp(34px,3.8vw,58px);line-height:1.08;letter-spacing:-.035em;color:var(--ink)}
-.hb2 h2 em{font-style:normal;color:var(--teal-deep)}
-.hb2__sub{margin:16px 0 0;font-size:16px;line-height:1.65;color:var(--muted)}
-/* live-page button (same as the pricing "Get started free" button): navy pill, teal fill rises, label rolls */
-.lv-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;overflow:hidden;isolation:isolate;margin-top:28px;padding:16px 30px;border:0;border-radius:999px;background:var(--navy);cursor:pointer;text-decoration:none}
-.lv-btn__text{position:relative;z-index:1;font:600 15px/1 var(--body);color:#fff;transition:transform 1s cubic-bezier(.22,1,.36,1)}
-.lv-btn__text--abs{position:absolute;transform:translateY(300%)}
-.lv-btn__bg{position:absolute;z-index:0;width:14rem;min-width:120%;height:8rem;border-radius:50%;background:var(--teal-deep);transform:translateY(100%);transition:transform 1s cubic-bezier(.22,1,.36,1)}
-.lv-btn:hover .lv-btn__bg,.lv-btn:focus-visible .lv-btn__bg{transform:translateY(0)}
-.lv-btn:hover .lv-btn__text,.lv-btn:focus-visible .lv-btn__text{transform:translateY(-300%)}
-.lv-btn:hover .lv-btn__text--abs,.lv-btn:focus-visible .lv-btn__text--abs{transform:translateY(0)}
-.lv-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
-.hb2__feats{display:grid;gap:12px;list-style:none;margin:auto 0 0;padding:40px 0 0}
-.hb2__feats li{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--ink)}
-.hb2__feats svg{flex:none;width:18px;height:18px;color:var(--teal-deep)}
-.hb2__foot{display:flex;align-items:center;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid rgba(19,19,46,.1);font-size:14.5px;color:var(--ink)}
-.hb2__foot-icon{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--sand);color:var(--teal-deep)}
-.hb2__foot-icon svg{width:18px;height:18px}
-.hb2__foot p{margin:0}
-.hb2__foot button{padding:0;border:0;background:none;font:inherit;font-weight:600;color:var(--teal-deep);border-bottom:1px solid currentColor;cursor:pointer}
-.hb2__bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.hb2-tile{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(220px,18vw,260px);padding:22px;border-radius:22px;background:var(--sand);color:var(--ink);outline:none}
-.hb2-tile--wide{grid-column:1/-1}
-.hb2-tile>img{position:absolute;right:0;bottom:0;z-index:-1;height:100%;width:60%;object-fit:cover;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
-.hb2-tile:not(.hb2-tile--wide)>img{width:100%;height:50%;-webkit-mask:linear-gradient(180deg,transparent,#000 40%);mask:linear-gradient(180deg,transparent,#000 40%)}
-.hb2-tile:not(.hb2-tile--wide){min-height:clamp(290px,24vw,330px)}
-.hb2-tile h3{position:relative;max-width:16ch;font-family:var(--heading);font-weight:600;font-size:clamp(18px,1.5vw,22px);line-height:1.2;letter-spacing:-.015em}
-.hb2-tile__front{display:block;max-width:24ch;margin-top:8px;font-size:13px;line-height:1.5;color:var(--muted)}
-.hb2-tile__go{position:absolute;left:22px;bottom:22px;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--navy);transition:background .35s,color .35s}
-.hb2-tile__go svg{width:14px;height:14px}
-.hb2-tile__back{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:22px;background:var(--navy);color:#fff;clip-path:circle(0 at 40px calc(100% - 40px));transition:clip-path .8s cubic-bezier(.65,.05,.36,1)}
-.hb2-tile__back h3{color:#fff}
-.hb2-tile__back p{margin:10px 0 0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.8)}
-.hb2-tile__back ul{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:12px 0 0;padding:0}
-.hb2-tile__back li{padding:5px 11px;border-radius:99px;background:rgba(138,220,206,.18);color:var(--mint);font-size:12.5px}
-.hb2-tile:hover .hb2-tile__back,.hb2-tile:focus-within .hb2-tile__back,.hb2-tile.is-open .hb2-tile__back{clip-path:circle(150% at 40px calc(100% - 40px))}
-.hb2-tile:hover>img{transform:scale(1.04)}
-/* live-page card link: white text, mint arrow */
-.fc2__cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:0;border:0;background:none;color:#fff;font:600 14px/1 var(--body);cursor:pointer}
-.fc2__cta svg{width:20px;height:20px;color:var(--mint);transition:transform .5s cubic-bezier(.16,1,.3,1)}
-.fc2__cta:hover svg{transform:translateX(5px)}
-.hb2 [data-hb2]{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
-.hb2 [data-hb2].is-in{opacity:1;transform:none}
-.hb2__bento[data-hb2] .hb2-tile{opacity:0;transform:translateY(30px) scale(.97);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
-.hb2__bento.is-in .hb2-tile{opacity:1;transform:none}
-.hb2__bento.is-in .hb2-tile:nth-child(2){transition-delay:.1s}.hb2__bento.is-in .hb2-tile:nth-child(3){transition-delay:.2s}.hb2__bento.is-in .hb2-tile:nth-child(4){transition-delay:.3s}
-@media (prefers-reduced-motion:reduce){.hb2 [data-hb2],.hb2__bento[data-hb2] .hb2-tile{opacity:1;transform:none;transition:none}.hb2-tile__back{transition:none}}
-@media (max-width:1100px){.hb2__panel{grid-template-columns:1fr}.hb2__feats{margin-top:0;padding-top:28px}}
-@media (max-width:520px){.hb2__panel{padding:22px 16px}.hb2__bento{grid-template-columns:1fr}.hb2-tile,.hb2-tile:not(.hb2-tile--wide){min-height:230px}.hb2-tile h3,.hb2-tile__front{max-width:58%}.hb2-tile__back h3{max-width:none}.hb2-tile>img,.hb2-tile:not(.hb2-tile--wide)>img{width:48%;height:100%;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%)}}
-
-
-/* about: help section sits first, under the fixed nav */
-.hb2--first{padding-top:clamp(120px,12vw,160px)}
+/* About banner: bento layout, live-page fonts, colours and button */
+.ab{padding:clamp(110px,11vw,140px) 0 clamp(50px,5vw,70px);background:var(--bone)}
+.ab__panel{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,4vw,60px);padding:clamp(26px,3.6vw,50px);border-radius:32px;background:linear-gradient(160deg,#e3f4f1 0%,#d3ede8 60%,#e9f6f3 100%)}
+.ab__copy{display:flex;flex-direction:column;padding:8px 0}
+.ab__rating{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--navy)}
+.ab__stars{display:flex;gap:2px}
+.ab__stars i{display:grid;place-items:center;width:17px;height:17px;background:var(--teal-deep);color:#fff;font-style:normal;font-size:11px;line-height:1}
+.ab__rating b{font-weight:600}
+.ab__rating span{opacity:.5}
+.ab h1{margin:22px 0 0;font-family:var(--heading);font-weight:600;font-size:clamp(34px,3.5vw,52px);line-height:1.08;letter-spacing:-.035em;color:var(--ink)}
+.ab h1 em{font-style:normal;color:var(--teal-deep)}
+.ab__sub{margin:18px 0 0;max-width:470px;font-size:16px;line-height:1.65;color:#3d4560}
+.ab__cta{margin-top:30px}
+.ab .lv-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;height:52px;padding:0 30px;border:0;border-radius:999px;background:var(--navy);text-decoration:none;cursor:pointer}
+.ab .lv-btn__text{position:relative;z-index:1;font:500 15px/1 var(--body);color:#fff;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.ab .lv-btn__text--abs{position:absolute;transform:translateY(300%)}
+.ab .lv-btn__bg{position:absolute;z-index:0;width:14rem;min-width:120%;height:8rem;border-radius:50%;background:var(--teal-deep);transform:translateY(100%);transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.ab .lv-btn:hover .lv-btn__bg{transform:translateY(0)}
+.ab .lv-btn:hover .lv-btn__text{transform:translateY(-300%)}
+.ab .lv-btn:hover .lv-btn__text--abs{transform:translateY(0)}
+.ab__feats{display:grid;gap:12px;list-style:none;margin:auto 0 0;padding:44px 0 0}
+.ab__feats li{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--ink)}
+.ab__feats svg{flex:none;width:18px;height:18px;color:var(--teal-deep)}
+.ab__bento{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ab-tile{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;min-height:clamp(230px,19vw,280px);padding:22px;border:0;border-radius:24px;background:#fff;color:var(--navy);text-align:left;text-decoration:none;font:inherit;cursor:pointer;box-shadow:0 24px 50px -38px rgba(17,17,69,.45);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.ab-tile:hover{transform:translateY(-4px);box-shadow:0 34px 60px -34px rgba(17,17,69,.5)}
+.ab-tile--wide{grid-column:1/-1;min-height:clamp(250px,21vw,300px)}
+.ab-tile>img{position:absolute;right:0;bottom:0;z-index:-1;width:58%;height:100%;object-fit:cover;-webkit-mask:linear-gradient(90deg,transparent,#000 32%);mask:linear-gradient(90deg,transparent,#000 32%);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.ab-tile:not(.ab-tile--wide)>img{width:100%;height:58%;-webkit-mask:linear-gradient(180deg,transparent,#000 40%);mask:linear-gradient(180deg,transparent,#000 40%)}
+.ab-tile:hover>img{transform:scale(1.05)}
+.ab-tile b{font-family:var(--heading);font-weight:600;font-size:clamp(19px,1.6vw,23px);letter-spacing:-.015em}
+.ab-tile small{display:block;max-width:22ch;margin-top:6px;font-size:13px;line-height:1.45;color:var(--muted)}
+.ab-tile__go{position:absolute;left:22px;bottom:22px;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#eef4f3;color:var(--navy);transition:background .35s,color .35s}
+.ab-tile__go svg{width:14px;height:14px}
+.ab-tile:hover .ab-tile__go{background:var(--navy);color:#fff}
+.ab-tile__badge{position:absolute;right:18px;bottom:18px;display:flex;align-items:center;gap:8px;padding:7px 12px 7px 7px;border-radius:12px;background:#fff;font-size:12.5px;font-weight:500;box-shadow:0 10px 24px -12px rgba(17,17,69,.4)}
+.ab-tile__badge i{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:var(--mint);color:var(--navy)}
+.ab-tile__badge i svg{width:14px;height:14px}
+.ab [data-ab]{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0)*90ms)}
+.ab [data-ab].is-in{opacity:1;transform:none}
+.ab .ab-tile[data-ab].is-in:hover{transform:translateY(-4px)}
+@media (prefers-reduced-motion:reduce){.ab [data-ab]{opacity:1;transform:none;transition:none}}
+@media (max-width:1000px){.ab__panel{grid-template-columns:1fr}.ab__feats{margin-top:0;padding-top:30px}}
+@media (max-width:520px){.ab__panel{padding:22px 16px;border-radius:24px}.ab__bento{grid-template-columns:1fr}.ab-tile,.ab-tile--wide{min-height:200px}.ab-tile b,.ab-tile small{max-width:55%}.ab-tile>img,.ab-tile:not(.ab-tile--wide)>img{width:50%;height:100%;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%)}.ab-tile__badge{display:none}}
 </style>
 </head>
 <body>
@@ -119,63 +101,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main>
 <!-- ================= 1. ABOUT HERO + STATS ================= -->
-<!-- ================= WHAT DO YOU NEED HELP WITH: bento layout (from test-mock), live content and styling ================= -->
-<section class="hb2 hb2--first" id="help" aria-labelledby="hb2-title">
+<!-- ================= ABOUT BANNER: bento layout (based on the /homepage help section) ================= -->
+<section class="ab" aria-labelledby="ab-title">
   <div class="container">
-    <div class="hb2__panel">
-      <div class="hb2__copy" data-hb2>
-        <div class="hb2__rating"><span class="hb2__stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><b>4.7 stars</b><span>|</span>Google reviews</div>
-        <h2 id="hb2-title">What do you need <em>help with?</em></h2>
-        <p class="hb2__sub">Our practitioners may support patients experiencing:</p>
-        <button type="button" class="lv-btn" data-book data-book-enquiry="Book a free discovery call"><span class="lv-btn__text">Book a free nurse call</span><span class="lv-btn__text lv-btn__text--abs" aria-hidden="true">Book a free nurse call</span><span class="lv-btn__bg"></span></button>
-        <ul class="hb2__feats">
+    <div class="ab__panel">
+      <div class="ab__copy">
+        <div class="ab__rating" data-ab><span class="ab__stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><b>4.7 stars</b><span>|</span>Google reviews</div>
+        <h1 id="ab-title" data-ab style="--i:1">Personalised care from <em>real practitioners</em>, designed around you.</h1>
+        <p class="ab__sub" data-ab style="--i:2">We’re Aleafiate Health Clinics. Your practitioner. Your plan. Ongoing support, not one-and-done.</p>
+        <div class="ab__cta" data-ab style="--i:3">
+          <a class="lv-btn" href="check-eligibility.html"><span class="lv-btn__text">Start your journey</span><span class="lv-btn__text lv-btn__text--abs" aria-hidden="true">Start your journey</span><span class="lv-btn__bg"></span></a>
+        </div>
+        <ul class="ab__feats" data-ab style="--i:4">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>In clinic at Logan Central or telehealth Australia-wide</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg>AHPRA-registered practitioners</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Free nurse call, no obligation</li>
         </ul>
-        <div class="hb2__foot"><span class="hb2__foot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8M8 13h5"/></svg></span><p>Not sure where you fit? <button type="button" data-book data-book-enquiry="Book a free discovery call">Book a free nurse call</button> and discuss your healthcare needs with our team.</p></div>
       </div>
-      <div class="hb2__bento" data-hb2>
-        <div class="hb2-tile hb2-tile--wide" tabindex="0" role="button" aria-expanded="false" aria-label="Sleep and Rest: show more">
-          <img src="images/home/care-sleep.webp" alt="A man sleeping peacefully" loading="lazy">
-          <h3>Sleep &amp; Rest</h3>
-          <span class="hb2-tile__front">Poor sleep can affect your energy, mood, and overall wellbeing. Our practitioners can help you explore options for improving your sleep.</span>
-          <span class="hb2-tile__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-          <div class="hb2-tile__back">
-            <div><h3>Sleep &amp; Rest</h3><p>Sleep shapes how you feel every day. Our practitioners can talk with you about:</p><ul><li>Waking unrefreshed</li></ul></div>
-            <button type="button" class="fc2__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
-          </div>
-        </div>
-        <div class="hb2-tile" tabindex="0" role="button" aria-expanded="false" aria-label="Mental and Emotional Wellbeing: show more">
-          <img src="images/home/care-wellbeing.webp" alt="A woman relaxing at home with a warm drink" loading="lazy">
-          <h3>Mental &amp; Emotional Wellbeing</h3>
-          <span class="hb2-tile__front">Mental wellbeing is an important part of your overall health.</span>
-          <span class="hb2-tile__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-          <div class="hb2-tile__back">
-            <div><h3>Mental &amp; Emotional Wellbeing</h3><p>It can be hard to ask for help. We offer a calm, non-judgemental space to talk about:</p><ul><li>Loss of interest in usual activities</li></ul></div>
-            <button type="button" class="fc2__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
-          </div>
-        </div>
-        <div class="hb2-tile" tabindex="0" role="button" aria-expanded="false" aria-label="Women’s Health: show more">
-          <img src="images/home/care-womens-health.webp" alt="A woman resting comfortably on her sofa" loading="lazy">
-          <h3>Women’s Health</h3>
-          <span class="hb2-tile__front">Women’s health needs can change throughout different stages of life.</span>
-          <span class="hb2-tile__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-          <div class="hb2-tile__back">
-            <div><h3>Women’s Health</h3><p>We take women’s health seriously and plan care around your stage of life, including:</p><ul><li>Changes in appetite</li></ul></div>
-            <button type="button" class="fc2__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
-          </div>
-        </div>
-        <div class="hb2-tile hb2-tile--wide" tabindex="0" role="button" aria-expanded="false" aria-label="Pain and Physical discomfort: show more">
-          <img src="images/home/care-pain.webp" alt="A woman stretching her shoulder at home" loading="lazy">
-          <h3>Pain &amp; Physical discomfort</h3>
-          <span class="hb2-tile__front">Managing pain can make life challenging. Speak to one of our practitioners about your symptoms.</span>
-          <span class="hb2-tile__go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-          <div class="hb2-tile__back">
-            <div><h3>Pain &amp; Physical discomfort</h3><p>Ongoing pain can affect your sleep, work and mood. Our practitioners can talk with you about:</p><ul><li>Headaches</li></ul></div>
-            <button type="button" class="fc2__cta" data-book data-book-enquiry="Book a free discovery call" tabindex="-1">Book a free nurse call <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
-          </div>
-        </div>
+      <div class="ab__bento">
+        <a class="ab-tile ab-tile--wide" href="practitioners.html" data-ab style="--i:2">
+          <img src="images/practitioners/dr-frank-guerrera.jpg" alt="Dr Frank Guerrera, General Practitioner at Aleafiate" style="object-position:50% 18%">
+          <b>Our practitioners</b><small>Experienced, AHPRA-registered and here to listen</small>
+          <span class="ab-tile__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          <span class="ab-tile__badge"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i>AHPRA-registered</span>
+        </a>
+        <a class="ab-tile" href="https://www.google.com/maps/dir/?api=1&amp;destination=Logan+Central+Plaza,+74+Wembley+Rd,+Logan+Central+QLD+4114" target="_blank" rel="noopener" data-ab style="--i:3">
+          <img src="images/home/clinic-reception.webp" alt="Reception at the Aleafiate Logan Clinic">
+          <b>Logan Central clinic</b><small>Inside Chempro Pharmacy</small>
+          <span class="ab-tile__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </a>
+        <button class="ab-tile" type="button" data-book data-book-enquiry="Book a free discovery call" data-ab style="--i:4">
+          <img src="images/about/experience-telehealth.webp" alt="A patient on a telehealth consultation at home">
+          <b>Telehealth</b><small>See us from home, Australia-wide</small>
+          <span class="ab-tile__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </button>
       </div>
     </div>
   </div>
@@ -399,20 +358,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="js/vendor/lenis.min.js"></script>
 <script src="js/main.js"></script>
 <script>
-/* Help section: reveal on scroll; tap/Enter opens a tile on touch and keyboard (hover opens it with a mouse) */
-(() => {
-  const sec = document.querySelector('.hb2'); if (!sec) return;
-  const els = sec.querySelectorAll('[data-hb2]');
-  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: .15 }); els.forEach(e => io.observe(e)); }
-  else els.forEach(e => e.classList.add('is-in'));
-  const tiles = [...sec.querySelectorAll('.hb2-tile')];
-  const setOpen = (t, open) => { t.classList.toggle('is-open', open); t.setAttribute('aria-expanded', open); const b = t.querySelector('.fc2__cta'); b.tabIndex = open ? 0 : -1; t.querySelector('.hb2-tile__back').setAttribute('aria-hidden', !open); };
-  tiles.forEach(t => {
-    setOpen(t, false);
-    t.addEventListener('click', e => { if (e.target.closest('.fc2__cta')) return; if (matchMedia('(hover: hover)').matches) return; const open = !t.classList.contains('is-open'); tiles.forEach(o => setOpen(o, false)); setOpen(t, open); });
-    t.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === t) { e.preventDefault(); setOpen(t, !t.classList.contains('is-open')); } if (e.key === 'Escape') setOpen(t, false); });
-  });
-})();
+/* About banner: fade the pieces in on load */
+(() => { const els = document.querySelectorAll('.ab [data-ab]');
+  requestAnimationFrame(() => setTimeout(() => els.forEach(e => e.classList.add('is-in')), 80)); })();
 </script>
 </body>
 </html>
