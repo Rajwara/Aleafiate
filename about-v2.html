@@ -1478,6 +1478,41 @@ main .pcta h2:not(#_):not(#__):not(#___):not(#____) em{color:var(--mint)}
 .m2b [data-m2]{opacity:1;transform:none}
 @media (min-width:861px){.m2b .container{width:auto;max-width:none;padding-inline:0;margin-inline:max(16px,calc((100% - 1440px) / 2 + 24px))}}
 </style>
+<style>
+/* Practitioner profile drawer */
+.pd{position:fixed;inset:0;z-index:200;visibility:hidden;pointer-events:none}
+.pd.is-open{visibility:visible;pointer-events:auto}
+.pd__veil{position:absolute;inset:0;background:rgba(17,17,69,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;transition:opacity .5s}
+.pd.is-open .pd__veil{opacity:1}
+.pd__panel{position:absolute;top:12px;right:12px;bottom:12px;display:flex;flex-direction:column;width:min(560px,calc(100% - 24px));border-radius:26px;background:#fff;box-shadow:0 40px 90px -30px rgba(17,17,69,.5);transform:translateX(calc(100% + 24px));transition:transform .7s cubic-bezier(.16,1,.3,1);overflow:hidden}
+.pd.is-open .pd__panel{transform:none}
+.pd__close{position:absolute;right:18px;top:18px;z-index:2;width:44px;height:44px;border:1px solid rgba(17,17,69,.15);border-radius:50%;background:#fff;cursor:pointer;transition:background .3s,transform .4s}
+.pd__close span{position:absolute;left:13px;right:13px;top:21px;height:1.5px;background:var(--navy);transform:rotate(45deg)}
+.pd__close span+span{transform:rotate(-45deg)}
+.pd__close:hover{background:var(--sand);transform:rotate(90deg)}
+.pd__body{flex:1;overflow-y:auto;padding:clamp(24px,3vw,36px);overscroll-behavior:contain}
+.pd__head{display:flex;gap:20px;align-items:center;padding-right:50px}
+.pd__photo{flex:none;width:110px;height:130px;border-radius:18px;overflow:hidden;background:#8ADCCE}
+.pd__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+.pd__photo--ini{display:grid;place-items:center;background:var(--sand)}
+.pd__photo--ini b{display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:var(--navy);color:var(--mint);font:500 24px/1 var(--heading)}
+.pd__role{display:inline-block;padding:5px 11px;border-radius:99px;background:var(--sand);font-size:12px;font-weight:500;color:var(--teal-deep)}
+.pd h2:not(#_){margin:12px 0 0;font-family:var(--heading);font-weight:600;font-size:clamp(24px,2.4vw,30px);letter-spacing:-.02em;color:var(--navy)}
+.pd__reg{display:block;margin-top:6px;font-size:13.5px;font-weight:600;color:var(--navy)}
+.pd__text{margin-top:26px;padding-top:24px;border-top:1px solid rgba(17,17,69,.08)}
+.pd__text p{margin:0 0 14px;font-size:15px;line-height:1.7;color:#4a5068}
+.pd__text p.lead{font-size:16.5px;color:var(--ink)}
+.pd__text h4{margin:26px 0 12px;font-family:var(--heading);font-weight:600;font-size:15px;letter-spacing:.02em;color:var(--navy)}
+.pd__text .drawer__list{display:grid;gap:8px;list-style:none;margin:0;padding:0}
+.pd__text .drawer__list li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.55;color:#4a5068}
+.pd__text .drawer__list li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.pd__text .tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.pd__text .tags li{padding:6px 12px;border:1px solid rgba(17,17,69,.12);border-radius:99px;font-size:13px;color:var(--ink)}
+.pd__foot{padding:18px clamp(24px,3vw,36px) 24px;border-top:1px solid rgba(17,17,69,.08)}
+.pd__foot .abtn{width:100%;justify-content:space-between}
+.pd-lock{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.pd__panel,.pd__veil{transition:none}}
+</style>
 </head>
 <body class="draft-home">
 <!-- Google Tag Manager (noscript) -->
@@ -1572,7 +1607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="v2-lead" data-a="up" style="--i:2">Experienced, AHPRA-registered practitioners who take the time to understand you.</p>
     </div>
     <div class="ppl">
-      <a class="ppl-card" href="practitioners.html" data-a="up">
+      <a class="ppl-card" href="practitioners.html" data-a="up" data-pd="frank" aria-haspopup="dialog">
         <div class="ppl-card__img"><img src="images/practitioners/dr-frank-guerrera.jpg" alt="Portrait of Dr Frank Guerrera" loading="lazy"></div>
         <div class="ppl-card__body">
           <span class="ppl-card__role">Doctor</span>
@@ -1583,7 +1618,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="ppl-card__more">Read full profile <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </div>
       </a>
-      <a class="ppl-card" href="practitioners.html" data-a="up" style="--i:1">
+      <a class="ppl-card" href="practitioners.html" data-a="up" style="--i:1" data-pd="jeremy" aria-haspopup="dialog">
         <div class="ppl-card__img"><span class="ppl-card__ini"><b aria-hidden="true">JC</b></span></div>
         <div class="ppl-card__body">
           <span class="ppl-card__role">Nurse Practitioner</span>
@@ -1652,6 +1687,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 </main>
+<!-- ================= PRACTITIONER PROFILE DRAWER (opens from the side) ================= -->
+<div class="pd" data-pd-root aria-hidden="true">
+  <div class="pd__veil" data-pd-close></div>
+  <aside class="pd__panel" role="dialog" aria-modal="true" aria-labelledby="pd-name" data-lenis-prevent>
+    <button class="pd__close" type="button" data-pd-close aria-label="Close profile"><span></span><span></span></button>
+    <div class="pd__body" data-pd-body></div>
+    <div class="pd__foot"><button class="abtn abtn--navy" type="button" data-book data-book-enquiry="Book an initial consultation" data-pd-close><span class="abtn__t"><span class="abtn__l">Book with our team</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book with our team</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button></div>
+  </aside>
+</div>
+<template data-pd-tpl="frank">
+  <div class="pd__head"><div class="pd__photo"><img src="images/practitioners/dr-frank-guerrera.jpg" alt="Portrait of Dr Frank Guerrera"></div>
+    <div><span class="pd__role">Doctor · General Practitioner</span><h2 id="pd-name">Dr Frank Guerrera</h2><span class="pd__reg">MBBS FRACGP</span></div></div>
+  <div class="pd__text"><p class="lead">Originally from Massachusetts, Dr Frank came to Australia to travel and learn to surf (better). Instead, he fell in love with his future wife and the art of medicine. Graduating from Bond University with a degree in Bioscience and then Medicine, he began his medical career at Gold Coast University Hospital before transitioning into General Practice.</p><p>He is excited and honored to be part of the community of health providers serving the alternative medicine space. He believes the healing process begins through open communication and empathy and is a strong supporter of a holistic approach to medicine anchored in a scientific approach.</p><p>In the clinic his interests reside in the communication process and developing short and long term health goals that are achievable and supported. He also enjoys the Mental Health aspect of general practice and is committed to the lifelong learning process.</p><p>Family and creativity are the world to him and he has a passion for painting, visual arts, soccer, surfing, food and music.</p>
+          <h4>Qualifications</h4><ul class="drawer__list"><li>Bachelor of Medicine, Bachelor of Surgery (MBBS), Bond University</li><li>Bachelor of Bioscience, Bond University</li><li>Fellow of the Royal Australian College of General Practitioners (FRACGP)</li></ul>
+          <h4>Areas of interest</h4><ul class="tags"><li>Mental health</li><li>Health goals</li><li>Holistic care</li></ul></div>
+</template>
+<template data-pd-tpl="jeremy">
+  <div class="pd__head"><div class="pd__photo pd__photo--ini"><b aria-hidden="true">JC</b></div>
+    <div><span class="pd__role">Nurse Practitioner</span><h2 id="pd-name">Jeremy Chou</h2><span class="pd__reg">NP MMH BN BPsychSc</span></div></div>
+  <div class="pd__text"><p class="lead">Jeremy Chou is a Nurse Practitioner with over 15 years of experience across mental health and primary healthcare, including more than four years of experience in Alternative Healthcare.</p><p>Jeremy has extensive experience in patient assessment and treatment, telehealth and multidisciplinary care. He has also held senior medical and clinical leadership roles.</p><p>With postgraduate qualifications in Nurse Practitioner studies and Mental Health, Jeremy is committed to delivering accessible, personalised and patient-centred care.</p>
+          <h4>Qualifications</h4><ul class="drawer__list"><li>Nurse Practitioner (NP)</li><li>Master of Mental Health (MMH)</li><li>Bachelor of Nursing (BN)</li><li>Bachelor of Psychological Science (BPsychSc)</li></ul>
+          <h4>Areas of interest</h4><ul class="tags"><li>Mental health</li><li>Telehealth</li><li>Primary care</li></ul></div>
+</template>
+
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer footer--v2">
@@ -1975,6 +2034,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (() => { const rf = document.querySelector('.rf--mission'); if (!rf) return;
   if (!('IntersectionObserver' in window)) return rf.classList.add('is-in');
   const io = new IntersectionObserver(e => { if (e[0].isIntersecting) { rf.classList.add('is-in'); io.disconnect(); } }, { threshold: .25 }); io.observe(rf); })();
+</script>
+
+<script>
+/* Practitioner profile drawer: opens from the side when a card is clicked */
+(() => {
+  const root = document.querySelector('[data-pd-root]'); if (!root) return;
+  const body = root.querySelector('[data-pd-body]'); let last = null;
+  const open = (key, trigger) => {
+    const t = document.querySelector(`template[data-pd-tpl="${key}"]`); if (!t) return;
+    body.innerHTML = t.innerHTML; body.scrollTop = 0; last = trigger;
+    root.classList.add('is-open'); root.setAttribute('aria-hidden', 'false'); document.documentElement.classList.add('pd-lock');
+    window.__lenis && window.__lenis.stop();
+    setTimeout(() => root.querySelector('.pd__close').focus(), 50);
+  };
+  const close = () => {
+    if (!root.classList.contains('is-open')) return;
+    root.classList.remove('is-open'); root.setAttribute('aria-hidden', 'true'); document.documentElement.classList.remove('pd-lock');
+    window.__lenis && window.__lenis.start(); last && last.focus();
+  };
+  document.querySelectorAll('[data-pd]').forEach(c => c.addEventListener('click', e => { e.preventDefault(); open(c.dataset.pd, c); }));
+  root.querySelectorAll('[data-pd-close]').forEach(el => el.addEventListener('click', close));
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
 </script>
 </body>
 </html>
