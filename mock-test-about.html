@@ -275,6 +275,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+
+<!-- ================= 6. STATEMENT — word scrub ================= -->
+<section class="statement"><h2 data-scrub-words>Good health is a long conversation. We’d love to start yours.</h2></section>
+
+<!-- ================= 7. CTA ================= -->
+<section class="cta" id="contact">
+  <h2 class="cta__headline"><span data-letters>Come and see the clinic.</span></h2>
+  <div class="cta__image"><div class="media" data-label="CTA: cta-background.webp 2560×1440"><img src="images/about/cta-background.webp" alt="Bright clinic entrance" loading="lazy" data-cta-img></div></div>
+  <div class="cta__card-wrap">
+    <div class="cta__card">
+      <div class="media" data-label="CTA card: cta-card.webp 800×900"><img src="images/about/cta-card.webp" alt="Receptionist welcoming a patient" loading="lazy"></div>
+      <div class="cta__card-body">
+        <div><h3>Book a free call</h3><p>A no-obligation chat with our team to see whether Aleafiate is right for you. Visit us at Logan Central Plaza or see us by telehealth.</p></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><a href="tel:+61734733396" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Book a free call</span><span class="btn__dot"></span></a><a href="contact.html" class="btn btn--ghost" data-roll><span class="btn__fill"></span><span class="btn__label">Contact us</span><svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12L12 4M5 4h7v7"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= PROFILE DRAWER (filled from the card's <template>) ================= -->
+<div class="drawer" data-drawer aria-hidden="true">
+  <div class="drawer__backdrop" data-drawer-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-name" data-lenis-prevent>
+    <button class="round-btn drawer__close" data-drawer-close aria-label="Close profile"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+    <div class="drawer__media"><div class="media"><img src="" alt=""></div></div>
+    <div class="drawer__body">
+      <span class="eyebrow" data-drawer-role></span>
+      <h2 id="drawer-name" data-drawer-name></h2>
+      <p class="drawer__reg" data-drawer-reg></p>
+      <div data-drawer-content></div>
+      <div class="drawer__actions">
+        <a href="contact.html" class="btn" data-roll data-drawer-book><span class="btn__fill"></span><span class="btn__label">Book an appointment</span><span class="btn__dot"></span></a>
+        <button class="btn btn--ghost" data-roll data-drawer-close><span class="btn__fill"></span><span class="btn__label">Back to the team</span></button>
+      </div>
+    </div>
+  </aside>
+</div>
 </main>
 
 <footer class="footer footer--v2">
