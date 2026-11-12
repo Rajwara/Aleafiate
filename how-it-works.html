@@ -1343,8 +1343,8 @@ main .pcta h2:not(#_):not(#__):not(#___):not(#____) em{color:var(--mint)}
 .avh__title:not(#_){font-weight:600;color:var(--navy)}
 
 /* main headings like the About page */
-main :is(#ways-title,#prep-title,#pfq-title):not(#_):not(#__){font-family:var(--heading);font-weight:600;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.035em;color:var(--navy)}
-main :is(#ways-title,#prep-title,#pfq-title):not(#_):not(#__) em{font-style:normal;font-weight:600;color:var(--teal-deep)}
+main :is(#steps-title,#ways-title,#prep-title,#pfq-title):not(#_):not(#__){font-family:var(--heading);font-weight:600;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.035em;color:var(--navy)}
+main :is(#steps-title,#ways-title,#prep-title,#pfq-title):not(#_):not(#__) em{font-style:normal;font-weight:600;color:var(--teal-deep)}
 main .pcta h2:not(#_):not(#__):not(#___):not(#____){font-family:var(--heading);font-weight:600;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.035em;color:#fff}
 main .pcta h2:not(#_):not(#__):not(#___):not(#____) em{font-style:normal;font-weight:600;color:var(--mint)}
 main .phw__step h3:not(#_){font-weight:600;color:var(--navy)}
@@ -1379,6 +1379,41 @@ main .phw__step h3:not(#_){font-weight:600;color:var(--navy)}
 .ph__chips li{background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 @media (prefers-reduced-motion:reduce){.ph__photo img{animation:none;transform:none}}
 </style>
+<style>
+/* How it works: compact step switcher (replaces the tall scroll-through steps) */
+.hwx__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:stretch}
+.hwx__stage{position:relative;min-height:520px;border-radius:28px;overflow:hidden;background:var(--sand)}
+.hwx__stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+.hwx__stage img.is-on{opacity:1;transform:none}
+.hwx__count{position:absolute;left:18px;top:18px;padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.92);font:500 13px/1 var(--heading);color:var(--navy)}
+.hwx__count b{color:var(--teal-deep)}
+.hwx__list{display:grid;gap:10px;align-content:center;list-style:none;margin:0;padding:0}
+.hwx__item{position:relative;overflow:hidden;border:1px solid rgba(17,17,69,.08);border-radius:20px;background:#fff;transition:background .4s,border-color .4s,box-shadow .4s}
+.hwx__item.is-on{border-color:transparent;background:var(--sand);box-shadow:0 20px 40px -32px rgba(17,17,69,.4)}
+.hwx__q{display:flex;align-items:center;gap:16px;width:100%;padding:20px 22px;border:0;background:none;text-align:left;font:inherit;color:var(--navy);cursor:pointer}
+.hwx__num{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#eef4f3;font:600 14px/1 var(--heading);color:var(--navy);transition:background .4s,color .4s}
+.hwx__item.is-on .hwx__num{background:var(--navy);color:var(--mint)}
+.hwx__t{flex:1;font-family:var(--heading);font-weight:600;font-size:clamp(17px,1.4vw,20px);letter-spacing:-.01em}
+.hwx__plus{position:relative;flex:none;width:30px;height:30px;border-radius:50%;background:#fff;transition:transform .5s cubic-bezier(.16,1,.3,1),background .4s}
+.hwx__plus::before,.hwx__plus::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.6px;background:var(--navy);transform:translate(-50%,-50%)}
+.hwx__plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.hwx__item.is-on .hwx__plus{transform:rotate(45deg)}
+.hwx__p{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.16,1,.3,1)}
+.hwx__item.is-on .hwx__p{grid-template-rows:1fr}
+.hwx__p>div{overflow:hidden;padding:0 22px 0 78px}
+.hwx__item.is-on .hwx__p>div{padding-bottom:22px}
+.hwx__p p{margin:0;font-size:15px;line-height:1.65;color:#4a5068}
+.hwx__chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:14px 0 0;padding:0}
+.hwx__chips li{padding:5px 11px;border-radius:99px;background:#fff;font-size:12.5px;color:var(--teal-deep)}
+.hwx__p .abtn{margin-top:16px}
+.hwx__bar{position:absolute;left:0;bottom:0;height:3px;width:100%;pointer-events:none}
+.hwx__bar i{display:block;height:100%;background:var(--teal-deep);transform:scaleX(0);transform-origin:left}
+.hwx__item.is-on .hwx__bar i{animation:hwxBar var(--hwx-time,7s) linear forwards}
+.hwx.is-paused .hwx__item.is-on .hwx__bar i{animation-play-state:paused}
+@keyframes hwxBar{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.hwx__stage img,.hwx__p{transition:none}.hwx__item.is-on .hwx__bar i{animation:none}}
+@media (max-width:900px){.hwx__grid{grid-template-columns:1fr}.hwx__stage{min-height:300px}.hwx__p>div{padding-left:22px}}
+</style>
 </head>
 <body class="draft-home">
 <!-- Google Tag Manager (noscript) -->
@@ -1411,45 +1446,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
   </div>
 </section>
-<section class="pg-sec pg-sec--white" id="steps" aria-labelledby="steps-title">
+<section class="pg-sec pg-sec--white hwx" id="steps" aria-labelledby="steps-title">
   <div class="container">
-    <h2 class="sr-only" id="steps-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">The four steps</h2>
-    <div class="phw">
-      <div class="phw__stage" aria-hidden="true"><img class="is-on" src="images/home/step-1-free-call.webp" alt="A woman talking on the phone at home" loading="eager"><img class="" src="images/home-v2/start-eligibility-check.webp" alt="A woman filling in a form on her laptop" loading="lazy"><img class="" src="images/home-v2/start-consultation.webp" alt="A practitioner talking with a patient" loading="lazy"><img class="" src="images/home/step-4-ongoing-care.webp" alt="A practitioner checking in with a patient" loading="lazy"><span class="phw__count"><b data-phw-num>01</b> / 04</span><span class="phw__bar"><i></i></span></div>
-      <div class="phw__steps">
-      <article class="phw__step is-on">
-        <div class="phw__mimg"><img src="images/home/step-1-free-call.webp" alt="" loading="lazy"></div>
-        <span class="phw__num">01</span>
-        <h3>Book your free nurse call</h3>
-        <p>Speak with our team about your health needs at no cost. We’ll explain how everything works, answer your questions and guide you through the next steps, with no obligation to continue.</p>
-        <ul class="phw__chips"><li>10–15 minutes</li><li>By phone</li><li>$0</li></ul>
-        <button class="abtn" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
-      </article>
-      <article class="phw__step">
-        <div class="phw__mimg"><img src="images/home-v2/start-eligibility-check.webp" alt="" loading="lazy"></div>
-        <span class="phw__num">02</span>
-        <h3>Check your eligibility</h3>
-        <p>Explore your healthcare options with Aleafiate and discover how personalised care may support your wellbeing. Our short eligibility check helps us understand your needs before your consultation.</p>
-        <ul class="phw__chips"><li>About 2 minutes</li><li>Online</li><li>Free</li></ul>
-        <a class="abtn" href="check-eligibility.html"><span class="abtn__t"><span class="abtn__l">Check eligibility</span><span class="abtn__l abtn__l--2" aria-hidden="true">Check eligibility</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
-      </article>
-      <article class="phw__step">
-        <div class="phw__mimg"><img src="images/home-v2/start-consultation.webp" alt="" loading="lazy"></div>
-        <span class="phw__num">03</span>
-        <h3>Meet your practitioner</h3>
-        <p>Connect with our compassionate, AHPRA-registered practitioners in a 30-minute initial consultation to discuss your health concerns and explore personalised care options suited to your individual needs.</p>
-        <ul class="phw__chips"><li>30 minutes</li><li>In clinic or telehealth</li><li>$0 for new patients</li></ul>
-        <button class="abtn" type="button" data-book data-book-enquiry="Book an initial consultation"><span class="abtn__t"><span class="abtn__l">Book a consultation</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a consultation</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
-      </article>
-      <article class="phw__step">
-        <div class="phw__mimg"><img src="images/home/step-4-ongoing-care.webp" alt="" loading="lazy"></div>
-        <span class="phw__num">04</span>
-        <h3>Your next steps and ongoing care</h3>
-        <p>Following your consultation, your practitioner will discuss the next steps based on your individual healthcare needs and clinical assessment. Follow-up consultations give you time to review your progress and adjust your care.</p>
-        <ul class="phw__chips"><li>15-minute follow-ups</li><li>$65 per visit</li><li>Medicare rebates may apply*</li></ul>
-        <button class="abtn" type="button" data-book data-book-enquiry="Book a follow-up"><span class="abtn__t"><span class="abtn__l">Book a follow-up</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a follow-up</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
-      </article>
-      </div>
+    <div class="pg-head">
+      <div><span class="v2-pill">The four steps</span><h2 class="v2-h2" id="steps-title">From first call to <em>ongoing care.</em></h2></div>
+      <p class="v2-lead">Tap a step to see what happens. The steps play through on their own, or pick one to jump straight to it.</p>
+    </div>
+    <div class="hwx__grid">
+      <div class="hwx__stage"><img class="is-on" data-hwx-img src="images/home/step-1-free-call.webp" alt="A woman talking on the phone at home" loading="eager"><img class="" data-hwx-img src="images/home-v2/start-eligibility-check.webp" alt="A woman filling in a form on her laptop" loading="lazy"><img class="" data-hwx-img src="images/home-v2/start-consultation.webp" alt="A practitioner talking with a patient" loading="lazy"><img class="" data-hwx-img src="images/home/step-4-ongoing-care.webp" alt="A practitioner checking in with a patient" loading="lazy"><span class="hwx__count" aria-hidden="true"><b data-hwx-num>01</b> / 04</span></div>
+      <ol class="hwx__list">
+        <li class="hwx__item is-on" data-hwx-item>
+          <button class="hwx__q" type="button" aria-expanded="true" aria-controls="hwx-p0" id="hwx-q0"><span class="hwx__num">01</span><span class="hwx__t">Book your free nurse call</span><span class="hwx__plus" aria-hidden="true"></span></button>
+          <div class="hwx__p" id="hwx-p0" role="region" aria-labelledby="hwx-q0"><div>
+            <p>Speak with our team about your health needs at no cost. We’ll explain how everything works, answer your questions and guide you through the next steps, with no obligation to continue.</p>
+            <ul class="hwx__chips"><li>10–15 minutes</li><li>By phone</li><li>$0</li></ul>
+            <button class="abtn" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
+          </div></div>
+          <span class="hwx__bar" aria-hidden="true"><i></i></span>
+        </li>
+        <li class="hwx__item" data-hwx-item>
+          <button class="hwx__q" type="button" aria-expanded="false" aria-controls="hwx-p1" id="hwx-q1"><span class="hwx__num">02</span><span class="hwx__t">Check your eligibility</span><span class="hwx__plus" aria-hidden="true"></span></button>
+          <div class="hwx__p" id="hwx-p1" role="region" aria-labelledby="hwx-q1"><div>
+            <p>Explore your healthcare options with Aleafiate and discover how personalised care may support your wellbeing. Our short eligibility check helps us understand your needs before your consultation.</p>
+            <ul class="hwx__chips"><li>About 2 minutes</li><li>Online</li><li>Free</li></ul>
+            <a class="abtn" href="check-eligibility.html"><span class="abtn__t"><span class="abtn__l">Check eligibility</span><span class="abtn__l abtn__l--2" aria-hidden="true">Check eligibility</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
+          </div></div>
+          <span class="hwx__bar" aria-hidden="true"><i></i></span>
+        </li>
+        <li class="hwx__item" data-hwx-item>
+          <button class="hwx__q" type="button" aria-expanded="false" aria-controls="hwx-p2" id="hwx-q2"><span class="hwx__num">03</span><span class="hwx__t">Meet your practitioner</span><span class="hwx__plus" aria-hidden="true"></span></button>
+          <div class="hwx__p" id="hwx-p2" role="region" aria-labelledby="hwx-q2"><div>
+            <p>Connect with our compassionate, AHPRA-registered practitioners in a 30-minute initial consultation to discuss your health concerns and explore personalised care options suited to your individual needs.</p>
+            <ul class="hwx__chips"><li>30 minutes</li><li>In clinic or telehealth</li><li>$0 for new patients</li></ul>
+            <button class="abtn" type="button" data-book data-book-enquiry="Book an initial consultation"><span class="abtn__t"><span class="abtn__l">Book a consultation</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a consultation</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
+          </div></div>
+          <span class="hwx__bar" aria-hidden="true"><i></i></span>
+        </li>
+        <li class="hwx__item" data-hwx-item>
+          <button class="hwx__q" type="button" aria-expanded="false" aria-controls="hwx-p3" id="hwx-q3"><span class="hwx__num">04</span><span class="hwx__t">Your next steps and ongoing care</span><span class="hwx__plus" aria-hidden="true"></span></button>
+          <div class="hwx__p" id="hwx-p3" role="region" aria-labelledby="hwx-q3"><div>
+            <p>Following your consultation, your practitioner will discuss the next steps based on your individual healthcare needs and clinical assessment. Follow-up consultations give you time to review your progress and adjust your care.</p>
+            <ul class="hwx__chips"><li>15-minute follow-ups</li><li>$65 per visit</li><li>Medicare rebates may apply*</li></ul>
+            <button class="abtn" type="button" data-book data-book-enquiry="Book a follow-up"><span class="abtn__t"><span class="abtn__l">Book a follow-up</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a follow-up</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
+          </div></div>
+          <span class="hwx__bar" aria-hidden="true"><i></i></span>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
@@ -1829,5 +1871,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script src="js/pages.js"></script>
+
+<script>
+/* How it works step switcher: click a step, or let them play through (pauses on hover and when off screen) */
+(() => {
+  const sec = document.querySelector('.hwx'); if (!sec) return;
+  const items = [...sec.querySelectorAll('[data-hwx-item]')], imgs = [...sec.querySelectorAll('[data-hwx-img]')], num = sec.querySelector('[data-hwx-num]');
+  const TIME = 7000, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; sec.style.setProperty('--hwx-time', TIME / 1000 + 's');
+  let cur = 0, t, left = TIME, started = 0, visible = false, hover = false;
+  const go = k => {
+    cur = (k + items.length) % items.length;
+    items.forEach((it, j) => { it.classList.toggle('is-on', j === cur); it.querySelector('.hwx__q').setAttribute('aria-expanded', j === cur); });
+    imgs.forEach((im, j) => im.classList.toggle('is-on', j === cur));
+    num.textContent = String(cur + 1).padStart(2, '0');
+    items.forEach(it => { const i = it.querySelector('.hwx__bar i'); i.style.animation = 'none'; void i.offsetWidth; i.style.animation = ''; });
+    left = TIME; run();
+  };
+  const run = () => { clearTimeout(t); if (reduce || !visible || hover) return; started = Date.now(); t = setTimeout(() => go(cur + 1), left); };
+  const pause = () => { clearTimeout(t); left -= Date.now() - started; sec.classList.add('is-paused'); };
+  items.forEach((it, j) => it.querySelector('.hwx__q').addEventListener('click', () => go(j)));
+  sec.addEventListener('pointerenter', () => { hover = true; pause(); });
+  sec.addEventListener('pointerleave', () => { hover = false; sec.classList.remove('is-paused'); run(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(e => { visible = e[0].isIntersecting; visible ? (sec.classList.remove('is-paused'), run()) : pause(); }, { threshold: .3 }).observe(sec);
+  imgs.forEach(i => i.loading = 'eager');
+})();
+</script>
 </body>
 </html>
