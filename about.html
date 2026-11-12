@@ -178,6 +178,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .sb__cta .abtn{min-width:0}
 @media (max-width:560px){.sb__cta .abtn{width:100%;justify-content:space-between}}
 @media (prefers-reduced-motion:reduce){.abtn__bg,.abtn__l,.abtn__arrow{transition:none}}
+
+/* sub-heading pill on every section (same as "Where we are") */
+.sub-pill{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 8px;border:1px solid rgba(17,17,69,.12);border-radius:99px;font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink);background:transparent}
+.sub-pill::before{content:"";width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,var(--teal-deep) 0 3.5px,rgba(48,153,136,.22) 4px)}
+.apc__head .sub-pill{grid-column:1/-1;justify-self:start;margin-bottom:-14px}
+#team .section__head .sub-pill{margin-bottom:6px}
+.sb .sub-pill.sub-pill--dark{border-color:rgba(255,255,255,.3);color:#fff;margin-bottom:22px}
+.sb .sub-pill.sub-pill--dark::before{background:radial-gradient(circle,var(--mint) 0 3.5px,rgba(138,220,206,.3) 4px)}
+
+/* even vertical rhythm: every section ~120px of space above and below its content (scales down on phones) */
+:root{--sec-y:clamp(72px,8.4vw,120px)}
+.ab:not(#_){padding-bottom:var(--sec-y)}
+.apc:not(#_){padding:var(--sec-y) 0}
+.apc__head .sub-pill{margin-bottom:0}
+.apc [data-apc]:first-child{margin-top:0}
+#team.section:not(#_){padding:var(--sec-y) 0}
+#team .section__head{margin-top:0}
+.sb .sb__inner:not(#_){padding-top:var(--sec-y);padding-bottom:var(--sec-y);min-height:0}
+.sb__feats:not(#_){margin-top:clamp(48px,6vw,72px)}
+.visit-about.pg-sec:not(#_){padding:var(--sec-y) 0}
+.visit-about .pg-head > div > .v2-pill{margin-top:0}
+@media (max-width:640px){.ab:not(#_){padding-top:104px}}
 </style>
 <style>
 /* Nav: floating pill menu, same as homepage-v3 / the live homepage */
@@ -409,6 +431,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="apc" aria-labelledby="apc-title">
   <div class="container">
     <div class="apc__head">
+      <span class="v2-pill sub-pill" data-apc>Our care</span>
       <h2 id="apc-title" data-apc>Personalised Care for<br> <em>Every Patient</em></h2>
       <div class="apc__intro" data-apc style="--i:1">
         <p>We’re here to support you on your health journey, with compassionate care, honest advice and ongoing support from AHPRA-registered practitioners who listen.</p>
@@ -442,7 +465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="section center" id="team">
   <div class="container">
     <div class="section__head">
-      <span class="eyebrow">Our team</span><h2 data-words>Meet our practitioners</h2>
+      <span class="v2-pill sub-pill">Our team</span><h2 data-words>Meet our practitioners</h2>
       <p data-up>Filter by role, then tap anyone to read their full profile.</p>
     </div>
     <div class="tabs" data-up>
@@ -483,6 +506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="sb__photo" aria-hidden="true"><img src="images/home/cta-background.webp" alt="" loading="lazy"></div>
   <div class="sb__sky" aria-hidden="true"><span class="sb__glow"></span><span class="sb__cloud sb__cloud--1"></span><span class="sb__cloud sb__cloud--2"></span><span class="sb__cloud sb__cloud--3"></span><span class="sb__cloud sb__cloud--4"></span></div>
   <div class="container sb__inner">
+    <span class="v2-pill sub-pill sub-pill--dark">Why choose us</span>
     <h2 id="sb-title">Personalised healthcare, <em>delivered with care</em></h2>
     <p class="sb__sub">Aleafiate connects you with AHPRA-registered practitioners who take the time to understand your health, your history and the care options that may suit you. In clinic at Logan Central or by telehealth, Australia-wide.</p>
     <div class="sb__cta">
