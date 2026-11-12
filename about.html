@@ -301,6 +301,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:900px){.pvisit{grid-template-columns:1fr}}
 .pg-sec.visit-about{background:var(--bone)}
 </style>
+<style>
+/* values marquee (from about-v2) */
+.pmarq{overflow:hidden;padding:26px 0;background:var(--navy);color:#fff;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.pmarq__track{display:flex;width:max-content;animation:pMarq 38s linear infinite}
+.pmarq ul{display:flex;align-items:center;list-style:none;margin:0;padding:0}
+.pmarq li{display:flex;align-items:center;gap:40px;padding-right:40px;font-family:var(--heading);font-weight:500;font-size:clamp(22px,2.6vw,38px);letter-spacing:-.02em;white-space:nowrap}
+.pmarq li::after{content:"";width:14px;height:14px;background:var(--mint);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+@keyframes pMarq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.pmarq__track{animation:none}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -392,6 +402,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<!-- ================= VALUES MARQUEE (from about-v2) ================= -->
+<div class="pmarq" aria-hidden="true"><div class="pmarq__track"><ul><li>Listening</li><li>Compassion</li><li>Clinical integrity</li><li>Honest advice</li><li>Ongoing support</li><li>Personalised care</li></ul><ul><li>Listening</li><li>Compassion</li><li>Clinical integrity</li><li>Honest advice</li><li>Ongoing support</li><li>Personalised care</li></ul></div></div>
 
 <!-- ================= 4. TEAM — filter + profile drawer ================= -->
 <section class="section center" id="team">
