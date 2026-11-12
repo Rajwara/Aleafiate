@@ -201,6 +201,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .visit-about .pg-head > div > .v2-pill{margin-top:0}
 .apc__intro .apc__btn{margin-top:22px}
 @media (max-width:640px){.ab:not(#_){padding-top:104px}}
+
+/* main headings: all match "In clinic or from home." (Montserrat 600, same size, navy with teal accent) */
+main :is(.ab h1,.apc h2,#team h2,.sb h2,.visit-about h2):not(#_):not(#__){font-family:var(--heading);font-weight:600;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.035em;color:var(--navy)}
+main :is(.ab h1,.apc h2,#team h2,.sb h2,.visit-about h2):not(#_):not(#__) em{font-style:normal;font-weight:600;color:var(--teal-deep)}
+main .sb h2:not(#_):not(#__):not(#___):not(#____){color:#fff}
+main .sb h2:not(#_):not(#__):not(#___):not(#____) em{color:var(--mint)}
 </style>
 <style>
 /* Nav: floating pill menu, same as homepage-v3 / the live homepage */
