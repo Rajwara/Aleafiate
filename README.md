@@ -20,6 +20,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - test-mock.html — Test page with the old home-v2 nav and banner (not indexed)
 - css/style.css — all styles (colours & fonts at the top in :root; headings Montserrat, text Poppins)
 - css/footer.css + js/footer.js — the site footer (same on every page) and its newsletter sign-up
+- css/live-style.css — the live homepage’s fonts and button style (Montserrat 600 headings, 52px Poppins pill buttons), loaded last on every page except index.html
 - css/booking.css + js/booking.js — floating "Book appointment" button and pop-up form on every page. Requests go to the ActiveCampaign form "Website – Book appointment" (ID 16; settings at the top of js/booking.js)
 - js/main.js — all animations (driven by data-attributes, see comment at top)
 - js/vendor/ — GSAP 3.13 (ScrollTrigger, SplitText, Draggable) + Lenis
