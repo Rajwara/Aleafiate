@@ -173,6 +173,64 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:1100px){.nav__links{display:none}.nav__burger{display:block}}
 @media (max-width:991px){.nav{inset:12px 12px auto;padding:8px 8px 8px 18px}.nav .logo img{height:35px}.nav__cta{display:none}}
 </style>
+<style>
+/* ---------- Care section: soft sky, centred copy (from test-mock) ---------- */
+.sb{position:relative;isolation:isolate;overflow:clip;color:var(--navy);background:linear-gradient(180deg,#bfe3dd 0%,#d9efeb 45%,#eef8f6 100%)}
+.sb__bar{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;gap:14px;padding:10px 16px;background:var(--mint);font-size:13.5px;color:var(--navy);text-align:center}
+.sb__bar svg{flex:none;width:14px;height:14px;color:var(--teal-deep)}
+.sb__bar button{border:0;background:none;padding:0;font:600 13.5px/1 var(--body);color:var(--navy);cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px;transition:text-decoration-color .3s}
+.sb__bar button:hover{text-decoration-color:currentColor}
+.sb__sky{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.sb__cloud{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,.55) 55%,rgba(255,255,255,0));filter:blur(18px);animation:sbDrift 38s ease-in-out infinite alternate}
+.sb__cloud--1{width:70vw;height:42vw;left:-18vw;top:30%}
+.sb__cloud--2{width:55vw;height:30vw;right:-14vw;top:8%;opacity:.7;animation-duration:46s;animation-direction:alternate-reverse}
+.sb__cloud--3{width:80vw;height:38vw;left:20vw;bottom:-18vw;opacity:.85;animation-duration:52s}
+.sb__cloud--4{width:30vw;height:18vw;left:42vw;top:-6vw;opacity:.5;animation-duration:34s}
+.sb__glow{position:absolute;width:60vw;height:60vw;left:20vw;top:-10vw;border-radius:50%;background:radial-gradient(closest-side,rgba(138,220,206,.55),rgba(138,220,206,0))}
+@keyframes sbDrift{to{transform:translate3d(6vw,-1.5vw,0) scale(1.05)}}
+.sb__inner{display:flex;flex-direction:column;align-items:center;text-align:center;min-height:calc(100vh - 40px);min-height:calc(100svh - 40px);justify-content:center;padding-top:clamp(120px,14vh,160px);padding-bottom:clamp(60px,9vh,100px)}
+.sb h2{margin:0;font-family:var(--heading);font-weight:500;font-size:clamp(38px,4.6vw,68px);line-height:1.1;letter-spacing:-.03em;color:var(--navy)}
+.sb h2 em{display:block;font-style:italic;font-weight:500;color:var(--teal-deep)}
+.sb__sub{margin:24px auto 0;max-width:620px;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:#3d4560}
+.sb__cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:40px}
+.sb__btn{display:inline-flex;align-items:center;justify-content:center;gap:0;min-width:280px;height:56px;padding:0 28px;border-radius:12px;font:400 16px/1 var(--body);text-decoration:none;cursor:pointer;transition:background .35s,color .35s,border-color .35s}
+.sb__btn b{margin-left:.3em;font-weight:600}
+.sb__btn svg{margin-left:12px}
+.sb__btn svg{width:18px;height:18px;transition:transform .35s}
+.sb__btn:hover svg{transform:translateX(4px)}
+.sb__btn--solid{border:0;background:var(--navy);color:#fff}
+.sb__btn--solid svg{color:var(--mint)}
+.sb__btn--solid:hover{background:var(--teal-deep)}
+.sb__btn--line{border:1.5px solid rgba(17,17,69,.35);background:rgba(255,255,255,.35);color:var(--navy)}
+.sb__btn--line b{color:var(--teal-deep)}
+.sb__btn--line:hover{border-color:var(--navy);background:#fff}
+.sb__btn:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+.sb__feats{display:grid;grid-template-columns:repeat(4,minmax(0,150px));justify-content:center;gap:24px clamp(24px,4vw,64px);list-style:none;margin:clamp(60px,8vh,90px) 0 0;padding:0}
+.sb__feats li{display:flex;flex-direction:column;align-items:center;gap:14px;font-size:16px;line-height:1.35;color:var(--ink)}
+.sb__feats i{display:grid;place-items:center;width:52px;height:52px;border-radius:12px;background:rgba(255,255,255,.65);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--teal-deep);box-shadow:0 10px 24px -16px rgba(17,17,69,.35)}
+.sb__feats svg{width:24px;height:24px}
+.sb__inner>*{opacity:0;transform:translateY(20px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.sb__inner>:nth-child(2){transition-delay:.1s}.sb__inner>:nth-child(3){transition-delay:.2s}.sb__inner>:nth-child(4){transition-delay:.3s}
+.sb.is-in .sb__inner>*{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.sb__cloud{animation:none}.sb__inner>*{transition:none}}
+@media (max-width:640px){
+  .sb__btn{width:100%;min-width:0}
+  .sb__feats{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+  .sb__feats li{font-size:14px}
+}
+
+/* care section: photo behind the sky */
+.sb__photo{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.sb__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.04)}
+.sb__photo::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 45%,rgba(238,248,246,.9),rgba(222,242,238,.72) 60%,rgba(207,236,230,.55)),linear-gradient(180deg,rgba(238,248,246,.35),rgba(238,248,246,.85))}
+.sb:has(.sb__photo){background:none}
+.sb:has(.sb__photo) .sb__cloud{opacity:.45}
+.sb__inner{min-height:0;padding-top:clamp(90px,10vw,140px);padding-bottom:clamp(90px,10vw,140px)}
+/* about: tidy the two-part button labels */
+.sb__btn:not(#_){gap:0}
+.sb__btn b{margin-left:.3em}
+.sb__btn svg{margin-left:12px}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -305,6 +363,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ================= CARE (from homepage-v2): soft sky, centred copy (from test-mock) ================= -->
+<section class="sb" aria-labelledby="sb-title">
+    <div class="sb__photo" aria-hidden="true"><img src="images/home/cta-background.webp" alt="" loading="lazy"></div>
+  <div class="sb__sky" aria-hidden="true"><span class="sb__glow"></span><span class="sb__cloud sb__cloud--1"></span><span class="sb__cloud sb__cloud--2"></span><span class="sb__cloud sb__cloud--3"></span><span class="sb__cloud sb__cloud--4"></span></div>
+  <div class="container sb__inner">
+    <h2 id="sb-title">Personalised healthcare, <em>delivered with care</em></h2>
+    <p class="sb__sub">Aleafiate connects you with AHPRA-registered practitioners who take the time to understand your health, your history and the care options that may suit you. In clinic at Logan Central or by telehealth, Australia-wide.</p>
+    <div class="sb__cta">
+      <button class="sb__btn sb__btn--solid" type="button" data-book data-book-enquiry="Book an initial consultation">Book a <b>$0 Initial Consultation</b> <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h14M12 5l5 5-5 5"/></svg></button>
+      <button class="sb__btn sb__btn--line" type="button" data-book data-book-enquiry="Book a free discovery call">Book a <b>Free Nurse Call</b></button>
+    </div>
+    <ul class="sb__feats"><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i>AHPRA-registered practitioners</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i>30-minute consultations</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i>In clinic or telehealth</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></i>No obligation to start</li></ul>
+  </div>
+</section>
+
+
 
 <!-- ================= 6. STATEMENT — word scrub ================= -->
 <section class="statement"><h2 data-scrub-words>Good health is a long conversation. We’d love to start yours.</h2></section>
@@ -398,6 +472,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if (!('IntersectionObserver' in window)) return els.forEach(e => e.classList.add('is-in'));
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: .15 });
   els.forEach(e => io.observe(e)); })();
+</script>
+<script>
+(() => { const sb = document.querySelector('.sb'); if (!sb) return;
+  if (!('IntersectionObserver' in window)) return sb.classList.add('is-in');
+  const io = new IntersectionObserver(e => { if (e[0].isIntersecting) { sb.classList.add('is-in'); io.disconnect(); } }, { threshold: .2 });
+  io.observe(sb); })();
 </script>
 </body>
 </html>
