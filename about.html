@@ -102,6 +102,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (prefers-reduced-motion:reduce){.ab [data-ab]{opacity:1;transform:none;transition:none}}
 @media (max-width:1000px){.ab__panel{grid-template-columns:1fr}.ab__feats{margin-top:0;padding-top:30px}}
 @media (max-width:520px){.ab__bento{grid-template-columns:1fr}.ab-tile,.ab-tile--wide{min-height:200px}.ab-tile b,.ab-tile small{max-width:55%}.ab-tile>img,.ab-tile:not(.ab-tile--wide)>img{width:50%;height:100%;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%)}.ab-tile__badge{display:none}}
+
+/* Personalised care section (under the banner): same width as the nav */
+.apc{padding:clamp(70px,8vw,110px) 0;background:var(--bone)}
+.apc>.container{box-sizing:border-box;width:auto;max-width:none;padding-inline:0;margin-inline:max(16px,calc((100% - 1440px) / 2 + 24px))}
+@media (max-width:991px){.apc>.container{margin-inline:12px}}
+.apc__head{display:grid;grid-template-columns:1.2fr .8fr;gap:30px 60px;align-items:start;margin-bottom:clamp(30px,3.6vw,48px)}
+.apc h2:not(#_){margin:0;font-family:var(--heading);font-weight:600;font-size:clamp(36px,4.2vw,62px);line-height:1.08;letter-spacing:-.035em;color:var(--ink)}
+.apc h2:not(#_) em{font-style:normal;color:var(--teal-deep)}
+.apc__intro p{margin:6px 0 0;max-width:440px;font-size:15.5px;line-height:1.7;color:var(--muted)}
+.apc__link{display:inline-flex;align-items:center;gap:12px;margin-top:20px;font-size:14.5px;font-weight:500;color:var(--navy);text-decoration:none}
+.apc__link .apc-card__go{width:30px;height:30px;border:1px solid rgba(17,17,69,.25);background:transparent}
+.apc__link:hover .apc-card__go{transform:rotate(-45deg);background:var(--navy);border-color:var(--navy);color:#fff}
+.apc__media{position:relative;height:clamp(460px,44vw,640px);border-radius:28px;overflow:hidden;background:var(--sand)}
+.apc__media>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;transform:scale(1.08);transition:transform 1.6s cubic-bezier(.16,1,.3,1)}
+.apc__media.is-in>img{transform:scale(1)}
+.apc__media::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(0deg,rgba(17,17,69,.45),rgba(17,17,69,0));pointer-events:none}
+.apc__cards{position:absolute;z-index:1;left:clamp(14px,2vw,28px);right:clamp(14px,2vw,28px);bottom:clamp(14px,2vw,28px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.apc-card{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;gap:10px;padding:20px 22px;border:0;border-radius:16px;background:#fff;color:var(--navy);text-align:left;text-decoration:none;font:inherit;cursor:pointer;box-shadow:0 20px 40px -24px rgba(17,17,69,.45)}
+.apc-card::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--navy);clip-path:circle(0 at calc(100% - 37px) 37px);transition:clip-path .8s cubic-bezier(.65,.05,.36,1)}
+.apc-card:hover::before,.apc-card:focus-visible::before{clip-path:circle(150% at calc(100% - 37px) 37px)}
+.apc-card__top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.apc-card b{font-family:var(--heading);font-weight:600;font-size:clamp(17px,1.4vw,20px);letter-spacing:-.015em;transition:color .5s}
+.apc-card__text{font-size:13.5px;line-height:1.55;color:var(--muted);transition:color .5s}
+.apc-card__go{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eef4f3;color:var(--navy);transform:rotate(-45deg);transition:transform .5s cubic-bezier(.16,1,.3,1),background .4s,color .4s,border-color .4s}
+.apc-card__go svg{width:13px;height:13px}
+.apc-card:hover b,.apc-card:focus-visible b{color:#fff}
+.apc-card:hover .apc-card__text,.apc-card:focus-visible .apc-card__text{color:rgba(255,255,255,.8)}
+.apc-card:hover .apc-card__go,.apc-card:focus-visible .apc-card__go{transform:rotate(0);background:var(--mint);color:var(--navy)}
+.apc-card:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+.apc [data-apc]{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0)*100ms)}
+.apc [data-apc].is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.apc [data-apc],.apc__media>img,.apc-card::before{opacity:1;transform:none;transition:none}}
+@media (max-width:900px){
+  .apc__head{grid-template-columns:1fr}
+  .apc__media{height:auto;overflow:visible;background:none}
+  .apc__media>img{position:relative;height:clamp(280px,60vw,420px);border-radius:24px}
+  .apc__media::after{display:none}
+  .apc__cards{position:static;grid-template-columns:1fr;margin-top:12px}
+}
 </style>
 <style>
 /* Nav: floating pill menu, same as homepage-v3 / the live homepage */
@@ -185,6 +224,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <b>Telehealth</b><small>See us from home, Australia-wide</small>
           <span class="ab-tile__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
         </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= PERSONALISED CARE: heading + wide photo with three cards ================= -->
+<section class="apc" aria-labelledby="apc-title">
+  <div class="container">
+    <div class="apc__head">
+      <h2 id="apc-title" data-apc>Personalised Care for<br> <em>Every Patient</em></h2>
+      <div class="apc__intro" data-apc style="--i:1">
+        <p>We’re here to support you on your health journey, with compassionate care, honest advice and ongoing support from AHPRA-registered practitioners who listen.</p>
+        <a class="apc__link" href="how-it-works.html">How it works <span class="apc-card__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+      </div>
+    </div>
+    <div class="apc__media" data-apc style="--i:1">
+      <img src="images/home-v2/start-consultation.webp" alt="An Aleafiate practitioner talking with a patient in a consultation room" loading="lazy" width="1600" height="1067">
+      <div class="apc__cards">
+          <a class="apc-card" href="how-it-works.html" data-apc style="--i:2">
+            <span class="apc-card__top"><b>Personalised Care</b><span class="apc-card__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span>
+            <span class="apc-card__text">Every consultation begins with understanding your health concerns, medical history and individual needs.</span>
+          </a>
+          <button class="apc-card" type="button" data-book data-book-enquiry="Book a free discovery call" data-apc style="--i:3">
+            <span class="apc-card__top"><b>Book a Free Nurse Call</b><span class="apc-card__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span>
+            <span class="apc-card__text">Speak with our team at no cost, ask questions and find out whether Aleafiate is a good fit for you.</span>
+          </button>
+          <a class="apc-card" href="practitioners.html" data-apc style="--i:4">
+            <span class="apc-card__top"><b>Meet Our Practitioners</b><span class="apc-card__go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span>
+            <span class="apc-card__text">AHPRA-registered practitioners who take the time to understand you, in clinic or by telehealth.</span>
+          </a>
       </div>
     </div>
   </div>
@@ -411,6 +481,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 /* About banner: fade the pieces in on load */
 (() => { const els = document.querySelectorAll('.ab [data-ab]');
   requestAnimationFrame(() => setTimeout(() => els.forEach(e => e.classList.add('is-in')), 80)); })();
+</script>
+
+<script>
+/* Personalised care section: reveal on scroll */
+(() => { const els = document.querySelectorAll('.apc [data-apc]');
+  if (!('IntersectionObserver' in window)) return els.forEach(e => e.classList.add('is-in'));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: .15 });
+  els.forEach(e => io.observe(e)); })();
 </script>
 </body>
 </html>
