@@ -18,6 +18,7 @@ Fonts load from Google Fonts when online (falls back to Georgia / system font of
 - homepage.html — new Homepage (design in progress, built section by section; noindex until it goes live)
 - homepage-v2.html — homepage v2 draft: every section of the live homepage rebuilt with the best of the mock-ups (noindex until it goes live)
 - homepage-v3.html — exact copy of index.html (the live homepage) for editing; noindex
+- mock-test-about.html — holding page for the old About sections (About Aleafiate, Our mission, Our approach, The experience) removed from about.html; noindex
 - about-v2.html, pricing.html, how-it-works.html — new inner pages (noindex for review); shared css/pages.css + js/pages.js for their layout and scroll animations
 - test-mock.html — Test page with the old home-v2 nav and banner (not indexed)
 - css/style.css — all styles (colours & fonts at the top in :root; headings Montserrat, text Poppins)
