@@ -91,6 +91,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:1000px){.ab__panel{grid-template-columns:1fr}.ab__feats{margin-top:0;padding-top:30px}}
 @media (max-width:520px){.ab__bento{grid-template-columns:1fr}.ab-tile,.ab-tile--wide{min-height:200px}.ab-tile b,.ab-tile small{max-width:55%}.ab-tile>img,.ab-tile:not(.ab-tile--wide)>img{width:50%;height:100%;-webkit-mask:linear-gradient(90deg,transparent,#000 35%);mask:linear-gradient(90deg,transparent,#000 35%)}.ab-tile__badge{display:none}}
 </style>
+<style>
+/* Nav: floating pill menu, same as homepage-v3 / the live homepage */
+.nav{inset:16px max(16px,calc((100% - 1440px) / 2 + 24px)) auto;padding:10px 10px 10px 26px;border-radius:999px;background:#fff;box-shadow:0 10px 40px -18px rgba(13,13,48,.35);transition:transform .6s var(--ease),background .5s,backdrop-filter .5s,box-shadow .5s,color .4s}
+.nav.is-hidden{transform:translateY(calc(-100% - 24px))}
+.nav.is-solid{background:rgba(255,255,255,.3);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 10px 40px -18px rgba(13,13,48,.35)}
+.nav.on-dark{background:rgba(17,17,69,.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.nav.on-dark:not(.is-solid){background:#fff;color:var(--ink);box-shadow:0 10px 40px -18px rgba(13,13,48,.35)} /* top of page: plain white bar */
+.nav.on-dark:not(.is-solid) .logo img{filter:none}
+.nav.on-dark:not(.is-solid) .nav__cta{background:var(--navy);color:#fff}
+.nav.on-dark:not(.is-solid) .nav__burger{border-color:rgba(19,19,46,.3)}
+.nav.on-dark:not(.is-solid) .nav__burger span{background:var(--ink)}
+.nav .logo img{height:40px}
+.nav__right{gap:16px}
+.nav__cta{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 6px 0 22px;border-radius:999px;background:var(--navy);color:#fff;font-weight:500;font-size:14px;transition:background .4s}
+.nav__cta-arrow{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);transition:transform .5s var(--ease),background .4s}
+.nav__cta-arrow svg{width:14px;height:14px}
+.nav__cta:hover{background:var(--teal-deep)}
+.nav__cta:hover .nav__cta-arrow{transform:rotate(-45deg);background:var(--mint);color:var(--navy)}
+.nav.on-dark .nav__cta{background:var(--mint);color:var(--navy)}
+.menu-open .nav{background:transparent;box-shadow:none;backdrop-filter:none}
+.nav{background:#fff}
+.nav__links{gap:30px;font-size:14px}
+@media (max-width:1240px){.nav__phone{display:none}.nav__links{gap:22px}}
+@media (max-width:1100px){.nav__links{display:none}.nav__burger{display:block}}
+@media (max-width:991px){.nav{inset:12px 12px auto;padding:8px 8px 8px 18px}.nav .logo img{height:35px}.nav__cta{display:none}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -99,17 +125,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <header class="nav" id="nav">
-  <a href="index.html" class="logo" aria-label="Aleafiate Health Clinics home"><img src="images/logos/aleafiate-logo-dark-compact.svg" alt="Aleafiate Health Clinics" width="180" height="80"></a>
+  <a href="index.html" class="logo" aria-label="Aleafiate Health Clinics home"><img src="images/logos/aleafiate-logo-dark-no-tagline.svg" alt="Aleafiate Health Clinics" width="180" height="65"></a>
   <nav class="nav__links" aria-label="Main">
-    <a href="index.html#get-started">How it works</a><a href="index.html#pricing">Pricing</a><a href="about.html" class="is-current">About</a><a href="faq.html">FAQ</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a>
+    <a href="index.html#get-started">How it works</a><a href="index.html#pricing">Pricing</a><a href="about.html" class="is-current" aria-current="page">About</a><a href="index.html#faqs">FAQ</a><a href="index.html#contact">Contact</a>
   </nav>
   <div class="nav__right">
     <a href="tel:+61734733396" class="nav__phone">07 3473 3396</a>
-    <a href="contact.html" class="btn btn--ghost" data-roll data-book><span class="btn__fill"></span><span class="btn__label">Book now</span><span class="btn__dot"></span></a>
+    <a href="contact.html" class="nav__cta" data-book>Book now <span class="nav__cta-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
     <button class="nav__burger" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
-<div class="mobile-menu"><a href="index.html">Home</a><a href="index.html#get-started">How it works</a><a href="index.html#pricing">Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a></div>
+<div class="mobile-menu"><a href="index.html">Home</a><a href="index.html#get-started">How it works</a><a href="index.html#pricing">Pricing</a><a href="about.html">About</a><a href="index.html#faqs">FAQ</a><a href="index.html#contact">Contact</a></div>
 
 <main>
 <!-- ================= 1. ABOUT HERO + STATS ================= -->
