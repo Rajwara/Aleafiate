@@ -36,6 +36,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <style>
 /* About banner: bento layout, live-page fonts, colours and button */
 .ab{padding:clamp(130px,12vw,160px) 0 clamp(60px,6vw,90px);background:radial-gradient(60% 70% at 15% 10%,rgba(255,255,255,.55),rgba(255,255,255,0) 60%),linear-gradient(170deg,#e3f4f1 0%,#d3ede8 55%,#e6f5f2 100%)}
+/* banner content spans the same width as the floating nav pill */
+.ab>.container{box-sizing:border-box;width:auto;max-width:none;padding-inline:0;margin-inline:max(16px,calc((100% - 1440px) / 2 + 24px))}
+@media (max-width:991px){.ab>.container{margin-inline:12px}}
 .ab__panel{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,4vw,60px)}
 .ab__copy{display:flex;flex-direction:column;padding:8px 0}
 .ab__rating{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--navy)}
