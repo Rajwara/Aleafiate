@@ -1291,6 +1291,68 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 </style>
 <link rel="stylesheet" href="css/pages.css">
 <link rel="stylesheet" href="css/live-style.css"> <!-- live-page fonts, colours and buttons -->
+<style>
+/* buttons + pill sub-headings: same as the About pages */
+/* =========================================================
+   About page: one button design everywhere (the banner's)
+   pill, label rolls up, colour fill rises, arrow circle turns up-right
+   ========================================================= */
+.abtn{--bg:var(--navy);--fg:#fff;--line:var(--navy);--fill:var(--teal-deep);--ffg:#fff;--abg:rgba(255,255,255,.14);--afg:#fff;--habg:var(--mint);--hafg:var(--navy);
+  position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:14px;height:52px;padding:0 6px 0 26px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--fg);
+  font:500 15px/1 var(--body);text-decoration:none;white-space:nowrap;cursor:pointer;transition:color .6s cubic-bezier(.22,1,.36,1),border-color .6s}
+.abtn__t{position:relative;z-index:1;display:block;height:1.3em;overflow:hidden;line-height:1.3em}
+.abtn__l{display:block;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.abtn__arrow{position:relative;z-index:1;flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--abg);color:var(--afg);transition:transform .5s cubic-bezier(.16,1,.3,1),background .4s,color .4s}
+.abtn__arrow svg{width:14px;height:14px}
+.abtn__bg{position:absolute;z-index:0;left:50%;top:0;width:140%;aspect-ratio:1;border-radius:50%;background:var(--fill);transform:translate(-50%,40%);transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.abtn:hover,.abtn:focus-visible{color:var(--ffg);border-color:var(--fill)}
+.abtn:hover .abtn__bg,.abtn:focus-visible .abtn__bg{transform:translate(-50%,-30%)}
+.abtn:hover .abtn__l,.abtn:focus-visible .abtn__l{transform:translateY(-100%)}
+.abtn:hover .abtn__arrow,.abtn:focus-visible .abtn__arrow{transform:rotate(-45deg);background:var(--habg);color:var(--hafg)}
+.abtn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+/* outline: for light backgrounds */
+.abtn--outline{--bg:transparent;--fg:var(--navy);--line:rgba(17,17,69,.3);--fill:var(--navy);--ffg:#fff;--abg:var(--navy);--afg:#fff;--habg:var(--mint);--hafg:var(--navy)}
+/* light: white on photos / dark sections */
+.abtn--light{--bg:#fff;--fg:var(--navy);--line:#fff;--fill:var(--mint);--ffg:var(--navy);--abg:var(--navy);--afg:#fff;--habg:var(--navy);--hafg:#fff}
+/* glass: see-through outline on dark sections */
+.abtn--glass{--bg:rgba(255,255,255,.06);--fg:#fff;--line:rgba(255,255,255,.55);--fill:#fff;--ffg:var(--navy);--abg:rgba(255,255,255,.16);--afg:#fff;--habg:var(--navy);--hafg:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+/* nav size */
+.abtn--nav{height:48px;padding-left:22px;font-size:14px;gap:12px}
+.abtn--nav .abtn__arrow{width:36px;height:36px}
+@media (max-width:991px){.nav .abtn--nav{display:none}}
+.pvisit__card .abtn{align-self:flex-start;margin-top:22px}
+.sb__cta .abtn{min-width:0}
+@media (max-width:560px){.sb__cta .abtn{width:100%;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.abtn__bg,.abtn__l,.abtn__arrow{transition:none}}
+
+
+.ph__cta .abtn,.pcta__btns .abtn,.rf__btns .abtn{flex:none}
+.rf__btns{display:flex;flex-wrap:wrap;gap:10px}
+.pcta__btns{gap:12px}
+/* sub-heading pills: one style everywhere ("Where we are") */
+main .v2-pill{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 8px;border:1px solid rgba(17,17,69,.12);border-radius:99px;background:transparent;font:400 13px/1.2 var(--body);letter-spacing:0;text-transform:none;color:var(--ink)}
+main .v2-pill::before{content:"";width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,var(--teal-deep) 0 3.5px,rgba(48,153,136,.22) 4px)}
+main .v2-pill.v2-pill--dark{border-color:rgba(255,255,255,.3);color:#fff;margin-bottom:20px}
+main .v2-pill.v2-pill--dark::before{background:radial-gradient(circle,var(--mint) 0 3.5px,rgba(138,220,206,.3) 4px)}
+.rf--mission .v2-pill{margin-bottom:18px}
+/* main headings: Montserrat 600, one size, #111145 navy with teal accents (dark banner: white + mint) */
+main :is(#mission-title,#approach-title,#team-title,#visit-title,.pcta h2):not(#_):not(#__){font-family:var(--heading);font-weight:600;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.035em;color:var(--navy)}
+main :is(#mission-title,#approach-title,#team-title,#visit-title,.pcta h2):not(#_):not(#__) em{font-style:normal;font-weight:600;color:var(--teal-deep)}
+main .pcta h2:not(#_):not(#__):not(#___):not(#____){color:#fff}
+main .pcta h2:not(#_):not(#__):not(#___):not(#____) em{color:var(--mint)}
+.avh__title:not(#_){font-weight:600;color:var(--navy)}
+
+/* main headings like the About page */
+main :is(#ways-title,#prep-title,#pfq-title):not(#_):not(#__){font-family:var(--heading);font-weight:600;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.035em;color:var(--navy)}
+main :is(#ways-title,#prep-title,#pfq-title):not(#_):not(#__) em{font-style:normal;font-weight:600;color:var(--teal-deep)}
+main .pcta h2:not(#_):not(#__):not(#___):not(#____){font-family:var(--heading);font-weight:600;font-size:clamp(32px,3.7vw,54px);line-height:1.1;letter-spacing:-.035em;color:#fff}
+main .pcta h2:not(#_):not(#__):not(#___):not(#____) em{font-style:normal;font-weight:600;color:var(--mint)}
+main .phw__step h3:not(#_){font-weight:600;color:var(--navy)}
+.ph h1:not(#_){font-weight:600;color:var(--navy)}
+.ph h1:not(#_) em{color:var(--teal-deep)}
+.ph__cta .abtn,.fq__btns .abtn,.phw__step .abtn,.pg-head .abtn{flex:none}
+.phw__step .abtn{align-self:flex-start;margin-top:26px}
+</style>
 </head>
 <body class="draft-home">
 <!-- Google Tag Manager (noscript) -->
@@ -1304,7 +1366,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="nav__links" aria-label="Main"><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="about-v2.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></nav>
   <div class="nav__right">
     <a href="tel:+61734733396" class="nav__phone">07 3473 3396</a>
-    <a href="contact.html" class="nav__cta" data-book>Book now <span class="nav__cta-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    <a class="abtn abtn--nav" href="contact.html" data-book><span class="abtn__t"><span class="abtn__l">Book now</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book now</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
     <button class="nav__burger" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
@@ -1317,7 +1379,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="v2-pill" data-a="up">How it works</span>
     <h1 class="split" id="ph-title">Your care with us, <em>step by step.</em></h1>
     <p class="ph__lead" data-a="up" style="--i:3">Start your journey with our simple, streamlined process from the comfort of your home. Four steps take you from your first call to ongoing, personalised care.</p>
-    <div class="ph__cta" data-a="up" style="--i:4"><button class="v2-btn v2-btn--navy" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button><a class="v2-btn v2-btn--ghost" href="check-eligibility.html"><span class="v2-btn__t"><span data-t="Check eligibility">Check eligibility</span></span></a></div>
+    <div class="ph__cta" data-a="up" style="--i:4"><button class="abtn" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button><a class="abtn abtn--outline" href="check-eligibility.html"><span class="abtn__t"><span class="abtn__l">Check eligibility</span><span class="abtn__l abtn__l--2" aria-hidden="true">Check eligibility</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a></div>
     <ul class="ph__chips" data-a="up" style="--i:4"><li>Free nurse call</li><li>AHPRA-registered practitioners</li><li>In clinic or telehealth</li><li>No obligation</li></ul>
     
   </div>
@@ -1334,7 +1396,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Book your free nurse call</h3>
         <p>Speak with our team about your health needs at no cost. We’ll explain how everything works, answer your questions and guide you through the next steps, with no obligation to continue.</p>
         <ul class="phw__chips"><li>10–15 minutes</li><li>By phone</li><li>$0</li></ul>
-        <button class="v2-btn v2-btn--navy" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        <button class="abtn" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
       </article>
       <article class="phw__step">
         <div class="phw__mimg"><img src="images/home-v2/start-eligibility-check.webp" alt="" loading="lazy"></div>
@@ -1342,7 +1404,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Check your eligibility</h3>
         <p>Explore your healthcare options with Aleafiate and discover how personalised care may support your wellbeing. Our short eligibility check helps us understand your needs before your consultation.</p>
         <ul class="phw__chips"><li>About 2 minutes</li><li>Online</li><li>Free</li></ul>
-        <a class="v2-btn v2-btn--navy" href="check-eligibility.html"><span class="v2-btn__t"><span data-t="Check eligibility">Check eligibility</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a>
+        <a class="abtn" href="check-eligibility.html"><span class="abtn__t"><span class="abtn__l">Check eligibility</span><span class="abtn__l abtn__l--2" aria-hidden="true">Check eligibility</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
       </article>
       <article class="phw__step">
         <div class="phw__mimg"><img src="images/home-v2/start-consultation.webp" alt="" loading="lazy"></div>
@@ -1350,7 +1412,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Meet your practitioner</h3>
         <p>Connect with our compassionate, AHPRA-registered practitioners in a 30-minute initial consultation to discuss your health concerns and explore personalised care options suited to your individual needs.</p>
         <ul class="phw__chips"><li>30 minutes</li><li>In clinic or telehealth</li><li>$0 for new patients</li></ul>
-        <button class="v2-btn v2-btn--navy" type="button" data-book data-book-enquiry="Book an initial consultation"><span class="v2-btn__t"><span data-t="Book a consultation">Book a consultation</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        <button class="abtn" type="button" data-book data-book-enquiry="Book an initial consultation"><span class="abtn__t"><span class="abtn__l">Book a consultation</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a consultation</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
       </article>
       <article class="phw__step">
         <div class="phw__mimg"><img src="images/home/step-4-ongoing-care.webp" alt="" loading="lazy"></div>
@@ -1358,7 +1420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Your next steps and ongoing care</h3>
         <p>Following your consultation, your practitioner will discuss the next steps based on your individual healthcare needs and clinical assessment. Follow-up consultations give you time to review your progress and adjust your care.</p>
         <ul class="phw__chips"><li>15-minute follow-ups</li><li>$65 per visit</li><li>Medicare rebates may apply*</li></ul>
-        <button class="v2-btn v2-btn--navy" type="button" data-book data-book-enquiry="Book a follow-up"><span class="v2-btn__t"><span data-t="Book a follow-up">Book a follow-up</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        <button class="abtn" type="button" data-book data-book-enquiry="Book a follow-up"><span class="abtn__t"><span class="abtn__l">Book a follow-up</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a follow-up</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
       </article>
       </div>
     </div>
@@ -1378,7 +1440,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Face-to-face in Logan Central</h3>
         <p>Visit our Aleafiate Logan Clinic, inside Chempro Pharmacy at Logan Central Plaza, 38/74 Wembley Road.</p>
         <ul class="pvisit__list"><li>Monday to Friday, 9am to 5pm</li><li>Private consultation room</li></ul>
-        <a class="v2-btn v2-btn--light" href="https://www.google.com/maps/dir/?api=1&amp;destination=Logan+Central+Plaza,+74+Wembley+Rd,+Logan+Central+QLD+4114" target="_blank" rel="noopener"><span class="v2-btn__t"><span data-t="Get directions">Get directions</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a>
+        <a class="abtn abtn--light" href="https://www.google.com/maps/dir/?api=1&amp;destination=Logan+Central+Plaza,+74+Wembley+Rd,+Logan+Central+QLD+4114" target="_blank" rel="noopener"><span class="abtn__t"><span class="abtn__l">Get directions</span><span class="abtn__l abtn__l--2" aria-hidden="true">Get directions</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
       </article>
       <article class="pvisit__card" data-a="up" style="--i:1">
         <img src="images/home/clinic-telehealth.webp" alt="A telehealth consultation in progress" loading="lazy" data-parallax>
@@ -1386,7 +1448,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>From home, Australia-wide</h3>
         <p>A good fit if you live outside Logan, work long hours, find travel difficult, or simply feel more comfortable talking from home.</p>
         <ul class="pvisit__list"><li>Phone, tablet or laptop with a camera</li><li>A reliable internet connection</li></ul>
-        <button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button>
+        <button class="abtn abtn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
       </article>
     </div>
   </div>
@@ -1396,7 +1458,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="pg-head">
       <div><span class="v2-pill" data-a="up">Before your appointment</span><h2 class="v2-h2 split" id="prep-title">A little preparation <em>goes a long way.</em></h2></div>
-      <a class="v2-btn v2-btn--ghost" href="blog-initial-consultation-checklist.html"><span class="v2-btn__t"><span data-t="Read the full checklist">Read the full checklist</span></span></a>
+      <a class="abtn abtn--outline" href="blog-initial-consultation-checklist.html"><span class="abtn__t"><span class="abtn__l">Read the full checklist</span><span class="abtn__l abtn__l--2" aria-hidden="true">Read the full checklist</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
     </div>
     <div class="pchk">
       <div class="pchk__item" data-a="up"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></i><h3>Complete your intake form</h3><p>It covers your medical history and current health, so your practitioner has the full picture before you meet.</p></div>
@@ -1413,7 +1475,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="v2-pill">FAQs</span>
       <h2 class="v2-h2" id="pfq-title">Your questions, <em>answered.</em></h2>
       <p class="v2-lead">Straight answers about consultations, care options and fees. Can’t find yours? We’re happy to help.</p>
-      <div class="fq__btns"><a class="v2-btn v2-btn--navy" href="contact.html"><span class="v2-btn__t"><span data-t="Contact us">Contact us</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a><button class="v2-btn v2-btn--ghost" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span></button></div>
+      <div class="fq__btns"><a class="abtn" href="contact.html"><span class="abtn__t"><span class="abtn__l">Contact us</span><span class="abtn__l abtn__l--2" aria-hidden="true">Contact us</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a><button class="abtn abtn--outline" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button></div>
     </div>
     <div class="fq__list" data-a="up" style="--i:2">
         <div class="fq__item is-open">
@@ -1447,9 +1509,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="pcta" data-a="scale">
       <img src="images/home/cta-background.webp" alt="" loading="lazy" data-parallax>
-      <div><h2 class="split">Start with a <em>free call.</em></h2><p>Talk to our team about your health needs at no cost. We’ll explain how everything works and guide you through the next steps, with no obligation.</p></div>
+      <div><span class="v2-pill v2-pill--dark">Get started</span><h2 class="split">Start with a <em>free call.</em></h2><p>Talk to our team about your health needs at no cost. We’ll explain how everything works and guide you through the next steps, with no obligation.</p></div>
       <div>
-        <div class="pcta__btns"><button class="v2-btn v2-btn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="v2-btn__t"><span data-t="Book a free call">Book a free call</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button><a class="v2-btn v2-btn--glass" href="check-eligibility.html"><span class="v2-btn__t"><span data-t="Check eligibility">Check eligibility</span></span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a></div>
+        <div class="pcta__btns"><button class="abtn abtn--light" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button><a class="abtn abtn--glass" href="check-eligibility.html"><span class="abtn__t"><span class="abtn__l">Check eligibility</span><span class="abtn__l abtn__l--2" aria-hidden="true">Check eligibility</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a></div>
         <span class="pcta__phone">Prefer to talk now? Call <a href="tel:+61734733396">07 3473 3396</a></span>
       </div>
     </div>
