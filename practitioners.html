@@ -112,12 +112,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .prh__panel{margin:0;border-radius:0 0 32px 32px;min-height:min(100vh,860px);min-height:min(100svh,860px);padding:0 max(var(--gutter),calc((100% - 1440px) / 2 + var(--gutter)))}
 .prh__copy{padding:clamp(140px,16vh,170px) 0 clamp(40px,6vh,64px)}
 .prh__visual{padding-top:110px}
-/* nav over the dark banner: light text until the page scrolls */
-.prh-page .nav:not(.is-solid){color:#fff}
-.prh-page .nav:not(.is-solid) .logo img{filter:brightness(0) invert(1)}
-.prh-page .nav:not(.is-solid) .btn--ghost{--fg:#fff;--line:rgba(255,255,255,.5)}
-.prh-page .nav:not(.is-solid) .nav__burger{border-color:rgba(255,255,255,.5)}
-.prh-page .nav:not(.is-solid) .nav__burger span{background:#fff}
 @media (max-width:900px){.prh__panel{padding:0 16px;border-radius:0 0 24px 24px}.prh__copy{padding-top:120px}.prh__visual{padding-top:0}}
 </style>
 <style>
@@ -133,6 +127,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .prt .trust__item p{margin:10px 0 0;font-size:15px;line-height:1.65;color:var(--muted)}
 @media (max-width:900px){.prt .trust{grid-template-columns:1fr}}
 </style>
+<style>
+/* nav + footer: same as the About page */
+/* Nav: floating pill menu, same as homepage-v3 / the live homepage */
+.nav{inset:16px max(16px,calc((100% - 1440px) / 2 + 24px)) auto;padding:10px 10px 10px 26px;border-radius:999px;background:#fff;box-shadow:0 10px 40px -18px rgba(13,13,48,.35);transition:transform .6s var(--ease),background .5s,backdrop-filter .5s,box-shadow .5s,color .4s}
+.nav.is-hidden{transform:translateY(calc(-100% - 24px))}
+.nav.is-solid{background:rgba(255,255,255,.3);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 10px 40px -18px rgba(13,13,48,.35)}
+.nav.on-dark{background:rgba(17,17,69,.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.nav.on-dark:not(.is-solid){background:#fff;color:var(--ink);box-shadow:0 10px 40px -18px rgba(13,13,48,.35)} /* top of page: plain white bar */
+.nav.on-dark:not(.is-solid) .logo img{filter:none}
+.nav.on-dark:not(.is-solid) .nav__cta{background:var(--navy);color:#fff}
+.nav.on-dark:not(.is-solid) .nav__burger{border-color:rgba(19,19,46,.3)}
+.nav.on-dark:not(.is-solid) .nav__burger span{background:var(--ink)}
+.nav .logo img{height:40px}
+.nav__right{gap:16px}
+.nav__cta{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 6px 0 22px;border-radius:999px;background:var(--navy);color:#fff;font-weight:500;font-size:14px;transition:background .4s}
+.nav__cta-arrow{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);transition:transform .5s var(--ease),background .4s}
+.nav__cta-arrow svg{width:14px;height:14px}
+.nav__cta:hover{background:var(--teal-deep)}
+.nav__cta:hover .nav__cta-arrow{transform:rotate(-45deg);background:var(--mint);color:var(--navy)}
+.nav.on-dark .nav__cta{background:var(--mint);color:var(--navy)}
+.menu-open .nav{background:transparent;box-shadow:none;backdrop-filter:none}
+.nav{background:#fff}
+.nav__links{gap:30px;font-size:14px}
+@media (max-width:1240px){.nav__phone{display:none}.nav__links{gap:22px}}
+@media (max-width:1100px){.nav__links{display:none}.nav__burger{display:block}}
+@media (max-width:991px){.nav{inset:12px 12px auto;padding:8px 8px 8px 18px}.nav .logo img{height:35px}.nav__cta{display:none}}
+</style>
 </head>
 <body class="prh-page">
 <!-- Google Tag Manager (noscript) -->
@@ -141,13 +162,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <header class="nav" id="nav">
-  <a href="index.html" class="logo" aria-label="Aleafiate Health Clinics home"><img src="images/logos/aleafiate-logo-dark-compact.svg" alt="Aleafiate Health Clinics" width="180" height="80"></a>
+  <a href="index.html" class="logo" aria-label="Aleafiate Health Clinics home"><img src="images/logos/aleafiate-logo-dark-no-tagline.svg" alt="Aleafiate Health Clinics" width="180" height="65"></a>
   <nav class="nav__links" aria-label="Main">
     <a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="check-eligibility.html">Check eligibility</a><a href="practitioners.html" class="is-current" aria-current="page">Practitioners</a>
   </nav>
   <div class="nav__right">
     <a href="tel:+61734733396" class="nav__phone">07 3473 3396</a>
-    <a href="contact.html" class="btn btn--ghost" data-roll data-book><span class="btn__fill"></span><span class="btn__label">Book now</span><span class="btn__dot"></span></a>
+    <a class="abtn abtn--nav" href="contact.html" data-book><span class="abtn__t"><span class="abtn__l">Book now</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book now</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
     <button class="nav__burger" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
