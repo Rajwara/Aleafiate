@@ -155,6 +155,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @media (max-width:991px){.nav{inset:12px 12px auto;padding:8px 8px 8px 18px}.nav .logo img{height:35px}.nav__cta{display:none}}
 </style>
 <link rel="stylesheet" href="css/brand.css">
+<style>
+/* photo, badges and name card sit on one figure the size of the photo; taller arch, quicker float */
+.prh__fig{position:relative;width:min(88%,460px)}
+.prh__fig .prh__photo{display:block;width:100%;aspect-ratio:413/490}
+.prh__chip:not(#_){animation:prhUp .8s cubic-bezier(.16,1,.3,1) forwards,prhFloat 3s ease-in-out 1s infinite alternate}
+.prh__chip:not(#_):not(#__){background:rgba(17,17,69,.62);border-color:rgba(255,255,255,.22)}
+.prh__chip--a:not(#_){top:12%;right:-14%;left:auto;animation-delay:.4s,1.1s}
+.prh__chip--b:not(#_){top:auto;bottom:32%;left:-22%;right:auto;animation-delay:.55s,1.5s}
+@media (max-width:900px){.prh__chip--a:not(#_){right:-4%;top:6%}.prh__chip--b:not(#_){left:-4%}}
+@media (max-width:520px){.prh__chip--a:not(#_){right:0}}
+</style>
 </head>
 <body class="prh-page">
 <!-- Google Tag Manager (noscript) -->
@@ -192,10 +203,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="prh__visual">
       <div class="prh__glow" aria-hidden="true"></div>
-      <img class="prh__photo" src="images/practitioners/dr-frank-guerrera.jpg" alt="Dr Frank Guerrera, General Practitioner at Aleafiate" fetchpriority="high">
-      <div class="prh__chip prh__chip--a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><span><b>AHPRA-registered</b>Every practitioner</span></div>
-      <div class="prh__chip prh__chip--b"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i><span><b>In clinic or telehealth</b>Logan Central &amp; Australia-wide</span></div>
-      <div class="prh__name"><b>Dr Frank Guerrera</b>General Practitioner · MBBS FRACGP</div>
+      <div class="prh__fig">
+        <img class="prh__photo" src="images/practitioners/dr-frank-guerrera.jpg" alt="Dr Frank Guerrera, General Practitioner at Aleafiate" fetchpriority="high">
+        <div class="prh__chip prh__chip--a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><span><b>AHPRA-registered</b>Every practitioner</span></div>
+        <div class="prh__chip prh__chip--b"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i><span><b>In clinic or telehealth</b>Logan Central &amp; Australia-wide</span></div>
+        <div class="prh__name"><b>Dr Frank Guerrera</b>General Practitioner · MBBS FRACGP</div>
+      </div>
     </div>
   </div>
 </section>
