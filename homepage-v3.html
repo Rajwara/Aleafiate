@@ -679,6 +679,40 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 
 </style>
 <link rel="stylesheet" href="css/brand.css">
+<style>
+/* Why Aleafiate: same design as homepage-v2 */
+.wy{padding:clamp(80px,9vw,120px) 0;background:#fff}
+.wy__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,64px);align-items:stretch;margin-top:clamp(36px,4vw,56px)}
+.wy__stage{position:relative;min-height:540px;border-radius:28px;overflow:hidden;background:var(--sand);isolation:isolate}
+.wy__stage img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+.wy__stage img.is-active{opacity:1;transform:scale(1)}
+.wy__count{position:absolute;right:18px;top:18px;padding:7px 14px;border-radius:99px;background:rgba(255,255,255,.92);font:500 13px/1 var(--heading);color:var(--navy)}
+.wy__count b{font-weight:600;color:var(--teal-deep)}
+.wy__card{position:absolute;left:18px;right:18px;bottom:18px;padding:22px 24px;border-radius:20px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--navy)}
+.wy__card b{display:block;font-family:var(--heading);font-weight:500;font-size:20px}
+.wy__card p{margin:8px 0 0;font-size:14px;line-height:1.6;color:#3d4560}
+.wy__card .wy__lead{color:var(--teal-deep);font-weight:500}
+.wy__side{display:flex;flex-direction:column}
+.wy__points{display:grid;gap:10px;list-style:none;margin:0;padding:0}
+.wy__point{position:relative;display:flex;gap:18px;width:100%;padding:20px 22px;border:1px solid rgba(17,17,69,.08);border-radius:18px;background:#fff;text-align:left;font:inherit;color:var(--navy);cursor:pointer;overflow:hidden;transition:border-color .4s,background .4s,box-shadow .4s}
+.wy__point:hover{border-color:rgba(36,117,104,.4)}
+.wy__point.is-active{border-color:transparent;background:var(--sand);box-shadow:0 20px 40px -32px rgba(17,17,69,.4)}
+.wy__num{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#eef4f3;font:500 14px/1 var(--heading);color:var(--navy);transition:background .4s,color .4s}
+.wy__point.is-active .wy__num{background:var(--navy);color:var(--mint)}
+.wy__point b{display:block;font-family:var(--heading);font-weight:500;font-size:18px}
+.wy__body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.16,1,.3,1)}
+.wy__body>span{overflow:hidden}
+.wy__point.is-active .wy__body{grid-template-rows:1fr}
+.wy__body span span{display:block;padding-top:8px;font-size:14px;line-height:1.6;color:#4a5068}
+.wy__bar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--teal-deep);transform:scaleX(0);transform-origin:left}
+.wy__point.is-active .wy__bar{animation:wyBar var(--wy-time,6s) linear forwards}
+.wy.is-paused .wy__point.is-active .wy__bar{animation-play-state:paused}
+@keyframes wyBar{to{transform:scaleX(1)}}
+.wy__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+@media (prefers-reduced-motion:reduce){.wy__stage img{transition:none}.wy__point.is-active .wy__bar{animation:none;transform:scaleX(1)}}
+@media (max-width:900px){.wy__grid{grid-template-columns:1fr}.wy__stage{min-height:440px}}
+.wy__head .ah{margin:18px 0 0}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -943,45 +977,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ================= 5. WHY CHOOSE ALEAFIATE — feature + auto-playing points ================= -->
-<section class="section wa" id="why">
+<!-- ================= 5. WHY CHOOSE ALEAFIATE (design from homepage-v2) ================= -->
+<section class="wy" id="why" aria-labelledby="wy-title">
   <div class="container">
-    <div class="wa__head">
-      <span class="sub-pill">Why Aleafiate</span>
-      <h2 class="ah ah--sec" data-split>Choose Aleafiate, leaders in <em>alternative health.</em></h2>
-    </div>
-    <div class="wa__feature">
-      <div class="wa__stage" data-wa-stage><div class="wa__slide is-active" data-label="01 · Qualified practitioners: image coming soon"><img src="images/home-v2/why-1-qualified-practitioners.webp" alt="Practitioner explaining a plan to a patient" loading="lazy"></div><div class="wa__slide" data-label="02 · Individualised care: image coming soon"><img src="images/home-v2/why-2-prescriptions.webp" alt="Practitioner handing a written plan to a patient" loading="lazy"></div><div class="wa__slide" data-label="03 · Logan clinic: image coming soon"><img src="images/home-v2/why-3-logan-clinic.webp" alt="Private consultation room at the Aleafiate Logan clinic" loading="lazy"></div><div class="wa__slide" data-label="04 · Flexible consultation options: image coming soon"><img src="images/home-v2/why-4-telehealth.webp" alt="Patient on a telehealth consultation at home" loading="lazy"></div>
-        <span class="wa__counter" aria-hidden="true"><b data-wa-count>01</b> / 04</span>
+    <div class="wy__head"><span class="sub-pill">Why Aleafiate</span><h2 class="ah ah--sec" id="wy-title">Choose Aleafiate, leaders in <em>alternative health.</em></h2></div>
+    <div class="wy__grid">
+      <div class="wy__stage"><img class="is-active" data-wy-img src="images/home-v2/why-1-qualified-practitioners.webp" alt="A practitioner explaining a plan to a patient" loading="lazy"><img class="" data-wy-img src="images/home-v2/why-2-prescriptions.webp" alt="A practitioner listening to a patient" loading="lazy"><img class="" data-wy-img src="images/home-v2/why-3-logan-clinic.webp" alt="The Aleafiate clinic at Logan Central" loading="lazy"><img class="" data-wy-img src="images/home-v2/why-4-telehealth.webp" alt="A patient on a telehealth call" loading="lazy">
+        <span class="wy__count" aria-hidden="true"><b data-wy-count>01</b> / 04</span>
+        <div class="wy__card"><b>Why Aleafiate?</b><p class="wy__lead">At Aleafiate Health Clinics, we believe healing is a shared journey.</p><p>Your wellbeing is at the heart of everything we do. We offer patient-focused care that’s personalised, compassionate, and grounded in clinical integrity.</p></div>
       </div>
-      <div class="wa__card" data-wa-card>
-        <h3>Why Aleafiate?</h3>
-        <p class="wa__lead">At Aleafiate Health Clinics, we believe healing is a shared journey.</p>
-        <p>Your wellbeing is at the heart of everything we do. We offer patient-focused care that’s personalised, compassionate, and grounded in clinical integrity. Our team walks alongside you, supporting your health journey with respect, understanding, and a shared commitment to achieving meaningful outcomes together.</p>
-        <a href="#contact" class="wa__link" data-book>Book a free call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <div class="wy__side">
+        <ul class="wy__points">
+          <li><button type="button" class="wy__point is-active" data-wy-point="0" aria-pressed="true">
+            <span class="wy__num">01</span>
+            <span><b>Qualified Healthcare Practitioners</b><span class="wy__body"><span><span>Our AHPRA-registered practitioners provide personalised healthcare consultations guided by professional standards and individual patient needs.</span></span></span></span>
+            <span class="wy__bar" aria-hidden="true"></span>
+          </button></li>
+          <li><button type="button" class="wy__point" data-wy-point="1" aria-pressed="false">
+            <span class="wy__num">02</span>
+            <span><b>Individualised Care</b><span class="wy__body"><span><span>Every consultation begins with understanding your health concerns, medical history and individual needs to explore clinically appropriate care options.</span></span></span></span>
+            <span class="wy__bar" aria-hidden="true"></span>
+          </button></li>
+          <li><button type="button" class="wy__point" data-wy-point="2" aria-pressed="false">
+            <span class="wy__num">03</span>
+            <span><b>Face-to-Face Consultations</b><span class="wy__body"><span><span>Face-to-face consultations are available at our Aleafiate Logan Clinic, located inside Chempro Pharmacy at Logan Central Plaza, 38/74 Wembley Road, Logan Central QLD 4114.</span></span></span></span>
+            <span class="wy__bar" aria-hidden="true"></span>
+          </button></li>
+          <li><button type="button" class="wy__point" data-wy-point="3" aria-pressed="false">
+            <span class="wy__num">04</span>
+            <span><b>Flexible Consultation Options</b><span class="wy__body"><span><span>Choose the care that suits you, with face-to-face appointments and Australia-wide telehealth consultations available to support your healthcare needs.</span></span></span></span>
+            <span class="wy__bar" aria-hidden="true"></span>
+          </button></li>
+        </ul>
+        <div class="wy__cta"><button class="abtn" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button><a class="abtn abtn--outline" href="practitioners.html"><span class="abtn__t"><span class="abtn__l">Meet our practitioners</span><span class="abtn__l abtn__l--2" aria-hidden="true">Meet our practitioners</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a></div>
       </div>
-    </div>
-    <div class="wa__points" data-wa-points>
-      <button type="button" class="wa__point is-active" data-wa-point="0" aria-pressed="true">
-        <span class="wa__num">( 01 )</span>
-        <span class="wa__text"><b class="wa__title">Qualified Healthcare Practitioners</b>Our AHPRA-registered practitioners provide personalised healthcare consultations guided by professional standards and individual patient needs.</span>
-        <span class="wa__bar" aria-hidden="true"><i></i></span>
-      </button>
-      <button type="button" class="wa__point" data-wa-point="1" aria-pressed="false">
-        <span class="wa__num">( 02 )</span>
-        <span class="wa__text"><b class="wa__title">Individualised Care</b>Every consultation begins with understanding your health concerns, medical history and individual needs to explore clinically appropriate care options.</span>
-        <span class="wa__bar" aria-hidden="true"><i></i></span>
-      </button>
-      <button type="button" class="wa__point" data-wa-point="2" aria-pressed="false">
-        <span class="wa__num">( 03 )</span>
-        <span class="wa__text"><b class="wa__title">Face-to-Face Consultations</b>Face-to-face consultations are available at our Aleafiate Logan Clinic, located inside Chempro Pharmacy at Logan Central Plaza, 38/74 Wembley Road, Logan Central QLD 4114.</span>
-        <span class="wa__bar" aria-hidden="true"><i></i></span>
-      </button>
-      <button type="button" class="wa__point" data-wa-point="3" aria-pressed="false">
-        <span class="wa__num">( 04 )</span>
-        <span class="wa__text"><b class="wa__title">Flexible Consultation Options</b>Choose the care that suits you, with face-to-face appointments and Australia-wide telehealth consultations available to support your healthcare needs.</span>
-        <span class="wa__bar" aria-hidden="true"><i></i></span>
-      </button>
     </div>
   </div>
 </section>
@@ -1358,41 +1387,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     /* ---------- Help flip cards: rise in with a slight tilt ---------- */
     gsap.from('.fc', { y: 70, rotationX: -14, transformPerspective: 900, autoAlpha: 0, duration: 1.2, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '[data-hw-grid]', start: 'top 85%' } });
 
-    /* ---------- Why Aleafiate: entrance, then points auto-play (bar fills → photo wipes to the next) ---------- */
-    const wa = $('#why');
-    if (wa) {
-      const points = $$('[data-wa-point]', wa), slides = $$('.wa__slide', wa), bars = points.map(p => $('.wa__bar i', p)), count = $('[data-wa-count]', wa);
-      const DUR = 6; let cur = 0, fill = null;
-      gsap.timeline({ scrollTrigger: { trigger: wa, start: 'top 70%' } })
-        .from('[data-wa-stage]', { clipPath: 'inset(12% 12% 12% 12% round 28px)', duration: 1.6, ease: 'expo.inOut' })
-        .from('[data-wa-stage] .wa__slide.is-active img', { scale: 1.3, duration: 2, ease: 'expo.out' }, 0)
-        .from('[data-wa-card]', { x: 80, autoAlpha: 0, duration: 1.3, ease: 'expo.out' }, .5)
-        .from('[data-wa-card] > *', { y: 24, autoAlpha: 0, duration: 1, ease: 'expo.out', stagger: .08 }, .7);
-      gsap.fromTo(points, { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.1, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '[data-wa-points]', start: 'top 90%' } });
-      const show = (i, dir = 1) => {
-        if (i === cur) return;
-        const from = slides[cur], to = slides[i];
-        points[cur].classList.remove('is-active'); points[cur].setAttribute('aria-pressed', 'false');
-        points[i].classList.add('is-active'); points[i].setAttribute('aria-pressed', 'true');
-        gsap.set(bars[cur], { scaleX: 0 });
-        to.classList.add('is-active'); gsap.set(to, { zIndex: 2 }); gsap.set(from, { zIndex: 1 });
-        gsap.timeline({ onComplete: () => { from.classList.remove('is-active'); gsap.set(to, { clearProps: 'clipPath' }); } })
-          .fromTo(to, { clipPath: dir > 0 ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0%)', duration: 1.2, ease: 'expo.inOut' })
-          .fromTo($('img', to), { scale: 1.2 }, { scale: 1, duration: 1.6, ease: 'expo.out' }, 0);
-        count.textContent = String(i + 1).padStart(2, '0');
-        cur = i;
-      };
-      const play = () => {
-        fill && fill.kill();
-        fill = gsap.fromTo(bars[cur], { scaleX: 0 }, { scaleX: 1, duration: DUR, ease: 'none', onComplete: () => { show((cur + 1) % points.length); play(); } });
-      };
-      points.forEach((p, i) => {
-        p.addEventListener('click', () => { show(i, i > cur ? 1 : -1); play(); });
-        p.addEventListener('mouseenter', () => { if (i !== cur) { show(i, i > cur ? 1 : -1); play(); } });
-      });
-      ScrollTrigger.create({ trigger: wa, start: 'top 60%', end: 'bottom 20%', onToggle: st => st.isActive ? (fill ? fill.resume() : play()) : fill && fill.pause() }); // only runs while in view
-    }
-
     /* ---------- Rating counter ---------- */
     const num = $('[data-count]'), obj = { v: 0 };
     if (num) gsap.to(obj, { v: parseFloat(num.dataset.count), duration: 2, ease: 'power2.out', onUpdate: () => num.textContent = obj.v.toFixed(1),
@@ -1407,6 +1401,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     ScrollTrigger.refresh();
   });
+})();
+</script>
+<script>
+(() => {
+  // why aleafiate: auto-play the four points, click to jump, pause on hover or when off screen
+  const wy = document.querySelector('.wy');
+  if (wy) {
+    const pts = [...wy.querySelectorAll('[data-wy-point]')], imgs = [...wy.querySelectorAll('[data-wy-img]')], count = wy.querySelector('[data-wy-count]');
+    const TIME = 6000; wy.style.setProperty('--wy-time', TIME / 1000 + 's');
+    let cur = 0, t, left = TIME, started = 0, visible = false, hover = false;
+    const go = i => {
+      cur = (i + pts.length) % pts.length;
+      pts.forEach((p, j) => { p.classList.toggle('is-active', j === cur); p.setAttribute('aria-pressed', j === cur); });
+      imgs.forEach((im, j) => im.classList.toggle('is-active', j === cur));
+      count.textContent = String(cur + 1).padStart(2, '0');
+      left = TIME; run();
+    };
+    const run = () => { clearTimeout(t); if (!visible || hover || matchMedia('(prefers-reduced-motion: reduce)').matches) return; started = Date.now(); t = setTimeout(() => go(cur + 1), left); };
+    const pause = () => { clearTimeout(t); left -= Date.now() - started; wy.classList.add('is-paused'); };
+    pts.forEach((p, i) => p.addEventListener('click', () => go(i)));
+    wy.addEventListener('pointerenter', () => { hover = true; pause(); });
+    wy.addEventListener('pointerleave', () => { hover = false; wy.classList.remove('is-paused'); run(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(e => { visible = e[0].isIntersecting; visible ? (wy.classList.remove('is-paused'), run()) : pause(); }, { threshold: .3 }).observe(wy);
+    imgs.forEach(im => im.loading = 'eager');
+  }
+
 })();
 </script>
 </body>
