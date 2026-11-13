@@ -34,6 +34,78 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="css/booking.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/live-style.css"> <!-- live-page fonts and buttons -->
+<style>
+/* =========================================================
+   About page: one button design everywhere (the banner's)
+   pill, label rolls up, colour fill rises, arrow circle turns up-right
+   ========================================================= */
+.abtn{--bg:var(--navy);--fg:#fff;--line:var(--navy);--fill:var(--teal-deep);--ffg:#fff;--abg:rgba(255,255,255,.14);--afg:#fff;--habg:var(--mint);--hafg:var(--navy);
+  position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:14px;height:52px;padding:0 6px 0 26px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--fg);
+  font:500 15px/1 var(--body);text-decoration:none;white-space:nowrap;cursor:pointer;transition:color .6s cubic-bezier(.22,1,.36,1),border-color .6s}
+.abtn__t{position:relative;z-index:1;display:block;height:1.3em;overflow:hidden;line-height:1.3em}
+.abtn__l{display:block;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.abtn__arrow{position:relative;z-index:1;flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--abg);color:var(--afg);transition:transform .5s cubic-bezier(.16,1,.3,1),background .4s,color .4s}
+.abtn__arrow svg{width:14px;height:14px}
+.abtn__bg{position:absolute;z-index:0;left:50%;top:0;width:140%;aspect-ratio:1;border-radius:50%;background:var(--fill);transform:translate(-50%,40%);transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.abtn:hover,.abtn:focus-visible{color:var(--ffg);border-color:var(--fill)}
+.abtn:hover .abtn__bg,.abtn:focus-visible .abtn__bg{transform:translate(-50%,-30%)}
+.abtn:hover .abtn__l,.abtn:focus-visible .abtn__l{transform:translateY(-100%)}
+.abtn:hover .abtn__arrow,.abtn:focus-visible .abtn__arrow{transform:rotate(-45deg);background:var(--habg);color:var(--hafg)}
+.abtn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+/* outline: for light backgrounds */
+.abtn--outline{--bg:transparent;--fg:var(--navy);--line:rgba(17,17,69,.3);--fill:var(--navy);--ffg:#fff;--abg:var(--navy);--afg:#fff;--habg:var(--mint);--hafg:var(--navy)}
+/* light: white on photos / dark sections */
+.abtn--light{--bg:#fff;--fg:var(--navy);--line:#fff;--fill:var(--mint);--ffg:var(--navy);--abg:var(--navy);--afg:#fff;--habg:var(--navy);--hafg:#fff}
+/* glass: see-through outline on dark sections */
+.abtn--glass{--bg:rgba(255,255,255,.06);--fg:#fff;--line:rgba(255,255,255,.55);--fill:#fff;--ffg:var(--navy);--abg:rgba(255,255,255,.16);--afg:#fff;--habg:var(--navy);--hafg:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+/* nav size */
+.abtn--nav{height:48px;padding-left:22px;font-size:14px;gap:12px}
+.abtn--nav .abtn__arrow{width:36px;height:36px}
+@media (max-width:991px){.nav .abtn--nav{display:none}}
+.pvisit__card .abtn{align-self:flex-start;margin-top:22px}
+.sb__cta .abtn{min-width:0}
+@media (max-width:560px){.sb__cta .abtn{width:100%;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.abtn__bg,.abtn__l,.abtn__arrow{transition:none}}
+
+
+/* mint variant for the dark banner */
+.abtn--mint{--bg:var(--mint);--fg:var(--navy);--line:var(--mint);--fill:#fff;--ffg:var(--navy);--abg:var(--navy);--afg:#fff;--habg:var(--navy);--hafg:#fff}
+/* Practitioners banner: dark rounded panel, copy left, practitioner photo right with floating chips */
+.prh{padding:clamp(96px,10vw,120px) 0 clamp(40px,5vw,70px);background:var(--bone)}
+.prh__panel{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);min-height:clamp(560px,46vw,660px);margin-inline:max(16px,calc((100% - 1440px) / 2 + 24px));border-radius:32px;background:radial-gradient(70% 90% at 85% 40%,#2a2f6b 0%,rgba(42,47,107,0) 60%),linear-gradient(135deg,#15154d 0%,#111145 55%,#0d0d36 100%);color:#fff}
+.prh__copy{position:relative;z-index:2;display:flex;flex-direction:column;padding:clamp(32px,4.5vw,64px)}
+.prh__pill{align-self:flex-start;padding:7px 14px;border:1px solid rgba(255,255,255,.25);border-radius:99px;font-size:13px;color:rgba(255,255,255,.85)}
+.prh h1:not(#_){margin:22px 0 0;font-family:var(--heading);font-weight:600;font-size:clamp(40px,5vw,76px);line-height:1.04;letter-spacing:-.04em;color:#fff}
+.prh h1:not(#_) em{font-style:normal;color:var(--mint)}
+.prh__lead{margin:20px 0 0;max-width:460px;font-size:clamp(15px,1.2vw,17px);line-height:1.7;color:rgba(255,255,255,.75)}
+.prh__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.prh__stats{display:flex;flex-wrap:wrap;gap:16px clamp(20px,2.4vw,36px);list-style:none;margin:auto 0 0;padding:40px 0 0}
+.prh__stats li{display:flex;align-items:center;gap:12px}
+.prh__stats b{font:600 clamp(34px,3.2vw,46px)/1 var(--heading);letter-spacing:-.04em;color:var(--mint)}
+.prh__stats b small{font-size:.55em}
+.prh__stats span{font-size:13px;line-height:1.35;color:rgba(255,255,255,.65)}
+.prh__visual{position:relative;display:flex;align-items:flex-end;justify-content:center}
+.prh__glow{position:absolute;left:50%;bottom:-10%;width:90%;aspect-ratio:1;border-radius:50%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(138,220,206,.55),rgba(138,220,206,.12) 60%,rgba(138,220,206,0))}
+.prh__photo{position:relative;width:min(88%,460px);aspect-ratio:413/425;object-fit:cover;object-position:50% 0;border-radius:200px 200px 0 0;-webkit-mask:linear-gradient(180deg,#000 78%,transparent);mask:linear-gradient(180deg,#000 78%,transparent);opacity:0;transform:translateY(40px);animation:prhUp 1.2s cubic-bezier(.16,1,.3,1) .25s forwards}
+.prh__chip{position:absolute;z-index:3;display:flex;align-items:center;gap:12px;padding:10px 16px 10px 10px;border:1px solid rgba(255,255,255,.18);border-radius:18px;background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);font-size:12px;line-height:1.35;color:rgba(255,255,255,.75);box-shadow:0 20px 40px -24px rgba(0,0,0,.5);opacity:0;animation:prhUp 1s cubic-bezier(.16,1,.3,1) forwards,prhFloat 5s ease-in-out 1.6s infinite alternate}
+.prh__chip b{display:block;font-size:13.5px;font-weight:600;color:#fff}
+.prh__chip i{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:var(--mint);color:var(--navy);font-style:normal}
+.prh__chip i svg{width:18px;height:18px}
+.prh__chip--a{right:clamp(16px,3vw,40px);top:24%;animation-delay:.6s,1.6s}
+.prh__chip--b{left:clamp(0px,1vw,16px);bottom:30%;animation-delay:.8s,2.2s}
+.prh__name{position:absolute;z-index:3;left:50%;bottom:22px;transform:translateX(-50%);padding:10px 18px;border-radius:14px;background:#fff;color:var(--muted);font-size:12.5px;text-align:center;white-space:nowrap;box-shadow:0 20px 40px -24px rgba(0,0,0,.5)}
+.prh__name b{display:block;font-family:var(--heading);font-size:15px;color:var(--navy)}
+.prh [data-prh]{opacity:0;transform:translateY(28px);animation:prhUp 1s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--i,0)*110ms + .1s)}
+@keyframes prhUp{to{opacity:1;transform:none}}
+@keyframes prhFloat{to{translate:0 -8px}}
+@media (prefers-reduced-motion:reduce){.prh *{animation:none!important;opacity:1!important;transform:none!important}}
+@media (max-width:900px){
+  .prh__panel{grid-template-columns:1fr;margin-inline:12px}
+  .prh__visual{min-height:420px}
+  .prh__chip--a{top:8%}.prh__chip--b{bottom:26%}
+}
+@media (max-width:520px){.prh__chip{font-size:11px}.prh__chip--b{display:none}.prh__cta .abtn{width:100%;justify-content:space-between}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -55,14 +127,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="mobile-menu"><a href="index.html">Home</a><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="check-eligibility.html">Check eligibility</a><a href="practitioners.html">Practitioners</a></div>
 
 <main>
-<!-- ================= 1. HERO ================= -->
-<section class="a-hero">
-  <div class="intro__orb intro__orb--a" data-speed="-0.2"></div>
-  <div class="intro__orb intro__orb--b" data-speed="0.25"></div>
-  <div class="container">
-    <div class="a-hero__top">
-      <div><span class="eyebrow" data-up>Our clinical team</span><h1 data-words style="margin-top:20px">Meet our prescribing <em>practitioners.</em></h1></div>
-      <p class="a-hero__sub" data-up>Every prescribing decision at Aleafiate is made independently by a qualified, AHPRA-registered practitioner: people who listen first and take the time to get your care right.</p>
+<!-- ================= 1. HERO: practitioner banner (based on the supplied reference) ================= -->
+<section class="prh" aria-labelledby="prh-title">
+  <div class="prh__panel">
+    <div class="prh__copy">
+      <span class="prh__pill" data-prh>Our clinical team</span>
+      <h1 id="prh-title" data-prh style="--i:1">Meet your <em>practitioners</em></h1>
+      <p class="prh__lead" data-prh style="--i:2">Experienced, AHPRA-registered practitioners who listen first and take the time to understand your health, in clinic at Logan Central or by telehealth.</p>
+      <div class="prh__cta" data-prh style="--i:3"><button class="abtn abtn--mint" type="button" data-book data-book-enquiry="Book a free discovery call"><span class="abtn__t"><span class="abtn__l">Book a free call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book a free call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button><a class="abtn abtn--glass" href="#team"><span class="abtn__t"><span class="abtn__l">View the team</span><span class="abtn__l abtn__l--2" aria-hidden="true">View the team</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a></div>
+      <ul class="prh__stats" data-prh style="--i:4">
+        <li><b>4.7<small>★</small></b><span>Google rating<br>from our patients</span></li>
+        <li><b>15<small>+</small></b><span>years’ experience<br>across our team</span></li>
+        <li><b>$0</b><span>free nurse call<br>to get started</span></li>
+      </ul>
+    </div>
+    <div class="prh__visual">
+      <div class="prh__glow" aria-hidden="true"></div>
+      <img class="prh__photo" src="images/practitioners/dr-frank-guerrera.jpg" alt="Dr Frank Guerrera, General Practitioner at Aleafiate" fetchpriority="high">
+      <div class="prh__chip prh__chip--a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><span><b>AHPRA-registered</b>Every practitioner</span></div>
+      <div class="prh__chip prh__chip--b"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></i><span><b>In clinic or telehealth</b>Logan Central &amp; Australia-wide</span></div>
+      <div class="prh__name"><b>Dr Frank Guerrera</b>General Practitioner · MBBS FRACGP</div>
     </div>
   </div>
 </section>
@@ -209,21 +293,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="steps">
       <span class="steps__line"><i data-draw></i></span>
       <div class="step"><span class="step__dot">01</span><small class="eyebrow">Step 01</small><h3>Free call &amp; intake form</h3><p>Start with a free, no-obligation call. Then complete our intake form so your practitioner has your medical history before you meet.</p></div><div class="step"><span class="step__dot">02</span><small class="eyebrow">Step 02</small><h3>Consultation</h3><p>Meet your practitioner by telehealth or at our Logan Central clinic. They assess your health and check whether a treatment is safe and suitable for you.</p></div><div class="step"><span class="step__dot">03</span><small class="eyebrow">Step 03</small><h3>Your plan</h3><p>If treatment is appropriate, your practitioner creates a personalised plan. Prescriptions are sent to your chosen pharmacy within 12–24 hours, with any required TGA approvals.</p></div><div class="step"><span class="step__dot">04</span><small class="eyebrow">Step 04</small><h3>Follow-up care</h3><p>Regular follow-up consultations let your practitioner review your progress and adjust your plan as needed.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 5. CTA ================= -->
-<section class="cta" id="contact">
-  <h2 class="cta__headline"><span data-letters>Start with a conversation.</span></h2>
-  <div class="cta__image"><div class="media" data-label="CTA: cta-background.webp 2560×1440"><img src="images/practitioners/cta-background.webp" alt="Practitioner welcoming a patient" loading="lazy" data-cta-img></div></div>
-  <div class="cta__card-wrap">
-    <div class="cta__card">
-      <div class="media" data-label="CTA card: cta-card.webp 800×900"><img src="images/practitioners/cta-card.webp" alt="Patient on a phone call" loading="lazy"></div>
-      <div class="cta__card-body">
-        <div><h3>Book a free call</h3><p>A no-obligation chat with our team to find out whether Aleafiate is right for you, before you book with a practitioner.</p></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap"><a href="tel:+61734733396" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Book a free call</span><span class="btn__dot"></span></a><a href="contact.html" class="btn btn--ghost" data-roll><span class="btn__fill"></span><span class="btn__label">Book now</span><svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12L12 4M5 4h7v7"/></svg></a></div>
-      </div>
     </div>
   </div>
 </section>
