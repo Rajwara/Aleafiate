@@ -106,8 +106,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 @media (max-width:520px){.prh__chip{font-size:11px}.prh__chip--b{display:none}.prh__cta .abtn{width:100%;justify-content:space-between}}
 </style>
+<style>
+/* full-width banner that runs up behind the nav */
+.prh{padding:0;background:none}
+.prh__panel{margin:0;border-radius:0 0 32px 32px;min-height:min(100vh,860px);min-height:min(100svh,860px);padding:0 max(var(--gutter),calc((100% - 1440px) / 2 + var(--gutter)))}
+.prh__copy{padding:clamp(140px,16vh,170px) 0 clamp(40px,6vh,64px)}
+.prh__visual{padding-top:110px}
+/* nav over the dark banner: light text until the page scrolls */
+.prh-page .nav:not(.is-solid){color:#fff}
+.prh-page .nav:not(.is-solid) .logo img{filter:brightness(0) invert(1)}
+.prh-page .nav:not(.is-solid) .btn--ghost{--fg:#fff;--line:rgba(255,255,255,.5)}
+.prh-page .nav:not(.is-solid) .nav__burger{border-color:rgba(255,255,255,.5)}
+.prh-page .nav:not(.is-solid) .nav__burger span{background:#fff}
+@media (max-width:900px){.prh__panel{padding:0 16px;border-radius:0 0 24px 24px}.prh__copy{padding-top:120px}.prh__visual{padding-top:0}}
+</style>
 </head>
-<body>
+<body class="prh-page">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGP8F9Z8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
