@@ -50,7 +50,7 @@
   // after the quiz: offer the booking form, filled in with what they already entered
   if (form === 'eligibility') {
     const book = $('[data-ty-book]'), home = $('[data-ty-home]');
-    book.hidden = false; home.className = 'ty__btn ty__btn--ghost';
+    book.hidden = false; home.className = 'abtn abtn--outline';
     book.addEventListener('click', () => window.aleafiateBook && window.aleafiateBook({ name: saved.name, email: saved.email, phone: saved.phone, enquiry: 'Book a free discovery call' }, book));
   }
 })();

@@ -626,6 +626,8 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 @keyframes tyDraw{to{stroke-dashoffset:0}}
 .ty__tag{display:table;margin:18px auto 0;padding:6px 14px;border-radius:99px;background:#eef8f6;color:var(--teal-deep);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .ty__tag[data-tone="review"]{background:#eef0fb;color:#3b3f8f}
+.ty__card .sub-pill:not(#_),.sub-pill[data-ty-tag]:not(#_){display:flex;margin:18px auto 0}
+.sub-pill[data-tone="review"]:not(#_)::before{background:radial-gradient(circle,#3b3f8f 0 3.5px,rgba(59,63,143,.22) 4px)}
 .ty h1{font-size:clamp(30px,3.8vw,48px);line-height:1.12;letter-spacing:-.025em;color:var(--navy);margin:16px auto 14px;max-width:18ch}
 .ty__lead{color:var(--muted);max-width:520px;margin:0 auto;font-size:16px;line-height:1.65}
 .ty__lead a{color:var(--ink);font-weight:500;border-bottom:1px solid currentColor}
@@ -647,6 +649,7 @@ main{overflow-x:clip} /* slide-in reveals must never cause sideways scrolling */
 @media (prefers-reduced-motion:reduce){.ty__card>*,.ty__icon svg *{animation:none;opacity:1;transform:none;stroke-dashoffset:0}}
 </style>
 <link rel="stylesheet" href="css/live-style.css"> <!-- live-page fonts and buttons -->
+<link rel="stylesheet" href="css/brand.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -675,8 +678,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="ty__card" aria-live="polite">
       <span class="ty__icon" aria-hidden="true"><svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="2"><circle cx="42" cy="42" r="40"/><path d="M27 43l10 10 20-22"/></svg></span>
-      <span class="ty__tag" data-ty-tag>Request received</span>
-      <h1 data-ty-title>Thank you.</h1>
+      <span class="sub-pill" data-ty-tag>Request received</span>
+      <h1 class="ah" data-ty-title>Thank you.</h1>
       <p class="ty__lead" data-ty-lead>We’ve received your request. Our team will call you within one business day.</p>
       <blockquote class="ty__quote" data-ty-quote hidden></blockquote>
       <ol class="ty__steps" aria-label="What happens next">
@@ -685,9 +688,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><b>3</b><span>Together we find the right next step for you, with no obligation.</span></li>
       </ol>
       <div class="ty__actions">
-        <button type="button" class="ty__btn ty__btn--solid" data-ty-book hidden>Book your free nurse call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-        <a class="ty__btn ty__btn--solid" href="index.html" data-ty-home>Back to homepage</a>
-        <a class="ty__btn ty__btn--ghost" href="tel:+61734733396">Call 07 3473 3396</a>
+        <button type="button" class="abtn" data-ty-book hidden><span class="abtn__t"><span class="abtn__l">Book your free nurse call</span><span class="abtn__l abtn__l--2" aria-hidden="true">Book your free nurse call</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
+        <a class="abtn" href="index.html" data-ty-home><span class="abtn__t"><span class="abtn__l">Back to homepage</span><span class="abtn__l abtn__l--2" aria-hidden="true">Back to homepage</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
+        <a class="abtn abtn--outline" href="tel:+61734733396"><span class="abtn__t"><span class="abtn__l">Call 07 3473 3396</span><span class="abtn__l abtn__l--2" aria-hidden="true">Call 07 3473 3396</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></a>
       </div>
     </div>
   </div>

@@ -22,6 +22,9 @@ that page's URL:
   Do not edit them for site-wide nav/footer work. Put new nav/footer markup and styles in
   new files (or inline in each non-campaign page) so the campaign pages stay exactly as they are.
 - `css/pages.css` and `js/pages.js` are not loaded by any campaign page.
+- `css/brand.css` (2026-11-13, requested by the user for every page including the campaign pages) holds the
+  site-wide button (`.abtn`), sub-heading pill (`.sub-pill`) and heading (`.ah`, `.ah--sec`, `.ah--light`) styles
+  from the About page. Every page loads it, campaign pages included, so editing it changes the campaign pages too.
 - The whole site currently has `<meta name="robots" content="noindex, nofollow">` (requested
   2026-11-13). Keep it on new pages until the user asks to make pages visible.
 

@@ -21,6 +21,7 @@
     consent: { name: 'field[12][]', value: 'I agree to be contacted and have read the Privacy Policy' }
   };
 
+  const AB = l => `<span class="abtn__t"><span class="abtn__l">${l}</span><span class="abtn__l abtn__l--2" aria-hidden="true">${l}</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span>`; // site button (css/brand.css)
   const PHONE = '07 3473 3396', TEL = 'tel:+61734733396';
   const NOT_ELIGIBLE = `<b>You are not eligible.</b> Call us for more details on <a href="${TEL}">${PHONE}</a>.`;
   const ICON = {
@@ -76,7 +77,7 @@
       ${s.type === 'final' ? `<label class="qz__consent"><input type="checkbox" name="consent"><span>I agree to be contacted and have read the <a href="${privacy}"${privacy.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>.</span></label><div class="form-error qz__error" data-form-error role="alert" hidden></div><div class="captcha qz__captcha"><div data-captcha></div><p class="captcha__err" hidden>Please tick “I’m not a robot”.</p></div>` : ''}
       ${s.options ? `<div class="qz__opts qz__opts--${s.type}" role="radiogroup">${s.options.map((o, j) => opt(s, o, j)).join('')}</div>` : ''}
       ${s.notes ? `<div class="qz__note" hidden role="alert"><p data-qz-note></p><div class="qz__note-actions" data-qz-actions></div></div>` : ''}
-      ${s.input ? `<button type="button" class="qz__btn qz__btn--solid qz__go" data-qz-go><span>${s.type === 'final' ? 'See my result' : 'Continue'}</span>${ARROW}</button>` : ''}
+      ${s.input ? `<button type="button" class="abtn qz__go" data-qz-go>${AB(s.type === 'final' ? 'See my result' : 'Continue')}</button>` : ''}
     </fieldset>`;
 
   root.innerHTML = `
@@ -122,7 +123,7 @@
   };
   back.addEventListener('click', () => show(at - 1, -1));
 
-  const btn = (cls, attrs, label) => attrs.startsWith('href') ? `<a class="qz__btn ${cls}" ${attrs}>${label}</a>` : `<button type="button" class="qz__btn ${cls}" ${attrs}>${label}</button>`;
+  const btn = (cls, attrs, label) => { cls = cls.includes('ghost') ? 'abtn abtn--outline abtn--sm' : 'abtn abtn--sm'; label = AB(label.replace(/<svg[\s\S]*?<\/svg>/g, '').trim()); return attrs.startsWith('href') ? `<a class="${cls}" ${attrs}>${label}</a>` : `<button type="button" class="${cls}" ${attrs}>${label}</button>`; };
   steps.forEach((step, i) => {
     const s = STEPS[i];
     if (s.options) {
@@ -227,8 +228,8 @@
       <p>${copy.text}</p>
       ${copy.quote ? `<blockquote class="qz-result__quote">${copy.quote}</blockquote>` : ''}
       <div class="qz-result__actions">
-        ${copy.cta ? `<button type="button" class="qz__btn qz__btn--solid" data-qz-book>Book your free nurse call ${ARROW}</button>` : `<a class="qz__btn qz__btn--solid" href="${TEL}">Call ${PHONE}</a>`}
-        <a class="qz__btn qz__btn--ghost" href="index.html">Back to homepage</a>
+        ${copy.cta ? `<button type="button" class="abtn" data-qz-book>${AB('Book your free nurse call')}</button>` : `<a class="abtn" href="${TEL}">${AB('Call ' + PHONE)}</a>`}
+        <a class="abtn abtn--outline" href="index.html">${AB('Back to homepage')}</a>
       </div>`;
     form.hidden = true; result.hidden = false;
     if (bar) bar.style.width = '100%';

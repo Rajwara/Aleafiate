@@ -55,7 +55,7 @@
           <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree to be contacted and have read the <a href="${PRIVACY_URL}"${PRIVACY_URL.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>Privacy Policy</a>. *</span></label>
           <div class="form-error" data-form-error role="alert" hidden></div>
           <div class="captcha"><div data-captcha></div><p class="captcha__err" hidden>Please tick “I’m not a robot”.</p></div>
-          <button type="submit" class="btn" data-roll><span class="btn__fill"></span><span class="btn__label">Request appointment</span>${ARROW}</button>
+          <button type="submit" class="abtn"><span class="abtn__t"><span class="abtn__l">Request appointment</span><span class="abtn__l abtn__l--2" aria-hidden="true">Request appointment</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>
           <p class="bk__alt">Prefer to talk? Call <a href="tel:+61734733396">07 3473 3396</a> · Mon – Fri, 9am – 5pm</p>
         </form>
         <div class="bk__done" hidden aria-live="polite">
@@ -75,12 +75,12 @@
       <button class="bk__close" type="button" data-bk-close aria-label="Close booking form">${X}</button>
       <div class="bk__head">
         <span class="bk__orb" aria-hidden="true"></span>
-        <span class="eyebrow">Free · no obligation</span>
+        <span class="sub-pill sub-pill--dark">Free · no obligation</span>
         <h2 id="bk-title">Book an appointment</h2>
         <p>Leave your details and our team will call you back within one business day to confirm a time.</p>
       </div>
       <div class="bk__body">
-        ${formHTML('bk', '<button type="button" class="btn btn--ghost" data-bk-close>Close</button>')}
+        ${formHTML('bk', '<button type="button" class="abtn abtn--outline" data-bk-close><span class="abtn__t"><span class="abtn__l">Close</span><span class="abtn__l abtn__l--2" aria-hidden="true">Close</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>')}
       </div>
     </div>
   </div>`);
@@ -88,7 +88,7 @@
   // inline copies of the form: <div data-booking-inline></div> (e.g. the homepage's closing section)
   document.querySelectorAll('[data-booking-inline]').forEach((el, i) => {
     el.classList.add('bk-inline');
-    el.innerHTML = formHTML(`bki${i}`, '<button type="button" class="btn btn--ghost" data-bk-again>Send another request</button>');
+    el.innerHTML = formHTML(`bki${i}`, '<button type="button" class="abtn abtn--outline" data-bk-again><span class="abtn__t"><span class="abtn__l">Send another request</span><span class="abtn__l abtn__l--2" aria-hidden="true">Send another request</span></span><span class="abtn__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span><span class="abtn__bg" aria-hidden="true"></span></button>');
   });
 
   const $ = (s, c = document) => c.querySelector(s);
