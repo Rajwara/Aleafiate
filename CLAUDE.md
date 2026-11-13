@@ -24,3 +24,9 @@ that page's URL:
 - `css/pages.css` and `js/pages.js` are not loaded by any campaign page.
 - The whole site currently has `<meta name="robots" content="noindex, nofollow">` (requested
   2026-11-13). Keep it on new pages until the user asks to make pages visible.
+
+## 404 page uses the campaign header and footer
+
+Ad visitors can land on `404.html`, so its header, phone menu and footer are kept identical to
+the campaign pages (copied from `thank-you.html`). Leave `404.html` out of site-wide nav/footer
+changes; when the campaign header/footer changes, copy it to `404.html` too.
